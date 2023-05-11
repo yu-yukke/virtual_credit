@@ -1,42 +1,67 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// Field scalar types: https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#model-field-scalar-types
+
+// DO NOT CHANGE
 generator client {
   provider = "prisma-client-js"
 }
 
+// DO NOT CHANGE
 datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
-model User {
-  id        Int       @id @default(autoincrement())
-  name      String    @db.VarChar(255)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+// Schemas
 
-  @@index([deletedAt])
+// model SomeModel {
+//   id        Int       @id @default(autoincrement())
+//   createdAt DateTime  @default(now()) @map(name: "created_at")
+//   updatedAt DateTime  @updatedAt @map(name: "updated_at")
+
+//   parent   Parent     @relation(fields: [parentId], references: [id], onDelete: Cascade)
+//   children Children[]
+
+//   @@index([some_columns])
+//   @@map(name: "some_models")
+// }
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "categories")
 }
 
 model Job {
-  id        Int       @id @default(autoincrement())
-  name      String    @db.VarChar(255)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  @@index([deletedAt])
+  @@map(name: "jobs")
 }
 
-model Category {
-  id        Int       @id @default(autoincrement())
-  name      String    @db.VarChar(255)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  @@index([deletedAt])
+  @@map(name: "users")
+}
+
+model Work {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  description String   @db.Text
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "works")
 }
