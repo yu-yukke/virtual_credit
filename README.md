@@ -67,15 +67,23 @@ npx prisma studio
 
 ## 開発ワークフロー
 
-### スキーマに変更がある場合
+### 1. develop ブランチからチェックアウト
 
-#### スキーマを dev ブランチへ反映
+### 2-a. スキーマに変更がある場合
+
+#### スキーマを Planet Scale の dev ブランチへ反映
 
 ```bash
 npx prisma db push
 ```
 
-#### main ブランチへデプロイリクエストを作成
+というか開発中もこれしないと反映されない
+
+### 2-b. develop ブランチへ PR
+
+### 3. ある程度開発まとまるまで develop ブランチからはマージしない
+
+### 4. スキーマ変更があれば Planet Scale の main ブランチへ dev からデプロイリクエストを作成
 
 ```bash
 npm run psdeploy
@@ -83,22 +91,25 @@ npm run psdeploy
 
 を叩くか Planet Scale ダッシュボードから作成
 
-#### デプロイリクエストを承認
+### 5. デプロイリクエストを承認
 
-Planet Scale ダッシュボードから承認 →main ブランチへマージ
+Planet Scale ダッシュボードから承認 → main ブランチへマージ
 
-### 以下は共通
+### 6. develop ブランチから main ブランチへ PR
 
-#### Next.js のビルド
+Vercel が preview デプロイしてくれるからチェック（DB はまだ本番と共通だから INSERT 系は禁止）
+
+### 7. 問題なければ main にマージ
+
+Vercel が production デプロイしてくれる
+
+## 本番環境チェックしたい場合
+
+### Next.js のビルド
 
 ```bash
 npm run build
+npm run start
 ```
 
-prisma generate & prisma db push & next build まで勝手にやってくれる
-
-#### PR 作成
-
-GitHub に push→PR を作成すると CI が Vercel プレビューを作成してくれる
-
-プレビューの DB 参照先は main ブランチなのでこの時点で main へマージされていればチェック可能なはず
+localhost で確認できる
