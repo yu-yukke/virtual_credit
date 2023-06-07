@@ -1,0 +1,17 @@
+# next.js build output
+.next
+.vercel
+
+# dotenv environment variables file (build for Zeit Now)
+.env
+
+# Dependency directories
+node_modules
+
+# Logs
+npm-debug.log*
+
+# settings
+**/*.min.js
+*.config.js
+.*lintrc.js
