@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='ja'>
       <body className={roboto.className}>
         <Header />
-        <main>{children}</main>
+        <main className='bg-green-100'>{children}</main>
         <Footer />
       </body>
     </html>

@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
-    <header>
+    <footer className='bg-blue-100'>
       <h1>Footer</h1>
-    </header>
+    </footer>
   );
 };
