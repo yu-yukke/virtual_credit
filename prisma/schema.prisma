@@ -45,8 +45,7 @@ model Job {
 model User {
   id         Int      @id @default(autoincrement())
   externalId String   @unique
-  name       String
-  email      String
+  attributes Json
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
