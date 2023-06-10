@@ -31,6 +31,16 @@ Planet Scale の dev ブランチをローカルにプロキシ
 
 起動しておかないと dev ブランチを参照できない
 
+### Webhook
+
+```bash
+ngrok http 3000
+```
+
+Clerk の Webhook 用に ngrok で URL を払い出している
+
+無料プランだと毎度 URL が変更されるので Clerk の認証周りいじる時は URL 払い出して Clerk の WebhookURL を変更すること
+
 ## DB
 
 ### スキーマ定義
