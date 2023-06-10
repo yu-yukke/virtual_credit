@@ -1,3 +1,4 @@
+import { jaJP } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { AppProps } from 'next/app';
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <ClerkProvider
       {...pageProps}
+      localization={jaJP}
       appearance={{
         variables: {
           colorPrimary: 'blue',
