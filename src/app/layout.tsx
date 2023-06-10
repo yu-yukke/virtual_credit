@@ -1,3 +1,6 @@
+import { ClerkProvider } from '@clerk/nextjs';
+import type { AppProps } from 'next/app';
+
 import './globals.css';
 import { Roboto } from 'next/font/google';
 
@@ -13,16 +16,32 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  pageProps,
 }: {
   children: React.ReactNode;
+  pageProps: AppProps;
 }) {
   return (
-    <html lang='ja'>
-      <body className={roboto.className}>
-        <Header />
-        <main className='bg-green-100'>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <ClerkProvider
+      {...pageProps}
+      appearance={{
+        variables: {
+          colorPrimary: 'blue',
+          colorDanger: 'red',
+          colorSuccess: 'green',
+          colorWarning: 'yellow',
+          colorText: 'black',
+          colorTextSecondary: 'gray',
+        },
+      }}
+    >
+      <html lang='ja'>
+        <body className={roboto.className}>
+          <Header />
+          <main className='bg-green-100'>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

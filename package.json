@@ -14,6 +14,7 @@
     "psdeploy": "pscale deploy-request create virtual-credit-db dev"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.19.1",
     "@prisma/client": "^4.13.0",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
