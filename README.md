@@ -13,6 +13,11 @@
 - Prisma
 - Planet Scale
 
+### node
+
+- 18.16.0（Volta）
+- パッケージ管理は pnpm
+
 ## 開発環境
 
 ### 起動
