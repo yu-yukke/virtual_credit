@@ -39,9 +39,14 @@ export default function RootLayout({
     >
       <html lang='ja'>
         <body className={roboto.className}>
-          <Header />
-          <main className='bg-green-100'>{children}</main>
-          <Footer />
+          <div className='flex flex-col items-stretch min-h-screen'>
+            <div className='h-[99px] w-full' />
+            <Header />
+            <main className='w-full p-16 mx-auto max-w-screen-2xl h-[2000px]'>
+              {children}
+            </main>
+            <Footer />
+          </div>
         </body>
       </html>
     </ClerkProvider>
