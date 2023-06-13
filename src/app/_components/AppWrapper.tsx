@@ -30,7 +30,7 @@ export const AppWrapper = ({ children }: Props) => {
     <div className='flex flex-col items-stretch min-h-screen'>
       <div className='h-[99px] w-full' />
       <Header offset={position} />
-      <main className='w-full p-16 mx-auto max-w-screen-2xl h-[2000px]'>
+      <main className='w-full grid grid-cols-12 py-16 mx-auto px-[100px] gap-x-5 max-w-[1440px]'>
         {children}
       </main>
       <Footer />

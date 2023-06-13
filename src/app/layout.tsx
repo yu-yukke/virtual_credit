@@ -36,7 +36,7 @@ export default function RootLayout({ children, pageProps }: Props) {
       }}
     >
       <html lang='ja'>
-        <body className={roboto.className}>
+        <body className={`${roboto.className} text-text-primary`}>
           <AppWrapper>{children}</AppWrapper>
         </body>
       </html>
