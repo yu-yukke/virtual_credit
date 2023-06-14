@@ -18,6 +18,9 @@ module.exports = {
       boxShadow: {
         header: '0px 5px 30px 0px rgba(0, 0, 0, 0.03)',
       },
+      gridTemplateColumns: {
+        'footer': 'repeat(auto-fit, minmax(200px, 1fr))',
+      }
     },
   },
   plugins: [],
