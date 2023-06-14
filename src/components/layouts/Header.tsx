@@ -33,8 +33,8 @@ export const Header = ({ offset }: Props) => {
       ref={headerRef}
     >
       <div className='flex items-center justify-between w-full h-full gap-8 mx-auto min-h-[66px] max-w-screen'>
-        <Link href='/'>
-          <h1 className='text-lg font-normal tracking-[.22em] leading-tight font-GillSans hover:opacity-80'>
+        <Link href='/' className='hover:opacity-80'>
+          <h1 className='text-lg font-normal tracking-[.22em] leading-tight font-GillSans'>
             VIRTUAL
             <br />
             CREDIT
