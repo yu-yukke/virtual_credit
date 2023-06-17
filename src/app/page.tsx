@@ -1,3 +1,5 @@
+import { css } from '../../styled-system/css';
+
 export default function Home() {
-  return <h1 className='flex items-center text-xl'>Home</h1>;
+  return <h1 className={css({})}>Home</h1>;
 }

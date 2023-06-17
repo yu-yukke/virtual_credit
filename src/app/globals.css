@@ -1,10 +1,1 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  background: linear-gradient(rgb(244, 244, 244) 0%, rgb(255, 255, 255) 30%)
-    no-repeat;
-  transition-property: background-color;
-  transition-duration: 0.2s;
-}
+@layer reset, base, tokens, recipes, utilities;

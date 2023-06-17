@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { css } from '../../../styled-system/css';
+
 export const GlobalSearch = () => {
   const [searchInput, setSearchInput] = useState<string>('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,13 +13,26 @@ export const GlobalSearch = () => {
   };
 
   return (
-    <div className='flex-1 p-2.5 border border-gray-200 rounded-md'>
+    <div
+      className={css({
+        flexGrow: 1,
+        flexBasis: 1,
+        flexShrink: 0,
+        p: 10,
+        border: '1px solid token(borders.primary)',
+        rounded: 'md',
+      })}
+    >
       <input
         type='search'
         placeholder='Search here'
         onChange={handleChange}
         value={searchInput}
-        className='w-full h-full bg-transparent'
+        className={css({
+          w: '100%',
+          h: '100%',
+          bg: 'transparent',
+        })}
       />
     </div>
   );
