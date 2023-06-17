@@ -11,6 +11,8 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import { useRef } from 'react';
 
+import { css } from '../../../styled-system/css';
+
 import { GlobalSearch } from '../elements/GlobalSearch';
 
 type Props = {
@@ -26,15 +28,44 @@ export const Header = ({ offset }: Props) => {
     <header
       className={classNames(
         headerHeight < offset
-          ? 'shadow-header bg-white py-0 bg-opacity-50'
-          : 'py-4',
-        'fixed top-0 left-0 z-10 w-full px-8 transition-all border-b border-gray-200 backdrop-blur',
+          ? css({ bg: 'rgba(255, 255, 255, 0.5)', py: 0, shadow: 'header' })
+          : css({ py: 16 }),
+        css({
+          w: '100%',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 10,
+          px: 32,
+          transition: 'all 0.15s',
+          borderBottom: '1px solid token(borders.primary)',
+          backdropFilter: 'blur(9px)',
+        }),
       )}
       ref={headerRef}
     >
-      <div className='flex items-center justify-between w-full h-full gap-8 mx-auto min-h-[66px] max-w-screen'>
-        <Link href='/' className='hover:opacity-80'>
-          <h1 className='text-lg font-normal tracking-[.22em] leading-tight font-GillSans'>
+      <div
+        className={css({
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 32,
+          w: '100%',
+          maxW: 'screen',
+          h: '100%',
+          minH: '66px',
+          mx: 'auto',
+        })}
+      >
+        <Link href='/' className={css({ _hover: { opacity: 0.8 } })}>
+          <h1
+            className={css({
+              fontFamily: 'gillSans',
+              fontSize: 'large',
+              letterSpacing: '0.22em',
+              lineHeight: '1.6rem',
+            })}
+          >
             VIRTUAL
             <br />
             CREDIT
@@ -45,14 +76,42 @@ export const Header = ({ offset }: Props) => {
           <UserButton afterSignOutUrl='/' />
         </SignedIn>
         <SignedOut>
-          <div className='flex items-center gap-2'>
+          <div
+            className={css({
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+            })}
+          >
             <SignInButton mode='modal'>
-              <button className='px-4 py-1.5 tracking-wider hover:opacity-80'>
+              <button
+                className={css({
+                  px: 16,
+                  py: 6,
+                  letterSpacing: 'base',
+                  _hover: {
+                    opacity: 0.8,
+                  },
+                })}
+              >
                 Sign in
               </button>
             </SignInButton>
             <SignUpButton mode='modal'>
-              <button className='px-4 py-1.5 tracking-wider text-white rounded-md bg-zinc-700 shadow hover:opacity-80'>
+              <button
+                className={css({
+                  px: 16,
+                  py: 6,
+                  letterSpacing: 'base',
+                  color: 'white',
+                  bg: 'primary',
+                  rounded: 'md',
+                  shadow: 'sm',
+                  _hover: {
+                    opacity: 0.8,
+                  },
+                })}
+              >
                 Sign up
               </button>
             </SignUpButton>

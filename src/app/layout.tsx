@@ -3,11 +3,8 @@ import { ClerkProvider } from '@clerk/nextjs';
 import type { AppProps } from 'next/app';
 
 import './globals.css';
-import { Roboto } from 'next/font/google';
 
 import { AppWrapper } from './_components/AppWrapper';
-
-const roboto = Roboto({ weight: '400', subsets: ['latin'] });
 
 type Props = {
   children: React.ReactNode;
@@ -36,7 +33,7 @@ export default function RootLayout({ children, pageProps }: Props) {
       }}
     >
       <html lang='ja'>
-        <body className={`${roboto.className} text-text-primary`}>
+        <body>
           <AppWrapper>{children}</AppWrapper>
         </body>
       </html>
