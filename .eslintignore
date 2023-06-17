@@ -17,4 +17,5 @@ npm-debug.log*
 # settings
 **/*.min.js
 *.config.js
+*.config.cjs
 .*lintrc.js

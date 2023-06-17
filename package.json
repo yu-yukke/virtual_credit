@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "panda codegen",
     "preinstall": "npx only-allow pnpm",
     "dev": "prisma generate && NODE_OPTIONS='--inspect' next dev",
     "build": "prisma generate && next build",
@@ -33,6 +34,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.3.1",
     "@typescript-eslint/parser": "^5.59.11",
     "eslint-config-prettier": "^8.8.0",
     "prettier": "^2.8.8"
