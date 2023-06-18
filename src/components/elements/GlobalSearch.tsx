@@ -15,9 +15,7 @@ export const GlobalSearch = () => {
   return (
     <div
       className={css({
-        flexGrow: 1,
-        flexBasis: 1,
-        flexShrink: 0,
+        flex: '1 1 0',
         p: 10,
         border: '1px solid token(borders.primary)',
         rounded: 'md',
@@ -29,8 +27,8 @@ export const GlobalSearch = () => {
         onChange={handleChange}
         value={searchInput}
         className={css({
-          w: '100%',
-          h: '100%',
+          w: 'full',
+          h: 'full',
           bg: 'transparent',
         })}
       />
