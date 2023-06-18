@@ -43,4 +43,8 @@
     letter-spacing: var(--letter-spacings-base);
     font-family: var(--fonts-base)
     }
+
+  a:where(:hover, [data-hover]) {
+    opacity: 0.8
+    }
 }

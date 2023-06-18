@@ -10,11 +10,11 @@ export const Footer = () => {
   return (
     <footer
       className={css({
-        w: '100%',
+        w: 'full',
         py: 32,
         mx: 'auto',
-        px: '100px',
-        maxW: '1440px',
+        px: 'baseX',
+        maxW: 'base',
         display: 'flex',
         flexDir: 'column',
         gap: 32,
@@ -54,14 +54,7 @@ export const Footer = () => {
                 })}
                 key={nav.title}
               >
-                <Link
-                  href={nav.href}
-                  className={css({
-                    _hover: { opacity: 0.8 },
-                  })}
-                >
-                  {nav.title}
-                </Link>
+                <Link href={nav.href}>{nav.title}</Link>
               </li>
             ))}
           </ul>
@@ -82,14 +75,7 @@ export const Footer = () => {
                 })}
                 key={nav.title}
               >
-                <Link
-                  href={nav.href}
-                  className={css({
-                    _hover: { opacity: 0.8 },
-                  })}
-                >
-                  {nav.title}
-                </Link>
+                <Link href={nav.href}>{nav.title}</Link>
               </li>
             ))}
           </ul>
@@ -110,14 +96,7 @@ export const Footer = () => {
                 })}
                 key={nav.title}
               >
-                <Link
-                  href={nav.href}
-                  className={css({
-                    _hover: { opacity: 0.8 },
-                  })}
-                >
-                  {nav.title}
-                </Link>
+                <Link href={nav.href}>{nav.title}</Link>
               </li>
             ))}
           </ul>
@@ -151,14 +130,7 @@ export const Footer = () => {
               })}
               key={nav.title}
             >
-              <Link
-                href={nav.href}
-                className={css({
-                  _hover: { opacity: 0.8 },
-                })}
-              >
-                {nav.title}
-              </Link>
+              <Link href={nav.href}>{nav.title}</Link>
             </li>
           ))}
         </ul>
@@ -178,14 +150,7 @@ export const Footer = () => {
               })}
               key={nav.title}
             >
-              <Link
-                href={nav.href}
-                className={css({
-                  _hover: { opacity: 0.8 },
-                })}
-              >
-                {nav.title}
-              </Link>
+              <Link href={nav.href}>{nav.title}</Link>
             </li>
           ))}
         </ul>

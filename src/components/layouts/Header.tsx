@@ -31,7 +31,8 @@ export const Header = ({ offset }: Props) => {
           ? css({ bg: 'rgba(255, 255, 255, 0.5)', py: 0, shadow: 'header' })
           : css({ py: 16 }),
         css({
-          w: '100%',
+          w: 'full',
+          maxH: 'headerHeight',
           position: 'fixed',
           top: 0,
           left: 0,
@@ -50,14 +51,14 @@ export const Header = ({ offset }: Props) => {
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: 32,
-          w: '100%',
+          w: 'full',
           maxW: 'screen',
-          h: '100%',
+          h: 'full',
           minH: '66px',
           mx: 'auto',
         })}
       >
-        <Link href='/' className={css({ _hover: { opacity: 0.8 } })}>
+        <Link href='/'>
           <h1
             className={css({
               fontFamily: 'gillSans',

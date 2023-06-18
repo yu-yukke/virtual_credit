@@ -23,6 +23,10 @@ const tokens = {
     "value": "0.05rem",
     "variable": "var(--letter-spacings-base)"
   },
+  "letterSpacings.wider": {
+    "value": "0.075rem",
+    "variable": "var(--letter-spacings-wider)"
+  },
   "letterSpacings.widest": {
     "value": "0.1rem",
     "variable": "var(--letter-spacings-widest)"
@@ -47,25 +51,17 @@ const tokens = {
     "value": "0.375rem",
     "variable": "var(--radii-md)"
   },
-  "breakpoints.sm": {
-    "value": "640px",
-    "variable": "var(--breakpoints-sm)"
+  "sizes.base": {
+    "value": "1400px",
+    "variable": "var(--sizes-base)"
   },
-  "breakpoints.md": {
-    "value": "768px",
-    "variable": "var(--breakpoints-md)"
+  "sizes.full": {
+    "value": "100%",
+    "variable": "var(--sizes-full)"
   },
-  "breakpoints.lg": {
-    "value": "1024px",
-    "variable": "var(--breakpoints-lg)"
-  },
-  "breakpoints.xl": {
-    "value": "1280px",
-    "variable": "var(--breakpoints-xl)"
-  },
-  "breakpoints.2xl": {
-    "value": "1536px",
-    "variable": "var(--breakpoints-2xl)"
+  "sizes.headerHeight": {
+    "value": "99px",
+    "variable": "var(--sizes-header-height)"
   },
   "sizes.breakpoint-sm": {
     "value": "640px",
@@ -86,6 +82,42 @@ const tokens = {
   "sizes.breakpoint-2xl": {
     "value": "1536px",
     "variable": "var(--sizes-breakpoint-2xl)"
+  },
+  "spacing.baseX": {
+    "value": "100px",
+    "variable": "var(--spacing-base-x)"
+  },
+  "spacing.baseY": {
+    "value": "64px",
+    "variable": "var(--spacing-base-y)"
+  },
+  "breakpoints.sm": {
+    "value": "640px",
+    "variable": "var(--breakpoints-sm)"
+  },
+  "breakpoints.md": {
+    "value": "768px",
+    "variable": "var(--breakpoints-md)"
+  },
+  "breakpoints.lg": {
+    "value": "1024px",
+    "variable": "var(--breakpoints-lg)"
+  },
+  "breakpoints.xl": {
+    "value": "1280px",
+    "variable": "var(--breakpoints-xl)"
+  },
+  "breakpoints.2xl": {
+    "value": "1536px",
+    "variable": "var(--breakpoints-2xl)"
+  },
+  "spacing.-baseX": {
+    "value": "calc(var(--spacing-base-x) * -1)",
+    "variable": "var(--spacing-base-x)"
+  },
+  "spacing.-baseY": {
+    "value": "calc(var(--spacing-base-y) * -1)",
+    "variable": "var(--spacing-base-y)"
   }
 }
 

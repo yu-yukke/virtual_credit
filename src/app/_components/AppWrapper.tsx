@@ -31,24 +31,26 @@ export const AppWrapper = ({ children }: Props) => {
   return (
     <div
       className={css({
+        display: 'flex',
+        flexDir: 'column',
+        alignItems: 'stretch',
         minH: 'screen',
       })}
     >
       <div
         className={css({
-          h: '99px',
+          h: 'headerHeight',
         })}
       />
       <Header offset={position} />
       <main
         className={css({
-          display: 'grid',
-          gridColumn: 12,
+          w: 'full',
           mx: 'auto',
-          px: '100px',
-          py: '4rem',
-          gap: 5,
-          maxW: '1440px',
+          px: 'baseX',
+          py: 'baseY',
+          maxW: 'base',
+          flex: '1 1 0',
         })}
       >
         {children}

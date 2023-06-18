@@ -19,6 +19,11 @@ export default defineConfig({
       letterSpacing: 'base',
       fontFamily: 'base',
     },
+    a: {
+      _hover: {
+        opacity: 0.8,
+      },
+    },
   },
 
   // Useful for theme customization
@@ -48,6 +53,7 @@ export default defineConfig({
       },
       letterSpacings: {
         base: { value: '0.05rem' },
+        wider: { value: '0.075rem' },
         widest: { value: '0.1rem' },
       },
       borders: {
@@ -65,6 +71,15 @@ export default defineConfig({
       radii: {
         sm: { value: '0.125rem' },
         md: { value: '0.375rem' },
+      },
+      sizes: {
+        base: { value: '1400px' }, // max width for this app
+        full: { value: '100%' },
+        headerHeight: { value: '99px' },
+      },
+      spacing: {
+        baseX: { value: '100px' }, // base paddingX
+        baseY: { value: '64px' }, // base paddingY
       },
     },
     extend: {},
