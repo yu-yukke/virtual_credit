@@ -5,8 +5,8 @@
   "scripts": {
     "prepare": "panda codegen",
     "preinstall": "npx only-allow pnpm",
-    "dev": "prisma generate && NODE_OPTIONS='--inspect' next dev",
-    "build": "prisma generate && next build",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint --dir src",
     "lint:fix": "next lint --fix",
@@ -18,7 +18,6 @@
   "dependencies": {
     "@clerk/localizations": "^1.18.0",
     "@clerk/nextjs": "^4.21.1",
-    "@prisma/client": "^4.15.0",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
@@ -27,7 +26,6 @@
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
     "next": "13.4.1",
-    "prisma": "^4.15.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "svix": "^1.4.12",
