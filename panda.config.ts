@@ -12,10 +12,12 @@ export default defineConfig({
 
   // Define global styles
   globalCss: {
+    html: {
+      fontSize: 'md',
+    },
     body: {
-      color: 'primary',
+      color: 'base',
       bgGradient: 'body',
-      fontSize: 'base',
       letterSpacing: 'base',
       fontFamily: 'base',
     },
@@ -30,6 +32,8 @@ export default defineConfig({
   theme: {
     tokens: {
       colors: {
+        base: { value: '#2B2B2B' },
+        white: { value: '#FFFFFF' },
         primary: { value: '#2B2B2B' },
         secondary: { value: '#9CA38F' },
       },
@@ -49,7 +53,14 @@ export default defineConfig({
         },
       },
       fontSizes: {
-        base: { value: '14px' },
+        xs: { value: '0.75rem' },
+        sm: { value: '0.875rem' },
+        md: { value: '1rem' },
+        lg: { value: '1.125rem' },
+        xl: { value: '1.3125rem' },
+        '2xl': { value: '1.5rem' },
+        '3xl': { value: '2.652rem' },
+        '4xl': { value: '4rem' },
       },
       letterSpacings: {
         base: { value: '0.05rem' },
@@ -73,7 +84,7 @@ export default defineConfig({
         md: { value: '0.375rem' },
       },
       sizes: {
-        base: { value: '1400px' }, // max width for this app
+        maxWidth: { value: '1400px' }, // max width for this app
         full: { value: '100%' },
         headerHeight: { value: '99px' },
       },

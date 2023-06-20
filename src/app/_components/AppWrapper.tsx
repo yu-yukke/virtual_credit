@@ -49,7 +49,7 @@ export const AppWrapper = ({ children }: Props) => {
           mx: 'auto',
           px: 'baseX',
           py: 'baseY',
-          maxW: 'base',
+          maxW: 'maxWidth',
           flex: '1 1 0',
         })}
       >

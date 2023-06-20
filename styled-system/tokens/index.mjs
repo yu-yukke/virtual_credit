@@ -1,4 +1,12 @@
 const tokens = {
+  "colors.base": {
+    "value": "#2B2B2B",
+    "variable": "var(--colors-base)"
+  },
+  "colors.white": {
+    "value": "#FFFFFF",
+    "variable": "var(--colors-white)"
+  },
   "colors.primary": {
     "value": "#2B2B2B",
     "variable": "var(--colors-primary)"
@@ -15,9 +23,37 @@ const tokens = {
     "value": "Gill Sans",
     "variable": "var(--fonts-gill-sans)"
   },
-  "fontSizes.base": {
-    "value": "14px",
-    "variable": "var(--font-sizes-base)"
+  "fontSizes.xs": {
+    "value": "0.75rem",
+    "variable": "var(--font-sizes-xs)"
+  },
+  "fontSizes.sm": {
+    "value": "0.875rem",
+    "variable": "var(--font-sizes-sm)"
+  },
+  "fontSizes.md": {
+    "value": "1rem",
+    "variable": "var(--font-sizes-md)"
+  },
+  "fontSizes.lg": {
+    "value": "1.125rem",
+    "variable": "var(--font-sizes-lg)"
+  },
+  "fontSizes.xl": {
+    "value": "1.3125rem",
+    "variable": "var(--font-sizes-xl)"
+  },
+  "fontSizes.2xl": {
+    "value": "1.5rem",
+    "variable": "var(--font-sizes-2xl)"
+  },
+  "fontSizes.3xl": {
+    "value": "2.652rem",
+    "variable": "var(--font-sizes-3xl)"
+  },
+  "fontSizes.4xl": {
+    "value": "4rem",
+    "variable": "var(--font-sizes-4xl)"
   },
   "letterSpacings.base": {
     "value": "0.05rem",
@@ -51,9 +87,9 @@ const tokens = {
     "value": "0.375rem",
     "variable": "var(--radii-md)"
   },
-  "sizes.base": {
+  "sizes.maxWidth": {
     "value": "1400px",
-    "variable": "var(--sizes-base)"
+    "variable": "var(--sizes-max-width)"
   },
   "sizes.full": {
     "value": "100%",
