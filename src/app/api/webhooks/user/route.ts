@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { Webhook, WebhookRequiredHeaders } from 'svix';
 import prisma from '@/lib/prisma';
 
-const webhookSecret = process.env.WEBHOOK_SECRET || '';
+const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || '';
 
 type EventType = 'user.created' | 'user.updated' | '*';
 type Event = {
