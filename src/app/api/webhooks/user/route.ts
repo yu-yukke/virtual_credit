@@ -1,8 +1,10 @@
 import { IncomingHttpHeaders } from 'http';
+import { eq } from 'drizzle-orm';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { Webhook, WebhookRequiredHeaders } from 'svix';
-import prisma from '@/lib/prisma';
+import { db } from '@/db';
+import { NewUser, users } from '@/db/schema';
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || '';
 
@@ -14,7 +16,6 @@ type Event = {
 };
 
 async function handler(request: Request) {
-  console.log('ok');
   const payload = await request.json();
   const headersList = headers();
   const heads = {
@@ -41,14 +42,19 @@ async function handler(request: Request) {
   if (eventType === 'user.created' || eventType === 'user.updated') {
     const { id, ...attributes } = event.data;
 
-    await prisma.user.upsert({
-      where: { externalId: id as string },
-      create: {
+    if (eventType === 'user.created') {
+      const newUser: NewUser = {
         externalId: id as string,
-        attributes,
-      },
-      update: { attributes },
-    });
+        attributes: attributes,
+      };
+
+      await db.insert(users).values(newUser);
+    } else if (eventType === 'user.updated') {
+      await db
+        .update(users)
+        .set({ attributes: attributes })
+        .where(eq(users.externalId, id as string));
+    }
 
     return NextResponse.json({}, { status: 200 });
   }
