@@ -1,5 +1,5 @@
 export type Part = {
-  selector: string
-}
+  selector: string;
+};
 
-export type Parts = Record<string, Part>
+export type Parts = Record<string, Part>;
