@@ -19,8 +19,8 @@ export const users = mysqlTable(
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
-  (users) => ({
-    externalIdIndex: uniqueIndex('externalId_idx').on(users.externalId),
+  (table) => ({
+    externalIdIndex: uniqueIndex('externalId_idx').on(table.externalId),
   }),
 );
 
@@ -39,15 +39,13 @@ export const socials = mysqlTable(
   'socials',
   {
     id: int('id').autoincrement().primaryKey(),
-    userId: int('user_id')
-      .references(() => users.id)
-      .notNull(),
+    userId: int('user_id').notNull(),
     twitterId: varchar('twitter_id', { length: 256 }).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
-  (socials) => ({
-    userIdIndex: index('userId_idx').on(socials.userId),
+  (table) => ({
+    userIdIndex: index('userId_idx').on(table.userId),
   }),
 );
 

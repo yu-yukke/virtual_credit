@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "c698505a-d603-4e70-af26-e7800a182e2c",
+  "id": "2e2d4e9c-af5f-4fda-befc-f1d02e18755e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "socials": {
@@ -55,21 +55,7 @@
           "isUnique": false
         }
       },
-      "foreignKeys": {
-        "socials_user_id_users_id_fk": {
-          "name": "socials_user_id_users_id_fk",
-          "tableFrom": "socials",
-          "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {}
     },
     "users": {

@@ -13,5 +13,4 @@ CREATE TABLE `users` (
 	`updated_at` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP);
 --> statement-breakpoint
 CREATE INDEX `userId_idx` ON `socials` (`user_id`);--> statement-breakpoint
-CREATE UNIQUE INDEX `externalId_idx` ON `users` (`external_id`);--> statement-breakpoint
-ALTER TABLE `socials` ADD CONSTRAINT `socials_user_id_users_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE no action ON UPDATE no action;
+CREATE UNIQUE INDEX `externalId_idx` ON `users` (`external_id`);
