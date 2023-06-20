@@ -15,7 +15,6 @@
     "db:generate": "pnpm drizzle-kit generate:mysql --config drizzle.config.ts",
     "db:push": "pnpm with-env node -r esbuild-register src/db/migrate.ts",
     "with-env": "dotenv -e .env.development.local --",
-    "psconnect": "pscale connect virtual-credit-db dev --port 3309",
     "psdeploy": "pscale deploy-request create virtual-credit-db dev"
   },
   "dependencies": {
