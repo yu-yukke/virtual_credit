@@ -14,7 +14,7 @@ export const Footer = () => {
         py: 32,
         mx: 'auto',
         px: 'baseX',
-        maxW: 'base',
+        maxW: 'maxWidth',
         display: 'flex',
         flexDir: 'column',
         gap: 32,
