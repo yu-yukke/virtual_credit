@@ -10,26 +10,21 @@
 
 ### RDBMS
 
-- Prisma
+- Drizzle
 - Planet Scale
+
+### node
+
+- 18.16.0（Volta）
+- パッケージ管理は pnpm
 
 ## 開発環境
 
 ### 起動
 
 ```bash
-npm run dev
+pnpm run dev
 ```
-
-### DB プロキシ
-
-```bash
-npm run psconnect
-```
-
-Planet Scale の dev ブランチをローカルにプロキシ
-
-起動しておかないと dev ブランチを参照できない
 
 ### Webhook
 
@@ -46,34 +41,24 @@ Clerk の Webhook 用に ngrok で URL を払い出している
 ### スキーマ定義
 
 ```bash
-/prisma/schema.prisma
+/src/db/schema.ts
 ```
 
-### クライアント生成
+型定義もしているのでここからインポートして型チェックしながら開発
+
+### マイグレーションファイル生成
 
 ```bash
-npx prisma generate
+pnpm run db:generate
 ```
-
-型付き client が生成される
 
 ### スキーマ反映
 
 ```bash
-npx prisma db push
+pnpm run db:push
 ```
 
-Planet Scale の dev ブランチへスキーマを反映
-
-generate まで自動でやってくれる
-
-### GUI
-
-```bash
-npx prisma studio
-```
-
-[http://localhost:5555](http://localhost:5555)で GUI 操作できる
+Planet Scale の dev ブランチへマイグレーションファイルを元に反映
 
 ## 開発ワークフロー
 
@@ -81,13 +66,17 @@ npx prisma studio
 
 ### 2-a. スキーマに変更がある場合
 
-#### スキーマを Planet Scale の dev ブランチへ反映
+#### マイグレーションファイル生成
 
 ```bash
-npx prisma db push
+pnpm run db:generate
 ```
 
-というか開発中もこれしないと反映されない
+#### スキーマ反映
+
+```bash
+pnpm run db:push
+```
 
 ### 2-b. develop ブランチへ PR
 
@@ -96,7 +85,7 @@ npx prisma db push
 ### 4. スキーマ変更があれば Planet Scale の main ブランチへ dev からデプロイリクエストを作成
 
 ```bash
-npm run psdeploy
+pnpm run psdeploy
 ```
 
 を叩くか Planet Scale ダッシュボードから作成
@@ -118,8 +107,8 @@ Vercel が production デプロイしてくれる
 ### Next.js のビルド
 
 ```bash
-npm run build
-npm run start
+pnpm run build
+pnpm run start
 ```
 
 localhost で確認できる
