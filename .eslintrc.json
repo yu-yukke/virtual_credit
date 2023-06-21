@@ -10,6 +10,7 @@
   },
   "extends": [
     "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/warnings",
     "prettier"
@@ -22,6 +23,19 @@
           "order": "asc"
         }
       }
-    ]
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unsafe-call": "error",
+    "@typescript-eslint/no-unsafe-member-access": "error",
+    "@typescript-eslint/no-unsafe-return": "error"
   }
 }
