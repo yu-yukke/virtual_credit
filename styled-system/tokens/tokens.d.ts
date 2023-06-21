@@ -1,3 +1,4 @@
+/* eslint-disable */
 export type Token =
   | 'colors.base'
   | 'colors.white'
