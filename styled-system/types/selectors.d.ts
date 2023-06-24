@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { Pseudos } from './csstype';
+import type { Pseudos } from './csstype'
 
 type AriaAttributes =
   | '[aria-disabled]'
@@ -13,7 +13,7 @@ type AriaAttributes =
   | '[aria-pressed]'
   | `[aria-current=${'page' | 'step' | 'location' | 'date' | 'time'}]`
   | '[aria-invalid]'
-  | `[aria-sort=${'ascending' | 'descending'}]`;
+  | `[aria-sort=${'ascending' | 'descending'}]`
 
 type DataAttributes =
   | '[data-selected]'
@@ -48,10 +48,10 @@ type DataAttributes =
   | '[data-enter]'
   | '[data-entering]'
   | '[data-exited]'
-  | '[data-exiting]';
+  | '[data-exiting]'
 
-type AttributeSelector = `&${Pseudos | DataAttributes | AriaAttributes}`;
-type ParentSelector = `${DataAttributes | AriaAttributes} &`;
+type AttributeSelector = `&${Pseudos | DataAttributes | AriaAttributes}`
+type ParentSelector = `${DataAttributes | AriaAttributes} &`
 
-export type AnySelector = `${string}&` | `&${string}`;
-export type Selectors = AttributeSelector | ParentSelector;
+export type AnySelector = `${string}&` | `&${string}`
+export type Selectors = AttributeSelector | ParentSelector
