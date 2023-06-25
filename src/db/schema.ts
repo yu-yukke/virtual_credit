@@ -83,6 +83,7 @@ export const categoriesRelations = relations(categories, ({ many }) => ({
 // ********** categories end ********** //
 
 // ********** creator mappings start ********** //
+
 export const creator_mappings = mysqlTable(
   'creator_mappings',
   {
@@ -134,6 +135,7 @@ export const jobsRelations = relations(jobs, ({ many }) => ({
 // ********** jobs end ********** //
 
 // ********** job mappings start ********** //
+
 export const job_mappings = mysqlTable(
   'job_mappings',
   {
@@ -204,13 +206,6 @@ export const socials = mysqlTable(
 export type Social = InferModel<typeof socials>;
 export type NewSocial = InferModel<typeof socials, 'insert'>;
 
-export const socialsRelations = relations(socials, ({ one }) => ({
-  user: one(users, {
-    fields: [socials.userId],
-    references: [users.id],
-  }),
-}));
-
 // ********** socials end ********** //
 
 // ********** tags start ********** //
@@ -232,6 +227,7 @@ export const tagsRelations = relations(tags, ({ many }) => ({
 // ********** tags end ********** //
 
 // ********** tag mappings end ********** //
+
 export const tag_mappings = mysqlTable(
   'tag_mappings',
   {
@@ -283,7 +279,11 @@ export const users = mysqlTable(
 export type User = InferModel<typeof users>;
 export type NewUser = InferModel<typeof users, 'insert'>;
 
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(users, ({ one, many }) => ({
+  social: one(socials, {
+    fields: [users.id],
+    references: [socials.userId],
+  }),
   jobMappings: many(job_mappings),
 }));
 
