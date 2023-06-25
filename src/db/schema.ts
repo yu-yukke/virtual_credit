@@ -19,7 +19,9 @@ export const assets = mysqlTable('assets', {
   url: varchar('url', { length: 256 }).notNull(),
   imageUrl: varchar('image_url', { length: 256 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  createUserId: int('create_user_id').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
+  updateUserId: int('create_user_id').notNull(),
 });
 
 export type Asset = InferModel<typeof assets>;
@@ -40,7 +42,9 @@ export const asset_mappings = mysqlTable(
     workId: int('work_id').notNull(),
     assetId: int('tag_id').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
+    createUserId: int('create_user_id').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
+    updateUserId: int('create_user_id').notNull(),
   },
   (table) => ({
     workIdIndex: index('workId_idx').on(table.workId),
@@ -70,7 +74,9 @@ export const categories = mysqlTable('categories', {
   id: int('id').autoincrement().primaryKey(),
   name: varchar('name', { length: 256 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  createUserId: int('create_user_id').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
+  updateUserId: int('create_user_id').notNull(),
 });
 
 export type Category = InferModel<typeof categories>;
@@ -92,7 +98,9 @@ export const creator_mappings = mysqlTable(
     workId: int('work_id').notNull(),
     isAuthor: boolean('is_author').default(false).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
+    createUserId: int('create_user_id').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
+    updateUserId: int('create_user_id').notNull(),
   },
   (table) => ({
     userIdIndex: index('userId_idx').on(table.userId),
@@ -122,7 +130,9 @@ export const jobs = mysqlTable('jobs', {
   id: int('id').autoincrement().primaryKey(),
   name: varchar('name', { length: 256 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  createUserId: int('create_user_id').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
+  updateUserId: int('create_user_id').notNull(),
 });
 
 export type Job = InferModel<typeof jobs>;
@@ -143,7 +153,9 @@ export const job_mappings = mysqlTable(
     userId: int('userId').notNull(),
     jobId: int('job_id').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
+    createUserId: int('create_user_id').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
+    updateUserId: int('create_user_id').notNull(),
   },
   (table) => ({
     userIdIndex: index('userId_idx').on(table.userId),
@@ -214,7 +226,9 @@ export const tags = mysqlTable('tags', {
   id: int('id').autoincrement().primaryKey(),
   name: varchar('name', { length: 256 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  createUserId: int('create_user_id').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
+  updateUserId: int('create_user_id').notNull(),
 });
 
 export type Tag = InferModel<typeof tags>;
@@ -235,7 +249,9 @@ export const tag_mappings = mysqlTable(
     workId: int('work_id').notNull(),
     tagId: int('tag_id').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
+    createUserId: int('create_user_id').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
+    updateUserId: int('create_user_id').notNull(),
   },
   (table) => ({
     workIdIndex: index('workId_idx').on(table.workId),
