@@ -1,3 +1,12 @@
+// マイグレーションファイル生成
+// pnpm run db:generate
+
+// １つ前のマイグレーションファイル削除
+// pnpm run db:drop
+
+// スキーマ反映
+// pnpm run db:push
+
 import { InferModel, relations } from 'drizzle-orm';
 import {
   mysqlTable,
@@ -21,7 +30,7 @@ export const assets = mysqlTable('assets', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   createUserId: int('create_user_id').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
-  updateUserId: int('create_user_id').notNull(),
+  updateUserId: int('update_user_id').notNull(),
 });
 
 export type Asset = InferModel<typeof assets>;
@@ -40,11 +49,11 @@ export const asset_mappings = mysqlTable(
   {
     id: int('id').autoincrement().primaryKey(),
     workId: int('work_id').notNull(),
-    assetId: int('tag_id').notNull(),
+    assetId: int('asset_id').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     createUserId: int('create_user_id').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
-    updateUserId: int('create_user_id').notNull(),
+    updateUserId: int('update_user_id').notNull(),
   },
   (table) => ({
     workIdIndex: index('workId_idx').on(table.workId),
@@ -76,7 +85,7 @@ export const categories = mysqlTable('categories', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   createUserId: int('create_user_id').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
-  updateUserId: int('create_user_id').notNull(),
+  updateUserId: int('update_user_id').notNull(),
 });
 
 export type Category = InferModel<typeof categories>;
@@ -100,7 +109,7 @@ export const creator_mappings = mysqlTable(
     createdAt: timestamp('created_at').defaultNow().notNull(),
     createUserId: int('create_user_id').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
-    updateUserId: int('create_user_id').notNull(),
+    updateUserId: int('update_user_id').notNull(),
   },
   (table) => ({
     userIdIndex: index('userId_idx').on(table.userId),
@@ -132,7 +141,7 @@ export const jobs = mysqlTable('jobs', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   createUserId: int('create_user_id').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
-  updateUserId: int('create_user_id').notNull(),
+  updateUserId: int('update_user_id').notNull(),
 });
 
 export type Job = InferModel<typeof jobs>;
@@ -155,7 +164,7 @@ export const job_mappings = mysqlTable(
     createdAt: timestamp('created_at').defaultNow().notNull(),
     createUserId: int('create_user_id').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
-    updateUserId: int('create_user_id').notNull(),
+    updateUserId: int('update_user_id').notNull(),
   },
   (table) => ({
     userIdIndex: index('userId_idx').on(table.userId),
@@ -228,7 +237,7 @@ export const tags = mysqlTable('tags', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   createUserId: int('create_user_id').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
-  updateUserId: int('create_user_id').notNull(),
+  updateUserId: int('update_user_id').notNull(),
 });
 
 export type Tag = InferModel<typeof tags>;
@@ -251,7 +260,7 @@ export const tag_mappings = mysqlTable(
     createdAt: timestamp('created_at').defaultNow().notNull(),
     createUserId: int('create_user_id').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
-    updateUserId: int('create_user_id').notNull(),
+    updateUserId: int('update_user_id').notNull(),
   },
   (table) => ({
     workIdIndex: index('workId_idx').on(table.workId),
