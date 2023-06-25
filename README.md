@@ -66,6 +66,12 @@ pnpm run db:push
 
 Planet Scale の dev ブランチへマイグレーションファイルを元に反映
 
+### seed 投入
+
+```bash
+pnpm run db:seed
+```
+
 ## デザイン
 
 デザインプロトタイプ is [here](https://www.figma.com/file/1URfhnM4j8R6Pyq74SHoTc/%E7%84%A1%E9%A1%8C?type=design&node-id=61%3A892&mode=design&t=JxhDdgWsklkyUShF-1)

@@ -117,6 +117,9 @@ export const creator_mappings = mysqlTable(
   }),
 );
 
+export type CreatorMapping = InferModel<typeof creator_mappings>;
+export type NewCreatorMapping = InferModel<typeof creator_mappings, 'insert'>;
+
 export const creatorMappingsRelations = relations(
   creator_mappings,
   ({ one }) => ({
@@ -172,6 +175,9 @@ export const job_mappings = mysqlTable(
   }),
 );
 
+export type JobMapping = InferModel<typeof job_mappings>;
+export type NewJobMapping = InferModel<typeof job_mappings, 'insert'>;
+
 export const jobMappingsRelations = relations(job_mappings, ({ one }) => ({
   user: one(users, {
     fields: [job_mappings.userId],
@@ -197,7 +203,7 @@ export const link_in_bios = mysqlTable('link_in_bios', {
 });
 
 export type LinkInBio = InferModel<typeof link_in_bios>;
-export type NewLinkInBil = InferModel<typeof link_in_bios, 'insert'>;
+export type NewLinkInBio = InferModel<typeof link_in_bios, 'insert'>;
 
 export const linkInBiosRelations = relations(link_in_bios, ({ one }) => ({
   work: one(works, {
@@ -323,7 +329,6 @@ export const works = mysqlTable(
     categoryId: int('category_id').notNull(),
     name: varchar('name', { length: 256 }).notNull(),
     description: text('description').notNull(),
-    mainImageUrl: varchar('main_image_url', { length: 256 }).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
@@ -357,6 +362,7 @@ export const work_images = mysqlTable(
     id: int('id').autoincrement().primaryKey(),
     workId: int('work_id').notNull(),
     imageUrl: varchar('image_url', { length: 256 }).notNull(),
+    isMain: boolean('is_main').default(false).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
