@@ -52,6 +52,12 @@ Clerk の Webhook 用に ngrok で URL を払い出している
 pnpm run db:generate
 ```
 
+#### 1 つ前のマイグレーションファイルを削除
+
+```bash
+pnpm run db:drop
+```
+
 ### スキーマ反映
 
 ```bash
@@ -75,6 +81,14 @@ Planet Scale の dev ブランチへマイグレーションファイルを元�
 ```bash
 pnpm run db:generate
 ```
+
+#### 1 つ前のマイグレーションファイルを削除
+
+```bash
+pnpm run db:drop
+```
+
+これしないとマイグレーションこけるので注意
 
 #### スキーマ反映
 
