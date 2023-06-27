@@ -1,5 +1,5 @@
 import { NavItem } from '../NavItem';
 
-export type SocialConfig = {
+export type NavigationConfig = {
   navItems: NavItem[];
 };

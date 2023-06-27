@@ -5,6 +5,8 @@ export type Token =
   | 'colors.white'
   | 'colors.primary'
   | 'colors.secondary'
+  | 'colors.tertiary'
+  | 'colors.quaternary'
   | 'fonts.futura'
   | 'fontSizes.2xs'
   | 'fontSizes.xs'
@@ -50,7 +52,14 @@ export type Token =
   | 'spacing.-baseX'
   | 'spacing.-baseY';
 
-export type ColorToken = 'base' | 'bgBase' | 'white' | 'primary' | 'secondary';
+export type ColorToken =
+  | 'base'
+  | 'bgBase'
+  | 'white'
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'quaternary';
 
 export type FontToken = 'futura';
 
