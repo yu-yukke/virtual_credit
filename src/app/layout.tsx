@@ -3,7 +3,11 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import './globals.css';
 
+import { Noto_Sans_JP } from 'next/font/google';
+
 import { AppWrapper } from './_components/AppWrapper';
+
+const notoSansJp = Noto_Sans_JP({ weight: '400', subsets: ['latin'] });
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -30,7 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       }}
     >
       <html lang='ja'>
-        <body>
+        <body className={notoSansJp.className}>
           <AppWrapper>{children}</AppWrapper>
         </body>
       </html>

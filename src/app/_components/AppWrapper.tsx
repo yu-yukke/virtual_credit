@@ -1,7 +1,3 @@
-'use client';
-
-import { useState, useEffect, useCallback } from 'react';
-
 import { css } from '../../../styled-system/css';
 
 import { Footer } from '@/components/layouts/Footer';
@@ -12,22 +8,6 @@ type Props = {
 };
 
 export const AppWrapper = ({ children }: Props) => {
-  const [position, setPosition] = useState<number>(0);
-
-  const scrollEvent = useCallback(() => {
-    const offset = window.scrollY;
-
-    setPosition(offset);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', scrollEvent);
-
-    return () => {
-      window.removeEventListener('scroll', scrollEvent);
-    };
-  }, [scrollEvent]);
-
   return (
     <div
       className={css({
@@ -37,12 +17,7 @@ export const AppWrapper = ({ children }: Props) => {
         minH: 'screen',
       })}
     >
-      <div
-        className={css({
-          h: 'headerHeight',
-        })}
-      />
-      <Header offset={position} />
+      <Header />
       <main
         className={css({
           w: 'full',

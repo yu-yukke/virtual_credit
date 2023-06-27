@@ -12,14 +12,10 @@ export default defineConfig({
 
   // Define global styles
   globalCss: {
-    html: {
-      fontSize: 'md',
-    },
     body: {
       color: 'base',
-      bgGradient: 'body',
+      bg: 'bgBase',
       letterSpacing: 'base',
-      fontFamily: 'base',
     },
     a: {
       _hover: {
@@ -32,65 +28,66 @@ export default defineConfig({
   theme: {
     tokens: {
       colors: {
-        base: { value: '#2B2B2B' },
+        base: { value: '#1E1A1A' },
+        bgBase: { value: '#F8F9FA' },
         white: { value: '#FFFFFF' },
         primary: { value: '#2B2B2B' },
-        secondary: { value: '#9CA38F' },
+        secondary: { value: '#777272' },
       },
       fonts: {
-        base: {
-          value: [
-            'Yu Gothic Medium',
-            '游ゴシック Medium',
-            'YuGothic',
-            '游ゴシック体',
-            'ヒラギノ角ゴ Pro W3',
-            'Noto Sans JP',
-          ],
-        },
-        gillSans: {
-          value: 'Gill Sans',
+        futura: {
+          value: 'Futura',
         },
       },
       fontSizes: {
+        '2xs': { value: '0.5rem' },
         xs: { value: '0.75rem' },
         sm: { value: '0.875rem' },
         md: { value: '1rem' },
         lg: { value: '1.125rem' },
-        xl: { value: '1.3125rem' },
+        xl: { value: '1.25rem' },
         '2xl': { value: '1.5rem' },
-        '3xl': { value: '2.652rem' },
-        '4xl': { value: '4rem' },
-      },
-      letterSpacings: {
-        base: { value: '0.05rem' },
-        wider: { value: '0.075rem' },
-        widest: { value: '0.1rem' },
+        '3xl': { value: '1.875rem' },
+        '4xl': { value: '2.25rem' },
+        '5xl': { value: '3rem' },
+        '6xl': { value: '3.75rem' },
+        '7xl': { value: '4.5rem' },
+        '8xl': { value: '6rem' },
+        '9xl': { value: '8rem' },
       },
       borders: {
-        primary: { value: '#EAEAEA' },
+        primary: { value: '#E8E8E8' },
       },
       gradients: {
-        body: {
-          value:
-            'linear-gradient(rgb(244, 244, 244) 0%, rgb(255, 255, 255) 30%)',
-        },
-      },
-      shadows: {
-        header: { value: '0px 5px 30px 0px rgba(0, 0, 0, 0.03)' },
-      },
-      radii: {
-        sm: { value: '0.125rem' },
-        md: { value: '0.375rem' },
+        signUp: { value: 'linear-gradient(90deg, #8746E5 0%, #DB2777 100%)' },
       },
       sizes: {
-        maxWidth: { value: '1400px' }, // max width for this app
+        maxWidth: { value: '1440px' }, // max width for this app
         full: { value: '100%' },
-        headerHeight: { value: '99px' },
+        headerHeight: { value: '80px' },
       },
       spacing: {
         baseX: { value: '100px' }, // base paddingX
         baseY: { value: '64px' }, // base paddingY
+      },
+      radii: {
+        xs: { value: '0.125rem' },
+        sm: { value: '0.25rem' },
+        md: { value: '0.375rem' },
+        lg: { value: '0.5rem' },
+        xl: { value: '0.75rem' },
+        '2xl': { value: '1rem' },
+        '3xl': { value: '1.5rem' },
+        full: { value: '9999px' },
+      },
+      letterSpacings: {
+        base: { value: '0.03em' },
+      },
+      shadows: {
+        float: {
+          value:
+            '0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08);',
+        },
       },
     },
     extend: {},

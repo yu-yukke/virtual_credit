@@ -1,27 +1,30 @@
 @layer base {
   :root {
-    --made-with-panda: '🐼'
-    }
+    --made-with-panda: '🐼';
+  }
 
-  *, *::before, *::after, ::backdrop {
-    --blur:   ;
-    --brightness:   ;
-    --contrast:   ;
-    --grayscale:   ;
-    --hue-rotate:   ;
-    --invert:   ;
-    --saturate:   ;
-    --sepia:   ;
-    --drop-shadow:   ;
-    --backdrop-blur:   ;
-    --backdrop-brightness:   ;
-    --backdrop-contrast:   ;
-    --backdrop-grayscale:   ;
-    --backdrop-hue-rotate:   ;
-    --backdrop-invert:   ;
-    --backdrop-opacity:   ;
-    --backdrop-saturate:   ;
-    --backdrop-sepia:   ;
+  *,
+  *::before,
+  *::after,
+  ::backdrop {
+    --blur: ;
+    --brightness: ;
+    --contrast: ;
+    --grayscale: ;
+    --hue-rotate: ;
+    --invert: ;
+    --saturate: ;
+    --sepia: ;
+    --drop-shadow: ;
+    --backdrop-blur: ;
+    --backdrop-brightness: ;
+    --backdrop-contrast: ;
+    --backdrop-grayscale: ;
+    --backdrop-hue-rotate: ;
+    --backdrop-invert: ;
+    --backdrop-opacity: ;
+    --backdrop-saturate: ;
+    --backdrop-sepia: ;
     --scroll-snap-strictness: proximity;
     --border-spacing-x: 0;
     --border-spacing-y: 0;
@@ -31,23 +34,16 @@
     --skew-x: 0;
     --skew-y: 0;
     --scale-x: 1;
-    --scale-y: 1
-    }
-
-  html {
-    font-size: var(--font-sizes-md)
-    }
+    --scale-y: 1;
+  }
 
   body {
     color: var(--colors-base);
-    --gradient-stops: var(--gradient-from), var(--gradient-to);
-    --gradient: var(--gradient-via-stops, var(--gradient-stops));
-    background-image: var(--gradients-body);
+    background: var(--colors-bg-base);
     letter-spacing: var(--letter-spacings-base);
-    font-family: var(--fonts-base)
-    }
+  }
 
   a:where(:hover, [data-hover]) {
-    opacity: 0.8
-    }
+    opacity: 0.8;
+  }
 }
