@@ -25,6 +25,7 @@ export default defineConfig({
       colors: {
         base: { value: '#1E1A1A' },
         bgBase: { value: '#F8F9FA' },
+        bgActive: { value: '#F1F3F5' },
         white: { value: '#FFFFFF' },
         primary: { value: '#2B2B2B' },
         secondary: { value: '#777272' },

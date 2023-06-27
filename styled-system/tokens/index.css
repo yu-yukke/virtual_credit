@@ -2,6 +2,7 @@
   :where(:root, :host) {
     --colors-base: #1e1a1a;
     --colors-bg-base: #f8f9fa;
+    --colors-bg-active: #f1f3f5;
     --colors-white: #ffffff;
     --colors-primary: #2b2b2b;
     --colors-secondary: #777272;

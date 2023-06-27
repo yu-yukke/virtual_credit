@@ -81,7 +81,7 @@ export const GlobalNavigation = () => {
               className={classNames(
                 currentPath == `${nav.href}`
                   ? css({
-                      bg: '#F1F3F5',
+                      bg: 'bgActive',
                       border: '1px solid token(borders.primary)',
                     })
                   : css({
@@ -95,7 +95,7 @@ export const GlobalNavigation = () => {
                   py: 6,
                   rounded: 'full',
                   _hover: {
-                    bg: '#F1F3F5',
+                    bg: 'bgActive',
                     borderColor: 'token(borders.primary)',
                   },
                 }),

@@ -16,15 +16,14 @@ export const WorksList = ({ works }: Props) => {
   return (
     <ul
       className={css({
-        mt: 48,
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: 32,
       })}
     >
       {works.map((work) => (
-        <Link href='#' key={work.id}>
-          <li className='group'>
+        <li className='group' key={work.id}>
+          <Link href='#'>
             <figure
               className={css({
                 position: 'relative',
@@ -64,8 +63,8 @@ export const WorksList = ({ works }: Props) => {
             >
               {work.name}
             </h2>
-          </li>
-        </Link>
+          </Link>
+        </li>
       ))}
     </ul>
   );
