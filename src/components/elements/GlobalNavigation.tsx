@@ -10,7 +10,7 @@ import { css } from '../../../styled-system/css';
 
 import { SignInButton } from './SignInButton';
 import { SignUpButton } from './SignUpButton';
-import { globalNavConfig } from '@/config/globalNav';
+import { globalNavConfig } from '@/config/navigations';
 
 const inter = Inter({ weight: '400', subsets: ['latin'] });
 

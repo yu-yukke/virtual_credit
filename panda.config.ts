@@ -33,6 +33,8 @@ export default defineConfig({
         white: { value: '#FFFFFF' },
         primary: { value: '#2B2B2B' },
         secondary: { value: '#777272' },
+        tertiary: { value: '#323232' },
+        quaternary: { value: '#AEAEAE' },
       },
       fonts: {
         futura: {

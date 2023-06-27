@@ -19,6 +19,14 @@ const tokens = {
     "value": "#777272",
     "variable": "var(--colors-secondary)"
   },
+  "colors.tertiary": {
+    "value": "#323232",
+    "variable": "var(--colors-tertiary)"
+  },
+  "colors.quaternary": {
+    "value": "#AEAEAE",
+    "variable": "var(--colors-quaternary)"
+  },
   "fonts.futura": {
     "value": "Futura",
     "variable": "var(--fonts-futura)"
