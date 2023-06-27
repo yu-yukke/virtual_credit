@@ -42,8 +42,11 @@ export type Token =
   | 'radii.2xl'
   | 'radii.3xl'
   | 'radii.full'
+  | 'letterSpacings.sm'
   | 'letterSpacings.base'
+  | 'letterSpacings.lg'
   | 'shadows.float'
+  | 'shadows.floatHover'
   | 'breakpoints.sm'
   | 'breakpoints.md'
   | 'breakpoints.lg'
@@ -105,9 +108,9 @@ export type RadiusToken =
   | '3xl'
   | 'full';
 
-export type LetterSpacingToken = 'base';
+export type LetterSpacingToken = 'sm' | 'base' | 'lg';
 
-export type ShadowToken = 'float';
+export type ShadowToken = 'float' | 'floatHover';
 
 export type BreakpointToken = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 

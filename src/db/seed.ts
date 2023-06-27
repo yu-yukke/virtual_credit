@@ -119,8 +119,7 @@ async function main() {
     for (let i = 0; i < 5; i++) {
       newWorkImages.push({
         workId: work.id,
-        imageUrl:
-          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fstyly.cc%2Fja%2Fnews%2Fjp-ar-diorama%2F&psig=AOvVaw2umbckMo9YYnMZnHNpxoYM&ust=1687794452159000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKC3hrji3v8CFQAAAAAdAAAAABAJ',
+        imageUrl: 'https://styly.cc/wp-content/uploads/2020/08/image2.png',
         isMain: i == 0,
       });
     }

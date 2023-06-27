@@ -42,8 +42,4 @@
     background: var(--colors-bg-base);
     letter-spacing: var(--letter-spacings-base);
   }
-
-  a:where(:hover, [data-hover]) {
-    opacity: 0.8;
-  }
 }
