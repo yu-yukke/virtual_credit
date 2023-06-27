@@ -63,16 +63,12 @@
       "indexes": {
         "workId_idx": {
           "name": "workId_idx",
-          "columns": [
-            "work_id"
-          ],
+          "columns": ["work_id"],
           "isUnique": false
         },
         "assetId_idx": {
           "name": "assetId_idx",
-          "columns": [
-            "asset_id"
-          ],
+          "columns": ["asset_id"],
           "isUnique": false
         }
       },
@@ -266,16 +262,12 @@
       "indexes": {
         "userId_idx": {
           "name": "userId_idx",
-          "columns": [
-            "userId"
-          ],
+          "columns": ["userId"],
           "isUnique": false
         },
         "workId_idx": {
           "name": "workId_idx",
-          "columns": [
-            "work_id"
-          ],
+          "columns": ["work_id"],
           "isUnique": false
         }
       },
@@ -341,16 +333,12 @@
       "indexes": {
         "userId_idx": {
           "name": "userId_idx",
-          "columns": [
-            "userId"
-          ],
+          "columns": ["userId"],
           "isUnique": false
         },
         "jobId_idx": {
           "name": "jobId_idx",
-          "columns": [
-            "job_id"
-          ],
+          "columns": ["job_id"],
           "isUnique": false
         }
       },
@@ -508,9 +496,7 @@
       "indexes": {
         "userId_idx": {
           "name": "userId_idx",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -576,16 +562,12 @@
       "indexes": {
         "workId_idx": {
           "name": "workId_idx",
-          "columns": [
-            "work_id"
-          ],
+          "columns": ["work_id"],
           "isUnique": false
         },
         "tagId_idx": {
           "name": "tagId_idx",
-          "columns": [
-            "tag_id"
-          ],
+          "columns": ["tag_id"],
           "isUnique": false
         }
       },
@@ -697,9 +679,7 @@
       "indexes": {
         "externalId_idx": {
           "name": "externalId_idx",
-          "columns": [
-            "external_id"
-          ],
+          "columns": ["external_id"],
           "isUnique": true
         }
       },
@@ -759,9 +739,7 @@
       "indexes": {
         "workId_idx": {
           "name": "workId_idx",
-          "columns": [
-            "work_id"
-          ],
+          "columns": ["work_id"],
           "isUnique": false
         }
       },
@@ -820,9 +798,7 @@
       "indexes": {
         "categoryId_idx": {
           "name": "categoryId_idx",
-          "columns": [
-            "category_id"
-          ],
+          "columns": ["category_id"],
           "isUnique": false
         }
       },

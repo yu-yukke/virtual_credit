@@ -1,7 +1,11 @@
 const tokens = {
   "colors.base": {
-    "value": "#2B2B2B",
+    "value": "#1E1A1A",
     "variable": "var(--colors-base)"
+  },
+  "colors.bgBase": {
+    "value": "#F8F9FA",
+    "variable": "var(--colors-bg-base)"
   },
   "colors.white": {
     "value": "#FFFFFF",
@@ -12,16 +16,16 @@ const tokens = {
     "variable": "var(--colors-primary)"
   },
   "colors.secondary": {
-    "value": "#9CA38F",
+    "value": "#777272",
     "variable": "var(--colors-secondary)"
   },
-  "fonts.base": {
-    "value": "Yu Gothic Medium, 游ゴシック Medium, YuGothic, 游ゴシック体, ヒラギノ角ゴ Pro W3, Noto Sans JP",
-    "variable": "var(--fonts-base)"
+  "fonts.futura": {
+    "value": "Futura",
+    "variable": "var(--fonts-futura)"
   },
-  "fonts.gillSans": {
-    "value": "Gill Sans",
-    "variable": "var(--fonts-gill-sans)"
+  "fontSizes.2xs": {
+    "value": "0.5rem",
+    "variable": "var(--font-sizes-2xs)"
   },
   "fontSizes.xs": {
     "value": "0.75rem",
@@ -40,7 +44,7 @@ const tokens = {
     "variable": "var(--font-sizes-lg)"
   },
   "fontSizes.xl": {
-    "value": "1.3125rem",
+    "value": "1.25rem",
     "variable": "var(--font-sizes-xl)"
   },
   "fontSizes.2xl": {
@@ -48,47 +52,43 @@ const tokens = {
     "variable": "var(--font-sizes-2xl)"
   },
   "fontSizes.3xl": {
-    "value": "2.652rem",
+    "value": "1.875rem",
     "variable": "var(--font-sizes-3xl)"
   },
   "fontSizes.4xl": {
-    "value": "4rem",
+    "value": "2.25rem",
     "variable": "var(--font-sizes-4xl)"
   },
-  "letterSpacings.base": {
-    "value": "0.05rem",
-    "variable": "var(--letter-spacings-base)"
+  "fontSizes.5xl": {
+    "value": "3rem",
+    "variable": "var(--font-sizes-5xl)"
   },
-  "letterSpacings.wider": {
-    "value": "0.075rem",
-    "variable": "var(--letter-spacings-wider)"
+  "fontSizes.6xl": {
+    "value": "3.75rem",
+    "variable": "var(--font-sizes-6xl)"
   },
-  "letterSpacings.widest": {
-    "value": "0.1rem",
-    "variable": "var(--letter-spacings-widest)"
+  "fontSizes.7xl": {
+    "value": "4.5rem",
+    "variable": "var(--font-sizes-7xl)"
+  },
+  "fontSizes.8xl": {
+    "value": "6rem",
+    "variable": "var(--font-sizes-8xl)"
+  },
+  "fontSizes.9xl": {
+    "value": "8rem",
+    "variable": "var(--font-sizes-9xl)"
   },
   "borders.primary": {
-    "value": "#EAEAEA",
+    "value": "#E8E8E8",
     "variable": "var(--borders-primary)"
   },
-  "gradients.body": {
-    "value": "linear-gradient(rgb(244, 244, 244) 0%, rgb(255, 255, 255) 30%)",
-    "variable": "var(--gradients-body)"
-  },
-  "shadows.header": {
-    "value": "0px 5px 30px 0px rgba(0, 0, 0, 0.03)",
-    "variable": "var(--shadows-header)"
-  },
-  "radii.sm": {
-    "value": "0.125rem",
-    "variable": "var(--radii-sm)"
-  },
-  "radii.md": {
-    "value": "0.375rem",
-    "variable": "var(--radii-md)"
+  "gradients.signUp": {
+    "value": "linear-gradient(90deg, #8746E5 0%, #DB2777 100%)",
+    "variable": "var(--gradients-sign-up)"
   },
   "sizes.maxWidth": {
-    "value": "1400px",
+    "value": "1440px",
     "variable": "var(--sizes-max-width)"
   },
   "sizes.full": {
@@ -96,7 +96,7 @@ const tokens = {
     "variable": "var(--sizes-full)"
   },
   "sizes.headerHeight": {
-    "value": "99px",
+    "value": "80px",
     "variable": "var(--sizes-header-height)"
   },
   "sizes.breakpoint-sm": {
@@ -126,6 +126,46 @@ const tokens = {
   "spacing.baseY": {
     "value": "64px",
     "variable": "var(--spacing-base-y)"
+  },
+  "radii.xs": {
+    "value": "0.125rem",
+    "variable": "var(--radii-xs)"
+  },
+  "radii.sm": {
+    "value": "0.25rem",
+    "variable": "var(--radii-sm)"
+  },
+  "radii.md": {
+    "value": "0.375rem",
+    "variable": "var(--radii-md)"
+  },
+  "radii.lg": {
+    "value": "0.5rem",
+    "variable": "var(--radii-lg)"
+  },
+  "radii.xl": {
+    "value": "0.75rem",
+    "variable": "var(--radii-xl)"
+  },
+  "radii.2xl": {
+    "value": "1rem",
+    "variable": "var(--radii-2xl)"
+  },
+  "radii.3xl": {
+    "value": "1.5rem",
+    "variable": "var(--radii-3xl)"
+  },
+  "radii.full": {
+    "value": "9999px",
+    "variable": "var(--radii-full)"
+  },
+  "letterSpacings.base": {
+    "value": "0.03em",
+    "variable": "var(--letter-spacings-base)"
+  },
+  "shadows.float": {
+    "value": "0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08);",
+    "variable": "var(--shadows-float)"
   },
   "breakpoints.sm": {
     "value": "640px",

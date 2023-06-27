@@ -1,123 +1,58 @@
-'use client';
-
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from '@clerk/nextjs';
-import classNames from 'classnames';
 import Link from 'next/link';
-import { useRef } from 'react';
 
 import { css } from '../../../styled-system/css';
 
-import { GlobalSearch } from '../elements/GlobalSearch';
+import { GlobalNavigation } from '../elements/GlobalNavigation';
+import { SignInButton } from '../elements/SignInButton';
+import { SignUpButton } from '../elements/SignUpButton';
 
-type Props = {
-  offset: number;
-};
-
-export const Header = ({ offset }: Props) => {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const headerHeight = headerRef.current?.getBoundingClientRect()
-    .height as number;
-
+export const Header = () => {
   return (
     <header
-      className={classNames(
-        headerHeight < offset
-          ? css({ bg: 'rgba(255, 255, 255, 0.5)', py: 0, shadow: 'header' })
-          : css({ py: 16 }),
-        css({
-          w: 'full',
-          maxH: 'headerHeight',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          zIndex: 10,
-          px: 32,
-          transition: 'all 0.15s',
-          borderBottom: '1px solid token(borders.primary)',
-          backdropFilter: 'blur(9px)',
-        }),
-      )}
-      ref={headerRef}
+      className={css({
+        w: 'full',
+        maxW: 'maxWidth',
+        h: 'headerHeight',
+        zIndex: 10,
+        px: 'baseX',
+        mx: 'auto',
+      })}
     >
       <div
         className={css({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: 32,
           w: 'full',
-          maxW: 'screen',
           h: 'full',
-          minH: '66px',
-          mx: 'auto',
         })}
       >
         <Link href='/'>
           <h1
             className={css({
-              fontFamily: 'gillSans',
-              fontSize: 'large',
-              letterSpacing: '0.22em',
-              lineHeight: '1.6rem',
+              fontFamily: 'futura',
+              fontSize: 'xl',
+              letterSpacing: '-0.05em',
             })}
           >
-            VIRTUAL
-            <br />
-            CREDIT
+            VIRTUAL CREDIT
           </h1>
         </Link>
-        <GlobalSearch />
-        <SignedIn>
-          <UserButton afterSignOutUrl='/' />
-        </SignedIn>
-        <SignedOut>
-          <div
-            className={css({
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-            })}
-          >
-            <SignInButton mode='modal'>
-              <button
-                className={css({
-                  px: 16,
-                  py: 6,
-                  letterSpacing: 'base',
-                  _hover: {
-                    opacity: 0.8,
-                  },
-                })}
-              >
-                Sign in
-              </button>
-            </SignInButton>
-            <SignUpButton mode='modal'>
-              <button
-                className={css({
-                  px: 16,
-                  py: 6,
-                  letterSpacing: 'base',
-                  color: 'white',
-                  bg: 'primary',
-                  rounded: 'md',
-                  shadow: 'sm',
-                  _hover: {
-                    opacity: 0.8,
-                  },
-                })}
-              >
-                Sign up
-              </button>
-            </SignUpButton>
-          </div>
-        </SignedOut>
+        <GlobalNavigation />
+        <ul
+          className={css({
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+          })}
+        >
+          <li>
+            <SignInButton />
+          </li>
+          <li>
+            <SignUpButton />
+          </li>
+        </ul>
       </div>
     </header>
   );
