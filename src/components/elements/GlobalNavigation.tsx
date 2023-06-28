@@ -5,7 +5,6 @@ import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useCallback, useEffect } from 'react';
-
 import { css } from '../../../styled-system/css';
 
 import { SignInButton } from './SignInButton';

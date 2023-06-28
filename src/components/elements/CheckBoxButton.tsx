@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
 import { ChangeEventHandler } from 'react';
-
 import { css } from '../../../styled-system/css';
 
 type Props = {

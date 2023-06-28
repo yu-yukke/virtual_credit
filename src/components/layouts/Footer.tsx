@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { SVGProps } from 'react';
-
 import { css } from '../../../styled-system/css';
 
 import {

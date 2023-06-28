@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
 import NextImage from 'next/image';
-
 import Link from 'next/link';
 import { css } from '../../../../styled-system/css';
+
 import { Work, WorkImage } from '@/db/schema';
 
 const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });

@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
-
 import { css } from '../../../../styled-system/css';
 
 import { Tag } from '@/db/schema';

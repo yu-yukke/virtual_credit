@@ -1,12 +1,10 @@
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
-
 import { css } from '../../../styled-system/css';
 
 import { CategoryList } from './_components/CategoryList';
 import { TagList } from './_components/TagList';
 import { WorkList } from './_components/WorkList';
-
 import { db } from '@/db';
 import { Category, Tag, Work, WorkImage, categories, tags } from '@/db/schema';
 

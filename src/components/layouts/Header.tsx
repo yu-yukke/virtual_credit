@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { css } from '../../../styled-system/css';
 
 import { GlobalNavigation } from '../elements/GlobalNavigation';
