@@ -7,10 +7,6 @@ const tokens = {
     "value": "#F8F9FA",
     "variable": "var(--colors-bg-base)"
   },
-  "colors.bgActive": {
-    "value": "#F1F3F5",
-    "variable": "var(--colors-bg-active)"
-  },
   "colors.white": {
     "value": "#FFFFFF",
     "variable": "var(--colors-white)"
@@ -96,7 +92,7 @@ const tokens = {
     "variable": "var(--borders-primary)"
   },
   "gradients.signUp": {
-    "value": "linear-gradient(90deg, #8746E5 0%, #DB2777 100%)",
+    "value": "linear-gradient(90deg, #8746E5 0%, #279ADB 100%)",
     "variable": "var(--gradients-sign-up)"
   },
   "sizes.maxWidth": {

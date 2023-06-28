@@ -2,7 +2,6 @@
 export type Token =
   | 'colors.base'
   | 'colors.bgBase'
-  | 'colors.bgActive'
   | 'colors.white'
   | 'colors.primary'
   | 'colors.secondary'
@@ -59,7 +58,6 @@ export type Token =
 export type ColorToken =
   | 'base'
   | 'bgBase'
-  | 'bgActive'
   | 'white'
   | 'primary'
   | 'secondary'

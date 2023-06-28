@@ -5,21 +5,22 @@ import { css } from '../../../styled-system/css';
 
 import { CategoryList } from './_components/CategoryList';
 import { TagList } from './_components/TagList';
-import { WorksList } from './_components/WorksList';
+import { WorkList } from './_components/WorkList';
 
 import { db } from '@/db';
-import { Category, Tag, categories, tags } from '@/db/schema';
+import { Category, Tag, Work, WorkImage, categories, tags } from '@/db/schema';
 
 const inter500 = Inter({ weight: '500', subsets: ['latin'] });
 
 export default async function Works() {
-  const works = await db.query.works.findMany({
-    with: {
-      workImages: {
-        limit: 5,
+  const works: (Work & { workImages: WorkImage[] })[] =
+    await db.query.works.findMany({
+      with: {
+        workImages: {
+          limit: 5,
+        },
       },
-    },
-  });
+    });
   const workCategories: Category[] = await db.select().from(categories);
   const workTags: Tag[] = await db.select().from(tags);
 
@@ -51,7 +52,7 @@ export default async function Works() {
           mt: 48,
         })}
       >
-        <WorksList works={works} />
+        <WorkList works={works} />
       </section>
     </>
   );

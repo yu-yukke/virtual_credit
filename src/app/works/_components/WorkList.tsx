@@ -12,7 +12,7 @@ type Props = {
   works: (Work & { workImages: WorkImage[] })[];
 };
 
-export const WorksList = ({ works }: Props) => {
+export const WorkList = ({ works }: Props) => {
   return (
     <ul
       className={css({

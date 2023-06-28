@@ -2,7 +2,6 @@
   :where(:root, :host) {
     --colors-base: #1e1a1a;
     --colors-bg-base: #f8f9fa;
-    --colors-bg-active: #f1f3f5;
     --colors-white: #ffffff;
     --colors-primary: #2b2b2b;
     --colors-secondary: #777272;
@@ -24,7 +23,7 @@
     --font-sizes-8xl: 6rem;
     --font-sizes-9xl: 8rem;
     --borders-primary: #e8e8e8;
-    --gradients-sign-up: linear-gradient(90deg, #8746e5 0%, #db2777 100%);
+    --gradients-sign-up: linear-gradient(90deg, #8746e5 0%, #279adb 100%);
     --sizes-max-width: 1440px;
     --sizes-full: 100%;
     --sizes-header-height: 80px;

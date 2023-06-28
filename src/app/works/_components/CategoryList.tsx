@@ -1,17 +1,28 @@
-import classNames from 'classnames';
-import { Noto_Sans_JP } from 'next/font/google';
+'use client';
 
+import { useEffect, useState } from 'react';
 import { css } from '../../../../styled-system/css';
 
+import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Category } from '@/db/schema';
 
 type Props = {
   categories: Category[];
 };
 
-const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
-
 export const CategoryList = ({ categories }: Props) => {
+  const [checkedItems, setCheckedItems] = useState<string[]>([]);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    e.target.checked
+      ? setCheckedItems([...checkedItems, e.target.value])
+      : setCheckedItems(
+          checkedItems.filter((item) => item.match(e.target.value) === null),
+        );
+
+  useEffect(() => {
+    console.log(checkedItems);
+  }, [checkedItems]);
+
   return (
     <ul
       className={css({
@@ -21,36 +32,21 @@ export const CategoryList = ({ categories }: Props) => {
       })}
     >
       <li>
-        <button
-          className={classNames(
-            notoSansJp500.className,
-            css({
-              fontSize: 'xs',
-              color: 'primary',
-              py: 4,
-              px: 12,
-              rounded: 'full',
-              bg: 'bgActive',
-              border: '1px solid token(borders.primary)',
-            }),
-          )}
-        >
-          すべて
-        </button>
+        <CheckBoxButton
+          id='all'
+          value={'all'}
+          label='すべて'
+          onChange={handleChange}
+        />
       </li>
       {categories.map((category) => (
         <li key={category.id}>
-          <button
-            className={css({
-              fontSize: 'xs',
-              color: 'secondary',
-              py: 4,
-              px: 12,
-              rounded: 'xl',
-            })}
-          >
-            {category.name}
-          </button>
+          <CheckBoxButton
+            id={`id_${category.id}`}
+            value={category.id}
+            label={category.name}
+            onChange={handleChange}
+          />
         </li>
       ))}
     </ul>

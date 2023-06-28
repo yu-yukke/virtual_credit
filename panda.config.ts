@@ -25,7 +25,6 @@ export default defineConfig({
       colors: {
         base: { value: '#1E1A1A' },
         bgBase: { value: '#F8F9FA' },
-        bgActive: { value: '#F1F3F5' },
         white: { value: '#FFFFFF' },
         primary: { value: '#2B2B2B' },
         secondary: { value: '#777272' },
@@ -57,7 +56,7 @@ export default defineConfig({
         primary: { value: '#E8E8E8' },
       },
       gradients: {
-        signUp: { value: 'linear-gradient(90deg, #8746E5 0%, #DB2777 100%)' },
+        signUp: { value: 'linear-gradient(90deg, #8746E5 0%, #279ADB 100%)' },
       },
       sizes: {
         maxWidth: { value: '1440px' }, // max width for this app
