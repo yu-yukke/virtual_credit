@@ -5,7 +5,6 @@ import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useCallback, useEffect } from 'react';
-
 import { css } from '../../../styled-system/css';
 
 import { SignInButton } from './SignInButton';
@@ -16,12 +15,16 @@ const inter = Inter({ weight: '400', subsets: ['latin'] });
 
 export const GlobalNavigation = () => {
   const currentPath = usePathname();
-  const [position, setPosition] = useState<number>(window.scrollY);
+  const [position, setPosition] = useState<number>(0);
   const breakPosition = 10;
   const scrollEvent = useCallback(() => {
     const offset = window.scrollY;
 
     setPosition(offset);
+  }, []);
+
+  useEffect(() => {
+    setPosition(window.scrollY);
   }, []);
 
   useEffect(() => {

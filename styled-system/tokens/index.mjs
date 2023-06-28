@@ -92,7 +92,7 @@ const tokens = {
     "variable": "var(--borders-primary)"
   },
   "gradients.signUp": {
-    "value": "linear-gradient(90deg, #8746E5 0%, #DB2777 100%)",
+    "value": "linear-gradient(90deg, #8746E5 0%, #279ADB 100%)",
     "variable": "var(--gradients-sign-up)"
   },
   "sizes.maxWidth": {
@@ -167,13 +167,25 @@ const tokens = {
     "value": "9999px",
     "variable": "var(--radii-full)"
   },
+  "letterSpacings.sm": {
+    "value": "0.01em",
+    "variable": "var(--letter-spacings-sm)"
+  },
   "letterSpacings.base": {
     "value": "0.03em",
     "variable": "var(--letter-spacings-base)"
   },
+  "letterSpacings.lg": {
+    "value": "0.06em",
+    "variable": "var(--letter-spacings-lg)"
+  },
   "shadows.float": {
     "value": "0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08);",
     "variable": "var(--shadows-float)"
+  },
+  "shadows.floatHover": {
+    "value": "0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08), 0px 2px 4px 0px rgba(23, 13, 13, 0.1)",
+    "variable": "var(--shadows-float-hover)"
   },
   "breakpoints.sm": {
     "value": "640px",

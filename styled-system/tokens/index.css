@@ -23,7 +23,7 @@
     --font-sizes-8xl: 6rem;
     --font-sizes-9xl: 8rem;
     --borders-primary: #e8e8e8;
-    --gradients-sign-up: linear-gradient(90deg, #8746e5 0%, #db2777 100%);
+    --gradients-sign-up: linear-gradient(90deg, #8746e5 0%, #279adb 100%);
     --sizes-max-width: 1440px;
     --sizes-full: 100%;
     --sizes-header-height: 80px;
@@ -42,10 +42,16 @@
     --radii-2xl: 1rem;
     --radii-3xl: 1.5rem;
     --radii-full: 9999px;
+    --letter-spacings-sm: 0.01em;
     --letter-spacings-base: 0.03em;
+    --letter-spacings-lg: 0.06em;
     --shadows-float: 0px 2px 4px 0px rgba(23, 13, 13, 0.04),
       0px 1px 2px -1px rgba(23, 13, 13, 0.08),
       0px 0px 0px 1px rgba(23, 13, 13, 0.08);
+    --shadows-float-hover: 0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+      0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+      0px 0px 0px 1px rgba(23, 13, 13, 0.08),
+      0px 2px 4px 0px rgba(23, 13, 13, 0.1);
     --breakpoints-sm: 640px;
     --breakpoints-md: 768px;
     --breakpoints-lg: 1024px;

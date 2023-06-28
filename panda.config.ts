@@ -17,11 +17,6 @@ export default defineConfig({
       bg: 'bgBase',
       letterSpacing: 'base',
     },
-    a: {
-      _hover: {
-        opacity: 0.8,
-      },
-    },
   },
 
   // Useful for theme customization
@@ -61,7 +56,7 @@ export default defineConfig({
         primary: { value: '#E8E8E8' },
       },
       gradients: {
-        signUp: { value: 'linear-gradient(90deg, #8746E5 0%, #DB2777 100%)' },
+        signUp: { value: 'linear-gradient(90deg, #8746E5 0%, #279ADB 100%)' },
       },
       sizes: {
         maxWidth: { value: '1440px' }, // max width for this app
@@ -83,12 +78,18 @@ export default defineConfig({
         full: { value: '9999px' },
       },
       letterSpacings: {
+        sm: { value: '0.01em' },
         base: { value: '0.03em' },
+        lg: { value: '0.06em' },
       },
       shadows: {
         float: {
           value:
             '0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08);',
+        },
+        floatHover: {
+          value:
+            '0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08), 0px 2px 4px 0px rgba(23, 13, 13, 0.1)',
         },
       },
     },

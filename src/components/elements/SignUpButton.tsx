@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
-
 import { css } from '../../../styled-system/css';
 
 const inter = Inter({ weight: '500', subsets: ['latin'] });

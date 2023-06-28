@@ -1,8 +1,7 @@
-import { jaJP } from '@clerk/localizations';
-import { ClerkProvider } from '@clerk/nextjs';
-
 import './globals.css';
 
+import { jaJP } from '@clerk/localizations';
+import { ClerkProvider } from '@clerk/nextjs';
 import { Noto_Sans_JP } from 'next/font/google';
 
 import { AppWrapper } from './_components/AppWrapper';
