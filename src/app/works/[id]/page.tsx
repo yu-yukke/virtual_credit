@@ -21,6 +21,7 @@ export default async function Page({
     <div
       className={css({
         position: 'relative',
+        h: '60vh',
       })}
     >
       <NextImage
@@ -30,7 +31,6 @@ export default async function Page({
         alt='hoge'
         sizes='100%'
         className={css({
-          h: '60vh !important',
           objectFit: 'cover',
         })}
       />

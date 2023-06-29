@@ -53,6 +53,12 @@ export const Footer = () => {
       className={css({
         w: 'full',
         zIndex: 10,
+        display: 'grid',
+        gridTemplateColumns:
+          '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
+        '& *': {
+          gridColumnStart: '2',
+        },
       })}
     >
       <div

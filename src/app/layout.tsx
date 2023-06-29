@@ -36,22 +36,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
       }}
     >
       <html lang='ja'>
-        <body
-          className={classNames(
-            notoSansJp.className,
-            css({
+        <body className={notoSansJp.className}>
+          <Header />
+          <main
+            className={css({
               display: 'grid',
               gridTemplateColumns:
                 '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
               '& *': {
                 gridColumnStart: '2',
-                gridColumnEnd: '2',
               },
-            }),
-          )}
-        >
-          <Header />
-          <main>{children}</main>
+            })}
+          >
+            {children}
+          </main>
           <Footer />
         </body>
       </html>
