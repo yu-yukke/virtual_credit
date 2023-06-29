@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useCallback, useEffect } from 'react';
 import { css } from '../../../styled-system/css';
@@ -75,7 +75,7 @@ export const GlobalNavigation = () => {
       >
         {globalNavConfig.navItems.map((nav) => (
           <li className={inter.className} key={nav.title}>
-            <Link
+            <NextLink
               href={nav.href}
               className={classNames(
                 currentPath == `${nav.href}`
@@ -101,7 +101,7 @@ export const GlobalNavigation = () => {
               )}
             >
               {nav.title}
-            </Link>
+            </NextLink>
           </li>
         ))}
       </ul>

@@ -23,8 +23,12 @@ export default async function Works() {
   const workTags: Tag[] = await db.select().from(tags);
 
   return (
-    <>
-      <section>
+    <div
+      className={css({
+        py: 'baseY',
+      })}
+    >
+      <div>
         <h1
           className={classNames(
             inter500.className,
@@ -33,8 +37,8 @@ export default async function Works() {
         >
           Works
         </h1>
-      </section>
-      <section
+      </div>
+      <div
         className={css({
           mt: 24,
           display: 'flex',
@@ -44,14 +48,14 @@ export default async function Works() {
       >
         <CategoryList categories={workCategories} />
         <TagList tags={workTags} />
-      </section>
-      <section
+      </div>
+      <div
         className={css({
           mt: 48,
         })}
       >
         <WorkList works={works} />
-      </section>
-    </>
+      </div>
+    </div>
   );
 }

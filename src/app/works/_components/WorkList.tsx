@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
 import NextImage from 'next/image';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { css } from '../../../../styled-system/css';
 
 import { Work, WorkImage } from '@/db/schema';
@@ -22,8 +22,16 @@ export const WorkList = ({ works }: Props) => {
       })}
     >
       {works.map((work) => (
-        <li className='group' key={work.id}>
-          <Link href='#'>
+        <li
+          className={classNames(
+            'group',
+            css({
+              gridColumn: 'auto',
+            }),
+          )}
+          key={work.id}
+        >
+          <NextLink href={`/works/${work.id}`}>
             <figure
               className={css({
                 position: 'relative',
@@ -63,7 +71,7 @@ export const WorkList = ({ works }: Props) => {
             >
               {work.name}
             </h2>
-          </Link>
+          </NextLink>
         </li>
       ))}
     </ul>

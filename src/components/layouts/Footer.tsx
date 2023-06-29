@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { SVGProps } from 'react';
 import { css } from '../../../styled-system/css';
 
@@ -52,10 +52,7 @@ export const Footer = () => {
     <footer
       className={css({
         w: 'full',
-        maxW: 'maxWidth',
         zIndex: 10,
-        px: 'baseX',
-        mx: 'auto',
       })}
     >
       <div
@@ -70,7 +67,7 @@ export const Footer = () => {
       >
         {/* logo part */}
         <div>
-          <Link href='/'>
+          <NextLink href='/'>
             <h1
               className={css({
                 fontFamily: 'futura',
@@ -80,7 +77,7 @@ export const Footer = () => {
             >
               VIRTUAL CREDIT
             </h1>
-          </Link>
+          </NextLink>
           <h2
             className={classNames(
               inter400.className,
@@ -142,7 +139,7 @@ export const Footer = () => {
             >
               {ExploreNavConfig.navItems.map((nav) => (
                 <li key={nav.title}>
-                  <Link
+                  <NextLink
                     href={nav.href}
                     className={css({
                       color: 'secondary',
@@ -150,7 +147,7 @@ export const Footer = () => {
                     })}
                   >
                     {nav.title}
-                  </Link>
+                  </NextLink>
                 </li>
               ))}
             </ul>
@@ -184,7 +181,7 @@ export const Footer = () => {
             >
               {AboutNavConfig.navItems.map((nav) => (
                 <li key={nav.title}>
-                  <Link
+                  <NextLink
                     href={nav.href}
                     className={css({
                       color: 'secondary',
@@ -192,7 +189,7 @@ export const Footer = () => {
                     })}
                   >
                     {nav.title}
-                  </Link>
+                  </NextLink>
                 </li>
               ))}
             </ul>
@@ -226,7 +223,7 @@ export const Footer = () => {
             >
               {ContactNavConfig.navItems.map((nav) => (
                 <li key={nav.title}>
-                  <Link
+                  <NextLink
                     href={nav.href}
                     className={css({
                       color: 'secondary',
@@ -234,7 +231,7 @@ export const Footer = () => {
                     })}
                   >
                     {nav.title}
-                  </Link>
+                  </NextLink>
                 </li>
               ))}
             </ul>
