@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { css } from '../../../styled-system/css';
 
 import { GlobalNavigation } from '../elements/GlobalNavigation';
@@ -29,7 +29,7 @@ export const Header = () => {
           h: 'full',
         })}
       >
-        <NextLink href='/'>
+        <Link href='/'>
           <h1
             className={css({
               fontFamily: 'futura',
@@ -39,7 +39,7 @@ export const Header = () => {
           >
             VIRTUAL CREDIT
           </h1>
-        </NextLink>
+        </Link>
         <GlobalNavigation />
         <ul
           className={css({

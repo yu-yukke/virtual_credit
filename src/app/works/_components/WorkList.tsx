@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
-import NextImage from 'next/image';
-import NextLink from 'next/link';
+import Image from 'next/image';
+import Link from 'next/link';
 import { css } from '../../../../styled-system/css';
 
 import { Work, WorkImage } from '@/db/schema';
@@ -31,7 +31,7 @@ export const WorkList = ({ works }: Props) => {
           )}
           key={work.id}
         >
-          <NextLink href={`/works/${work.id}`}>
+          <Link href={`/works/${work.id}`}>
             <figure
               className={css({
                 position: 'relative',
@@ -48,7 +48,7 @@ export const WorkList = ({ works }: Props) => {
                 },
               })}
             >
-              <NextImage
+              <Image
                 fill
                 priority
                 src={work.workImages[0].imageUrl}
@@ -71,7 +71,7 @@ export const WorkList = ({ works }: Props) => {
             >
               {work.name}
             </h2>
-          </NextLink>
+          </Link>
         </li>
       ))}
     </ul>

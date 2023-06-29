@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useCallback, useEffect } from 'react';
 import { css } from '../../../styled-system/css';
@@ -59,6 +59,7 @@ export const GlobalNavigation = () => {
           rounded: 'full',
           p: 8,
           transition: 'all 0.3s',
+          zIndex: 10,
           _hover: {
             bg: 'white',
             shadow: 'float',
@@ -75,7 +76,7 @@ export const GlobalNavigation = () => {
       >
         {globalNavConfig.navItems.map((nav) => (
           <li className={inter.className} key={nav.title}>
-            <NextLink
+            <Link
               href={nav.href}
               className={classNames(
                 currentPath == `${nav.href}`
@@ -101,7 +102,7 @@ export const GlobalNavigation = () => {
               )}
             >
               {nav.title}
-            </NextLink>
+            </Link>
           </li>
         ))}
       </ul>

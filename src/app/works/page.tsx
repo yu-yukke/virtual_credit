@@ -6,21 +6,21 @@ import { CategoryList } from './_components/CategoryList';
 import { TagList } from './_components/TagList';
 import { WorkList } from './_components/WorkList';
 import { db } from '@/db';
-import { Category, Tag, Work, WorkImage, categories, tags } from '@/db/schema';
+import { categories, tags } from '@/db/schema';
 
 const inter500 = Inter({ weight: '500', subsets: ['latin'] });
 
 export default async function Works() {
-  const works: (Work & { workImages: WorkImage[] })[] =
-    await db.query.works.findMany({
-      with: {
-        workImages: {
-          limit: 5,
-        },
+  const workList = await db.query.works.findMany({
+    with: {
+      workImages: {
+        orderBy: (work_images, { desc }) => [desc(work_images.isMain)],
+        limit: 5,
       },
-    });
-  const workCategories: Category[] = await db.select().from(categories);
-  const workTags: Tag[] = await db.select().from(tags);
+    },
+  });
+  const categoryList = await db.select().from(categories);
+  const tagList = await db.select().from(tags);
 
   return (
     <div
@@ -46,15 +46,15 @@ export default async function Works() {
           gap: 16,
         })}
       >
-        <CategoryList categories={workCategories} />
-        <TagList tags={workTags} />
+        <CategoryList categories={categoryList} />
+        <TagList tags={tagList} />
       </div>
       <div
         className={css({
           mt: 48,
         })}
       >
-        <WorkList works={works} />
+        <WorkList works={workList} />
       </div>
     </div>
   );

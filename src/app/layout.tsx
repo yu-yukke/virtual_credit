@@ -2,7 +2,6 @@ import './globals.css';
 
 import { jaJP } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
-import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
 import { css } from '../../styled-system/css';
 
