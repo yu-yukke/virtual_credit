@@ -6,7 +6,6 @@ import { KeyVisual } from './_components/KeyVisual';
 import { Overview } from './_components/Overview';
 import { Tags } from './_components/Tags';
 import { WorkImages } from './_components/WorkImages';
-import { PageWrapper } from '@/components/layouts/PageWrapper';
 import { db } from '@/db';
 import { works } from '@/db/schema';
 
@@ -79,8 +78,8 @@ export default async function Page({ params }: Props) {
           creators={creators}
         />
         <WorkImages workName={work.name} images={work.workImages} />
-        <Assets assets={assets} />
-        <Tags tags={tags} />
+        {assets && <Assets assets={assets} />}
+        {tags && <Tags tags={tags} />}
       </div>
     </>
   );
