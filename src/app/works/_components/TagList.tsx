@@ -1,4 +1,7 @@
+'use client';
+
 import classNames from 'classnames';
+import { motion } from 'framer-motion';
 import { Noto_Sans_JP } from 'next/font/google';
 import { css } from '../../../../styled-system/css';
 
@@ -10,16 +13,43 @@ type Props = {
 
 const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
 
+const variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const variantList = {
+  hidden: {
+    opacity: 0,
+    x: 8,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
 export const TagList = ({ tags }: Props) => {
   return (
-    <ul
+    <motion.ul
+      variants={variants}
+      initial='hidden'
+      animate='show'
       className={css({
         display: 'flex',
         alignItems: 'center',
         gap: 12,
       })}
     >
-      <li>
+      <motion.li variants={variantList}>
         <button
           className={classNames(
             notoSansJp500.className,
@@ -36,9 +66,9 @@ export const TagList = ({ tags }: Props) => {
         >
           すべて
         </button>
-      </li>
+      </motion.li>
       {tags.map((tag) => (
-        <li key={tag.id}>
+        <motion.li key={tag.id} variants={variantList}>
           <button
             className={css({
               fontSize: 'xs',
@@ -50,8 +80,8 @@ export const TagList = ({ tags }: Props) => {
           >
             {tag.name}
           </button>
-        </li>
+        </motion.li>
       ))}
-    </ul>
+    </motion.ul>
   );
 };

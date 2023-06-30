@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { Roboto_Condensed } from 'next/font/google';
 import Image from 'next/image';
 import { css } from '../../../../../styled-system/css';
+import { Property } from '../../../../../styled-system/types/csstype';
 import { WorkImage } from '@/db/schema';
 
 const robotoCondensed = Roboto_Condensed({
@@ -36,31 +37,24 @@ export const WorkImages = ({ workName, images }: Props) => {
           w: 'full',
           display: 'flex',
           flexDir: 'column',
+          alignItems: 'center',
           mt: 48,
           gap: 48,
         })}
       >
         {images.map((image) => (
-          <figure
+          <Image
             key={image.id}
+            fill
+            src={image.imageUrl}
+            alt={`${workName}の画像`}
+            sizes='100%'
             className={css({
-              position: 'relative',
-              w: 'full',
-              h: 'auto',
-              aspectRatio: 'wide',
-              overflow: 'hidden',
+              objectFit: 'contain',
+              position: 'relative!' as Property.Position,
+              maxH: '560px',
             })}
-          >
-            <Image
-              fill
-              src={image.imageUrl}
-              alt={`${workName}の画像`}
-              sizes='100%'
-              className={css({
-                objectFit: 'cover',
-              })}
-            />
-          </figure>
+          />
         ))}
       </div>
     </section>

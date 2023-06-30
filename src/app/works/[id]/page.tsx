@@ -3,6 +3,7 @@ import { css } from '../../../../styled-system/css';
 
 import { Overview } from './_components/Overview';
 import { WorkImages } from './_components/WorkImages';
+import { PageWrapper } from '@/components/layouts/PageWrapper';
 import { db } from '@/db';
 import { works } from '@/db/schema';
 
@@ -92,22 +93,24 @@ export default async function Page({ params }: Props) {
           </h2>
         </div>
       </div>
-      <div
-        className={css({
-          display: 'flex',
-          flexDir: 'column',
-          py: 128,
-          gap: 128,
-        })}
-      >
-        <Overview
-          title={work.name}
-          category={work.category}
-          assets={assets}
-          creators={creators}
-        />
-        <WorkImages workName={work.name} images={work.workImages} />
-      </div>
+      <PageWrapper>
+        <div
+          className={css({
+            display: 'flex',
+            flexDir: 'column',
+            py: 128,
+            gap: 128,
+          })}
+        >
+          <Overview
+            title={work.name}
+            category={work.category}
+            assets={assets}
+            creators={creators}
+          />
+          <WorkImages workName={work.name} images={work.workImages} />
+        </div>
+      </PageWrapper>
     </>
   );
 }

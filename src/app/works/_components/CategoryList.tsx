@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { css } from '../../../../styled-system/css';
 
@@ -8,6 +9,30 @@ import { Category } from '@/db/schema';
 
 type Props = {
   categories: Category[];
+};
+
+const variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const variantList = {
+  hidden: {
+    opacity: 0,
+    x: 8,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
 };
 
 export const CategoryList = ({ categories }: Props) => {
@@ -24,31 +49,34 @@ export const CategoryList = ({ categories }: Props) => {
   }, [checkedItems]);
 
   return (
-    <ul
+    <motion.ul
+      variants={variants}
+      initial='hidden'
+      animate='show'
       className={css({
         display: 'flex',
         alignItems: 'center',
         gap: 12,
       })}
     >
-      <li>
+      <motion.li variants={variantList}>
         <CheckBoxButton
           id='all'
           value={'all'}
           label='すべて'
           onChange={handleChange}
         />
-      </li>
+      </motion.li>
       {categories.map((category) => (
-        <li key={category.id}>
+        <motion.li key={category.id} variants={variantList}>
           <CheckBoxButton
             id={`id_${category.id}`}
             value={category.id}
             label={category.name}
             onChange={handleChange}
           />
-        </li>
+        </motion.li>
       ))}
-    </ul>
+    </motion.ul>
   );
 };

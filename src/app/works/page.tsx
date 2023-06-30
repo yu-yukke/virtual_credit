@@ -5,6 +5,7 @@ import { css } from '../../../styled-system/css';
 import { CategoryList } from './_components/CategoryList';
 import { TagList } from './_components/TagList';
 import { WorkList } from './_components/WorkList';
+import { PageWrapper } from '@/components/layouts/PageWrapper';
 import { db } from '@/db';
 import { categories, tags } from '@/db/schema';
 
@@ -23,39 +24,41 @@ export default async function Works() {
   const tagList = await db.select().from(tags);
 
   return (
-    <div
-      className={css({
-        py: 'baseY',
-      })}
-    >
-      <div>
-        <h1
-          className={classNames(
-            inter500.className,
-            css({ color: 'tertiary', fontSize: '2xl', letterSpacing: 'sm' }),
-          )}
+    <PageWrapper>
+      <div
+        className={css({
+          py: 'baseY',
+        })}
+      >
+        <div>
+          <h1
+            className={classNames(
+              inter500.className,
+              css({ color: 'tertiary', fontSize: '2xl', letterSpacing: 'sm' }),
+            )}
+          >
+            Works
+          </h1>
+        </div>
+        <div
+          className={css({
+            mt: 24,
+            display: 'flex',
+            flexDir: 'column',
+            gap: 16,
+          })}
         >
-          Works
-        </h1>
+          <CategoryList categories={categoryList} />
+          <TagList tags={tagList} />
+        </div>
+        <div
+          className={css({
+            mt: 48,
+          })}
+        >
+          <WorkList works={workList} />
+        </div>
       </div>
-      <div
-        className={css({
-          mt: 24,
-          display: 'flex',
-          flexDir: 'column',
-          gap: 16,
-        })}
-      >
-        <CategoryList categories={categoryList} />
-        <TagList tags={tagList} />
-      </div>
-      <div
-        className={css({
-          mt: 48,
-        })}
-      >
-        <WorkList works={workList} />
-      </div>
-    </div>
+    </PageWrapper>
   );
 }

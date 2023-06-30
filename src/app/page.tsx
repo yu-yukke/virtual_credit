@@ -1,5 +1,11 @@
 import { css } from '../../styled-system/css';
 
+import { PageWrapper } from '@/components/layouts/PageWrapper';
+
 export default function Home() {
-  return <h1 className={css({})}>Home</h1>;
+  return (
+    <PageWrapper>
+      <h1 className={css({})}>Home</h1>
+    </PageWrapper>
+  );
 }
