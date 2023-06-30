@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { css } from '../../../../styled-system/css';
 
 import { Overview } from './_components/Overview';
+import { WorkImages } from './_components/WorkImages';
 import { db } from '@/db';
 import { works } from '@/db/schema';
 
@@ -95,6 +96,7 @@ export default async function Page({ params }: Props) {
         className={css({
           display: 'flex',
           flexDir: 'column',
+          py: 128,
           gap: 128,
         })}
       >
@@ -104,6 +106,7 @@ export default async function Page({ params }: Props) {
           assets={assets}
           creators={creators}
         />
+        <WorkImages workName={work.name} images={work.workImages} />
       </div>
     </>
   );

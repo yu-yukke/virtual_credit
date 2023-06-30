@@ -19,11 +19,7 @@ type Props = {
 
 export const Overview = ({ title, category, creators, assets }: Props) => {
   return (
-    <section
-      className={css({
-        py: 128,
-      })}
-    >
+    <section>
       <h3
         className={classNames(
           robotoCondensed.className,
