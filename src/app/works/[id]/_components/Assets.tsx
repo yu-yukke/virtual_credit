@@ -3,11 +3,10 @@
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { Roboto_Condensed } from 'next/font/google';
-import Image from 'next/image';
+import Link from 'next/link';
 import { css } from '../../../../../styled-system/css';
-import { Property } from '../../../../../styled-system/types/csstype';
 
-import { WorkImage } from '@/db/schema';
+import { Asset } from '@/db/schema';
 
 const robotoCondensed = Roboto_Condensed({
   style: 'normal',
@@ -16,17 +15,15 @@ const robotoCondensed = Roboto_Condensed({
 });
 
 type Props = {
-  workName: string;
-  images: WorkImage[];
+  assets: Asset[];
 };
 
-export const WorkImages = ({ workName, images }: Props) => {
+export const Assets = ({ assets }: Props) => {
   return (
     <section>
       <motion.h3
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-        viewport={{ once: true }}
         className={classNames(
           robotoCondensed.className,
           css({
@@ -37,7 +34,7 @@ export const WorkImages = ({ workName, images }: Props) => {
           }),
         )}
       >
-        IMAGES
+        ASSETS
       </motion.h3>
       <motion.div
         initial={{ opacity: 0, y: 15 }}
@@ -49,27 +46,17 @@ export const WorkImages = ({ workName, images }: Props) => {
         viewport={{ once: true }}
         className={css({
           w: 'full',
-          position: 'relative',
           display: 'flex',
           flexDir: 'column',
           alignItems: 'center',
           mt: 48,
-          gap: 48,
+          gap: 8,
         })}
       >
-        {images.map((image) => (
-          <Image
-            key={image.id}
-            fill
-            src={image.imageUrl}
-            alt={`${workName}の画像`}
-            sizes='100%'
-            className={css({
-              objectFit: 'contain',
-              position: 'relative!' as Property.Position,
-              maxH: '560px',
-            })}
-          />
+        {assets.map((asset) => (
+          <Link href={asset.url} key={asset.id} target='_blank'>
+            <span className={css({ fontSize: 'sm' })}>{asset.name}</span>
+          </Link>
         ))}
       </motion.div>
     </section>

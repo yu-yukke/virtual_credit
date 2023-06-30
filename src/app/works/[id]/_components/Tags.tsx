@@ -3,11 +3,10 @@
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { Roboto_Condensed } from 'next/font/google';
-import Image from 'next/image';
+import Link from 'next/link';
 import { css } from '../../../../../styled-system/css';
-import { Property } from '../../../../../styled-system/types/csstype';
 
-import { WorkImage } from '@/db/schema';
+import { Tag } from '@/db/schema';
 
 const robotoCondensed = Roboto_Condensed({
   style: 'normal',
@@ -16,16 +15,25 @@ const robotoCondensed = Roboto_Condensed({
 });
 
 type Props = {
-  workName: string;
-  images: WorkImage[];
+  tags: Tag[];
 };
 
-export const WorkImages = ({ workName, images }: Props) => {
+export const Tags = ({ tags }: Props) => {
   return (
-    <section>
+    <section
+      className={css({
+        display: 'flex',
+        flexDir: 'column',
+        alignItems: 'center',
+      })}
+    >
       <motion.h3
         initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5 },
+        }}
         viewport={{ once: true }}
         className={classNames(
           robotoCondensed.className,
@@ -37,7 +45,7 @@ export const WorkImages = ({ workName, images }: Props) => {
           }),
         )}
       >
-        IMAGES
+        TAGS
       </motion.h3>
       <motion.div
         initial={{ opacity: 0, y: 15 }}
@@ -48,28 +56,34 @@ export const WorkImages = ({ workName, images }: Props) => {
         }}
         viewport={{ once: true }}
         className={css({
-          w: 'full',
-          position: 'relative',
+          w: 'auto',
+          maxW: '680px',
+          flexWrap: 'wrap',
           display: 'flex',
-          flexDir: 'column',
           alignItems: 'center',
           mt: 48,
-          gap: 48,
+          gap: 16,
         })}
       >
-        {images.map((image) => (
-          <Image
-            key={image.id}
-            fill
-            src={image.imageUrl}
-            alt={`${workName}の画像`}
-            sizes='100%'
-            className={css({
-              objectFit: 'contain',
-              position: 'relative!' as Property.Position,
-              maxH: '560px',
-            })}
-          />
+        {tags.map((tag) => (
+          <Link href='/' key={tag.id}>
+            <button
+              className={css({
+                fontSize: 'sm',
+                color: 'secondary',
+                py: 4,
+                px: 12,
+                rounded: '2xl',
+                border: '1px solid token(borders.primary)',
+                cursor: 'pointer',
+                _hover: {
+                  color: 'primary',
+                },
+              })}
+            >
+              # {tag.name}
+            </button>
+          </Link>
         ))}
       </motion.div>
     </section>

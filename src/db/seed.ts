@@ -214,7 +214,7 @@ async function main() {
     });
   });
 
-  await db.insert(asset_mappings).values(newAssetMappings);
+  await db.insert(tag_mappings).values(newTagMappings);
 
   // ========================== creator mapping ==========================
 

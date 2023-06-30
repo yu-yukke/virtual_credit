@@ -1,6 +1,10 @@
+'use client';
+
 import classNames from 'classnames';
+import { motion } from 'framer-motion';
 import { Inter, Roboto_Condensed } from 'next/font/google';
 import { css } from '../../../../../styled-system/css';
+
 import { Asset, Category, User } from '@/db/schema';
 
 const inter = Inter({ weight: '600', subsets: ['latin'] });
@@ -20,7 +24,10 @@ type Props = {
 export const Overview = ({ title, category, creators, assets }: Props) => {
   return (
     <section>
-      <h3
+      <motion.h3
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+        viewport={{ once: true }}
         className={classNames(
           robotoCondensed.className,
           css({
@@ -32,8 +39,15 @@ export const Overview = ({ title, category, creators, assets }: Props) => {
         )}
       >
         OVERVIEW
-      </h3>
-      <div
+      </motion.h3>
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 0.3, duration: 0.5 },
+        }}
+        viewport={{ once: true }}
         className={css({
           w: 'full',
           maxW: '680px',
@@ -181,7 +195,7 @@ export const Overview = ({ title, category, creators, assets }: Props) => {
           </div>
         )}
         {/* assets end */}
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -1,7 +1,10 @@
 import { eq } from 'drizzle-orm';
 import { css } from '../../../../styled-system/css';
 
+import { Assets } from './_components/Assets';
+import { KeyVisual } from './_components/KeyVisual';
 import { Overview } from './_components/Overview';
+import { Tags } from './_components/Tags';
 import { WorkImages } from './_components/WorkImages';
 import { PageWrapper } from '@/components/layouts/PageWrapper';
 import { db } from '@/db';
@@ -31,6 +34,11 @@ export default async function Page({ params }: Props) {
           user: true,
         },
       },
+      tagMappings: {
+        with: {
+          tag: true,
+        },
+      },
     },
   });
 
@@ -44,73 +52,36 @@ export default async function Page({ params }: Props) {
   const creators = work.creatorMappings.map((creatorMap) => {
     return creatorMap.user;
   });
+  const tags = work.tagMappings.map((tagMap) => {
+    return tagMap.tag;
+  });
 
   return (
     <>
+      <KeyVisual
+        title={work.name}
+        category={work.category}
+        mainImageUrl={work.workImages[0].imageUrl}
+      />
       <div
         className={css({
-          position: 'relative',
-          w: 'full',
-          h: '60vh',
-          gridColumn: '1 / 4',
-          bg: `linear-gradient(rgba(0, 0, 0, .4),  rgba(0, 0, 0, .4)),  url('${work.workImages[0].imageUrl}')`,
-          bgSize: 'cover',
-          bgRepeat: 'no-repeat',
-          bgPosition: 'center',
+          display: 'flex',
+          flexDir: 'column',
+          pt: 128,
+          pb: 384,
+          gap: 128,
         })}
       >
-        <div
-          className={css({
-            w: 'full',
-            px: 30,
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            display: 'flex',
-            flexDir: 'column',
-            alignItems: 'center',
-            gap: 4,
-          })}
-        >
-          <h1
-            className={css({
-              fontSize: '5xl',
-              color: 'white',
-              letterSpacing: 'lg',
-              fontWeight: 500,
-            })}
-          >
-            {work.name}
-          </h1>
-          <h2
-            className={css({
-              fontSize: 'md',
-              color: 'white',
-            })}
-          >
-            {work.category.name}
-          </h2>
-        </div>
+        <Overview
+          title={work.name}
+          category={work.category}
+          assets={assets}
+          creators={creators}
+        />
+        <WorkImages workName={work.name} images={work.workImages} />
+        <Assets assets={assets} />
+        <Tags tags={tags} />
       </div>
-      <PageWrapper>
-        <div
-          className={css({
-            display: 'flex',
-            flexDir: 'column',
-            py: 128,
-            gap: 128,
-          })}
-        >
-          <Overview
-            title={work.name}
-            category={work.category}
-            assets={assets}
-            creators={creators}
-          />
-          <WorkImages workName={work.name} images={work.workImages} />
-        </div>
-      </PageWrapper>
     </>
   );
 }

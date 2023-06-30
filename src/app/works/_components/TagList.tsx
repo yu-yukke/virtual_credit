@@ -78,7 +78,7 @@ export const TagList = ({ tags }: Props) => {
               rounded: 'xl',
             })}
           >
-            {tag.name}
+            # {tag.name}
           </button>
         </motion.li>
       ))}
