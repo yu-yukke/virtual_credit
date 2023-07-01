@@ -1,13 +1,1 @@
-{
-  "version": "5",
-  "dialect": "mysql",
-  "entries": [
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1687702920493,
-      "tag": "0003_premium_ultimates",
-      "breakpoints": true
-    }
-  ]
-}
+{"version":"5","dialect":"mysql","entries":[{"idx":8,"version":"5","when":1688234941821,"tag":"0008_dashing_sunfire","breakpoints":true}]}
