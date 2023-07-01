@@ -3,13 +3,17 @@
 import { motion } from 'framer-motion';
 import { css } from '../../../../../styled-system/css';
 
-type Props = {
+type KeyVisualProps = {
   title: string;
   categoryName: string;
   mainImageUrl: string;
 };
 
-export const KeyVisual = ({ title, categoryName, mainImageUrl }: Props) => {
+export const KeyVisual = ({
+  title,
+  categoryName,
+  mainImageUrl,
+}: KeyVisualProps) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}

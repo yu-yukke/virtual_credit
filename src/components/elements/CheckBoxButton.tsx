@@ -3,7 +3,7 @@ import { Noto_Sans_JP } from 'next/font/google';
 import { ChangeEventHandler } from 'react';
 import { css } from '../../../styled-system/css';
 
-type Props = {
+type CheckBoxProps = {
   id: string;
   value: number | 'all';
   label: string;
@@ -13,7 +13,12 @@ type Props = {
 
 const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
 
-export const CheckBoxButton = ({ id, value, label, onChange }: Props) => {
+export const CheckBoxButton = ({
+  id,
+  value,
+  label,
+  onChange,
+}: CheckBoxProps) => {
   return (
     <>
       <input

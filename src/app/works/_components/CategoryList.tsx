@@ -7,7 +7,7 @@ import { css } from '../../../../styled-system/css';
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Category } from '@/db/schema';
 
-type Props = {
+type CategoryListProps = {
   categories: Category[];
 };
 
@@ -35,7 +35,7 @@ const variantList = {
   },
 };
 
-export const CategoryList = ({ categories }: Props) => {
+export const CategoryList = ({ categories }: CategoryListProps) => {
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     e.target.checked

@@ -8,7 +8,7 @@ import { css } from '../../../../styled-system/css';
 import { WorkCard } from '@/components/elements/WorkCard';
 import { Work, WorkImage } from '@/db/schema';
 
-type Props = {
+type WorkListProps = {
   works: (Work & { workImages: WorkImage[] })[];
 };
 
@@ -36,7 +36,7 @@ const variantList = {
   },
 };
 
-export const WorkList = ({ works }: Props) => {
+export const WorkList = ({ works }: WorkListProps) => {
   return (
     <motion.ul
       variants={variants}

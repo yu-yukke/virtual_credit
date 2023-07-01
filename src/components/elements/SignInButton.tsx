@@ -4,11 +4,11 @@ import { css } from '../../../styled-system/css';
 
 const inter = Inter({ weight: '400', subsets: ['latin'] });
 
-type Props = {
+type SignInButtonProps = {
   isGlobalNav?: boolean;
 };
 
-export const SignInButton = ({ isGlobalNav }: Props) => {
+export const SignInButton = ({ isGlobalNav }: SignInButtonProps) => {
   return (
     <button
       className={classNames(

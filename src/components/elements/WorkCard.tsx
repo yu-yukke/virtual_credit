@@ -7,12 +7,12 @@ import { Work, WorkImage } from '@/db/schema';
 
 const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
 
-type Props = {
+type WorkCardProps = {
   work: Work;
   mainImage: WorkImage;
 };
 
-export const WorkCard = ({ work, mainImage }: Props) => {
+export const WorkCard = ({ work, mainImage }: WorkCardProps) => {
   return (
     <>
       <figure

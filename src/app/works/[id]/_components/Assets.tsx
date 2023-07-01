@@ -1,42 +1,20 @@
 'use client';
 
-import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { Roboto_Condensed } from 'next/font/google';
 import Link from 'next/link';
 import { css } from '../../../../../styled-system/css';
 
+import { SectionTitle } from './SectionTitle';
 import { Asset } from '@/db/schema';
 
-const robotoCondensed = Roboto_Condensed({
-  style: 'normal',
-  weight: '700',
-  subsets: ['latin'],
-});
-
-type Props = {
+type AssetProps = {
   assets: Asset[];
 };
 
-export const Assets = ({ assets }: Props) => {
+export const Assets = ({ assets }: AssetProps) => {
   return (
     <section>
-      <motion.h3
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-        viewport={{ once: true }}
-        className={classNames(
-          robotoCondensed.className,
-          css({
-            color: 'tertiary',
-            fontSize: 'xl',
-            letterSpacing: '0.38em',
-            textAlign: 'center',
-          }),
-        )}
-      >
-        ASSETS
-      </motion.h3>
+      <SectionTitle title='ASSETS' />
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{

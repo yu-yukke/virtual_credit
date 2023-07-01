@@ -10,13 +10,13 @@ import { WorkImages } from './_components/WorkImages';
 import { db } from '@/db';
 import { works } from '@/db/schema';
 
-type Props = {
+type PageProps = {
   params: {
     id: number;
   };
 };
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: PageProps) {
   const work = await db.query.works.findFirst({
     where: eq(works.id, params.id),
     with: {
@@ -77,6 +77,7 @@ export default async function Page({ params }: Props) {
           categoryName={work.category.name}
           assets={assets}
           creators={creators}
+          tags={tags}
         />
         <WorkImages title={work.name} images={work.workImages} />
         <Description description={work.description} />

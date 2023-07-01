@@ -2,44 +2,74 @@
 
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { Inter, Roboto_Condensed } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { css } from '../../../../../styled-system/css';
 
-import { Asset, User } from '@/db/schema';
+import { SectionTitle } from './SectionTitle';
+import { Asset, Tag, User } from '@/db/schema';
 
 const inter = Inter({ weight: '600', subsets: ['latin'] });
-const robotoCondensed = Roboto_Condensed({
-  style: 'normal',
-  weight: '700',
-  subsets: ['latin'],
-});
 
-type Props = {
+type OverviewProps = {
   title: string;
   categoryName: string;
   creators: User[];
   assets?: Asset[];
+  tags?: Tag[];
 };
 
-export const Overview = ({ title, categoryName, creators, assets }: Props) => {
+type LabelProps = {
+  label: string;
+};
+
+type ContentProps = {
+  content: string;
+};
+
+const Label = ({ label }: LabelProps) => {
+  return (
+    <label
+      className={classNames(
+        inter.className,
+        css({
+          fontSize: 'sm',
+          w: '2/5',
+          lineHeight: '28px',
+          letterSpacing: '0.14em',
+        }),
+      )}
+    >
+      {label}
+    </label>
+  );
+};
+
+const Content = ({ content }: ContentProps) => {
+  return (
+    <span
+      className={css({
+        fontSize: 'sm',
+        w: '3/5',
+        lineHeight: '28px',
+        letterSpacing: '0.08em',
+        wordBreak: 'keep-all',
+      })}
+    >
+      {content}
+    </span>
+  );
+};
+
+export const Overview = ({
+  title,
+  categoryName,
+  creators,
+  assets,
+  tags,
+}: OverviewProps) => {
   return (
     <section>
-      <motion.h3
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-        viewport={{ once: true }}
-        className={classNames(
-          robotoCondensed.className,
-          css({
-            color: 'tertiary',
-            fontSize: 'xl',
-            letterSpacing: '0.38em',
-            textAlign: 'center',
-          }),
-        )}
-      >
-        OVERVIEW
-      </motion.h3>
+      <SectionTitle title='OVERVIEW' />
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{
@@ -65,30 +95,8 @@ export const Overview = ({ title, categoryName, creators, assets }: Props) => {
             gap: 32,
           })}
         >
-          <label
-            className={classNames(
-              inter.className,
-              css({
-                fontSize: 'sm',
-                w: '2/5',
-                lineHeight: '28px',
-                letterSpacing: '0.14em',
-              }),
-            )}
-          >
-            Title
-          </label>
-          <span
-            className={css({
-              fontSize: 'sm',
-              w: '3/5',
-              lineHeight: '28px',
-              letterSpacing: '0.08em',
-              wordBreak: 'keep-all',
-            })}
-          >
-            {title}
-          </span>
+          <Label label='Title' />
+          <Content content={title} />{' '}
         </div>
         {/* title end */}
         {/* category */}
@@ -99,30 +107,8 @@ export const Overview = ({ title, categoryName, creators, assets }: Props) => {
             gap: 32,
           })}
         >
-          <label
-            className={classNames(
-              inter.className,
-              css({
-                fontSize: 'sm',
-                w: '2/5',
-                lineHeight: '28px',
-                letterSpacing: '0.14em',
-              }),
-            )}
-          >
-            Category
-          </label>
-          <span
-            className={css({
-              fontSize: 'sm',
-              w: '3/5',
-              lineHeight: '28px',
-              letterSpacing: '0.08em',
-              wordBreak: 'keep-all',
-            })}
-          >
-            {categoryName}
-          </span>
+          <Label label='Category' />
+          <Content content={categoryName} />
         </div>
         {/* category end */}
         {/* creators */}
@@ -133,30 +119,8 @@ export const Overview = ({ title, categoryName, creators, assets }: Props) => {
             gap: 32,
           })}
         >
-          <label
-            className={classNames(
-              inter.className,
-              css({
-                fontSize: 'sm',
-                w: '2/5',
-                lineHeight: '28px',
-                letterSpacing: '0.14em',
-              }),
-            )}
-          >
-            Creators
-          </label>
-          <span
-            className={css({
-              fontSize: 'sm',
-              w: '3/5',
-              lineHeight: '28px',
-              letterSpacing: '0.08em',
-              wordBreak: 'keep-all',
-            })}
-          >
-            クリエイター名, クリエイター名, クリエイター名, クリエイター名
-          </span>
+          <Label label='Creators' />
+          <Content content='クリエイター名, クリエイター名, クリエイター名, クリエイター名,' />
         </div>
         {/* creators end */}
         {/* assets */}
@@ -168,33 +132,25 @@ export const Overview = ({ title, categoryName, creators, assets }: Props) => {
               gap: 32,
             })}
           >
-            <label
-              className={classNames(
-                inter.className,
-                css({
-                  fontSize: 'sm',
-                  w: '2/5',
-                  lineHeight: '28px',
-                  letterSpacing: '0.14em',
-                }),
-              )}
-            >
-              Assets
-            </label>
-            <span
-              className={css({
-                fontSize: 'sm',
-                w: '3/5',
-                lineHeight: '28px',
-                letterSpacing: '0.08em',
-                wordBreak: 'keep-all',
-              })}
-            >
-              {assets.map((asset) => asset.name).join(' , ')}
-            </span>
+            <Label label='Assets' />
+            <Content content={assets.map((asset) => asset.name).join(' , ')} />
           </div>
         )}
         {/* assets end */}
+        {/* tags */}
+        {tags && (
+          <div
+            className={css({
+              display: 'flex',
+              w: 'full',
+              gap: 32,
+            })}
+          >
+            <Label label='Tags' />
+            <Content content={tags.map((tag) => tag.name).join(' , ')} />
+          </div>
+        )}
+        {/* tags end */}
       </motion.div>
     </section>
   );

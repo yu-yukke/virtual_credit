@@ -2,11 +2,11 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 
-type Props = {
+type PageProps = {
   children: React.ReactNode;
 };
 
-export const PageWrapper = ({ children }: Props) => {
+export const PageWrapper = ({ children }: PageProps) => {
   return (
     <>
       <AnimatePresence>

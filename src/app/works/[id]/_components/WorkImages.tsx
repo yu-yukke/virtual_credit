@@ -1,44 +1,22 @@
 'use client';
 
-import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { Roboto_Condensed } from 'next/font/google';
 import Image from 'next/image';
 import { css } from '../../../../../styled-system/css';
 import { Property } from '../../../../../styled-system/types/csstype';
 
+import { SectionTitle } from './SectionTitle';
 import { WorkImage } from '@/db/schema';
 
-const robotoCondensed = Roboto_Condensed({
-  style: 'normal',
-  weight: '700',
-  subsets: ['latin'],
-});
-
-type Props = {
+type WorkImageProps = {
   title: string;
   images: WorkImage[];
 };
 
-export const WorkImages = ({ title, images }: Props) => {
+export const WorkImages = ({ title, images }: WorkImageProps) => {
   return (
     <section>
-      <motion.h3
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-        viewport={{ once: true }}
-        className={classNames(
-          robotoCondensed.className,
-          css({
-            color: 'tertiary',
-            fontSize: 'xl',
-            letterSpacing: '0.38em',
-            textAlign: 'center',
-          }),
-        )}
-      >
-        IMAGES
-      </motion.h3>
+      <SectionTitle title='IMAGES' />
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{

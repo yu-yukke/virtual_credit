@@ -7,7 +7,7 @@ import { css } from '../../../../styled-system/css';
 
 import { Tag } from '@/db/schema';
 
-type Props = {
+type TagListProps = {
   tags: Tag[];
 };
 
@@ -37,7 +37,7 @@ const variantList = {
   },
 };
 
-export const TagList = ({ tags }: Props) => {
+export const TagList = ({ tags }: TagListProps) => {
   return (
     <motion.ul
       variants={variants}

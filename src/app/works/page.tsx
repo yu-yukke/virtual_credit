@@ -11,7 +11,7 @@ import { categories, tags } from '@/db/schema';
 
 const inter500 = Inter({ weight: '500', subsets: ['latin'] });
 
-export default async function Works() {
+export default async function Page() {
   const workList = await db.query.works.findMany({
     with: {
       workImages: {
