@@ -37,20 +37,9 @@
     --scale-y: 1;
   }
 
-  html {
-    font-size: var(--font-sizes-md);
-  }
-
   body {
     color: var(--colors-base);
-    --gradient-stops: var(--gradient-from), var(--gradient-to);
-    --gradient: var(--gradient-via-stops, var(--gradient-stops));
-    background-image: var(--gradients-body);
+    background: var(--colors-bg-base);
     letter-spacing: var(--letter-spacings-base);
-    font-family: var(--fonts-base);
-  }
-
-  a:where(:hover, [data-hover]) {
-    opacity: 0.8;
   }
 }

@@ -34,7 +34,7 @@ ngrok http 3000
 
 Clerk の Webhook 用に ngrok で URL を払い出している
 
-無料プランだと毎度 URL が変更されるので Clerk の認証周りいじる時は URL 払い出して Clerk の WebhookURL を変更すること
+無料プランだと毎度 URL が変更されるので dev 環境で Clerk の認証周りいじる時は URL 払い出して Clerk の WebhookURL を変更すること
 
 ## DB
 
@@ -52,6 +52,12 @@ Clerk の Webhook 用に ngrok で URL を払い出している
 pnpm run db:generate
 ```
 
+#### 1 つ前のマイグレーションファイルを削除
+
+```bash
+pnpm run db:drop
+```
+
 ### スキーマ反映
 
 ```bash
@@ -59,6 +65,16 @@ pnpm run db:push
 ```
 
 Planet Scale の dev ブランチへマイグレーションファイルを元に反映
+
+### seed 投入
+
+```bash
+pnpm run db:seed
+```
+
+## デザイン
+
+デザインプロトタイプ is [here](https://www.figma.com/file/1URfhnM4j8R6Pyq74SHoTc/%E7%84%A1%E9%A1%8C?type=design&node-id=61%3A892&mode=design&t=JxhDdgWsklkyUShF-1)
 
 ## 開発ワークフロー
 
@@ -71,6 +87,14 @@ Planet Scale の dev ブランチへマイグレーションファイルを元�
 ```bash
 pnpm run db:generate
 ```
+
+#### 1 つ前のマイグレーションファイルを削除
+
+```bash
+pnpm run db:drop
+```
+
+これしないとマイグレーションこけるので注意
 
 #### スキーマ反映
 

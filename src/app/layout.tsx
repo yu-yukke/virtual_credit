@@ -1,9 +1,14 @@
-import { jaJP } from '@clerk/localizations';
-import { ClerkProvider } from '@clerk/nextjs';
-
 import './globals.css';
 
-import { AppWrapper } from './_components/AppWrapper';
+import { jaJP } from '@clerk/localizations';
+import { ClerkProvider } from '@clerk/nextjs';
+import { Noto_Sans_JP } from 'next/font/google';
+import { css } from '../../styled-system/css';
+
+import { Footer } from '@/components/layouts/Footer';
+import { Header } from '@/components/layouts/Header';
+
+const notoSansJp = Noto_Sans_JP({ weight: '400', subsets: ['latin'] });
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -30,8 +35,21 @@ export default function RootLayout({ children }: RootLayoutProps) {
       }}
     >
       <html lang='ja'>
-        <body>
-          <AppWrapper>{children}</AppWrapper>
+        <body className={notoSansJp.className}>
+          <Header />
+          <main
+            className={css({
+              display: 'grid',
+              gridTemplateColumns:
+                '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
+              '& *': {
+                gridColumnStart: '2',
+              },
+            })}
+          >
+            {children}
+          </main>
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

@@ -1,11 +1,14 @@
 /* eslint-disable */
 export type Token =
   | 'colors.base'
+  | 'colors.bgBase'
   | 'colors.white'
   | 'colors.primary'
   | 'colors.secondary'
-  | 'fonts.base'
-  | 'fonts.gillSans'
+  | 'colors.tertiary'
+  | 'colors.quaternary'
+  | 'fonts.futura'
+  | 'fontSizes.2xs'
   | 'fontSizes.xs'
   | 'fontSizes.sm'
   | 'fontSizes.md'
@@ -14,14 +17,13 @@ export type Token =
   | 'fontSizes.2xl'
   | 'fontSizes.3xl'
   | 'fontSizes.4xl'
-  | 'letterSpacings.base'
-  | 'letterSpacings.wider'
-  | 'letterSpacings.widest'
+  | 'fontSizes.5xl'
+  | 'fontSizes.6xl'
+  | 'fontSizes.7xl'
+  | 'fontSizes.8xl'
+  | 'fontSizes.9xl'
   | 'borders.primary'
-  | 'gradients.body'
-  | 'shadows.header'
-  | 'radii.sm'
-  | 'radii.md'
+  | 'gradients.signUp'
   | 'sizes.maxWidth'
   | 'sizes.full'
   | 'sizes.headerHeight'
@@ -32,6 +34,19 @@ export type Token =
   | 'sizes.breakpoint-2xl'
   | 'spacing.baseX'
   | 'spacing.baseY'
+  | 'radii.xs'
+  | 'radii.sm'
+  | 'radii.md'
+  | 'radii.lg'
+  | 'radii.xl'
+  | 'radii.2xl'
+  | 'radii.3xl'
+  | 'radii.full'
+  | 'letterSpacings.sm'
+  | 'letterSpacings.base'
+  | 'letterSpacings.lg'
+  | 'shadows.float'
+  | 'shadows.floatHover'
   | 'breakpoints.sm'
   | 'breakpoints.md'
   | 'breakpoints.lg'
@@ -40,11 +55,19 @@ export type Token =
   | 'spacing.-baseX'
   | 'spacing.-baseY';
 
-export type ColorToken = 'base' | 'white' | 'primary' | 'secondary';
+export type ColorToken =
+  | 'base'
+  | 'bgBase'
+  | 'white'
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'quaternary';
 
-export type FontToken = 'base' | 'gillSans';
+export type FontToken = 'futura';
 
 export type FontSizeToken =
+  | '2xs'
   | 'xs'
   | 'sm'
   | 'md'
@@ -52,17 +75,16 @@ export type FontSizeToken =
   | 'xl'
   | '2xl'
   | '3xl'
-  | '4xl';
-
-export type LetterSpacingToken = 'base' | 'wider' | 'widest';
+  | '4xl'
+  | '5xl'
+  | '6xl'
+  | '7xl'
+  | '8xl'
+  | '9xl';
 
 export type BorderToken = 'primary';
 
-export type GradientToken = 'body';
-
-export type ShadowToken = 'header';
-
-export type RadiusToken = 'sm' | 'md';
+export type GradientToken = 'signUp';
 
 export type SizeToken =
   | 'maxWidth'
@@ -76,19 +98,33 @@ export type SizeToken =
 
 export type SpacingToken = 'baseX' | 'baseY' | '-baseX' | '-baseY';
 
+export type RadiusToken =
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | 'full';
+
+export type LetterSpacingToken = 'sm' | 'base' | 'lg';
+
+export type ShadowToken = 'float' | 'floatHover';
+
 export type BreakpointToken = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type Tokens = {
   colors: ColorToken;
   fonts: FontToken;
   fontSizes: FontSizeToken;
-  letterSpacings: LetterSpacingToken;
   borders: BorderToken;
   gradients: GradientToken;
-  shadows: ShadowToken;
-  radii: RadiusToken;
   sizes: SizeToken;
   spacing: SpacingToken;
+  radii: RadiusToken;
+  letterSpacings: LetterSpacingToken;
+  shadows: ShadowToken;
   breakpoints: BreakpointToken;
 } & { [token: string]: never };
 
