@@ -10,11 +10,14 @@ export const Header = () => {
     <header
       className={css({
         w: 'full',
-        maxW: 'maxWidth',
         h: 'headerHeight',
         zIndex: 10,
-        px: 'baseX',
-        mx: 'auto',
+        display: 'grid',
+        gridTemplateColumns:
+          '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
+        '& *': {
+          gridColumnStart: '2',
+        },
       })}
     >
       <div

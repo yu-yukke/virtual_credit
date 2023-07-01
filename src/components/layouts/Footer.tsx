@@ -52,10 +52,13 @@ export const Footer = () => {
     <footer
       className={css({
         w: 'full',
-        maxW: 'maxWidth',
         zIndex: 10,
-        px: 'baseX',
-        mx: 'auto',
+        display: 'grid',
+        gridTemplateColumns:
+          '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
+        '& *': {
+          gridColumnStart: '2',
+        },
       })}
     >
       <div

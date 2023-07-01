@@ -59,6 +59,7 @@ export const GlobalNavigation = () => {
           rounded: 'full',
           p: 8,
           transition: 'all 0.3s',
+          zIndex: 10,
           _hover: {
             bg: 'white',
             shadow: 'float',
