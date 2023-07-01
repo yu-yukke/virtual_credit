@@ -4,6 +4,7 @@ import { css } from '../../../../styled-system/css';
 import { Assets } from './_components/Assets';
 import { KeyVisual } from './_components/KeyVisual';
 import { Overview } from './_components/Overview';
+import { Share } from './_components/Share';
 import { Tags } from './_components/Tags';
 import { WorkImages } from './_components/WorkImages';
 import { db } from '@/db';
@@ -77,9 +78,10 @@ export default async function Page({ params }: Props) {
           assets={assets}
           creators={creators}
         />
-        <WorkImages workName={work.name} images={work.workImages} />
+        <WorkImages title={work.name} images={work.workImages} />
         {assets && <Assets assets={assets} />}
         {tags && <Tags tags={tags} />}
+        <Share workTitle={work.name} />
       </div>
     </>
   );

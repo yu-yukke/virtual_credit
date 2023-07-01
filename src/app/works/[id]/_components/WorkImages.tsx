@@ -16,11 +16,11 @@ const robotoCondensed = Roboto_Condensed({
 });
 
 type Props = {
-  workName: string;
+  title: string;
   images: WorkImage[];
 };
 
-export const WorkImages = ({ workName, images }: Props) => {
+export const WorkImages = ({ title, images }: Props) => {
   return (
     <section>
       <motion.h3
@@ -62,7 +62,7 @@ export const WorkImages = ({ workName, images }: Props) => {
             key={image.id}
             fill
             src={image.imageUrl}
-            alt={`${workName}の画像`}
+            alt={`${title}の画像`}
             sizes='100%'
             className={css({
               objectFit: 'contain',
