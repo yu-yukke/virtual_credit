@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Inter, Roboto_Condensed } from 'next/font/google';
 import { css } from '../../../../../styled-system/css';
 
-import { Asset, Category, User } from '@/db/schema';
+import { Asset, User } from '@/db/schema';
 
 const inter = Inter({ weight: '600', subsets: ['latin'] });
 const robotoCondensed = Roboto_Condensed({
@@ -16,12 +16,12 @@ const robotoCondensed = Roboto_Condensed({
 
 type Props = {
   title: string;
-  category: Category;
+  categoryName: string;
   creators: User[];
   assets?: Asset[];
 };
 
-export const Overview = ({ title, category, creators, assets }: Props) => {
+export const Overview = ({ title, categoryName, creators, assets }: Props) => {
   return (
     <section>
       <motion.h3
@@ -121,7 +121,7 @@ export const Overview = ({ title, category, creators, assets }: Props) => {
               wordBreak: 'keep-all',
             })}
           >
-            {category.name}
+            {categoryName}
           </span>
         </div>
         {/* category end */}

@@ -3,15 +3,13 @@
 import { motion } from 'framer-motion';
 import { css } from '../../../../../styled-system/css';
 
-import { Category } from '@/db/schema';
-
 type Props = {
   title: string;
-  category: Category;
+  categoryName: string;
   mainImageUrl: string;
 };
 
-export const KeyVisual = ({ title, category, mainImageUrl }: Props) => {
+export const KeyVisual = ({ title, categoryName, mainImageUrl }: Props) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -68,7 +66,7 @@ export const KeyVisual = ({ title, category, mainImageUrl }: Props) => {
             color: 'white',
           })}
         >
-          {category.name}
+          {categoryName}
         </motion.h2>
       </div>
     </motion.div>

@@ -2,9 +2,9 @@ import { eq } from 'drizzle-orm';
 import { css } from '../../../../styled-system/css';
 
 import { Assets } from './_components/Assets';
+import { Description } from './_components/Description';
 import { KeyVisual } from './_components/KeyVisual';
 import { Overview } from './_components/Overview';
-import { Share } from './_components/Share';
 import { Tags } from './_components/Tags';
 import { WorkImages } from './_components/WorkImages';
 import { db } from '@/db';
@@ -60,7 +60,7 @@ export default async function Page({ params }: Props) {
     <>
       <KeyVisual
         title={work.name}
-        category={work.category}
+        categoryName={work.category.name}
         mainImageUrl={work.workImages[0].imageUrl}
       />
       <div
@@ -74,14 +74,14 @@ export default async function Page({ params }: Props) {
       >
         <Overview
           title={work.name}
-          category={work.category}
+          categoryName={work.category.name}
           assets={assets}
           creators={creators}
         />
         <WorkImages title={work.name} images={work.workImages} />
+        <Description description={work.description} />
         {assets && <Assets assets={assets} />}
         {tags && <Tags tags={tags} />}
-        <Share workTitle={work.name} />
       </div>
     </>
   );
