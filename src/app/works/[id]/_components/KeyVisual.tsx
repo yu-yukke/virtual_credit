@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { css } from '../../../../../styled-system/css';
+import { Property } from '../../../../../styled-system/types/csstype';
 
 type KeyVisualProps = {
   title: string;
@@ -24,12 +26,28 @@ export const KeyVisual = ({
         w: 'full',
         h: '60vh',
         gridColumn: '1 / 4',
-        bg: `linear-gradient(rgba(0, 0, 0, .4),  rgba(0, 0, 0, .4)),  url('${mainImageUrl}')`,
-        bgSize: 'cover',
-        bgRepeat: 'no-repeat',
-        bgPosition: 'center',
       })}
     >
+      <Image
+        fill
+        src={mainImageUrl}
+        alt={`${title}の画像`}
+        sizes='100%'
+        className={css({
+          objectFit: 'cover',
+          position: 'relative!' as Property.Position,
+        })}
+      />
+      <div
+        className={css({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          w: 'full',
+          h: 'full',
+          bg: 'rgba(0, 0, 0, 0.4)',
+        })}
+      />
       <div
         className={css({
           w: 'full',
