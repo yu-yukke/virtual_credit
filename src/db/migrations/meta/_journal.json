@@ -1,1 +1,13 @@
-{"version":"5","dialect":"mysql","entries":[{"idx":8,"version":"5","when":1688234941821,"tag":"0008_dashing_sunfire","breakpoints":true}]}
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1688234941821,
+      "tag": "0008_dashing_sunfire",
+      "breakpoints": true
+    }
+  ]
+}
