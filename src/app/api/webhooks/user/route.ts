@@ -1,5 +1,4 @@
 import { IncomingHttpHeaders } from 'http';
-import { eq } from 'drizzle-orm';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { Webhook, WebhookRequiredHeaders } from 'svix';
@@ -39,21 +38,17 @@ async function handler(request: Request) {
 
   const eventType: EventType = event.type;
 
-  if (eventType === 'user.created' || eventType === 'user.updated') {
-    const { id, ...attributes } = event.data;
+  if (eventType === 'user.created') {
+    const { id, username, image_url } = event.data;
 
     if (eventType === 'user.created') {
       const newUser: NewUser = {
-        externalId: id as string,
-        attributes: attributes,
+        clerkId: id as string,
+        name: username as string,
+        thumbnailImageUrl: image_url as string,
       };
 
       await db.insert(users).values(newUser);
-    } else if (eventType === 'user.updated') {
-      await db
-        .update(users)
-        .set({ attributes: attributes })
-        .where(eq(users.externalId, id as string));
     }
 
     return NextResponse.json({}, { status: 200 });

@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { css } from '../../../styled-system/css';
+import { SignedOut } from '@clerk/nextjs';
 
 import { GlobalNavigation } from '../elements/GlobalNavigation';
-import { SignInButton } from '../elements/SignInButton';
-import { SignUpButton } from '../elements/SignUpButton';
+import { SignInBtn } from '../elements/SignInBtn';
+import { SignUpBtn } from '../elements/SignUpBtn';
 
-export const Header = () => {
+export const Header = async () => {
   return (
     <header
       className={css({
@@ -41,20 +42,22 @@ export const Header = () => {
           </h1>
         </Link>
         <GlobalNavigation />
-        <ul
-          className={css({
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-          })}
-        >
-          <li>
-            <SignInButton />
-          </li>
-          <li>
-            <SignUpButton />
-          </li>
-        </ul>
+        <SignedOut>
+          <ul
+            className={css({
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+            })}
+          >
+            <li>
+              <SignInBtn />
+            </li>
+            <li>
+              <SignUpBtn />
+            </li>
+          </ul>
+        </SignedOut>
       </div>
     </header>
   );

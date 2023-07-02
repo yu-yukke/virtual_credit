@@ -6,9 +6,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useCallback, useEffect } from 'react';
 import { css } from '../../../styled-system/css';
+import { SignedOut } from '@clerk/nextjs';
 
-import { SignInButton } from './SignInButton';
-import { SignUpButton } from './SignUpButton';
+import { SignInBtn } from './SignInBtn';
+import { SignUpBtn } from './SignUpBtn';
 import { globalNavConfig } from '@/config/navigations';
 
 const inter = Inter({ weight: '400', subsets: ['latin'] });
@@ -106,32 +107,34 @@ export const GlobalNavigation = () => {
           </li>
         ))}
       </ul>
-      <ul
-        className={classNames(
-          position > breakPosition
-            ? css({
-                w: 'auto',
-                h: 'auto',
-                visibility: 'visible',
-                opacity: 1,
-              })
-            : css({ w: 0, h: 0, visibility: 'hidden', opacity: 0 }),
-          css({
-            display: 'flex',
-            alignItems: 'center',
-            overflow: 'hidden',
-            gap: 6,
-            transition: 'all 1.5s',
-          }),
-        )}
-      >
-        <li>
-          <SignInButton isGlobalNav />
-        </li>
-        <li>
-          <SignUpButton isGlobalNav />
-        </li>
-      </ul>
+      <SignedOut>
+        <ul
+          className={classNames(
+            position > breakPosition
+              ? css({
+                  w: 'auto',
+                  h: 'auto',
+                  visibility: 'visible',
+                  opacity: 1,
+                })
+              : css({ w: 0, h: 0, visibility: 'hidden', opacity: 0 }),
+            css({
+              display: 'flex',
+              alignItems: 'center',
+              overflow: 'hidden',
+              gap: 6,
+              transition: 'all 1.5s',
+            }),
+          )}
+        >
+          <li>
+            <SignInBtn isGlobalNav />
+          </li>
+          <li>
+            <SignUpBtn isGlobalNav />
+          </li>
+        </ul>
+      </SignedOut>
     </nav>
   );
 };
