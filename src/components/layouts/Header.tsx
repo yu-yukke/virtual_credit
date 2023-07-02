@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import { css } from '../../../styled-system/css';
-import { SignedOut } from '@clerk/nextjs';
 
 import { GlobalNavigation } from '../elements/GlobalNavigation';
-import { SignInBtn } from '../elements/SignInBtn';
-import { SignUpBtn } from '../elements/SignUpBtn';
+import { UserMenu } from '../elements/UserMenu';
 
 export const Header = async () => {
   return (
@@ -42,22 +40,7 @@ export const Header = async () => {
           </h1>
         </Link>
         <GlobalNavigation />
-        <SignedOut>
-          <ul
-            className={css({
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-            })}
-          >
-            <li>
-              <SignInBtn />
-            </li>
-            <li>
-              <SignUpBtn />
-            </li>
-          </ul>
-        </SignedOut>
+        <UserMenu />
       </div>
     </header>
   );
