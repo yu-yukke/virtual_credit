@@ -105,7 +105,27 @@ export const GlobalNavigation = () => {
           </li>
         ))}
       </ul>
-      <UserMenu isGlobalNav />
+      <div
+        className={classNames(
+          position > breakPosition
+            ? css({
+                w: 'auto',
+                h: 'auto',
+                visibility: 'visible',
+                opacity: 1,
+              })
+            : css({ w: 0, h: 0, visibility: 'hidden', opacity: 0 }),
+          css({
+            display: 'flex',
+            alignItems: 'center',
+            overflow: 'hidden',
+            gap: 6,
+            transition: 'all 1.5s',
+          }),
+        )}
+      >
+        <UserMenu isGlobalNav />
+      </div>
     </nav>
   );
 };
