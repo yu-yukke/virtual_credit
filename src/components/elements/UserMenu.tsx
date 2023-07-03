@@ -1,19 +1,47 @@
-import { SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
+import { eq } from 'drizzle-orm';
+import Image from 'next/image';
 import { css } from '../../../styled-system/css';
 
 import { SignInBtn } from './SignInBtn';
 import { SignUpBtn } from './SignUpBtn';
+import { db } from '@/db';
+import { users } from '@/db/schema';
 
 type UserMenuProps = {
-  isGlobalNav?: boolean;
+  userId: string | null;
 };
 
-export const UserMenu = ({ isGlobalNav }: UserMenuProps) => {
+export const UserMenu = async ({ userId }: UserMenuProps) => {
+  const user = userId
+    ? await db.query.users.findFirst({
+        where: eq(users.clerkId, userId),
+      })
+    : null;
+
   return (
     <>
       <SignedIn>
-        <div className={css({ position: 'relative' })}></div>
-        <SignOutButton />
+        {user && (
+          <>
+            <div
+              className={css({
+                position: 'relative',
+                w: 40,
+                h: 40,
+                overflow: 'hidden',
+                rounded: 'full',
+              })}
+            >
+              <Image
+                src={user.thumbnailImageUrl}
+                fill
+                sizes='100%'
+                alt='プロフィールモーダルを開く'
+              />
+            </div>
+          </>
+        )}
       </SignedIn>
       <SignedOut>
         <ul
@@ -24,10 +52,10 @@ export const UserMenu = ({ isGlobalNav }: UserMenuProps) => {
           })}
         >
           <li>
-            <SignInBtn isGlobalNav={isGlobalNav} />
+            <SignInBtn />
           </li>
           <li>
-            <SignUpBtn isGlobalNav={isGlobalNav} />
+            <SignUpBtn />
           </li>
         </ul>
       </SignedOut>

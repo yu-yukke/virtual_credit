@@ -1,22 +1,22 @@
+import { SignInButton } from '@clerk/nextjs';
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
 import { css } from '../../../styled-system/css';
-import { SignInButton } from '@clerk/nextjs';
 
 const inter = Inter({ weight: '400', subsets: ['latin'] });
 
 type SignInBtnProps = {
-  isGlobalNav?: boolean;
+  isFullRounded?: boolean;
 };
 
-export const SignInBtn = ({ isGlobalNav }: SignInBtnProps) => {
+export const SignInBtn = ({ isFullRounded }: SignInBtnProps) => {
   return (
     <SignInButton mode='modal'>
       <button
         className={classNames(
           inter.className,
           css({
-            color: isGlobalNav ? 'secondary' : 'primary',
+            color: isFullRounded ? 'secondary' : 'primary',
             fontSize: '13px',
             px: 12,
             py: 6,

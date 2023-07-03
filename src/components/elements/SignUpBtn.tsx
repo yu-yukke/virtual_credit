@@ -6,10 +6,10 @@ import { css } from '../../../styled-system/css';
 const inter = Inter({ weight: '500', subsets: ['latin'] });
 
 type SignUpBtnProps = {
-  isGlobalNav?: boolean;
+  isFullRounded?: boolean;
 };
 
-export const SignUpBtn = ({ isGlobalNav }: SignUpBtnProps) => {
+export const SignUpBtn = ({ isFullRounded }: SignUpBtnProps) => {
   return (
     <SignUpButton mode='modal'>
       <button
@@ -22,7 +22,7 @@ export const SignUpBtn = ({ isGlobalNav }: SignUpBtnProps) => {
             color: 'white',
             bgGradient: 'signUp',
             cursor: 'pointer',
-            rounded: isGlobalNav ? 'full' : 'sm',
+            rounded: isFullRounded ? 'full' : 'sm',
           }),
         )}
       >

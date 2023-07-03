@@ -1,5 +1,6 @@
 'use client';
 
+import { SignedOut } from '@clerk/nextjs';
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
@@ -7,8 +8,8 @@ import { usePathname } from 'next/navigation';
 import { useState, useCallback, useEffect } from 'react';
 import { css } from '../../../styled-system/css';
 
-import { UserMenu } from './UserMenu';
-import { globalNavConfig } from '@/config/navigations';
+import { SignUpBtn } from './SignUpBtn';
+import { globalNavConfig } from '@/config/navigation';
 
 const inter = Inter({ weight: '400', subsets: ['latin'] });
 
@@ -105,27 +106,29 @@ export const GlobalNavigation = () => {
           </li>
         ))}
       </ul>
-      <div
-        className={classNames(
-          position > breakPosition
-            ? css({
-                w: 'auto',
-                h: 'auto',
-                visibility: 'visible',
-                opacity: 1,
-              })
-            : css({ w: 0, h: 0, visibility: 'hidden', opacity: 0 }),
-          css({
-            display: 'flex',
-            alignItems: 'center',
-            overflow: 'hidden',
-            gap: 6,
-            transition: 'all 1.5s',
-          }),
-        )}
-      >
-        <UserMenu isGlobalNav />
-      </div>
+      <SignedOut>
+        <div
+          className={classNames(
+            position > breakPosition
+              ? css({
+                  w: 'auto',
+                  h: 'auto',
+                  visibility: 'visible',
+                  opacity: 1,
+                })
+              : css({ w: 0, h: 0, visibility: 'hidden', opacity: 0 }),
+            css({
+              display: 'flex',
+              alignItems: 'center',
+              overflow: 'hidden',
+              gap: 6,
+              transition: 'all 1.5s',
+            }),
+          )}
+        >
+          <SignUpBtn isFullRounded />
+        </div>
+      </SignedOut>
     </nav>
   );
 };

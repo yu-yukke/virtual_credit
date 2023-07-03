@@ -1,10 +1,13 @@
+import { auth } from '@clerk/nextjs';
 import Link from 'next/link';
 import { css } from '../../../styled-system/css';
 
 import { GlobalNavigation } from '../elements/GlobalNavigation';
 import { UserMenu } from '../elements/UserMenu';
 
-export const Header = async () => {
+export const Header = () => {
+  const { userId } = auth();
+
   return (
     <header
       className={css({
@@ -40,7 +43,7 @@ export const Header = async () => {
           </h1>
         </Link>
         <GlobalNavigation />
-        <UserMenu />
+        <UserMenu userId={userId} />
       </div>
     </header>
   );
