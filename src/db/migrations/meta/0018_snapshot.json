@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "295a2007-de4b-4f59-b14a-f37a6a689b2f",
-  "prevId": "97dbd182-45cd-46b6-9fa6-8884a80ee819",
+  "id": "da562ca5-7e34-4aa5-ad42-2710c5d6f880",
+  "prevId": "295a2007-de4b-4f59-b14a-f37a6a689b2f",
   "tables": {
     "asset_mappings": {
       "name": "asset_mappings",
@@ -662,13 +662,6 @@
           "notNull": true,
           "autoincrement": false
         },
-        "provider": {
-          "name": "provider",
-          "type": "varchar(256)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "name": {
           "name": "name",
           "type": "varchar(256)",
@@ -724,11 +717,10 @@
         }
       },
       "indexes": {
-        "clerkIdProvider_idx": {
-          "name": "clerkIdProvider_idx",
+        "clerkId_idx": {
+          "name": "clerkId_idx",
           "columns": [
-            "clerk_id",
-            "provider"
+            "clerk_id"
           ],
           "isUnique": true
         }
