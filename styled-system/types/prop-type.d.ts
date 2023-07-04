@@ -5,6 +5,7 @@ import type { Tokens } from '../tokens';
 
 type PropertyValueTypes = {
   aspectRatio:
+    | 'auto'
     | 'square'
     | 'landscape'
     | 'portrait'
@@ -15,7 +16,7 @@ type PropertyValueTypes = {
   left: Tokens['spacing'];
   insetInline: Tokens['spacing'];
   insetBlock: Tokens['spacing'];
-  inset: Tokens['spacing'];
+  inset: 'auto' | Tokens['spacing'];
   insetBlockEnd: Tokens['spacing'];
   insetBlockStart: Tokens['spacing'];
   insetInlineEnd: Tokens['spacing'];
@@ -130,17 +131,17 @@ type PropertyValueTypes = {
   paddingInline: Tokens['spacing'];
   paddingInlineEnd: Tokens['spacing'];
   paddingInlineStart: Tokens['spacing'];
-  marginLeft: Tokens['spacing'];
-  marginRight: Tokens['spacing'];
-  marginTop: Tokens['spacing'];
-  marginBottom: Tokens['spacing'];
-  margin: Tokens['spacing'];
-  marginBlock: Tokens['spacing'];
-  marginBlockEnd: Tokens['spacing'];
-  marginBlockStart: Tokens['spacing'];
-  marginInline: Tokens['spacing'];
-  marginInlineEnd: Tokens['spacing'];
-  marginInlineStart: Tokens['spacing'];
+  marginLeft: 'auto' | Tokens['spacing'];
+  marginRight: 'auto' | Tokens['spacing'];
+  marginTop: 'auto' | Tokens['spacing'];
+  marginBottom: 'auto' | Tokens['spacing'];
+  margin: 'auto' | Tokens['spacing'];
+  marginBlock: 'auto' | Tokens['spacing'];
+  marginBlockEnd: 'auto' | Tokens['spacing'];
+  marginBlockStart: 'auto' | Tokens['spacing'];
+  marginInline: 'auto' | Tokens['spacing'];
+  marginInlineEnd: 'auto' | Tokens['spacing'];
+  marginInlineStart: 'auto' | Tokens['spacing'];
   outlineColor: Tokens['colors'];
   outline: Tokens['borders'];
   outlineOffset: Tokens['spacing'];
@@ -149,6 +150,7 @@ type PropertyValueTypes = {
   divideColor: Tokens['colors'];
   divideStyle: CssProperties['borderStyle'];
   width:
+    | 'auto'
     | Tokens['sizes']
     | '1/2'
     | '1/3'
@@ -178,6 +180,7 @@ type PropertyValueTypes = {
     | '11/12'
     | 'screen';
   inlineSize:
+    | 'auto'
     | Tokens['sizes']
     | '1/2'
     | '1/3'
@@ -207,6 +210,7 @@ type PropertyValueTypes = {
     | '11/12'
     | 'screen';
   minWidth:
+    | 'auto'
     | Tokens['sizes']
     | '1/2'
     | '1/3'
@@ -236,6 +240,7 @@ type PropertyValueTypes = {
     | '11/12'
     | 'screen';
   minInlineSize:
+    | 'auto'
     | Tokens['sizes']
     | '1/2'
     | '1/3'
@@ -265,6 +270,7 @@ type PropertyValueTypes = {
     | '11/12'
     | 'screen';
   maxWidth:
+    | 'auto'
     | Tokens['sizes']
     | '1/2'
     | '1/3'
@@ -294,6 +300,7 @@ type PropertyValueTypes = {
     | '11/12'
     | 'screen';
   maxInlineSize:
+    | 'auto'
     | Tokens['sizes']
     | '1/2'
     | '1/3'
@@ -323,6 +330,7 @@ type PropertyValueTypes = {
     | '11/12'
     | 'screen';
   height:
+    | 'auto'
     | Tokens['sizes']
     | 'svh'
     | 'lvh'
@@ -344,6 +352,7 @@ type PropertyValueTypes = {
     | '4/6'
     | '5/6';
   blockSize:
+    | 'auto'
     | Tokens['sizes']
     | 'svh'
     | 'lvh'
@@ -365,6 +374,7 @@ type PropertyValueTypes = {
     | '4/6'
     | '5/6';
   minHeight:
+    | 'auto'
     | Tokens['sizes']
     | 'svh'
     | 'lvh'
@@ -386,6 +396,7 @@ type PropertyValueTypes = {
     | '4/6'
     | '5/6';
   minBlockSize:
+    | 'auto'
     | Tokens['sizes']
     | 'svh'
     | 'lvh'
@@ -407,6 +418,7 @@ type PropertyValueTypes = {
     | '4/6'
     | '5/6';
   maxHeight:
+    | 'auto'
     | Tokens['sizes']
     | 'svh'
     | 'lvh'
@@ -428,6 +440,7 @@ type PropertyValueTypes = {
     | '4/6'
     | '5/6';
   maxBlockSize:
+    | 'auto'
     | Tokens['sizes']
     | 'svh'
     | 'lvh'

@@ -1,11 +1,13 @@
+import { auth } from '@clerk/nextjs';
 import Link from 'next/link';
 import { css } from '../../../styled-system/css';
 
 import { GlobalNavigation } from '../elements/GlobalNavigation';
-import { SignInButton } from '../elements/SignInButton';
-import { SignUpButton } from '../elements/SignUpButton';
+import { UserMenu } from '../elements/UserMenu';
 
 export const Header = () => {
+  const { userId } = auth();
+
   return (
     <header
       className={css({
@@ -41,20 +43,7 @@ export const Header = () => {
           </h1>
         </Link>
         <GlobalNavigation />
-        <ul
-          className={css({
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-          })}
-        >
-          <li>
-            <SignInButton />
-          </li>
-          <li>
-            <SignUpButton />
-          </li>
-        </ul>
+        <UserMenu userId={userId} />
       </div>
     </header>
   );
