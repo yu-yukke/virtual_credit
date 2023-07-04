@@ -7,7 +7,7 @@ import { NewUser, users } from '@/db/schema';
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || '';
 
-type EventType = 'user.created' | 'user.updated' | '*';
+type EventType = 'user.created' | '*';
 type Event = {
   data: Record<string, string | number>;
   object: 'event';
@@ -41,15 +41,13 @@ async function handler(request: Request) {
   if (eventType === 'user.created') {
     const { id, username, image_url } = event.data;
 
-    if (eventType === 'user.created') {
-      const newUser: NewUser = {
-        clerkId: id as string,
-        name: username as string,
-        thumbnailImageUrl: image_url as string,
-      };
+    const newUser: NewUser = {
+      clerkId: id as string,
+      name: username as string,
+      thumbnailImageUrl: image_url as string,
+    };
 
-      await db.insert(users).values(newUser);
-    }
+    await db.insert(users).values(newUser);
 
     return NextResponse.json({}, { status: 200 });
   }

@@ -296,6 +296,7 @@ export const users = mysqlTable(
   {
     id: int('id').autoincrement().primaryKey(),
     clerkId: varchar('clerk_id', { length: 256 }).notNull(),
+    provider: varchar('provider', { length: 256 }),
     name: varchar('name', { length: 256 }).notNull(),
     description: text('description'),
     coverImageUrl: varchar('cover_image_url', { length: 256 }),
