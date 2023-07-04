@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut } from '@clerk/nextjs';
+import { SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { eq } from 'drizzle-orm';
 import Image from 'next/image';
 import { css } from '../../../styled-system/css';
@@ -42,6 +42,7 @@ export const UserMenu = async ({ userId }: UserMenuProps) => {
             </div>
           </>
         )}
+        <SignOutButton />
       </SignedIn>
       <SignedOut>
         <ul
