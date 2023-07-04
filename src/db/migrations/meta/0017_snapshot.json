@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "42e0f843-0cdd-4024-9a55-693845ffbc43",
-  "prevId": "1f4f3ca8-a183-4938-bef2-4ee4d5ce1f39",
+  "id": "295a2007-de4b-4f59-b14a-f37a6a689b2f",
+  "prevId": "97dbd182-45cd-46b6-9fa6-8884a80ee819",
   "tables": {
     "asset_mappings": {
       "name": "asset_mappings",
@@ -484,7 +484,7 @@
           "name": "twitter_id",
           "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "created_at": {
@@ -724,10 +724,11 @@
         }
       },
       "indexes": {
-        "clerkId_idx": {
-          "name": "clerkId_idx",
+        "clerkIdProvider_idx": {
+          "name": "clerkIdProvider_idx",
           "columns": [
-            "clerk_id"
+            "clerk_id",
+            "provider"
           ],
           "isUnique": true
         }

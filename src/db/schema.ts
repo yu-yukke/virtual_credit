@@ -220,7 +220,7 @@ export const socials = mysqlTable(
   {
     id: int('id').autoincrement().primaryKey(),
     userId: int('user_id').notNull(),
-    twitterId: varchar('twitter_id', { length: 256 }).notNull(),
+    twitterId: varchar('twitter_id', { length: 256 }),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
@@ -308,7 +308,10 @@ export const users = mysqlTable(
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
   (table) => ({
-    clerkIdIndex: uniqueIndex('clerkId_idx').on(table.clerkId),
+    clerkIdProviderIndex: uniqueIndex('clerkIdProvider_idx').on(
+      table.clerkId,
+      table.provider,
+    ),
   }),
 );
 
