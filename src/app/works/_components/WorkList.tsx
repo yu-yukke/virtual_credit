@@ -3,14 +3,13 @@
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { css } from '../../../../styled-system/css';
 
 import { WorkCard } from '@/components/elements/WorkCard';
 import { Work, WorkImage } from '@/db/schema';
 
-type WorkListProps = {
-  works: (Work & { workImages: WorkImage[] })[];
-};
+type WorkListProps = (Work & { workImages: WorkImage[] })[];
 
 const variants = {
   hidden: { opacity: 0 },
@@ -36,7 +35,10 @@ const variantList = {
   },
 };
 
-export const WorkList = ({ works }: WorkListProps) => {
+export const WorkList = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/works`);
+  const works: WorkListProps = await res.json();
+
   return (
     <motion.ul
       variants={variants}

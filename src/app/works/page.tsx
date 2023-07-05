@@ -12,14 +12,6 @@ import { categories, tags } from '@/db/schema';
 const inter500 = Inter({ weight: '500', subsets: ['latin'] });
 
 export default async function Page() {
-  const workList = await db.query.works.findMany({
-    with: {
-      workImages: {
-        orderBy: (work_images, { desc }) => [desc(work_images.isMain)],
-        limit: 5,
-      },
-    },
-  });
   const categoryList = await db.select().from(categories);
   const tagList = await db.select().from(tags);
 
@@ -56,7 +48,7 @@ export default async function Page() {
             mt: 48,
           })}
         >
-          <WorkList works={workList} />
+          <WorkList />
         </div>
       </div>
     </PageWrapper>
