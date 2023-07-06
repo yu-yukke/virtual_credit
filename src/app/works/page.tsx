@@ -1,20 +1,16 @@
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
 import { css } from '../../../styled-system/css';
 
 import { CategoryList } from './_components/CategoryList';
 import { TagList } from './_components/TagList';
 import { WorkList } from './_components/WorkList';
 import { PageWrapper } from '@/components/layouts/PageWrapper';
-import { db } from '@/db';
-import { categories, tags } from '@/db/schema';
 
 const inter500 = Inter({ weight: '500', subsets: ['latin'] });
 
-export default async function Page() {
-  const categoryList = await db.select().from(categories);
-  const tagList = await db.select().from(tags);
-
+export default function Page() {
   return (
     <PageWrapper>
       <div
@@ -40,8 +36,8 @@ export default async function Page() {
             gap: 16,
           })}
         >
-          <CategoryList categories={categoryList} />
-          <TagList tags={tagList} />
+          <CategoryList />
+          <TagList />
         </div>
         <div
           className={css({

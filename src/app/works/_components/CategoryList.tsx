@@ -1,15 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import { css } from '../../../../styled-system/css';
 
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Category } from '@/db/schema';
 
-type CategoryListProps = {
-  categories: Category[];
-};
+type Categories = Category[];
 
 const variants = {
   hidden: { opacity: 0 },
@@ -35,18 +32,9 @@ const variantList = {
   },
 };
 
-export const CategoryList = ({ categories }: CategoryListProps) => {
-  const [checkedItems, setCheckedItems] = useState<string[]>([]);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    e.target.checked
-      ? setCheckedItems([...checkedItems, e.target.value])
-      : setCheckedItems(
-          checkedItems.filter((item) => item.match(e.target.value) === null),
-        );
-
-  useEffect(() => {
-    console.log(checkedItems);
-  }, [checkedItems]);
+export const CategoryList = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/categories`);
+  const categories: Categories = await res.json();
 
   return (
     <motion.ul
@@ -60,20 +48,14 @@ export const CategoryList = ({ categories }: CategoryListProps) => {
       })}
     >
       <motion.li variants={variantList}>
-        <CheckBoxButton
-          id='all'
-          value={'all'}
-          label='すべて'
-          onChange={handleChange}
-        />
+        <CheckBoxButton id='category_all' value={-1} label='すべて' />
       </motion.li>
       {categories.map((category) => (
         <motion.li key={category.id} variants={variantList}>
           <CheckBoxButton
-            id={`id_${category.id}`}
+            id={`category_${category.id}`}
             value={category.id}
             label={category.name}
-            onChange={handleChange}
           />
         </motion.li>
       ))}

@@ -1,17 +1,12 @@
 'use client';
 
-import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { Noto_Sans_JP } from 'next/font/google';
 import { css } from '../../../../styled-system/css';
 
+import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Tag } from '@/db/schema';
 
-type TagListProps = {
-  tags: Tag[];
-};
-
-const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
+type Tags = Tag[];
 
 const variants = {
   hidden: { opacity: 0 },
@@ -37,7 +32,10 @@ const variantList = {
   },
 };
 
-export const TagList = ({ tags }: TagListProps) => {
+export const TagList = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/tags`);
+  const tags: Tags = await res.json();
+
   return (
     <motion.ul
       variants={variants}
@@ -50,36 +48,15 @@ export const TagList = ({ tags }: TagListProps) => {
       })}
     >
       <motion.li variants={variantList}>
-        <button
-          className={classNames(
-            notoSansJp500.className,
-            css({
-              fontSize: 'xs',
-              color: 'primary',
-              py: 4,
-              px: 12,
-              rounded: 'full',
-              bg: 'bgActive',
-              border: '1px solid token(borders.primary)',
-            }),
-          )}
-        >
-          すべて
-        </button>
+        <CheckBoxButton id='tag_all' value={-1} label='すべて' />
       </motion.li>
       {tags.map((tag) => (
         <motion.li key={tag.id} variants={variantList}>
-          <button
-            className={css({
-              fontSize: 'xs',
-              color: 'secondary',
-              py: 4,
-              px: 12,
-              rounded: 'xl',
-            })}
-          >
-            # {tag.name}
-          </button>
+          <CheckBoxButton
+            id={`tag_${tag.id}`}
+            value={tag.id}
+            label={tag.name}
+          />
         </motion.li>
       ))}
     </motion.ul>
