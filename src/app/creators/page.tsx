@@ -2,9 +2,8 @@ import classNames from 'classnames';
 import { Inter } from 'next/font/google';
 import { css } from '../../../styled-system/css';
 
-import { Categories } from './_components/Categories';
-import { Tags } from './_components/Tags';
-import { Works } from './_components/Works';
+import { Creators } from './_components/Creators';
+import { Jobs } from './_components/Jobs';
 
 const inter500 = Inter({ weight: '500', subsets: ['latin'] });
 
@@ -21,7 +20,7 @@ export default function Page() {
           css({ color: 'tertiary', fontSize: '2xl', letterSpacing: 'sm' }),
         )}
       >
-        Works
+        Creators
       </h1>
       <div
         className={css({
@@ -31,15 +30,14 @@ export default function Page() {
           gap: 16,
         })}
       >
-        <Categories />
-        <Tags />
+        <Jobs />
       </div>
       <div
         className={css({
           mt: 48,
         })}
       >
-        <Works />
+        <Creators />
       </div>
     </div>
   );

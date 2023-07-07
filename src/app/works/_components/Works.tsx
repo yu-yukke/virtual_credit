@@ -5,7 +5,7 @@ import { css } from '../../../../styled-system/css';
 import { WorkCard } from '@/components/elements/WorkCard';
 import { Work, WorkImage } from '@/db/schema';
 
-type Works = (Work & { workImages: WorkImage[] })[];
+type WorkList = (Work & { workImages: WorkImage[] })[];
 
 async function getWorks() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/works`);
@@ -17,8 +17,8 @@ async function getWorks() {
   return res.json();
 }
 
-export const WorkList = async () => {
-  const works: Works = await getWorks();
+export const Works = async () => {
+  const works: WorkList = await getWorks();
 
   return (
     <ul
