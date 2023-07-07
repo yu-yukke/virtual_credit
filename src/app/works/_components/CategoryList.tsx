@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { css } from '../../../../styled-system/css';
 
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
@@ -8,57 +5,39 @@ import { Category } from '@/db/schema';
 
 type Categories = Category[];
 
-const variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+async function getCategories() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/categories`);
 
-const variantList = {
-  hidden: {
-    opacity: 0,
-    x: 8,
-  },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
 
 export const CategoryList = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/categories`);
-  const categories: Categories = await res.json();
+  const categories: Categories = await getCategories();
 
   return (
-    <motion.ul
-      variants={variants}
-      initial='hidden'
-      animate='show'
+    <ul
       className={css({
         display: 'flex',
         alignItems: 'center',
-        gap: 12,
+        gap: 8,
       })}
     >
-      <motion.li variants={variantList}>
+      <li>
         <CheckBoxButton id='category_all' value={-1} label='すべて' />
-      </motion.li>
+      </li>
       {categories.map((category) => (
-        <motion.li key={category.id} variants={variantList}>
+        <li key={category.id}>
           <CheckBoxButton
             id={`category_${category.id}`}
             value={category.id}
             label={category.name}
           />
-        </motion.li>
+        </li>
       ))}
-    </motion.ul>
+    </ul>
   );
 };

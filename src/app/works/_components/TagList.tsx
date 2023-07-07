@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { css } from '../../../../styled-system/css';
 
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
@@ -8,57 +5,39 @@ import { Tag } from '@/db/schema';
 
 type Tags = Tag[];
 
-const variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+async function getTags() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/tags`);
 
-const variantList = {
-  hidden: {
-    opacity: 0,
-    x: 8,
-  },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
 
 export const TagList = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/tags`);
-  const tags: Tags = await res.json();
+  const tags: Tags = await getTags();
 
   return (
-    <motion.ul
-      variants={variants}
-      initial='hidden'
-      animate='show'
+    <ul
       className={css({
         display: 'flex',
         alignItems: 'center',
-        gap: 12,
+        gap: 8,
       })}
     >
-      <motion.li variants={variantList}>
+      <li>
         <CheckBoxButton id='tag_all' value={-1} label='すべて' />
-      </motion.li>
+      </li>
       {tags.map((tag) => (
-        <motion.li key={tag.id} variants={variantList}>
+        <li key={tag.id}>
           <CheckBoxButton
             id={`tag_${tag.id}`}
             value={tag.id}
             label={tag.name}
           />
-        </motion.li>
+        </li>
       ))}
-    </motion.ul>
+    </ul>
   );
 };
