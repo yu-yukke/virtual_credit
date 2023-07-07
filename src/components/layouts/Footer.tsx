@@ -8,7 +8,7 @@ import {
   ExploreNavConfig,
   AboutNavConfig,
   ContactNavConfig,
-} from '@/config/navigations';
+} from '@/config/navigation';
 
 const inter400 = Inter({ weight: '400', subsets: ['latin'] });
 const inter500 = Inter({ weight: '500', subsets: ['latin'] });

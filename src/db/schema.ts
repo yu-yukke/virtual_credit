@@ -13,7 +13,6 @@ import {
   varchar,
   int,
   index,
-  json,
   timestamp,
   uniqueIndex,
   text,
@@ -221,7 +220,7 @@ export const socials = mysqlTable(
   {
     id: int('id').autoincrement().primaryKey(),
     userId: int('user_id').notNull(),
-    twitterId: varchar('twitter_id', { length: 256 }).notNull(),
+    twitterId: varchar('twitter_id', { length: 256 }),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
@@ -296,14 +295,19 @@ export const users = mysqlTable(
   'users',
   {
     id: int('id').autoincrement().primaryKey(),
-    externalId: varchar('external_id', { length: 255 }).notNull(),
-    attributes: json('attributes').notNull(),
+    clerkId: varchar('clerk_id', { length: 256 }).notNull(),
+    name: varchar('name', { length: 256 }).notNull(),
     description: text('description'),
+    coverImageUrl: varchar('cover_image_url', { length: 256 }),
+    thumbnailImageUrl: varchar('thumbnail_image_url', {
+      length: 256,
+    }).notNull(),
+    isPublic: boolean('is_public').default(false).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
   (table) => ({
-    externalIdIndex: uniqueIndex('externalId_idx').on(table.externalId),
+    clerkIdIndex: uniqueIndex('clerkId_idx').on(table.clerkId),
   }),
 );
 

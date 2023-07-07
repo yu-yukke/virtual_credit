@@ -36,12 +36,12 @@ async function main() {
 
   for (let i = 0; i < 10; i++) {
     newUsers.push({
-      externalId: `externalId_${i + 1}`,
-      attributes: {
-        username: `ユーザーアカウント_${i + 1}`,
-        image_url:
-          'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfdHdpdHRlci9pbWdfMlJVMGpCVEl1dDFpRFFURWJiaHV0QTJ5MTA3LmpwZWcifQ',
-      },
+      clerkId: `clerkId_${i + 1}`,
+      name: `ユーザーアカウント_${i + 1}`,
+      coverImageUrl:
+        'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfdHdpdHRlci9pbWdfMlJVMGpCVEl1dDFpRFFURWJiaHV0QTJ5MTA3LmpwZWcifQ',
+      thumbnailImageUrl:
+        'https://pbs.twimg.com/profile_images/1017748300835897345/ZRTAirs3_400x400.jpg',
       description:
         'このユーザーについてこのユーザーについて\nこのユーザーについてこのユーザーについて\nこのユーザーについてこのユーザーについてこのユーザーについてこのユーザーについて\n\nこのユーザーについてこのユーザーについてこのユーザーについてこのユーザーについて\nこのユーザーについてこのユーザーについてこのユーザーについてこのユーザーについて',
     });
@@ -132,11 +132,11 @@ async function main() {
   // すべてのアセットを削除
   await db.delete(assets);
 
-  // 10件のアセットを追加
+  // 5件のアセットを追加
   const newAssets: NewAsset[] = [];
   const allUsersForAssets = await db.select().from(users);
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     newAssets.push({
       name: `アセット_${i + 1}`,
       url: 'https://assetstore.unity.com/packages/tools/integration/vrtk-virtual-reality-toolkit-vr-toolkit-64131?aid=1101l7pnr&utm_campaign=unity_affiliate&utm_medium=affiliate&utm_source=partnerize-linkmaker',
@@ -154,7 +154,7 @@ async function main() {
   // すべてのアセット紐づけを削除
   await db.delete(asset_mappings);
 
-  // 作品ごとに10件のアセットを追加
+  // 作品ごとに5件のアセットを追加
   const newAssetMappings: NewAssetMapping[] = [];
   const allAssetForAssetMappings = await db.select().from(assets);
   const allWorksForAssetMappings = await db.select().from(works);
@@ -178,11 +178,11 @@ async function main() {
   // すべてのタグを削除
   await db.delete(tags);
 
-  // 10件のタグを追加
+  // 5件のタグを追加
   const newTags: NewTag[] = [];
   const allUsersForTags = await db.select().from(users);
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     newTags.push({
       name: `タグ_${i + 1}`,
       createUserId: allUsersForTags[0].id,
@@ -197,7 +197,7 @@ async function main() {
   // すべてのタグ紐づけを削除
   await db.delete(tag_mappings);
 
-  // 作品ごとに10件のタグ紐づけを追加
+  // 作品ごとに5件のタグ紐づけを追加
   const newTagMappings: NewTagMapping[] = [];
   const allTagForAssetMappings = await db.select().from(tags);
   const allWorksForTagMappings = await db.select().from(works);

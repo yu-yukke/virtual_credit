@@ -1,47 +1,27 @@
-'use client';
-
 import classNames from 'classnames';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { css } from '../../../../styled-system/css';
 
 import { WorkCard } from '@/components/elements/WorkCard';
 import { Work, WorkImage } from '@/db/schema';
 
-type WorkListProps = {
-  works: (Work & { workImages: WorkImage[] })[];
-};
+type Works = (Work & { workImages: WorkImage[] })[];
 
-const variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
+async function getWorks() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/works`);
 
-const variantList = {
-  hidden: {
-    opacity: 0,
-    x: 8,
-  },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 1,
-    },
-  },
-};
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
 
-export const WorkList = ({ works }: WorkListProps) => {
+  return res.json();
+}
+
+export const WorkList = async () => {
+  const works: Works = await getWorks();
+
   return (
-    <motion.ul
-      variants={variants}
-      initial='hidden'
-      animate='show'
+    <ul
       className={css({
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -49,8 +29,7 @@ export const WorkList = ({ works }: WorkListProps) => {
       })}
     >
       {works.map((work) => (
-        <motion.li
-          variants={variantList}
+        <li
           className={classNames(
             'group',
             css({
@@ -62,8 +41,8 @@ export const WorkList = ({ works }: WorkListProps) => {
           <Link href={`/works/${work.id}`}>
             <WorkCard work={work} mainImage={work.workImages[0]} />
           </Link>
-        </motion.li>
+        </li>
       ))}
-    </motion.ul>
+    </ul>
   );
 };
