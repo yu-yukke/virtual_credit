@@ -3,7 +3,7 @@ import { css } from '../../../../styled-system/css';
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Category } from '@/db/schema';
 
-type Categories = Category[];
+type CategoryList = Category[];
 
 async function getCategories() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/categories`);
@@ -15,8 +15,8 @@ async function getCategories() {
   return res.json();
 }
 
-export const CategoryList = async () => {
-  const categories: Categories = await getCategories();
+export const Categories = async () => {
+  const categories: CategoryList = await getCategories();
 
   return (
     <ul
