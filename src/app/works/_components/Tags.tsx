@@ -3,7 +3,7 @@ import { css } from '../../../../styled-system/css';
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Tag } from '@/db/schema';
 
-type Tags = Tag[];
+type TagList = Tag[];
 
 async function getTags() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/tags`);
@@ -15,8 +15,8 @@ async function getTags() {
   return res.json();
 }
 
-export const TagList = async () => {
-  const tags: Tags = await getTags();
+export const Tags = async () => {
+  const tags: TagList = await getTags();
 
   return (
     <ul

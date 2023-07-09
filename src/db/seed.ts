@@ -19,6 +19,10 @@ import {
   NewTagMapping,
   creator_mappings,
   NewCreatorMapping,
+  jobs,
+  NewJob,
+  job_mappings,
+  NewJobMapping,
 } from './schema';
 import { db } from '.';
 
@@ -39,7 +43,7 @@ async function main() {
       clerkId: `clerkId_${i + 1}`,
       name: `ユーザーアカウント_${i + 1}`,
       coverImageUrl:
-        'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfdHdpdHRlci9pbWdfMlJVMGpCVEl1dDFpRFFURWJiaHV0QTJ5MTA3LmpwZWcifQ',
+        'https://carbon-media.accelerator.net/0000000mzvZ/0qyXSdSn0hwbrQLdtlkh5q;1200x675.png?auto=webp',
       thumbnailImageUrl:
         'https://pbs.twimg.com/profile_images/1017748300835897345/ZRTAirs3_400x400.jpg',
       description:
@@ -192,6 +196,47 @@ async function main() {
 
   await db.insert(tags).values(newTags);
 
+  // ========================== job ==========================
+  // すべてのジョブを削除
+  await db.delete(jobs);
+
+  // 5件のジョブを追加
+  const newJobs: NewJob[] = [];
+  const allUsersForJobs = await db.select().from(users);
+
+  for (let i = 0; i < 5; i++) {
+    newJobs.push({
+      name: `ジョブ_${i + 1}`,
+      createUserId: allUsersForJobs[0].id,
+      updateUserId: allUsersForJobs[0].id,
+    });
+  }
+
+  await db.insert(jobs).values(newJobs);
+
+  // ========================== job mapping ==========================
+
+  // すべてのジョブ紐づけを削除
+  await db.delete(job_mappings);
+
+  // 作品ごとに5件のジョブ紐づけを追加
+  const newJobMappings: NewJobMapping[] = [];
+  const allJobForJobMappings = await db.select().from(jobs);
+  const allUsersForJobMappings = await db.select().from(users);
+
+  allUsersForJobMappings.forEach((user) => {
+    allJobForJobMappings.forEach((job) => {
+      newJobMappings.push({
+        userId: user.id,
+        jobId: job.id,
+        createUserId: allUsersForJobMappings[0].id,
+        updateUserId: allUsersForJobMappings[0].id,
+      });
+    });
+  });
+
+  await db.insert(job_mappings).values(newJobMappings);
+
   // ========================== tag mapping ==========================
 
   // すべてのタグ紐づけを削除
@@ -199,12 +244,12 @@ async function main() {
 
   // 作品ごとに5件のタグ紐づけを追加
   const newTagMappings: NewTagMapping[] = [];
-  const allTagForAssetMappings = await db.select().from(tags);
+  const allTagForTagMappings = await db.select().from(tags);
   const allWorksForTagMappings = await db.select().from(works);
   const allUsersForTagMappings = await db.select().from(users);
 
   allWorksForTagMappings.forEach((work) => {
-    allTagForAssetMappings.forEach((tag) => {
+    allTagForTagMappings.forEach((tag) => {
       newTagMappings.push({
         workId: work.id,
         tagId: tag.id,
