@@ -16,6 +16,7 @@
     "db:drop": "drizzle-kit drop --config drizzle.config.ts",
     "db:push": "pnpm with-env node -r esbuild-register src/db/migrate.ts",
     "db:seed": "pnpm with-env node -r esbuild-register src/db/seed.ts",
+    "db:studio": "pnpm with-env drizzle-kit studio --port 3300",
     "with-env": "dotenv -e .env.development.local --",
     "psdeploy": "pscale deploy-request create virtual-credit-db dev"
   },
