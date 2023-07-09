@@ -4,6 +4,7 @@ import { jaJP } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Noto_Sans_JP } from 'next/font/google';
 import { css } from '../../styled-system/css';
+import { GoogleAnalytics } from '@/components/common/GaScripts';
 
 import { Footer } from '@/components/layouts/Footer';
 import { Header } from '@/components/layouts/Header';
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       }}
     >
       <html lang='ja'>
+        <GoogleAnalytics />
         <body className={notoSansJp.className}>
           <Header />
           <main
