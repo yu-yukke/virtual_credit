@@ -1,3 +1,4 @@
+import { Redis } from '@upstash/redis';
 import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
 import Image from 'next/image';
@@ -12,7 +13,19 @@ type WorkCardProps = {
   mainImage: WorkImage;
 };
 
-export const WorkCard = ({ work, mainImage }: WorkCardProps) => {
+export const revalidate = 60;
+
+export const WorkCard = async ({ work, mainImage }: WorkCardProps) => {
+  const redis = Redis.fromEnv();
+  const views =
+    (await redis.get<number>(
+      [
+        'pageviews',
+        'projects',
+        `${process.env.NODE_ENV}/works-${work.id}`,
+      ].join(':'),
+    )) ?? 0;
+
   return (
     <>
       <figure

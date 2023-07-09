@@ -7,6 +7,7 @@ import { KeyVisual } from './_components/KeyVisual';
 import { Overview } from './_components/Overview';
 import { Tags } from './_components/Tags';
 import { WorkImages } from './_components/WorkImages';
+import { ReportView } from '@/components/common/ReportView';
 import { db } from '@/db';
 import { works } from '@/db/schema';
 
@@ -15,6 +16,8 @@ type PageProps = {
     id: number;
   };
 };
+
+export const revalidate = 60;
 
 export default async function Page({ params }: PageProps) {
   const work = await db.query.works.findFirst({
@@ -58,6 +61,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
+      <ReportView slug={`${process.env.NODE_ENV}/works-${work.id}`} />
       <KeyVisual
         title={work.name}
         categoryName={work.category.name}
