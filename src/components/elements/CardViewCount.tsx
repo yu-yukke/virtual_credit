@@ -1,5 +1,9 @@
+import classNames from 'classnames';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { SVGProps } from 'react';
 import { css } from '../../../styled-system/css';
+
+const jakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
 type ViewCountProps = {
   viewCount: number;
@@ -48,14 +52,16 @@ export const CardViewCount = ({ viewCount }: ViewCountProps) => {
         className={css({
           color: 'quaternary',
           fontSize: 'lg',
-          mt: 1,
         })}
       />
       <span
-        className={css({
-          color: 'quaternary',
-          fontSize: 'sm',
-        })}
+        className={classNames(
+          jakartaSans.className,
+          css({
+            color: 'quaternary',
+            fontSize: 'sm',
+          }),
+        )}
       >
         {viewCount}
       </span>
