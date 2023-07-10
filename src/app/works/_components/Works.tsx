@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { css } from '../../../../styled-system/css';
 
 import { WorkCard } from '@/components/elements/WorkCard';
-import { Work, WorkImage } from '@/db/schema';
+import { Category, Work, WorkImage } from '@/db/schema';
 
-type WorkList = (Work & { workImages: WorkImage[] })[];
+type WorkList = (Work & { category: Category } & { workImages: WorkImage[] })[];
 
 async function getWorks() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/works`);
@@ -39,7 +39,7 @@ export const Works = async () => {
           key={work.id}
         >
           <Link href={`/works/${work.id}`}>
-            <WorkCard work={work} mainImage={work.workImages[0]} />
+            <WorkCard work={work} />
           </Link>
         </li>
       ))}
