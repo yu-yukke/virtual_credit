@@ -3,9 +3,20 @@ import Link from 'next/link';
 import { css } from '../../../../styled-system/css';
 
 import { CreatorCard } from '@/components/elements/CreatorCard';
-import { Job, JobMapping, User } from '@/db/schema';
+import {
+  CreatorMapping,
+  Job,
+  JobMapping,
+  User,
+  Work,
+  WorkImage,
+} from '@/db/schema';
 
-type UserList = (User & { jobMappings: (JobMapping & { job: Job })[] })[];
+type UserList = (User & { jobMappings: (JobMapping & { job: Job })[] } & {
+  creatorMappings: (CreatorMapping & {
+    work: Work & { workImages: WorkImage[] };
+  })[];
+})[];
 
 async function getCreators() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/creators`);
@@ -39,7 +50,7 @@ export const Creators = async () => {
           key={creator.id}
         >
           <Link href={`/creators/${creator.id}`}>
-            <CreatorCard creator={creator} />
+            <CreatorCard creator={creator} jobMappings={creator.jobMappings} />
           </Link>
         </li>
       ))}
