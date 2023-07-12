@@ -19,7 +19,9 @@ type UserList = (User & { jobMappings: (JobMapping & { job: Job })[] } & {
 })[];
 
 async function getCreators() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/creators`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/creators`, {
+    next: { revalidate: 60 },
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
