@@ -57,7 +57,7 @@ export const WorkCard = async ({ work }: WorkCardProps) => {
           rounded: 'xl',
           overflow: 'hidden',
           shadow: 'float',
-          transition: 'all 0.3s',
+          transition: 'all 0.6s',
           _groupHover: {
             shadow: 'floatHover',
           },
@@ -71,7 +71,7 @@ export const WorkCard = async ({ work }: WorkCardProps) => {
           sizes='100%'
           className={css({
             objectFit: 'cover',
-            transition: 'all 0.3s',
+            transition: 'all 0.6s',
             _groupHover: {
               transform: 'scale(1.08)',
             },

@@ -320,6 +320,7 @@ export const usersRelations = relations(users, ({ one, many }) => ({
     references: [socials.userId],
   }),
   jobMappings: many(job_mappings),
+  creatorMappings: many(creator_mappings),
 }));
 
 // ********** user account end ********** //

@@ -8,10 +8,13 @@ import { Job, JobMapping, User } from '@/db/schema';
 const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
 
 type CreatorCardProps = {
-  creator: User & { jobMappings: (JobMapping & { job: Job })[] };
+  creator: User;
+  jobMappings: (JobMapping & { job: Job })[];
 };
 
-export const CreatorCard = ({ creator }: CreatorCardProps) => {
+const iconSize = 104;
+
+export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
   return (
     <div
       className={css({
@@ -22,10 +25,9 @@ export const CreatorCard = ({ creator }: CreatorCardProps) => {
         rounded: 'xl',
         overflow: 'hidden',
         shadow: 'float',
-        transition: 'all 0.3s',
+        transition: 'all 0.6s',
         _groupHover: {
           shadow: 'floatHover',
-          transform: 'translateY(-4px)',
         },
       })}
     >
@@ -49,27 +51,33 @@ export const CreatorCard = ({ creator }: CreatorCardProps) => {
             sizes='100%'
             className={css({
               objectFit: 'cover',
+              transition: 'all 0.6s',
+              _groupHover: {
+                transform: 'scale(1.08)',
+              },
             })}
           />
         )}
       </figure>
       <div
         className={css({
-          py: 32,
+          mt: `-${iconSize / 2}px`,
+          pb: 24,
           display: 'flex',
           flexDir: 'column',
           alignItems: 'center',
-          gap: 16,
+          gap: 24,
         })}
       >
         <figure
           className={css({
             position: 'relative',
-            w: '88px',
-            h: '88px',
+            w: `${iconSize}px`,
+            h: `${iconSize}px`,
             aspectRatio: 'square',
             rounded: 'full',
             overflow: 'hidden',
+            border: '4px solid white',
           })}
         >
           <Image
@@ -108,6 +116,7 @@ export const CreatorCard = ({ creator }: CreatorCardProps) => {
             className={css({
               w: 'full',
               fontSize: 'xs',
+              textAlign: 'center',
               color: 'secondary',
               wordBreak: 'keep-all',
               overflow: 'hidden',
@@ -115,7 +124,7 @@ export const CreatorCard = ({ creator }: CreatorCardProps) => {
               whiteSpace: 'nowrap',
             })}
           >
-            {creator.jobMappings.map((jobMap) => jobMap.job.name).join(', ')}
+            {jobMappings.map((jobMap) => jobMap.job.name).join(', ')}
           </p>
         </div>
       </div>
