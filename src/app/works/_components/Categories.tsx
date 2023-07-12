@@ -6,7 +6,9 @@ import { Category } from '@/db/schema';
 type CategoryList = Category[];
 
 async function getCategories() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/categories`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/categories`, {
+    next: { revalidate: 60 },
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
