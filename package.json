@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "panda codegen",
+    "prepare": "pnpm cache clean --force & panda codegen",
     "preinstall": "npx only-allow pnpm",
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",

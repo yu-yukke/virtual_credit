@@ -12,8 +12,6 @@ type CreatorCardProps = {
   jobMappings: (JobMapping & { job: Job })[];
 };
 
-const iconSize = 104;
-
 export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
   return (
     <div
@@ -61,7 +59,7 @@ export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
       </figure>
       <div
         className={css({
-          mt: `-${iconSize / 2}px`,
+          mt: '-52px',
           pb: 24,
           display: 'flex',
           flexDir: 'column',
@@ -72,8 +70,8 @@ export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
         <figure
           className={css({
             position: 'relative',
-            w: `${iconSize}px`,
-            h: `${iconSize}px`,
+            w: '104px',
+            h: '104px',
             aspectRatio: 'square',
             rounded: 'full',
             overflow: 'hidden',
