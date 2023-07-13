@@ -41,7 +41,11 @@ export const Works = async () => {
           key={work.id}
         >
           <Link href={`/works/${work.id}`}>
-            <WorkCard work={work} />
+            <WorkCard
+              work={work}
+              category={work.category}
+              workImages={work.workImages}
+            />
           </Link>
         </li>
       ))}

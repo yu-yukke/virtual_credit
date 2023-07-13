@@ -11,7 +11,9 @@ import { Category, Work, WorkImage } from '@/db/schema';
 const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
 
 type WorkCardProps = {
-  work: Work & { category: Category } & { workImages: WorkImage[] };
+  work: Work;
+  category: Category;
+  workImages: WorkImage[];
 };
 
 export function MdiEye(props: SVGProps<SVGSVGElement>) {
@@ -33,9 +35,12 @@ export function MdiEye(props: SVGProps<SVGSVGElement>) {
 
 export const revalidate = 60;
 
-export const WorkCard = async ({ work }: WorkCardProps) => {
-  const category = work.category;
-  const mainImage = work.workImages[0];
+export const WorkCard = async ({
+  work,
+  category,
+  workImages,
+}: WorkCardProps) => {
+  const mainImage = workImages[0];
   const redis = Redis.fromEnv();
   const viewCount =
     (await redis.get<number>(
