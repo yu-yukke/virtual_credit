@@ -5,23 +5,11 @@ import { css } from '../../../../styled-system/css';
 import { WorkCard } from '@/components/elements/WorkCard';
 import { Category, Work, WorkImage } from '@/db/schema';
 
-type WorkList = (Work & { category: Category } & { workImages: WorkImage[] })[];
+type WorksProps = {
+  works: (Work & { category: Category } & { workImages: WorkImage[] })[];
+};
 
-async function getWorks() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/works`, {
-    next: { revalidate: 60 },
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-export const Works = async () => {
-  const works: WorkList = await getWorks();
-
+export const Works = async ({ works }: WorksProps) => {
   return (
     <ul
       className={css({

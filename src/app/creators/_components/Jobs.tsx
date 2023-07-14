@@ -3,21 +3,11 @@ import { css } from '../../../../styled-system/css';
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Job } from '@/db/schema';
 
-type JobList = Job[];
+type JobsProps = {
+  jobs: Job[];
+};
 
-async function getJobs() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/jobs`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-export const Jobs = async () => {
-  const jobs: JobList = await getJobs();
-
+export const Jobs = async ({ jobs }: JobsProps) => {
   return (
     <ul
       className={css({

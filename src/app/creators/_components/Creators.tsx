@@ -12,27 +12,11 @@ import {
   WorkImage,
 } from '@/db/schema';
 
-type UserList = (User & { jobMappings: (JobMapping & { job: Job })[] } & {
-  creatorMappings: (CreatorMapping & {
-    work: Work & { workImages: WorkImage[] };
-  })[];
-})[];
+type CreatorsProps = {
+  creators: (User & { jobMappings: (JobMapping & { job: Job })[] })[];
+};
 
-async function getCreators() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/creators`, {
-    next: { revalidate: 60 },
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-export const Creators = async () => {
-  const creators: UserList = await getCreators();
-
+export const Creators = async ({ creators }: CreatorsProps) => {
   return (
     <ul
       className={css({

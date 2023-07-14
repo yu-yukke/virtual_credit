@@ -3,23 +3,11 @@ import { css } from '../../../../styled-system/css';
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Tag } from '@/db/schema';
 
-type TagList = Tag[];
+type TagsProps = {
+  tags: Tag[];
+};
 
-async function getTags() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/tags`, {
-    next: { revalidate: 60 },
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-export const Tags = async () => {
-  const tags: TagList = await getTags();
-
+export const Tags = async ({ tags }: TagsProps) => {
   return (
     <ul
       className={css({

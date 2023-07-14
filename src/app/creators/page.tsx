@@ -4,10 +4,35 @@ import { css } from '../../../styled-system/css';
 
 import { Creators } from './_components/Creators';
 import { Jobs } from './_components/Jobs';
+import { db } from '@/db';
+import { jobs } from '@/db/schema';
 
 const inter500 = Inter({ weight: '500', subsets: ['latin'] });
 
-export default function Page() {
+async function getCreators() {
+  const result = await db.query.users.findMany({
+    with: {
+      jobMappings: {
+        with: {
+          job: true,
+        },
+      },
+    },
+  });
+
+  return await result;
+}
+
+async function getJobs() {
+  const result = await db.select().from(jobs);
+
+  return result;
+}
+
+export default async function Page() {
+  const creators = await getCreators();
+  const jobs = await getJobs();
+
   return (
     <div
       className={css({
@@ -30,14 +55,14 @@ export default function Page() {
           gap: 16,
         })}
       >
-        <Jobs />
+        <Jobs jobs={jobs} />
       </div>
       <div
         className={css({
           mt: 48,
         })}
       >
-        <Creators />
+        <Creators creators={creators} />
       </div>
     </div>
   );
