@@ -6,7 +6,7 @@ import { Property } from '../../../../styled-system/types/csstype';
 
 import { UsersContents } from './_components/UsersContents';
 import { db } from '@/db';
-import { Job, JobMapping, job_mappings, users } from '@/db/schema';
+import { Job, JobMapping, User, job_mappings, users } from '@/db/schema';
 
 type PageProps = {
   params: {
@@ -14,23 +14,31 @@ type PageProps = {
   };
 };
 
-export default async function Page({ params }: PageProps) {
-  // TODO: publicユーザーのみにする
-  const creator = await db.query.users.findFirst({
-    where: eq(users.id, params.id),
+async function getCreator(userId: number) {
+  const result = await db.select().from(users).where(eq(users.id, userId));
+
+  return result[0];
+}
+
+async function getJobs(userId: number) {
+  const result = await db.query.job_mappings.findMany({
+    where: eq(job_mappings.userId, userId),
+    with: {
+      job: true,
+    },
   });
+
+  return await result.map((jobMap) => jobMap.job);
+}
+
+export default async function Page({ params }: PageProps) {
+  const creator = await getCreator(params.id);
 
   if (!creator) {
     redirect(`${process.env.NEXT_PUBLIC_APP_URL}/creators`);
   }
 
-  const jobMappings: (JobMapping & { job: Job })[] =
-    await db.query.job_mappings.findMany({
-      where: eq(job_mappings.userId, creator.id),
-      with: {
-        job: true,
-      },
-    });
+  const jobs = await getJobs(creator.id);
 
   return (
     <>
@@ -97,7 +105,7 @@ export default async function Page({ params }: PageProps) {
             {creator.name}
           </h1>
           <h2 className={css({ color: 'secondary', fontSize: 'sm' })}>
-            {jobMappings.map((jobMap) => jobMap.job.name).join(', ')}
+            {jobs.map((job) => job.name).join(', ')}
           </h2>
           <p
             className={css({
