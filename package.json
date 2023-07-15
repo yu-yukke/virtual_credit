@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "panda codegen",
     "preinstall": "npx only-allow pnpm",
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
@@ -45,7 +44,6 @@
   },
   "devDependencies": {
     "@kuma-ui/next-plugin": "^1.0.3",
-    "@pandacss/dev": "^0.5.1",
     "@types/gtag.js": "^0.0.12",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",

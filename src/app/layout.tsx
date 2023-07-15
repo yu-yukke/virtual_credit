@@ -39,20 +39,22 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang='ja'>
         <GoogleAnalytics />
         <body className={notoSansJp.className}>
-          <Header />
-          <main
-            className={css({
-              display: 'grid',
-              gridTemplateColumns:
-                '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
-              '& *': {
-                gridColumnStart: '2',
-              },
-            })}
-          >
-            <KumaRegistry>{children}</KumaRegistry>
-          </main>
-          <Footer />
+          <KumaRegistry>
+            <Header />
+            <main
+              className={css({
+                display: 'grid',
+                gridTemplateColumns:
+                  '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
+                '& *': {
+                  gridColumnStart: '2',
+                },
+              })}
+            >
+              {children}
+            </main>
+            <Footer />
+          </KumaRegistry>
         </body>
       </html>
     </ClerkProvider>
