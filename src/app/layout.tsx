@@ -2,6 +2,7 @@ import './globals.css';
 
 import { jaJP } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
+import { KumaRegistry } from '@kuma-ui/next-plugin/registry';
 import { Noto_Sans_JP } from 'next/font/google';
 import { css } from '../../styled-system/css';
 import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
@@ -49,7 +50,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               },
             })}
           >
-            {children}
+            <KumaRegistry>{children}</KumaRegistry>
           </main>
           <Footer />
         </body>
