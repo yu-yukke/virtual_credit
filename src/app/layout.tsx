@@ -3,7 +3,6 @@ import './reset.css';
 
 import { jaJP } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
-import { Box } from '@kuma-ui/core';
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry';
 import { Noto_Sans_JP } from 'next/font/google';
 import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
@@ -39,13 +38,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <html lang='ja'>
         <GoogleAnalytics />
-        <Box as='body' className={notoSansJp.className}>
+        <body className={notoSansJp.className}>
           <KumaRegistry>
             <Header />
-            <Box as='main'>{children}</Box>
+            <main>{children}</main>
             <Footer />
           </KumaRegistry>
-        </Box>
+        </body>
       </html>
     </ClerkProvider>
   );
