@@ -43,7 +43,7 @@ export const GlobalNavigation = () => {
       position={'fixed'}
       left={'50%'}
       transform={'translateX(-50%)'}
-      borderRadius={'9999px'}
+      borderRadius={9999}
       p={8}
       transition={'all 0.3s'}
       zIndex={10}

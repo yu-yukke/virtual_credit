@@ -27,7 +27,7 @@ export const Header = () => {
           </Heading>
         </Link>
         <GlobalNavigation />
-        {/* <UserMenu userId={userId} /> */}
+        <UserMenu userId={userId} />
       </HStack>
     </header>
   );

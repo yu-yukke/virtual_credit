@@ -14,7 +14,7 @@ export const SignUpBtn = ({ isFullRounded }: SignUpBtnProps) => {
     <SignUpButton mode='modal'>
       <Button
         color={'white'}
-        fontSize={'13px'}
+        fontSize={13}
         letterSpacing={0.3}
         px={12}
         py={8}
