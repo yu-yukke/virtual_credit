@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import Link from 'next/link';
-import { css } from '../../../../styled-system/css';
 
 import { CreatorCard } from '@/components/elements/CreatorCard';
 import {

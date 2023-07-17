@@ -1,7 +1,7 @@
 import { SignUpButton } from '@clerk/nextjs';
-import classNames from 'classnames';
+import { Button, css } from '@kuma-ui/core';
+import clsx from 'clsx';
 import { Inter } from 'next/font/google';
-import { css } from '../../../styled-system/css';
 
 const inter = Inter({ weight: '500', subsets: ['latin'] });
 
@@ -12,22 +12,27 @@ type SignUpBtnProps = {
 export const SignUpBtn = ({ isFullRounded }: SignUpBtnProps) => {
   return (
     <SignUpButton mode='modal'>
-      <button
-        className={classNames(
+      <Button
+        color={'white'}
+        fontSize={'13px'}
+        letterSpacing={0.3}
+        px={12}
+        py={8}
+        cursor={'pointer'}
+        bg={'linear-gradient(90deg, #8746E5 0%, #279ADB 100%)'}
+        className={clsx(
           inter.className,
-          css({
-            fontSize: '13px',
-            px: 12,
-            py: 6,
-            color: 'white',
-            bgGradient: 'signUp',
-            cursor: 'pointer',
-            rounded: isFullRounded ? 'full' : 'sm',
-          }),
+          isFullRounded
+            ? css`
+                border-radius: 9999px;
+              `
+            : css`
+                border-radius: 0.25rem;
+              `,
         )}
       >
         Get Started
-      </button>
+      </Button>
     </SignUpButton>
   );
 };

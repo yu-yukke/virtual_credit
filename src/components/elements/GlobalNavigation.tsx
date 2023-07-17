@@ -1,12 +1,12 @@
 'use client';
 
 import { SignedOut } from '@clerk/nextjs';
-import classNames from 'classnames';
+import { Box, HStack, css } from '@kuma-ui/core';
+import clsx from 'clsx';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useCallback, useEffect } from 'react';
-import { css } from '../../../styled-system/css';
 
 import { SignUpBtn } from './SignUpBtn';
 import { globalNavConfig } from '@/config/navigation';
@@ -36,99 +36,97 @@ export const GlobalNavigation = () => {
   }, [scrollEvent]);
 
   return (
-    <nav
-      className={classNames(
+    <Box
+      as={'nav'}
+      display={'flex'}
+      alignItems={'center'}
+      position={'fixed'}
+      left={'50%'}
+      transform={'translateX(-50%)'}
+      borderRadius={'9999px'}
+      p={8}
+      transition={'all 0.3s'}
+      zIndex={10}
+      _hover={{
+        bg: 'white',
+        boxShadow:
+          '0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08)',
+      }}
+      className={
         position > breakPosition
-          ? css({
-              bg: 'white',
-              shadow: 'float',
-              gap: 6,
-            })
-          : css({
-              _hover: {
-                px: 8,
-                py: 11.5,
+          ? css`
+              background: white;
+              box-shadow:
+                0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+                0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+                0px 0px 0px 1px rgba(23, 13, 13, 0.08);
+              gap: 6px;
+            `
+          : css`
+              &:hover {
+                padding: 11.5px 8px;
               },
-            }),
-        css({
-          display: 'flex',
-          alignItems: 'center',
-          position: 'fixed',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          rounded: 'full',
-          p: 8,
-          transition: 'all 0.3s',
-          zIndex: 10,
-          _hover: {
-            bg: 'white',
-            shadow: 'float',
-          },
-        }),
-      )}
+            `
+      }
     >
-      <ul
-        className={css({
-          display: 'flex',
-          alignItems: 'center',
-          gap: 6,
-        })}
-      >
+      <HStack as='ul' alignItems='center' gap={6}>
         {globalNavConfig.navItems.map((nav) => (
           <li className={inter.className} key={nav.title}>
             <Link
               href={nav.href}
-              className={classNames(
+              className={clsx(
                 currentPath == `${nav.href}`
-                  ? css({
-                      bg: '#F1F3F5',
-                      border: '1px solid token(borders.primary)',
-                    })
-                  : css({
-                      bg: 'transparent',
-                      border: '1px solid transparent',
-                    }),
-                css({
-                  color: 'secondary',
-                  fontSize: '13px',
-                  px: 12,
-                  py: 6,
-                  rounded: 'full',
-                  _hover: {
-                    bg: '#F1F3F5',
-                    borderColor: 'token(borders.primary)',
+                  ? css`
+                      background: #f1f3f5;
+                      border: 1px solid #e8e8e8;
+                    `
+                  : css`
+                      background: transparent;
+                      border: 1px solid transparent;
+                    `,
+                css`
+                  display: inline-block;
+                  color: #777272;
+                  font-size: 13px;
+                  letter-spacing: 0.03em;
+                  padding: 6px 12px;
+                  border-radius: 9999px;
+                  &:hover {
+                    background: #F1F3F5;
+                    border-color: #E8E8E8;
                   },
-                }),
+                `,
               )}
             >
               {nav.title}
             </Link>
           </li>
         ))}
-      </ul>
+      </HStack>
       <SignedOut>
-        <div
-          className={classNames(
+        <Box
+          overflow={'hidden'}
+          gap={6}
+          transition={'all 1.5s'}
+          className={
             position > breakPosition
-              ? css({
-                  w: 'auto',
-                  h: 'auto',
-                  visibility: 'visible',
-                  opacity: 1,
-                })
-              : css({ w: 0, h: 0, visibility: 'hidden', opacity: 0 }),
-            css({
-              display: 'flex',
-              alignItems: 'center',
-              overflow: 'hidden',
-              gap: 6,
-              transition: 'all 1.5s',
-            }),
-          )}
+              ? css`
+                  width: auto;
+                  height: auto;
+                  visibility: visible;
+                  opacity: 1;
+                `
+              : css`
+                  width: 0;
+                  height: 0;
+                  visibility: hidden;
+                  opacity: 0;
+                `
+          }
         >
           <SignUpBtn isFullRounded />
-        </div>
+        </Box>
       </SignedOut>
-    </nav>
+    </Box>
   );
 };

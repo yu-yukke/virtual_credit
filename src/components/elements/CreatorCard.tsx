@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
 import Image from 'next/image';
-import { css } from '../../../styled-system/css';
 
 import { Job, JobMapping, User } from '@/db/schema';
 

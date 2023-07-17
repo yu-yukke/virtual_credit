@@ -1,7 +1,6 @@
 import { SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { eq } from 'drizzle-orm';
 import Image from 'next/image';
-import { css } from '../../../styled-system/css';
 
 import { SignInBtn } from './SignInBtn';
 import { SignUpBtn } from './SignUpBtn';

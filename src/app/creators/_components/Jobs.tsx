@@ -1,5 +1,3 @@
-import { css } from '../../../../styled-system/css';
-
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Job } from '@/db/schema';
 

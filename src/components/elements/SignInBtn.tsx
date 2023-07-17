@@ -1,7 +1,6 @@
 import { SignInButton } from '@clerk/nextjs';
 import classNames from 'classnames';
 import { Inter } from 'next/font/google';
-import { css } from '../../../styled-system/css';
 
 const inter = Inter({ weight: '400', subsets: ['latin'] });
 
