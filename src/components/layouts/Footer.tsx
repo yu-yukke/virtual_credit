@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { HStack, Heading, VStack, css } from '@kuma-ui/core';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { SVGProps } from 'react';
@@ -48,203 +48,122 @@ export function LogosDiscordIcon(props: SVGProps<SVGSVGElement>) {
 
 export const Footer = () => {
   return (
-    <>footer</>
-    // <footer
-    //   className={css({
-    //     w: 'full',
-    //     zIndex: 10,
-    //     display: 'grid',
-    //     gridTemplateColumns:
-    //       '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
-    //     '& *': {
-    //       gridColumnStart: '2',
-    //     },
-    //   })}
-    // >
-    //   <div
-    //     className={css({
-    //       w: 'full',
-    //       display: 'flex',
-    //       justifyContent: 'space-between',
-    //       borderTop: '1px solid token(borders.primary)',
-    //       pt: 68,
-    //       pb: 160,
-    //     })}
-    //   >
-    //     {/* logo part */}
-    //     <div>
-    //       <Link href='/'>
-    //         <h1
-    //           className={css({
-    //             fontFamily: 'futura',
-    //             fontSize: 'xl',
-    //             letterSpacing: '-0.05em',
-    //           })}
-    //         >
-    //           VIRTUAL CREDIT
-    //         </h1>
-    //       </Link>
-    //       <h2
-    //         className={classNames(
-    //           inter400.className,
-    //           css({
-    //             fontSize: 'xs',
-    //             color: 'quaternary',
-    //             mt: 2,
-    //           }),
-    //         )}
-    //       >
-    //         © Empire of Takaomi
-    //       </h2>
-    //       <div
-    //         className={css({
-    //           display: 'flex',
-    //           alignItems: 'center',
-    //           gap: 12,
-    //           mt: 16,
-    //         })}
-    //       >
-    //         <LogosTwitter />
-    //         <LogosDiscordIcon />
-    //       </div>
-    //     </div>
-    //     {/* logo part end */}
+    <footer>
+      <HStack
+        width={'100%'}
+        justify={'space-between'}
+        pt={68}
+        pb={160}
+        borderTop={'1px solid #E8E8E8'}
+      >
+        {/* logo part */}
+        <div>
+          <Link href='/'>
+            <Heading as='h1' fontSize={'1.25rem'} fontFamily={'Futura'}>
+              VIRTUAL CREDIT
+            </Heading>
+          </Link>
+          <Heading
+            as='h2'
+            fontSize={'0.75rem'}
+            color={'colors.text.quaternary'}
+            mt={2}
+            className={inter400.className}
+          >
+            © Empire of Takaomi
+          </Heading>
+          <HStack alignItems={'center'} gap={12} mt={16}>
+            <LogosTwitter />
+            <LogosDiscordIcon />
+          </HStack>
+        </div>
+        {/* logo part end */}
 
-    //     {/* nav part */}
-    //     <div
-    //       className={css({
-    //         display: 'flex',
-    //         gap: 116,
-    //       })}
-    //     >
-    //       {/* explore */}
-    //       <div
-    //         className={css({
-    //           display: 'flex',
-    //           flexDir: 'column',
-    //           gap: 8,
-    //         })}
-    //       >
-    //         <h3
-    //           className={classNames(
-    //             inter500.className,
-    //             css({
-    //               fontSize: 'sm',
-    //               color: 'tertiary',
-    //             }),
-    //           )}
-    //         >
-    //           Explore
-    //         </h3>
-    //         <ul
-    //           className={css({
-    //             display: 'flex',
-    //             flexDir: 'column',
-    //             gap: 8,
-    //           })}
-    //         >
-    //           {ExploreNavConfig.navItems.map((nav) => (
-    //             <li key={nav.title}>
-    //               <Link
-    //                 href={nav.href}
-    //                 className={css({
-    //                   color: 'secondary',
-    //                   fontSize: 'sm',
-    //                 })}
-    //               >
-    //                 {nav.title}
-    //               </Link>
-    //             </li>
-    //           ))}
-    //         </ul>
-    //       </div>
+        {/* nav part */}
+        <HStack gap={116}>
+          {/* explore */}
+          <VStack gap={8}>
+            <Heading
+              as='h3'
+              fontSize={'0.875rem'}
+              color={'colors.text.tertiary'}
+              className={inter500.className}
+            >
+              Explore
+            </Heading>
+            <VStack as='ul' gap={8}>
+              {ExploreNavConfig.navItems.map((nav) => (
+                <li key={nav.title}>
+                  <Link
+                    href={nav.href}
+                    className={css`
+                      color: #777272;
+                      font-size: 0.875rem;
+                    `}
+                  >
+                    {nav.title}
+                  </Link>
+                </li>
+              ))}
+            </VStack>
+          </VStack>
 
-    //       {/* about */}
-    //       <div
-    //         className={css({
-    //           display: 'flex',
-    //           flexDir: 'column',
-    //           gap: 8,
-    //         })}
-    //       >
-    //         <h3
-    //           className={classNames(
-    //             inter500.className,
-    //             css({
-    //               fontSize: 'sm',
-    //               color: 'tertiary',
-    //             }),
-    //           )}
-    //         >
-    //           About Us
-    //         </h3>
-    //         <ul
-    //           className={css({
-    //             display: 'flex',
-    //             flexDir: 'column',
-    //             gap: 8,
-    //           })}
-    //         >
-    //           {AboutNavConfig.navItems.map((nav) => (
-    //             <li key={nav.title}>
-    //               <Link
-    //                 href={nav.href}
-    //                 className={css({
-    //                   color: 'secondary',
-    //                   fontSize: 'sm',
-    //                 })}
-    //               >
-    //                 {nav.title}
-    //               </Link>
-    //             </li>
-    //           ))}
-    //         </ul>
-    //       </div>
+          {/* about */}
+          <VStack gap={8}>
+            <Heading
+              as='h3'
+              fontSize={'0.875rem'}
+              color={'colors.text.tertiary'}
+              className={inter500.className}
+            >
+              About us
+            </Heading>
+            <VStack as='ul' gap={8}>
+              {AboutNavConfig.navItems.map((nav) => (
+                <li key={nav.title}>
+                  <Link
+                    href={nav.href}
+                    className={css`
+                      color: #777272;
+                      font-size: 0.875rem;
+                    `}
+                  >
+                    {nav.title}
+                  </Link>
+                </li>
+              ))}
+            </VStack>
+          </VStack>
 
-    //       {/* contact */}
-    //       <div
-    //         className={css({
-    //           display: 'flex',
-    //           flexDir: 'column',
-    //           gap: 8,
-    //         })}
-    //       >
-    //         <h3
-    //           className={classNames(
-    //             inter500.className,
-    //             css({
-    //               fontSize: 'sm',
-    //               color: 'tertiary',
-    //             }),
-    //           )}
-    //         >
-    //           Contact Us
-    //         </h3>
-    //         <ul
-    //           className={css({
-    //             display: 'flex',
-    //             flexDir: 'column',
-    //             gap: 8,
-    //           })}
-    //         >
-    //           {ContactNavConfig.navItems.map((nav) => (
-    //             <li key={nav.title}>
-    //               <Link
-    //                 href={nav.href}
-    //                 className={css({
-    //                   color: 'secondary',
-    //                   fontSize: 'sm',
-    //                 })}
-    //               >
-    //                 {nav.title}
-    //               </Link>
-    //             </li>
-    //           ))}
-    //         </ul>
-    //       </div>
-    //     </div>
-    //     {/* nav part end */}
-    //   </div>
-    // </footer>
+          {/* contact */}
+          <VStack gap={8}>
+            <Heading
+              as='h3'
+              fontSize={'0.875rem'}
+              color={'colors.text.tertiary'}
+              className={inter500.className}
+            >
+              Contact us
+            </Heading>
+            <VStack as='ul' gap={8}>
+              {ContactNavConfig.navItems.map((nav) => (
+                <li key={nav.title}>
+                  <Link
+                    href={nav.href}
+                    className={css`
+                      color: #777272;
+                      font-size: 0.875rem;
+                    `}
+                  >
+                    {nav.title}
+                  </Link>
+                </li>
+              ))}
+            </VStack>
+          </VStack>
+        </HStack>
+        {/* nav part end */}
+      </HStack>
+    </footer>
   );
 };

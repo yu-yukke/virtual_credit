@@ -1,5 +1,5 @@
 import { auth } from '@clerk/nextjs';
-import { HStack, Heading, css } from '@kuma-ui/core';
+import { HStack, Heading } from '@kuma-ui/core';
 import Link from 'next/link';
 
 import { GlobalNavigation } from '../elements/GlobalNavigation';
