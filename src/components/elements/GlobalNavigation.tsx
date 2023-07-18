@@ -44,7 +44,8 @@ export const GlobalNavigation = () => {
       left={'50%'}
       transform={'translateX(-50%)'}
       borderRadius={9999}
-      p={8}
+      px={12}
+      py={8}
       transition={'all 0.3s'}
       zIndex={10}
       _hover={{
@@ -64,7 +65,7 @@ export const GlobalNavigation = () => {
             `
           : css`
               &:hover {
-                padding: 11.5px 8px;
+                padding: 8px 12px;
               },
             `
       }

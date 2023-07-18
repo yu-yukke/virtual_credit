@@ -1,3 +1,4 @@
+import { HStack } from '@kuma-ui/core';
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Job } from '@/db/schema';
 
@@ -7,13 +8,7 @@ type JobsProps = {
 
 export const Jobs = async ({ jobs }: JobsProps) => {
   return (
-    <ul
-      className={css({
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-      })}
-    >
+    <HStack as='ul' alignItems={'center'} gap={8}>
       <li>
         <CheckBoxButton id='category_all' value={-1} label='すべて' />
       </li>
@@ -26,6 +21,6 @@ export const Jobs = async ({ jobs }: JobsProps) => {
           />
         </li>
       ))}
-    </ul>
+    </HStack>
   );
 };

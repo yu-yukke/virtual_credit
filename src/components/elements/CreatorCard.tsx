@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { Box, Heading, VStack, css } from '@kuma-ui/core';
 import { Noto_Sans_JP } from 'next/font/google';
 import Image from 'next/image';
 
@@ -13,31 +13,35 @@ type CreatorCardProps = {
 
 export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
   return (
-    <div
-      className={css({
-        w: 'full',
-        h: 'auto',
-        bg: 'white',
-        p: 20,
-        rounded: 'xl',
-        overflow: 'hidden',
-        shadow: 'float',
-        transition: 'all 0.6s',
-        _groupHover: {
-          shadow: 'floatHover',
-        },
-      })}
+    <Box
+      width={'100%'}
+      height={'auto'}
+      bg={'white'}
+      p={20}
+      borderRadius={'0.75rem'}
+      overflow={'hidden'}
+      boxShadow={
+        '0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08)'
+      }
+      transition={'all 0.6s'}
+      _hover={{
+        boxShadow:
+          '0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08), 0px 2px 4px 0px rgba(23, 13, 13, 0.1)',
+      }}
     >
       <figure
-        className={css({
-          position: 'relative',
-          w: 'full',
-          h: 'auto',
-          aspectRatio: 'wide',
-          rounded: 'lg',
-          overflow: 'hidden',
-          shadow: 'float',
-        })}
+        className={css`
+          position: relative;
+          width: 100%;
+          height: auto;
+          aspect-ratio: 16 / 9;
+          border-radius: 0.5rem;
+          overflow: hidden;
+          box-shadow:
+            0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+            0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+            0px 0px 0px 1px rgba(23, 13, 13, 0.08);
+        `}
       >
         {/* TODO: デフォルト画像設置 or 作品画像へ */}
         {creator.coverImageUrl && (
@@ -46,85 +50,62 @@ export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
             src={creator.coverImageUrl}
             alt={`${creator.name}のカバー画像`}
             sizes='100%'
-            className={css({
-              objectFit: 'cover',
-              transition: 'all 0.6s',
-              _groupHover: {
-                transform: 'scale(1.08)',
-              },
-            })}
+            className={css`
+              object-fit: cover;
+              transition: all 0.6s;
+            `}
           />
         )}
       </figure>
-      <div
-        className={css({
-          mt: '-52px',
-          pb: 24,
-          display: 'flex',
-          flexDir: 'column',
-          alignItems: 'center',
-          gap: 24,
-        })}
-      >
+      <VStack mt={-52} pb={24} alignItems={'center'} gap={24}>
         <figure
-          className={css({
-            position: 'relative',
-            w: '104px',
-            h: '104px',
-            aspectRatio: 'square',
-            rounded: 'full',
-            overflow: 'hidden',
-            border: '4px solid white',
-          })}
+          className={css`
+            position: relative;
+            width: 104px;
+            height: 104px;
+            aspect-ratio: 1 / 1;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 4px solid white;
+          `}
         >
           <Image
             fill
             src={creator.thumbnailImageUrl}
             alt={`${creator.name}のサムネイル画像`}
             sizes='100%'
-            className={css({
-              objectFit: 'cover',
-            })}
+            className={css`
+              object-fit: cover;
+            `}
           />
         </figure>
-        <div
-          className={css({
-            w: '4/5',
-            display: 'flex',
-            flexDir: 'column',
-            alignItems: 'center',
-            gap: 4,
-          })}
-        >
-          <h2
-            className={classNames(
-              notoSansJp500.className,
-              css({
-                w: 'full',
-                textAlign: 'center',
-                fontSize: 'md',
-                letterSpacing: 'lg',
-              }),
-            )}
+        <VStack width={'80%'} alignItems={'center'} gap={4}>
+          <Heading
+            as='h2'
+            width={'100%'}
+            textAlign={'center'}
+            fontSize={'1rem'}
+            letterSpacing={0.06}
+            className={notoSansJp500.className}
           >
             {creator.name}
-          </h2>
+          </Heading>
           <p
-            className={css({
-              w: 'full',
-              fontSize: 'xs',
-              textAlign: 'center',
-              color: 'secondary',
-              wordBreak: 'keep-all',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-            })}
+            className={css`
+              width: 100%;
+              font-size: 0.75rem;
+              text-align: center;
+              color: #777272;
+              word-break: keep-all;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            `}
           >
             {jobMappings.map((jobMap) => jobMap.job.name).join(', ')}
           </p>
-        </div>
-      </div>
-    </div>
+        </VStack>
+      </VStack>
+    </Box>
   );
 };

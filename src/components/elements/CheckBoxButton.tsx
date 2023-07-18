@@ -1,4 +1,5 @@
-import classNames from 'classnames';
+import { Input, css } from '@kuma-ui/core';
+import clsx from 'clsx';
 import { Noto_Sans_JP } from 'next/font/google';
 import { ChangeEventHandler } from 'react';
 
@@ -20,39 +21,25 @@ export const CheckBoxButton = ({
 }: CheckBoxProps) => {
   return (
     <>
-      <input
+      <Input
+        display={'none'}
         id={id}
         type='checkbox'
         value={value}
-        className={classNames(
-          'peer',
-          css({
-            display: 'none',
-          }),
-        )}
         onChange={onChange}
       />
       <label
         htmlFor={id}
-        className={classNames(
+        className={clsx(
           notoSansJp500.className,
-          css({
-            fontSize: 'xs',
-            color: 'secondary',
-            py: 4,
-            px: 12,
-            rounded: 'xl',
-            border: '1px solid transparent',
-            cursor: 'pointer',
-            _peerHover: {
-              bg: 'white',
-            },
-            _peerChecked: {
-              color: 'primary',
-              bg: 'white',
-              border: '1px solid token(borders.primary)',
-            },
-          }),
+          css`
+            font-size: 0.75rem;
+            color: #777272;
+            padding: 4px 12px;
+            border-radius: 0.75rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+          `,
         )}
       >
         {label}

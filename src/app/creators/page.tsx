@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { Box, Heading, VStack } from '@kuma-ui/core';
 import { Inter } from 'next/font/google';
 
 import { Creators } from './_components/Creators';
@@ -33,36 +33,21 @@ export default async function Page() {
   const jobs = await getJobs();
 
   return (
-    <div
-      className={css({
-        py: 'baseY',
-      })}
-    >
-      <h1
-        className={classNames(
-          inter500.className,
-          css({ color: 'tertiary', fontSize: '2xl', letterSpacing: 'sm' }),
-        )}
+    <Box py={64}>
+      <Heading
+        as='h1'
+        color={'colors.text.tertiary'}
+        fontSize={'1.5rem'}
+        className={inter500.className}
       >
         Creators
-      </h1>
-      <div
-        className={css({
-          mt: 24,
-          display: 'flex',
-          flexDir: 'column',
-          gap: 16,
-        })}
-      >
+      </Heading>
+      <VStack mt={24} gap={16}>
         <Jobs jobs={jobs} />
-      </div>
-      <div
-        className={css({
-          mt: 48,
-        })}
-      >
+      </VStack>
+      <Box mt={48}>
         <Creators creators={creators} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
