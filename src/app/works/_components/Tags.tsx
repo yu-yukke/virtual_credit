@@ -1,4 +1,4 @@
-import { css } from '../../../../styled-system/css';
+import { HStack } from '@kuma-ui/core';
 
 import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
 import { Tag } from '@/db/schema';
@@ -9,13 +9,7 @@ type TagsProps = {
 
 export const Tags = async ({ tags }: TagsProps) => {
   return (
-    <ul
-      className={css({
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-      })}
-    >
+    <HStack as='ul' alignItems={'center'} gap={8}>
       <li>
         <CheckBoxButton id='tag_all' value={-1} label='すべて' />
       </li>
@@ -28,6 +22,6 @@ export const Tags = async ({ tags }: TagsProps) => {
           />
         </li>
       ))}
-    </ul>
+    </HStack>
   );
 };

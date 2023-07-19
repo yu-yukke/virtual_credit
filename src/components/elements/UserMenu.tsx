@@ -1,7 +1,7 @@
 import { SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs';
+import { Box, HStack } from '@kuma-ui/core';
 import { eq } from 'drizzle-orm';
 import Image from 'next/image';
-import { css } from '../../../styled-system/css';
 
 import { SignInBtn } from './SignInBtn';
 import { SignUpBtn } from './SignUpBtn';
@@ -24,14 +24,12 @@ export const UserMenu = async ({ userId }: UserMenuProps) => {
       <SignedIn>
         {user && (
           <>
-            <div
-              className={css({
-                position: 'relative',
-                w: 40,
-                h: 40,
-                overflow: 'hidden',
-                rounded: 'full',
-              })}
+            <Box
+              position={'relative'}
+              width={40}
+              height={40}
+              overflow={'hidden'}
+              borderRadius={9999}
             >
               <Image
                 src={user.thumbnailImageUrl}
@@ -39,26 +37,20 @@ export const UserMenu = async ({ userId }: UserMenuProps) => {
                 sizes='100%'
                 alt='プロフィールモーダルを開く'
               />
-            </div>
+            </Box>
           </>
         )}
         <SignOutButton />
       </SignedIn>
       <SignedOut>
-        <ul
-          className={css({
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-          })}
-        >
+        <HStack as='ul' alignItems={'center'} gap={12}>
           <li>
             <SignInBtn />
           </li>
           <li>
             <SignUpBtn />
           </li>
-        </ul>
+        </HStack>
       </SignedOut>
     </>
   );
