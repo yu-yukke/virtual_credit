@@ -1,7 +1,7 @@
 'use client';
 
+import { css } from '@kuma-ui/core';
 import { motion } from 'framer-motion';
-import { css } from '../../../../../styled-system/css';
 import { SectionTitle } from './SectionTitle';
 
 type DescriptionProps = {
@@ -20,15 +20,15 @@ export const Description = ({ description }: DescriptionProps) => {
           transition: { delay: 0.3, duration: 0.5 },
         }}
         viewport={{ once: true }}
-        className={css({
-          fontSize: 'sm',
-          w: 'full',
-          maxW: '680px',
-          margin: '48px auto 0',
-          whiteSpace: 'pre-wrap',
-          lineHeight: '28px',
-          letterSpacing: '0.14em',
-        })}
+        className={css`
+          font-size: 0.875rem;
+          width: 100%;
+          max-width: 680px;
+          margin: 48px auto 0;
+          white-space: pre-wrap;
+          line-height: 28px;
+          letter-spacing: 0.14em;
+        `}
       >
         {description}
       </motion.p>

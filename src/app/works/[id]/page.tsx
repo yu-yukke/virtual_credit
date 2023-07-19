@@ -1,5 +1,5 @@
+import { VStack } from '@kuma-ui/core';
 import { desc, eq } from 'drizzle-orm';
-import { css } from '../../../../styled-system/css';
 
 import { Assets } from './_components/Assets';
 import { Description } from './_components/Description';
@@ -92,15 +92,7 @@ export default async function Page({ params }: PageProps) {
         categoryName={work.category.name}
         mainImageUrl={work.workImages[0].imageUrl}
       />
-      <div
-        className={css({
-          display: 'flex',
-          flexDir: 'column',
-          pt: 128,
-          pb: 384,
-          gap: 128,
-        })}
-      >
+      <VStack pt={128} pb={384} gap={128}>
         <Overview
           title={work.name}
           categoryName={work.category.name}
@@ -112,7 +104,7 @@ export default async function Page({ params }: PageProps) {
         <Description description={work.description} />
         {assets && <Assets assets={assets} />}
         {tags && <Tags tags={tags} />}
-      </div>
+      </VStack>
     </>
   );
 }
