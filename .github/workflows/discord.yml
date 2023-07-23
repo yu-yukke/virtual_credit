@@ -23,4 +23,4 @@ jobs:
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           color: '#48f442'
           username: 'GitHub - 🚀 Deployed to Production 🚀'
-          args: "${{ github.event_name }} by @${{ github.actor }} \nmessage: ${{ env.Commit_Message }}"
+          args: "${{ github.event_name }} by @${{ github.actor }} \nmessage: ${{ env.Commit_Message }}\n本番反映したよ: https://virtual-credit-project.vercel.app/"
