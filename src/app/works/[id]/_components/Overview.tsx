@@ -1,9 +1,9 @@
 'use client';
 
-import classNames from 'classnames';
+import { HStack, css } from '@kuma-ui/core';
+import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { Inter } from 'next/font/google';
-import { css } from '../../../../../styled-system/css';
 
 import { SectionTitle } from './SectionTitle';
 import { Asset, Tag, User } from '@/db/schema';
@@ -29,14 +29,14 @@ type ContentProps = {
 const Label = ({ label }: LabelProps) => {
   return (
     <label
-      className={classNames(
+      className={clsx(
         inter.className,
-        css({
-          fontSize: 'sm',
-          w: '2/5',
-          lineHeight: '28px',
-          letterSpacing: '0.14em',
-        }),
+        css`
+          font-size: 0.875rem;
+          width: 40%;
+          line-height: 28px;
+          letter-spacing: 0.14em;
+        `,
       )}
     >
       {label}
@@ -47,13 +47,13 @@ const Label = ({ label }: LabelProps) => {
 const Content = ({ content }: ContentProps) => {
   return (
     <span
-      className={css({
-        fontSize: 'sm',
-        w: '3/5',
-        lineHeight: '28px',
-        letterSpacing: '0.08em',
-        wordBreak: 'keep-all',
-      })}
+      className={css`
+        font-size: 0.875rem;
+        width: 60%;
+        line-height: 28px;
+        letter-spacing: 0.08em;
+        word-break: keep-all;
+      `}
     >
       {content}
     </span>
@@ -78,77 +78,47 @@ export const Overview = ({
           transition: { delay: 0.3, duration: 0.5 },
         }}
         viewport={{ once: true }}
-        className={css({
-          w: 'full',
-          maxW: '680px',
-          margin: '48px auto 0',
-          display: 'flex',
-          flexDir: 'column',
-          gap: 8,
-        })}
+        className={css`
+          width: 100%;
+          max-width: 680px;
+          margin: 48px auto 0;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        `}
       >
         {/* title */}
-        <div
-          className={css({
-            display: 'flex',
-            w: 'full',
-            gap: 32,
-          })}
-        >
+        <HStack width={'100%'} gap={32}>
           <Label label='Title' />
           <Content content={title} />{' '}
-        </div>
+        </HStack>
         {/* title end */}
         {/* category */}
-        <div
-          className={css({
-            display: 'flex',
-            w: 'full',
-            gap: 32,
-          })}
-        >
+        <HStack width={'100%'} gap={32}>
           <Label label='Category' />
           <Content content={categoryName} />
-        </div>
+        </HStack>
         {/* category end */}
         {/* creators */}
-        <div
-          className={css({
-            display: 'flex',
-            w: 'full',
-            gap: 32,
-          })}
-        >
+        <HStack width={'100%'} gap={32}>
           <Label label='Creators' />
           <Content content='クリエイター名, クリエイター名, クリエイター名, クリエイター名,' />
-        </div>
+        </HStack>
         {/* creators end */}
         {/* assets */}
         {assets && (
-          <div
-            className={css({
-              display: 'flex',
-              w: 'full',
-              gap: 32,
-            })}
-          >
+          <HStack width={'100%'} gap={32}>
             <Label label='Assets' />
             <Content content={assets.map((asset) => asset.name).join(' , ')} />
-          </div>
+          </HStack>
         )}
         {/* assets end */}
         {/* tags */}
         {tags && (
-          <div
-            className={css({
-              display: 'flex',
-              w: 'full',
-              gap: 32,
-            })}
-          >
+          <HStack width={'100%'} gap={32}>
             <Label label='Tags' />
             <Content content={tags.map((tag) => tag.name).join(' , ')} />
-          </div>
+          </HStack>
         )}
         {/* tags end */}
       </motion.div>

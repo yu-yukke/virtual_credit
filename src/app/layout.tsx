@@ -1,9 +1,10 @@
 import './globals.css';
+import './reset.css';
 
 import { jaJP } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
+import { KumaRegistry } from '@kuma-ui/next-plugin/registry';
 import { Noto_Sans_JP } from 'next/font/google';
-import { css } from '../../styled-system/css';
 import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
 
 import { Footer } from '@/components/layouts/Footer';
@@ -38,20 +39,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang='ja'>
         <GoogleAnalytics />
         <body className={notoSansJp.className}>
-          <Header />
-          <main
-            className={css({
-              display: 'grid',
-              gridTemplateColumns:
-                '1fr min(calc(token(sizes.maxWidth) - token(spacing.baseX) * 2), calc(token(sizes.full) - 60px)) 1fr',
-              '& *': {
-                gridColumnStart: '2',
-              },
-            })}
-          >
-            {children}
-          </main>
-          <Footer />
+          <KumaRegistry>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </KumaRegistry>
         </body>
       </html>
     </ClerkProvider>

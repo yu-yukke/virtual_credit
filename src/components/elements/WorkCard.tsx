@@ -1,9 +1,8 @@
+import { Heading, css } from '@kuma-ui/core';
 import { Redis } from '@upstash/redis';
-import classNames from 'classnames';
 import { Noto_Sans_JP } from 'next/font/google';
 import Image from 'next/image';
 import { SVGProps } from 'react';
-import { css } from '../../../styled-system/css';
 
 import { CardViewCount } from './CardViewCount';
 import { Category, Work, WorkImage } from '@/db/schema';
@@ -11,7 +10,9 @@ import { Category, Work, WorkImage } from '@/db/schema';
 const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
 
 type WorkCardProps = {
-  work: Work & { category: Category } & { workImages: WorkImage[] };
+  work: Work;
+  category: Category;
+  workImages: WorkImage[];
 };
 
 export function MdiEye(props: SVGProps<SVGSVGElement>) {
@@ -33,9 +34,12 @@ export function MdiEye(props: SVGProps<SVGSVGElement>) {
 
 export const revalidate = 60;
 
-export const WorkCard = async ({ work }: WorkCardProps) => {
-  const category = work.category;
-  const mainImage = work.workImages[0];
+export const WorkCard = async ({
+  work,
+  category,
+  workImages,
+}: WorkCardProps) => {
+  const mainImage = workImages[0];
   const redis = Redis.fromEnv();
   const viewCount =
     (await redis.get<number>(
@@ -49,19 +53,19 @@ export const WorkCard = async ({ work }: WorkCardProps) => {
   return (
     <>
       <figure
-        className={css({
-          position: 'relative',
-          w: 'full',
-          h: 'auto',
-          aspectRatio: 'wide',
-          rounded: 'xl',
-          overflow: 'hidden',
-          shadow: 'float',
-          transition: 'all 0.6s',
-          _groupHover: {
-            shadow: 'floatHover',
-          },
-        })}
+        className={css`
+          position: relative;
+          width: 100%;
+          height: auto;
+          aspect-ratio: 16 / 9;
+          border-radius: 0.75rem;
+          overflow: hidden;
+          box-shadow:
+            0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+            0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+            0px 0px 0px 1px rgba(23, 13, 13, 0.08);
+          transition: all 0.6s;
+        `}
       >
         <Image
           fill
@@ -69,34 +73,27 @@ export const WorkCard = async ({ work }: WorkCardProps) => {
           src={mainImage.imageUrl}
           alt={`${work.name}の画像`}
           sizes='100%'
-          className={css({
-            objectFit: 'cover',
-            transition: 'all 0.6s',
-            _groupHover: {
-              transform: 'scale(1.08)',
-            },
-          })}
+          className={css`
+            object-fit: cover;
+            transition: all 0.6s;
+          `}
         />
         <CardViewCount viewCount={viewCount} />
       </figure>
-      <h2
-        className={classNames(
-          notoSansJp500.className,
-          css({
-            fontSize: 'md',
-            mt: 12,
-            letterSpacing: 'lg',
-          }),
-        )}
+      <Heading
+        as='h2'
+        fontSize={'1rem'}
+        mt={12}
+        className={notoSansJp500.className}
       >
         {work.name}
-      </h2>
+      </Heading>
       <p
-        className={css({
-          color: 'secondary',
-          fontSize: 'xs',
-          mt: 4,
-        })}
+        className={css`
+          color: #777272;
+          font-size: 0.75rem;
+          margin-top: 4px;
+        `}
       >
         {category.name}
       </p>

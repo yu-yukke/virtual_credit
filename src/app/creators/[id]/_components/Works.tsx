@@ -8,7 +8,7 @@ type WorksProps = {
   works: (Work & { category: Category } & { workImages: WorkImage[] })[];
 };
 
-export const Works = async ({ works }: WorksProps) => {
+export const Works = ({ works }: WorksProps) => {
   return (
     <Grid
       as='ul'

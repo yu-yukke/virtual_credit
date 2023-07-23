@@ -1,1 +1,49 @@
-@layer reset, base, tokens, recipes, utilities;
+*,
+*::before,
+*::after {
+  color: #1e1a1a;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: #f8f9fa;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr min(1240px, calc(100% - 60px)) 1fr;
+}
+
+main * {
+  grid-column-start: 2;
+}
+
+header {
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr min(1240px, calc(100% - 60px)) 1fr;
+}
+
+header * {
+  grid-column-start: 2;
+}
+
+footer {
+  width: 100%;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr min(1240px, calc(100% - 60px)) 1fr;
+}
+
+footer * {
+  grid-column-start: 2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

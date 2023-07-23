@@ -1,9 +1,8 @@
 'use client';
 
+import { css } from '@kuma-ui/core';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { css } from '../../../../../styled-system/css';
-import { Property } from '../../../../../styled-system/types/csstype';
 
 import { SectionTitle } from './SectionTitle';
 import { WorkImage } from '@/db/schema';
@@ -25,15 +24,15 @@ export const WorkImages = ({ title, images }: WorkImageProps) => {
           transition: { delay: 0.3, duration: 0.5 },
         }}
         viewport={{ once: true }}
-        className={css({
-          w: 'full',
-          position: 'relative',
-          display: 'flex',
-          flexDir: 'column',
-          alignItems: 'center',
-          mt: 48,
-          gap: 48,
-        })}
+        className={css`
+          width: 100%;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 48px;
+          gap: 48px;
+        `}
       >
         {images.map((image) => (
           <Image
@@ -42,11 +41,11 @@ export const WorkImages = ({ title, images }: WorkImageProps) => {
             src={image.imageUrl}
             alt={`${title}の画像`}
             sizes='100%'
-            className={css({
-              objectFit: 'contain',
-              position: 'relative!' as Property.Position,
-              maxH: '560px',
-            })}
+            className={css`
+              object-fit: contain;
+              position: relative !important;
+              max-height: 560px;
+            `}
           />
         ))}
       </motion.div>

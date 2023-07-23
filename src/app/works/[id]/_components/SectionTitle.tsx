@@ -1,9 +1,9 @@
 'use client';
 
-import classNames from 'classnames';
+import { css } from '@kuma-ui/core';
+import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { Roboto_Condensed } from 'next/font/google';
-import { css } from '../../../../../styled-system/css';
 
 const robotoCondensed = Roboto_Condensed({
   style: 'normal',
@@ -21,14 +21,14 @@ export const SectionTitle = ({ title }: SectionTitleProps) => {
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
       viewport={{ once: true }}
-      className={classNames(
+      className={clsx(
         robotoCondensed.className,
-        css({
-          color: 'tertiary',
-          fontSize: 'xl',
-          letterSpacing: '0.38em',
-          textAlign: 'center',
-        }),
+        css`
+          color: #323232;
+          font-size: 1.125rem;
+          letter-spacing: 0.38em;
+          text-align: center;
+        `,
       )}
     >
       {title}
