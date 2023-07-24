@@ -162,10 +162,10 @@ export default async function Page({ params }: PageProps) {
                 {social.websiteUrl && (
                   <SocialLink href={social.websiteUrl} title='Website' />
                 )}
-                {social.twitterId && (
+                {social.xId && (
                   <SocialLink
-                    href={`https://twitter.com/${social.twitterId}`}
-                    title='Twitter'
+                    href={`https://twitter.com/${social.xId}`}
+                    title='X'
                   />
                 )}
                 {social.instagramId && (
