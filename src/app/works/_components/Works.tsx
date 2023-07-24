@@ -1,6 +1,7 @@
 import { Grid, css } from '@kuma-ui/core';
 import Link from 'next/link';
 
+import { CardViewCount } from '@/components/elements/CardViewCount';
 import { WorkCard } from '@/components/elements/WorkCard';
 import { Category, Work, WorkImage } from '@/db/schema';
 
@@ -27,7 +28,9 @@ export const Works = async ({ works }: WorksProps) => {
               work={work}
               category={work.category}
               workImages={work.workImages}
-            />
+            >
+              <CardViewCount work={work} />
+            </WorkCard>
           </Link>
         </li>
       ))}

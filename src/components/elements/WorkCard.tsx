@@ -1,10 +1,11 @@
-import { Heading, css } from '@kuma-ui/core';
-import { Redis } from '@upstash/redis';
+'use client';
+
+import { Box, Heading, css } from '@kuma-ui/core';
+import clsx from 'clsx';
 import { Noto_Sans_JP } from 'next/font/google';
 import Image from 'next/image';
-import { SVGProps } from 'react';
+import { SVGProps, useCallback, useState } from 'react';
 
-import { CardViewCount } from './CardViewCount';
 import { Category, Work, WorkImage } from '@/db/schema';
 
 const notoSansJp500 = Noto_Sans_JP({ weight: '500', subsets: ['latin'] });
@@ -13,6 +14,7 @@ type WorkCardProps = {
   work: Work;
   category: Category;
   workImages: WorkImage[];
+  children: React.ReactNode;
 };
 
 export function MdiEye(props: SVGProps<SVGSVGElement>) {
@@ -32,40 +34,44 @@ export function MdiEye(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export const revalidate = 60;
-
-export const WorkCard = async ({
+export const WorkCard = ({
   work,
   category,
   workImages,
+  children,
 }: WorkCardProps) => {
   const mainImage = workImages[0];
-  const redis = Redis.fromEnv();
-  const viewCount =
-    (await redis.get<number>(
-      [
-        'pageviews',
-        'projects',
-        `${process.env.NODE_ENV}/works-${work.id}`,
-      ].join(':'),
-    )) ?? 0;
+  const [isHover, setIsHover] = useState<boolean>(false);
+  const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    setIsHover(e.type == 'mouseenter');
+  }, []);
 
   return (
-    <>
+    <Box onMouseEnter={handleHover} onMouseLeave={handleHover}>
       <figure
-        className={css`
-          position: relative;
-          width: 100%;
-          height: auto;
-          aspect-ratio: 16 / 9;
-          border-radius: 0.75rem;
-          overflow: hidden;
-          box-shadow:
-            0px 2px 4px 0px rgba(23, 13, 13, 0.04),
-            0px 1px 2px -1px rgba(23, 13, 13, 0.08),
-            0px 0px 0px 1px rgba(23, 13, 13, 0.08);
-          transition: all 0.6s;
-        `}
+        className={clsx(
+          css`
+            position: relative;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow:
+              0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+              0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+              0px 0px 0px 1px rgba(23, 13, 13, 0.08);
+            transition: all 0.6s;
+          `,
+          isHover &&
+            css`
+              box-shadow:
+                0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+                0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+                0px 0px 0px 1px rgba(23, 13, 13, 0.08),
+                0px 2px 4px 0px rgba(23, 13, 13, 0.1);
+            `,
+        )}
       >
         <Image
           fill
@@ -73,18 +79,41 @@ export const WorkCard = async ({
           src={mainImage.imageUrl}
           alt={`${work.name}の画像`}
           sizes='100%'
-          className={css`
-            object-fit: cover;
-            transition: all 0.6s;
-          `}
+          className={clsx(
+            css`
+              object-fit: cover;
+              transition: all 0.6s;
+            `,
+            isHover &&
+              css`
+                transform: scale(1.08);
+              `,
+          )}
         />
-        <CardViewCount viewCount={viewCount} />
+        <Box
+          position={'absolute'}
+          bottom={12}
+          right={12}
+          transition={'all 0.6s'}
+          className={
+            isHover
+              ? css`
+                  opacity: 1;
+                `
+              : css`
+                  opacity: 0;
+                `
+          }
+        >
+          {children}
+        </Box>
       </figure>
       <Heading
         as='h2'
         fontSize={'1rem'}
         mt={12}
         className={notoSansJp500.className}
+        letterSpacing={1}
       >
         {work.name}
       </Heading>
@@ -97,6 +126,6 @@ export const WorkCard = async ({
       >
         {category.name}
       </p>
-    </>
+    </Box>
   );
 };

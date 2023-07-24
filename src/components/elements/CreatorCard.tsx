@@ -1,6 +1,10 @@
-import { Box, Heading, VStack, css } from '@kuma-ui/core';
+'use client';
+
+import { Box, HStack, Heading, Text, VStack, css } from '@kuma-ui/core';
+import clsx from 'clsx';
 import { Noto_Sans_JP } from 'next/font/google';
 import Image from 'next/image';
+import { useCallback, useState } from 'react';
 
 import { Job, JobMapping, User } from '@/db/schema';
 
@@ -12,6 +16,11 @@ type CreatorCardProps = {
 };
 
 export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
+  const [isHover, setIsHover] = useState<boolean>(false);
+  const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    setIsHover(e.type == 'mouseenter');
+  }, []);
+
   return (
     <Box
       width={'100%'}
@@ -20,14 +29,25 @@ export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
       p={20}
       borderRadius={'0.75rem'}
       overflow={'hidden'}
-      boxShadow={
-        '0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08)'
-      }
       transition={'all 0.6s'}
-      _hover={{
-        boxShadow:
-          '0px 2px 4px 0px rgba(23, 13, 13, 0.04), 0px 1px 2px -1px rgba(23, 13, 13, 0.08), 0px 0px 0px 1px rgba(23, 13, 13, 0.08), 0px 2px 4px 0px rgba(23, 13, 13, 0.1)',
-      }}
+      className={
+        isHover
+          ? css`
+              box-shadow:
+                0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+                0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+                0px 0px 0px 1px rgba(23, 13, 13, 0.08),
+                0px 2px 4px 0px rgba(23, 13, 13, 0.1);
+            `
+          : css`
+              box-shadow:
+                0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+                0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+                0px 0px 0px 1px rgba(23, 13, 13, 0.08);
+            `
+      }
+      onMouseEnter={handleHover}
+      onMouseLeave={handleHover}
     >
       <figure
         className={css`
@@ -50,10 +70,16 @@ export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
             src={creator.coverImageUrl}
             alt={`${creator.name}のカバー画像`}
             sizes='100%'
-            className={css`
-              object-fit: cover;
-              transition: all 0.6s;
-            `}
+            className={clsx(
+              css`
+                object-fit: cover;
+                transition: all 0.6s;
+              `,
+              isHover &&
+                css`
+                  transform: scale(1.08);
+                `,
+            )}
           />
         )}
       </figure>
@@ -85,25 +111,34 @@ export const CreatorCard = ({ creator, jobMappings }: CreatorCardProps) => {
             width={'100%'}
             textAlign={'center'}
             fontSize={'1rem'}
-            letterSpacing={0.06}
+            letterSpacing={1}
             className={notoSansJp500.className}
           >
             {creator.name}
           </Heading>
-          <p
-            className={css`
-              width: 100%;
-              font-size: 0.75rem;
-              text-align: center;
-              color: #777272;
-              word-break: keep-all;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-            `}
+          <HStack
+            as='ul'
+            width={'100%'}
+            textAlign={'center'}
+            wordBreak={'keep-all'}
+            alignItems={'center'}
+            justify={'center'}
+            flexWrap={'wrap'}
+            columnGap={8}
           >
-            {jobMappings.map((jobMap) => jobMap.job.name).join(', ')}
-          </p>
+            {jobMappings.map((jobMap) => (
+              <li key={jobMap.id}>
+                <Text
+                  as='span'
+                  color={'colors.text.secondary'}
+                  fontSize={'0.75rem'}
+                  letterSpacing={0.8}
+                >
+                  {jobMap.job.name}
+                </Text>
+              </li>
+            ))}
+          </HStack>
         </VStack>
       </VStack>
     </Box>
