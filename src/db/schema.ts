@@ -220,7 +220,9 @@ export const socials = mysqlTable(
   {
     id: int('id').autoincrement().primaryKey(),
     userId: int('user_id').notNull(),
+    websiteUrl: varchar('website_url', { length: 256 }),
     twitterId: varchar('twitter_id', { length: 256 }),
+    instagramId: varchar('instagram_id', { length: 256 }),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
   },
