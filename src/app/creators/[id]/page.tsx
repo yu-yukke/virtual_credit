@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 import { UsersContents } from './_components/UsersContents';
 import { Works } from './_components/Works';
 import { db } from '@/db';
-import { creator_mappings, job_mappings, users } from '@/db/schema';
+import { creator_mappings, job_mappings, socials, users } from '@/db/schema';
 
 type PageProps = {
   params: {
@@ -48,6 +48,41 @@ async function getCreatorsWorks(creatorId: number) {
   return await result.map((creatorMap) => creatorMap.work);
 }
 
+async function getSocial(creatorId: number) {
+  const result = await db
+    .select()
+    .from(socials)
+    .where(eq(socials.userId, creatorId));
+
+  return await result[0];
+}
+
+const SocialLink = ({ href, title }: { href: string; title: string }) => {
+  return (
+    <Link href={href} target='_blank'>
+      <Text
+        as='span'
+        fontSize={'0.875rem'}
+        letterSpacing={1}
+        color={'colors.text.secondary'}
+      >
+        {title}
+      </Text>
+      <Text
+        as='span'
+        ml={2}
+        display={'inline-block'}
+        fontSize={'0.875rem'}
+        letterSpacing={1}
+        color={'colors.text.secondary'}
+        transform={'rotate(-45deg)'}
+      >
+        →
+      </Text>
+    </Link>
+  );
+};
+
 export default async function Page({ params }: PageProps) {
   const creator = await getCreator(params.id);
 
@@ -57,6 +92,7 @@ export default async function Page({ params }: PageProps) {
 
   const works = await getCreatorsWorks(creator.id);
   const jobs = await getJobs(creator.id);
+  const social = await getSocial(creator.id);
 
   return (
     <div>
@@ -121,6 +157,25 @@ export default async function Page({ params }: PageProps) {
                 </li>
               ))}
             </HStack>
+            {social && (
+              <HStack mt={8} alignItems={'center'} gap={16}>
+                {social.websiteUrl && (
+                  <SocialLink href={social.websiteUrl} title='Website' />
+                )}
+                {social.twitterId && (
+                  <SocialLink
+                    href={`https://twitter.com/${social.twitterId}`}
+                    title='Twitter'
+                  />
+                )}
+                {social.instagramId && (
+                  <SocialLink
+                    href={`https://www.instagram.com/${social.instagramId}`}
+                    title='Instagram'
+                  />
+                )}
+              </HStack>
+            )}
           </VStack>
         </HStack>
       </Box>
