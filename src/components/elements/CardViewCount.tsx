@@ -1,11 +1,13 @@
 import { HStack, css } from '@kuma-ui/core';
+import { Redis } from '@upstash/redis/nodejs';
 import clsx from 'clsx';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Work } from '@/db/schema';
 
 const jakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
 type ViewCountProps = {
-  viewCount: number;
+  work: Work;
 };
 
 export function MdiEye() {
@@ -25,21 +27,25 @@ export function MdiEye() {
   );
 }
 
-// card用。重ねる画像に対してabsoluteで位置を取る
-export const CardViewCount = ({ viewCount }: ViewCountProps) => {
+export const CardViewCount = async ({ work }: ViewCountProps) => {
+  const redis = Redis.fromEnv();
+  const viewCount =
+    (await redis.get<number>(
+      [
+        'pageviews',
+        'projects',
+        `${process.env.NODE_ENV}/works-${work.id}`,
+      ].join(':'),
+    )) ?? 0;
+
   return (
     <HStack
       alignItems={'center'}
       gap={8}
-      position={'absolute'}
-      bottom={12}
-      right={12}
       px={12}
       py={6}
       borderRadius={'0.5rem'}
       bg={'rgba(32, 32, 30, 0.6)'}
-      transition={'all 0.3s'}
-      opacity={1}
     >
       <MdiEye />
       <span
