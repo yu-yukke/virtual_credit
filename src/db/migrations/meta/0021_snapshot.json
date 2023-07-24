@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "64f9282b-4cc6-429c-8db4-ed5210dd07d1",
-  "prevId": "2b1c05dc-2d10-420d-932a-3e88f31f25e9",
+  "id": "3d677d3f-46d9-4752-b6dc-8ec5341e70b0",
+  "prevId": "64f9282b-4cc6-429c-8db4-ed5210dd07d1",
   "tables": {
     "asset_mappings": {
       "name": "asset_mappings",
@@ -487,8 +487,8 @@
           "notNull": false,
           "autoincrement": false
         },
-        "twitter_id": {
-          "name": "twitter_id",
+        "x_id": {
+          "name": "x_id",
           "type": "varchar(256)",
           "primaryKey": false,
           "notNull": false,
