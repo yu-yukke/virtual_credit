@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "da562ca5-7e34-4aa5-ad42-2710c5d6f880",
-  "prevId": "295a2007-de4b-4f59-b14a-f37a6a689b2f",
+  "id": "64f9282b-4cc6-429c-8db4-ed5210dd07d1",
+  "prevId": "2b1c05dc-2d10-420d-932a-3e88f31f25e9",
   "tables": {
     "asset_mappings": {
       "name": "asset_mappings",
@@ -63,12 +63,16 @@
       "indexes": {
         "workId_idx": {
           "name": "workId_idx",
-          "columns": ["work_id"],
+          "columns": [
+            "work_id"
+          ],
           "isUnique": false
         },
         "assetId_idx": {
           "name": "assetId_idx",
-          "columns": ["asset_id"],
+          "columns": [
+            "asset_id"
+          ],
           "isUnique": false
         }
       },
@@ -262,12 +266,16 @@
       "indexes": {
         "userId_idx": {
           "name": "userId_idx",
-          "columns": ["userId"],
+          "columns": [
+            "userId"
+          ],
           "isUnique": false
         },
         "workId_idx": {
           "name": "workId_idx",
-          "columns": ["work_id"],
+          "columns": [
+            "work_id"
+          ],
           "isUnique": false
         }
       },
@@ -333,12 +341,16 @@
       "indexes": {
         "userId_idx": {
           "name": "userId_idx",
-          "columns": ["userId"],
+          "columns": [
+            "userId"
+          ],
           "isUnique": false
         },
         "jobId_idx": {
           "name": "jobId_idx",
-          "columns": ["job_id"],
+          "columns": [
+            "job_id"
+          ],
           "isUnique": false
         }
       },
@@ -468,8 +480,22 @@
           "notNull": true,
           "autoincrement": false
         },
+        "website_url": {
+          "name": "website_url",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "twitter_id": {
           "name": "twitter_id",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "instagram_id": {
+          "name": "instagram_id",
           "type": "varchar(256)",
           "primaryKey": false,
           "notNull": false,
@@ -496,7 +522,9 @@
       "indexes": {
         "userId_idx": {
           "name": "userId_idx",
-          "columns": ["user_id"],
+          "columns": [
+            "user_id"
+          ],
           "isUnique": false
         }
       },
@@ -562,12 +590,16 @@
       "indexes": {
         "workId_idx": {
           "name": "workId_idx",
-          "columns": ["work_id"],
+          "columns": [
+            "work_id"
+          ],
           "isUnique": false
         },
         "tagId_idx": {
           "name": "tagId_idx",
-          "columns": ["tag_id"],
+          "columns": [
+            "tag_id"
+          ],
           "isUnique": false
         }
       },
@@ -701,7 +733,9 @@
       "indexes": {
         "clerkId_idx": {
           "name": "clerkId_idx",
-          "columns": ["clerk_id"],
+          "columns": [
+            "clerk_id"
+          ],
           "isUnique": true
         }
       },
@@ -761,7 +795,9 @@
       "indexes": {
         "workId_idx": {
           "name": "workId_idx",
-          "columns": ["work_id"],
+          "columns": [
+            "work_id"
+          ],
           "isUnique": false
         }
       },
@@ -820,7 +856,9 @@
       "indexes": {
         "categoryId_idx": {
           "name": "categoryId_idx",
-          "columns": ["category_id"],
+          "columns": [
+            "category_id"
+          ],
           "isUnique": false
         }
       },
