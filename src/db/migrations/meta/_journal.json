@@ -1,13 +1,1 @@
-{
-  "version": "5",
-  "dialect": "mysql",
-  "entries": [
-    {
-      "idx": 18,
-      "version": "5",
-      "when": 1688440643993,
-      "tag": "0018_easy_union_jack",
-      "breakpoints": true
-    }
-  ]
-}
+{"version":"5","dialect":"mysql","entries":[{"idx":20,"version":"5","when":1690169716442,"tag":"0020_late_brother_voodoo","breakpoints":true}]}
