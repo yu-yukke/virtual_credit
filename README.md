@@ -126,6 +126,18 @@ Vercel が preview デプロイしてくれるからチェック（DB はまだ�
 
 Vercel が production デプロイしてくれる
 
+### コミットメッセージの統一
+
+[git-cz](https://github.com/streamich/git-cz)インストール
+
+コミット時に、`git commit`の代わりに
+
+```bash
+git cz
+```
+
+で適切なprefixを選択してコミットメッセージ入力
+
 ## 本番環境チェックしたい場合
 
 ### Next.js のビルド
