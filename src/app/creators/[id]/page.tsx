@@ -1,5 +1,4 @@
 import { Box, HStack, Heading, Text, VStack, css } from '@kuma-ui/core';
-import { eq } from 'drizzle-orm';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';

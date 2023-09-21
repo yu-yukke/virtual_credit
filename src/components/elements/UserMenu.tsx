@@ -1,6 +1,5 @@
 import { SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { Box, HStack } from '@kuma-ui/core';
-import { eq } from 'drizzle-orm';
 import Image from 'next/image';
 
 import { SignInBtn } from './SignInBtn';

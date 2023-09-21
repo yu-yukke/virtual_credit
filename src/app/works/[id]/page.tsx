@@ -1,5 +1,4 @@
 import { VStack } from '@kuma-ui/core';
-import { desc, eq } from 'drizzle-orm';
 
 import { Assets } from './_components/Assets';
 import { Description } from './_components/Description';
