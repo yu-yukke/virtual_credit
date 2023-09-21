@@ -8,10 +8,16 @@
 
 - Vercel
 
+### UIコンポーネント
+- Kuma-ui
+
 ### DB関係
 
 - Prisma
 - Supabase
+
+### Redis
+- Upstash
 
 ### node
 
@@ -41,7 +47,7 @@ Clerk の Webhook 用に ngrok で URL を払い出している
 ### スキーマ定義
 
 ```bash
-/schema/schema.prisma
+/prisma/schema.prisma
 ```
 
 型定義もしているのでここからインポートして型チェックしながら開発
