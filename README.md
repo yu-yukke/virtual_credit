@@ -16,14 +16,14 @@
 ### node
 
 - 18.16.0（Volta）
-- パッケージ管理は bun
+- パッケージ管理は pnpm
 
 ## 開発環境
 
 ### 起動
 
 ```bash
-bun run dev
+pnpm run dev
 ```
 
 ### Webhook
@@ -49,19 +49,19 @@ Clerk の Webhook 用に ngrok で URL を払い出している
 ### マイグレーションファイル生成
 
 ```bash
-bun run db:generate
+pnpm run db:generate
 ```
 
 #### 1 つ前のマイグレーションファイルを削除
 
 ```bash
-bun run db:drop
+pnpm run db:drop
 ```
 
 ### スキーマ反映
 
 ```bash
-bun run db:push
+pnpm run db:push
 ```
 
 Planet Scale の dev ブランチへマイグレーションファイルを元に反映
@@ -69,7 +69,7 @@ Planet Scale の dev ブランチへマイグレーションファイルを元�
 ### seed 投入
 
 ```bash
-bun run db:seed
+pnpm run db:seed
 ```
 
 ## デザイン
@@ -85,13 +85,13 @@ bun run db:seed
 #### マイグレーションファイル生成
 
 ```bash
-bun run db:generate
+pnpm run db:generate
 ```
 
 #### 1 つ前のマイグレーションファイルを削除
 
 ```bash
-bun run db:drop
+pnpm run db:drop
 ```
 
 これしないとマイグレーションこけるので注意
@@ -99,7 +99,7 @@ bun run db:drop
 #### スキーマ反映
 
 ```bash
-bun run db:push
+pnpm run db:push
 ```
 
 ### 2-b. develop ブランチへ PR
@@ -109,7 +109,7 @@ bun run db:push
 ### 4. スキーマ変更があれば Planet Scale の main ブランチへ dev からデプロイリクエストを作成
 
 ```bash
-bun run psdeploy
+pnpm run psdeploy
 ```
 
 を叩くか Planet Scale ダッシュボードから作成
@@ -143,8 +143,8 @@ git cz
 ### Next.js のビルド
 
 ```bash
-bun run build
-bun run start
+pnpm run build
+pnpm run start
 ```
 
 localhost で確認できる
