@@ -2,7 +2,7 @@ import { IncomingHttpHeaders } from 'http';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { Webhook, WebhookRequiredHeaders } from 'svix';
-import { db } from '@/db';
+
 import { NewUser, users } from '@/db/schema';
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || '';

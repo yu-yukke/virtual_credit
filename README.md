@@ -8,10 +8,16 @@
 
 - Vercel
 
-### RDBMS
+### UIコンポーネント
+- Kuma-ui
 
-- Drizzle
-- Planet Scale
+### DB関係
+
+- Prisma
+- Supabase
+
+### Redis
+- Upstash
 
 ### node
 
@@ -41,40 +47,27 @@ Clerk の Webhook 用に ngrok で URL を払い出している
 ### スキーマ定義
 
 ```bash
-/src/db/schema.ts
+/prisma/schema.prisma
 ```
 
 型定義もしているのでここからインポートして型チェックしながら開発
 
-### マイグレーションファイル生成
-
-```bash
-pnpm run db:generate
-```
-
-#### 1 つ前のマイグレーションファイルを削除
-
-```bash
-pnpm run db:drop
-```
-
 ### スキーマ反映
 
 ```bash
-pnpm run db:push
+pnpm run prisma:migrate
 ```
 
-Planet Scale の dev ブランチへマイグレーションファイルを元に反映
+`prisma generate`は`predev`と`prebuild`に指定しているので勝手にやってくれる
 
-### seed 投入
+## データベース
 
-```bash
-pnpm run db:seed
-```
+データベース構造 is [here](https://lucid.app/lucidchart/5f989d94-1574-4d90-b2ba-2478c63ab288/edit?view_items=BtRpwuz9_HyT&invitationId=inv_d592b776-77b6-476a-8f62-69e03b73be40)
+
 
 ## デザイン
 
-デザインプロトタイプ is [here](https://www.figma.com/file/1URfhnM4j8R6Pyq74SHoTc/%E7%84%A1%E9%A1%8C?type=design&node-id=61%3A892&mode=design&t=JxhDdgWsklkyUShF-1)
+デザインプロトタイプ is [here](https://www.figma.com/file/1URfhnM4j8R6Pyq74SHoTc/%E7%84%A1%E9%A1%8C?type=design&node-id=0%3A1&mode=design&t=kwItEyr2IbDZMy33-1)
 
 ## 開発ワークフロー
 
@@ -82,49 +75,35 @@ pnpm run db:seed
 
 ### 2-a. スキーマに変更がある場合
 
-#### マイグレーションファイル生成
+#### スキーマを反映
 
 ```bash
-pnpm run db:generate
-```
-
-#### 1 つ前のマイグレーションファイルを削除
-
-```bash
-pnpm run db:drop
-```
-
-これしないとマイグレーションこけるので注意
-
-#### スキーマ反映
-
-```bash
-pnpm run db:push
+pnpm run prisma:migrate
 ```
 
 ### 2-b. develop ブランチへ PR
 
 ### 3. ある程度開発まとまるまで develop ブランチからはマージしない
 
-### 4. スキーマ変更があれば Planet Scale の main ブランチへ dev からデプロイリクエストを作成
-
-```bash
-pnpm run psdeploy
-```
-
-を叩くか Planet Scale ダッシュボードから作成
-
-### 5. デプロイリクエストを承認
-
-Planet Scale ダッシュボードから承認 → main ブランチへマージ
-
-### 6. develop ブランチから main ブランチへ PR
+### 4. develop ブランチから main ブランチへ PR
 
 Vercel が preview デプロイしてくれるからチェック（DB はまだ本番と共通だから INSERT 系は禁止）
 
-### 7. 問題なければ main にマージ
+### 5. 問題なければ main にマージ
 
 Vercel が production デプロイしてくれる
+
+### コミットメッセージの統一
+
+[git-cz](https://github.com/streamich/git-cz)インストール
+
+コミット時に、`git commit`の代わりに
+
+```bash
+git cz
+```
+
+で適切なprefixを選択してコミットメッセージ入力
 
 ## 本番環境チェックしたい場合
 
