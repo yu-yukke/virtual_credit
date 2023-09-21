@@ -5,19 +5,13 @@ import Image from 'next/image';
 
 import { SignInBtn } from './SignInBtn';
 import { SignUpBtn } from './SignUpBtn';
-import { db } from '@/db';
-import { users } from '@/db/schema';
 
 type UserMenuProps = {
   userId: string | null;
 };
 
 export const UserMenu = async ({ userId }: UserMenuProps) => {
-  const user = userId
-    ? await db.query.users.findFirst({
-        where: eq(users.clerkId, userId),
-      })
-    : null;
+  const user = null
 
   return (
     <>
