@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "predev": "prisma generate",
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "prebuild": "prisma generate",
@@ -13,8 +12,8 @@
     "lint:fix": "next lint --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "format:check": "eslint-config-prettier 'src/**/*.{js,jsx,ts,tsx}'",
-    "prisma:migrate": "pnpm with-env prisma migrate dev --name init",
-    "prisma:studio": "pnpm with-env prisma studio",
+    "prisma:migrate": "bun with-env prisma migrate dev --name init",
+    "prisma:studio": "bun with-env prisma studio",
     "with-env": "dotenv -e .env.development.local --"
   },
   "dependencies": {
