@@ -22,14 +22,14 @@
 ### node
 
 - 18.16.0（Volta）
-- パッケージ管理は pnpm
+- パッケージ管理は bun
 
 ## 開発環境
 
 ### 起動
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 ### Webhook
@@ -55,7 +55,7 @@ Clerk の Webhook 用に ngrok で URL を払い出している
 ### スキーマ反映
 
 ```bash
-pnpm run prisma:migrate
+bun run prisma:migrate
 ```
 
 `prisma generate`は`predev`と`prebuild`に指定しているので勝手にやってくれる
@@ -78,7 +78,7 @@ pnpm run prisma:migrate
 #### スキーマを反映
 
 ```bash
-pnpm run prisma:migrate
+bun run prisma:migrate
 ```
 
 ### 2-b. develop ブランチへ PR
@@ -110,8 +110,8 @@ git cz
 ### Next.js のビルド
 
 ```bash
-pnpm run build
-pnpm run start
+bun run build
+bun run start
 ```
 
 localhost で確認できる
