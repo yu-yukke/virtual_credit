@@ -19,16 +19,24 @@ model UserAccount {
 
   // has one
   social               Social?
-  anonymousUserAccount AnonymousUserAccount? @relation("AnonymousUserAccount")
+  anonymousUserAccount AnonymousUserAccount? @relation("anonymousUserAccount")
 
   // has many
-  histories  UserAccountHistory[]
-  userSkills UserSkill[]          @relation("UserSkills")
+  histories      UserAccountHistory[]
+  userSkills     UserSkill[]          @relation("userSkills")
+  likes          Like[]
+  userCopyrights UserCopyright[]      @relation("userCopyrights")
 
   // created log
-  createdSkills                Skill[]
-  createdUserSkills            UserSkill[]            @relation("CreatedUserSkills")
-  createdAnonymousUserAccounts AnonymousUserAccount[] @relation("CreatedAnonymousUserAccounts")
+  createdSkills                  Skill[]
+  createdUserSkills              UserSkill[]              @relation("createdUserSkills")
+  createdAnonymousUserAccounts   AnonymousUserAccount[]   @relation("createdAnonymousUserAccounts")
+  createdWorks                   Work[]                   @relation("createdWorks")
+  createdCategories              Category[]
+  createdWorkCategories          WorkCategory[]
+  createdCopyrights              Copyright[]
+  createdUserCopyrights          UserCopyright[]          @relation("createdUserCopyrights")
+  createdAnonymousUserCopyrights AnonymousUserCopyright[]
 
   @@index([deletedAt])
   @@map("user_accounts")
@@ -112,11 +120,11 @@ model UserSkill {
   createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // belongs to
-  userAccount UserAccount @relation("UserSkills", fields: [userAccountId], references: [id], onDelete: Cascade)
+  userAccount UserAccount @relation("userSkills", fields: [userAccountId], references: [id], onDelete: Cascade)
   skill       Skill       @relation(fields: [skillId], references: [id], onDelete: Cascade)
 
   // created log
-  createdBy UserAccount? @relation("CreatedUserSkills", fields: [createdById], references: [id], onDelete: SetNull)
+  createdBy UserAccount? @relation("createdUserSkills", fields: [createdById], references: [id], onDelete: SetNull)
 
   @@id([userAccountId, skillId])
   @@index([userAccountId, skillId])
@@ -133,10 +141,13 @@ model AnonymousUserAccount {
   createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // belongs to
-  userAccount UserAccount? @relation("AnonymousUserAccount", fields: [userAccountId], references: [id], onDelete: SetNull)
+  userAccount UserAccount? @relation("anonymousUserAccount", fields: [userAccountId], references: [id], onDelete: SetNull)
+
+  // has many
+  anonymousUserCopyrights AnonymousUserCopyright[]
 
   // created log
-  createdBy UserAccount? @relation("CreatedAnonymousUserAccounts", fields: [createdById], references: [id], onDelete: SetNull)
+  createdBy UserAccount? @relation("createdAnonymousUserAccounts", fields: [createdById], references: [id], onDelete: SetNull)
 
   @@index([name])
   @@map("anonymous_user_account")
@@ -152,4 +163,160 @@ model ReleaseNote {
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   @@map("release_notes")
+}
+
+// 作品
+// ***************************************
+model Work {
+  id          String    @id @default(uuid())
+  createdById String?   @map("created_by_id")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  deletedAt   DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  // has many
+  workHistories  WorkHistory[]
+  workCategories WorkCategory[]
+  likes          Like[]
+  copyrights     Copyright[]
+
+  // created log
+  createdBy UserAccount? @relation("createdWorks", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([deletedAt])
+  @@map("works")
+}
+
+// 作品履歴
+// ***************************************
+model WorkHistory {
+  id          String   @id @default(uuid())
+  workId      String   @map("work_id")
+  title       String
+  description String
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // belongs to
+  work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  @@index([title, published, workId])
+  @@map("work_histories")
+}
+
+// いいね
+// ***************************************
+model Like {
+  userAccountId String    @map("user_account_id")
+  workId        String    @map("work_id")
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  deletedAt     DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  // belongs to
+  userAccount UserAccount @relation(fields: [userAccountId], references: [id], onDelete: Cascade)
+  work        Work        @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  @@id([userAccountId, workId])
+  @@index([userAccountId, workId])
+  @@map("likes")
+}
+
+// カテゴリー
+// ***************************************
+model Category {
+  id          String   @id @default(uuid())
+  name        String
+  createdById String?  @map("created_by_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // has many
+  workCategories WorkCategory[]
+
+  // created log
+  createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([name])
+  @@map("categories")
+}
+
+// 作品 - カテゴリー紐づけ
+// ***************************************
+model WorkCategory {
+  workId      String   @map("work_id")
+  categoryId  String   @map("category_id")
+  createdById String?  @map("created_by_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // belongs to
+  work     Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  // created log
+  createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@id([workId, categoryId])
+  @@index([workId, categoryId])
+  @@map("work_categories")
+}
+
+// 作品クレジット
+// ***************************************
+model Copyright {
+  id          String   @id @default(uuid())
+  workId      String   @map("work_id")
+  name        String
+  createdById String?  @map("created_by_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // belongs to
+  work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  // has many
+  userCopyrights          UserCopyright[]
+  anonymousUserCopyrights AnonymousUserCopyright[]
+
+  // created log
+  createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([name])
+  @@map("copyrights")
+}
+
+// 作品クレジット - ユーザー紐づけ
+// ***************************************
+model UserCopyright {
+  userAccountId String   @map("user_account_id")
+  copyrightId   String   @map("copyright_id")
+  createdById   String?  @map("created_by_id")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // belongs to
+  userAccount UserAccount @relation("userCopyrights", fields: [userAccountId], references: [id], onDelete: Cascade)
+  copyright   Copyright   @relation(fields: [copyrightId], references: [id], onDelete: Cascade)
+
+  // created log
+  createdBy UserAccount? @relation("createdUserCopyrights", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@id([userAccountId, copyrightId])
+  @@index([userAccountId, copyrightId])
+  @@map("user_copyrights")
+}
+
+// 作品クレジット - 未登録ユーザー紐づけ
+// ***************************************
+model AnonymousUserCopyright {
+  anonymousUserAccountId String   @map("anonymous_user_account_id")
+  copyrightId            String   @map("copyright_id")
+  createdById            String?  @map("created_by_id")
+  createdAt              DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // belongs to
+  anonymousUserAccount AnonymousUserAccount @relation(fields: [anonymousUserAccountId], references: [id], onDelete: Cascade)
+  copyright            Copyright            @relation(fields: [copyrightId], references: [id], onDelete: Cascade)
+
+  // created log
+  createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@id([anonymousUserAccountId, copyrightId])
+  @@index([anonymousUserAccountId, copyrightId])
+  @@map("anonymous_user_copyrights")
 }
