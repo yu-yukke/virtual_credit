@@ -37,6 +37,10 @@ model UserAccount {
   createdCopyrights              Copyright[]
   createdUserCopyrights          UserCopyright[]          @relation("createdUserCopyrights")
   createdAnonymousUserCopyrights AnonymousUserCopyright[]
+  createdTags                    Tag[]
+  createdWorkTags                WorkTag[]
+  createdWorkRelationCategories  WorkRelationCategory[]
+  createdWorkRelations           WorkRelation[]
 
   @@index([deletedAt])
   @@map("user_accounts")
@@ -174,10 +178,13 @@ model Work {
   deletedAt   DateTime? @map("deleted_at") @db.Timestamptz(3)
 
   // has many
-  workHistories  WorkHistory[]
-  workCategories WorkCategory[]
-  likes          Like[]
-  copyrights     Copyright[]
+  workHistories          WorkHistory[]
+  workCategories         WorkCategory[]
+  workTags               WorkTag[]
+  likes                  Like[]
+  copyrights             Copyright[]
+  workImages             WorkImage[]
+  workRelationCategories WorkRelationCategory[]
 
   // created log
   createdBy UserAccount? @relation("createdWorks", fields: [createdById], references: [id], onDelete: SetNull)
@@ -220,6 +227,59 @@ model Like {
   @@map("likes")
 }
 
+// 作品画像
+// ***************************************
+model WorkImage {
+  id        String    @id @default(uuid())
+  workId    String    @map("work_id")
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  // belongs to
+  work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  @@index([workId])
+  @@map("work_images")
+}
+
+// タグ
+// ***************************************
+model Tag {
+  id          String   @id @default(uuid())
+  name        String
+  createdById String?  @map("created_by_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // has many
+  workTags WorkTag[]
+
+  // created log
+  createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([name])
+  @@map("tags")
+}
+
+// 作品 - タグ紐づけ
+// ***************************************
+model WorkTag {
+  workId      String   @map("work_id")
+  tagId       String   @map("tag_id")
+  createdById String?  @map("created_by_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // belongs to
+  work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  // created log
+  createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@id([workId, tagId])
+  @@index([workId, tagId])
+  @@map("work_tags")
+}
+
 // カテゴリー
 // ***************************************
 model Category {
@@ -256,6 +316,47 @@ model WorkCategory {
   @@id([workId, categoryId])
   @@index([workId, categoryId])
   @@map("work_categories")
+}
+
+// 作品関連リンクカテゴリー
+// ***************************************
+model WorkRelationCategory {
+  id          String   @id @default(uuid())
+  workId      String   @map("work_id")
+  name        String
+  createdById String?  @map("created_by_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // belongs to
+  work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  // has many
+  workRelations WorkRelation[]
+
+  // created log
+  createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([workId, name])
+  @@map("work_relation_categories")
+}
+
+// 作品関連リンク
+// ***************************************
+model WorkRelation {
+  id                     String   @id @default(uuid())
+  workRelationCategoryId String   @map("work_relation_category_id")
+  name                   String
+  createdById            String?  @map("created_by_id")
+  createdAt              DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  // belongs to
+  workRelationCategory WorkRelationCategory @relation(fields: [workRelationCategoryId], references: [id], onDelete: Cascade)
+
+  // created log
+  createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([workRelationCategoryId, name])
+  @@map("work_relations")
 }
 
 // 作品クレジット
