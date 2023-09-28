@@ -246,7 +246,7 @@ model WorkImage {
 // ***************************************
 model Tag {
   id          String   @id @default(uuid())
-  name        String
+  name        String   @unique
   createdById String?  @map("created_by_id")
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
@@ -284,7 +284,7 @@ model WorkTag {
 // ***************************************
 model Category {
   id          String   @id @default(uuid())
-  name        String
+  name        String   @unique
   createdById String?  @map("created_by_id")
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
@@ -323,7 +323,7 @@ model WorkCategory {
 model WorkRelationCategory {
   id          String   @id @default(uuid())
   workId      String   @map("work_id")
-  name        String
+  name        String   @unique
   createdById String?  @map("created_by_id")
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
@@ -364,7 +364,7 @@ model WorkRelation {
 model Copyright {
   id          String   @id @default(uuid())
   workId      String   @map("work_id")
-  name        String
+  name        String   @unique
   createdById String?  @map("created_by_id")
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
