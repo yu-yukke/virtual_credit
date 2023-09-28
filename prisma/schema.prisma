@@ -61,7 +61,10 @@ model UserAccountHistory {
   // belongs to
   userAccount UserAccount @relation(fields: [userAccountId], references: [id], onDelete: Cascade)
 
-  @@index([name, slug, published, userAccountId])
+  @@index([name])
+  @@index([slug])
+  @@index([published])
+  @@index([userAccountId])
   @@map("user_account_histories")
 }
 
@@ -95,6 +98,7 @@ model SocialHistory {
   // belongs to
   social Social @relation(fields: [socialId], references: [id], onDelete: Cascade)
 
+  @@index([socialId])
   @@map("social_histories")
 }
 
@@ -206,17 +210,18 @@ model WorkHistory {
   // belongs to
   work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
 
-  @@index([title, published, workId])
+  @@index([title])
+  @@index([published])
+  @@index([workId])
   @@map("work_histories")
 }
 
 // いいね
 // ***************************************
 model Like {
-  userAccountId String    @map("user_account_id")
-  workId        String    @map("work_id")
-  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
-  deletedAt     DateTime? @map("deleted_at") @db.Timestamptz(3)
+  userAccountId String   @map("user_account_id")
+  workId        String   @map("work_id")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // belongs to
   userAccount UserAccount @relation(fields: [userAccountId], references: [id], onDelete: Cascade)
@@ -239,6 +244,7 @@ model WorkImage {
   work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
 
   @@index([workId])
+  @@index([deletedAt])
   @@map("work_images")
 }
 
@@ -336,7 +342,8 @@ model WorkRelationCategory {
   // created log
   createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
 
-  @@index([workId, name])
+  @@index([workId])
+  @@index([name])
   @@map("work_relation_categories")
 }
 
@@ -355,7 +362,8 @@ model WorkRelation {
   // created log
   createdBy UserAccount? @relation(fields: [createdById], references: [id], onDelete: SetNull)
 
-  @@index([workRelationCategoryId, name])
+  @@index([workRelationCategoryId])
+  @@index([name])
   @@map("work_relations")
 }
 
