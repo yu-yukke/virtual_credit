@@ -1,6 +1,5 @@
 'use client';
 
-import { SignedOut } from '@clerk/nextjs';
 import { Box, HStack, css } from '@kuma-ui/core';
 import clsx from 'clsx';
 import { Inter } from 'next/font/google';
@@ -104,30 +103,6 @@ export const GlobalNavigation = () => {
           </li>
         ))}
       </HStack>
-      <SignedOut>
-        <Box
-          overflow={'hidden'}
-          gap={6}
-          transition={'all 1.5s'}
-          className={
-            position > breakPosition
-              ? css`
-                  width: auto;
-                  height: auto;
-                  visibility: visible;
-                  opacity: 1;
-                `
-              : css`
-                  width: 0;
-                  height: 0;
-                  visibility: hidden;
-                  opacity: 0;
-                `
-          }
-        >
-          <SignUpBtn isFullRounded />
-        </Box>
-      </SignedOut>
     </Box>
   );
 };

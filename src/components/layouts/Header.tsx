@@ -1,4 +1,3 @@
-import { auth } from '@clerk/nextjs';
 import { HStack, Heading } from '@kuma-ui/core';
 import Link from 'next/link';
 
@@ -6,8 +5,6 @@ import { GlobalNavigation } from '../elements/GlobalNavigation';
 import { UserMenu } from '../elements/UserMenu';
 
 export const Header = () => {
-  const { userId } = auth();
-
   return (
     <header>
       <HStack
@@ -27,7 +24,7 @@ export const Header = () => {
           </Heading>
         </Link>
         <GlobalNavigation />
-        <UserMenu userId={userId} />
+        <UserMenu />
       </HStack>
     </header>
   );

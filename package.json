@@ -17,8 +17,6 @@
     "with-env": "dotenv -e .env.development.local --"
   },
   "dependencies": {
-    "@clerk/localizations": "^1.26.0",
-    "@clerk/nextjs": "^4.24.0",
     "@kuma-ui/core": "^1.4.1",
     "@prisma/client": "5.3.1",
     "@supabase/supabase-js": "^2.36.0",
@@ -34,9 +32,7 @@
     "next": "13.4.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "svix": "^1.12.0",
-    "typescript": "5.1.6",
-    "undici": "^5.25.1"
+    "typescript": "5.1.6"
   },
   "devDependencies": {
     "@kuma-ui/next-plugin": "^1.1.9",

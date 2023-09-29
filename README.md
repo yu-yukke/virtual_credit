@@ -9,6 +9,7 @@
 - Vercel
 
 ### UIコンポーネント
+
 - Kuma-ui
 
 ### DB関係
@@ -17,6 +18,7 @@
 - Supabase
 
 ### Redis
+
 - Upstash
 
 ### node
@@ -31,16 +33,6 @@
 ```bash
 bun run dev
 ```
-
-### Webhook
-
-```bash
-ngrok http 3000
-```
-
-Clerk の Webhook 用に ngrok で URL を払い出している
-
-無料プランだと毎度 URL が変更されるので dev 環境で Clerk の認証周りいじる時は URL 払い出して Clerk の WebhookURL を変更すること
 
 ## DB
 
@@ -63,7 +55,6 @@ bun run prisma:migrate
 ## データベース
 
 データベース構造 is [here](https://lucid.app/lucidchart/5f989d94-1574-4d90-b2ba-2478c63ab288/edit?view_items=BtRpwuz9_HyT&invitationId=inv_d592b776-77b6-476a-8f62-69e03b73be40)
-
 
 ## デザイン
 
