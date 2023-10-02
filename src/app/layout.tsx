@@ -1,14 +1,13 @@
 import './globals.css';
 import './reset.css';
 
-import { jaJP } from '@clerk/localizations';
-import { ClerkProvider } from '@clerk/nextjs';
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry';
 import { Noto_Sans_JP } from 'next/font/google';
-import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
 
+import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
 import { Footer } from '@/components/layouts/Footer';
 import { Header } from '@/components/layouts/Header';
+import { NextAuthProvider } from '@/providers/nextAuth';
 
 const notoSansJp = Noto_Sans_JP({ weight: '400', subsets: ['latin'] });
 
@@ -23,29 +22,17 @@ export const metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <ClerkProvider
-      localization={jaJP}
-      appearance={{
-        variables: {
-          colorPrimary: 'blue',
-          colorDanger: 'red',
-          colorSuccess: 'green',
-          colorWarning: 'yellow',
-          colorText: 'black',
-          colorTextSecondary: 'gray',
-        },
-      }}
-    >
-      <html lang='ja'>
-        <GoogleAnalytics />
-        <body className={notoSansJp.className}>
-          <KumaRegistry>
+    <html lang='ja'>
+      <GoogleAnalytics />
+      <body className={notoSansJp.className}>
+        <KumaRegistry>
+          <NextAuthProvider>
             <Header />
             <main>{children}</main>
             <Footer />
-          </KumaRegistry>
-        </body>
-      </html>
-    </ClerkProvider>
+          </NextAuthProvider>
+        </KumaRegistry>
+      </body>
+    </html>
   );
 }
