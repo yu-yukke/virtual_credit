@@ -1,7 +1,10 @@
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import type { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import prisma from '../prisma';
 
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   debug: process.env.NODE_ENV !== 'production',
   providers: [
     GoogleProvider({
@@ -9,5 +12,9 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
   ],
-  secret: 'secret',
+  // TODO: 個別にページ設定
+  pages: {
+    error: '/auth/error',
+    newUser: '/auth/new-user',
+  },
 };
