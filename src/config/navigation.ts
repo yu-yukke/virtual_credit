@@ -1,4 +1,4 @@
-import { NavigationConfig } from '@/types/Navigation';
+import { NavigationConfig } from '@/types/navigation';
 
 export const globalNavConfig: NavigationConfig = {
   navItems: [

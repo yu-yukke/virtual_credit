@@ -3,10 +3,11 @@ import './reset.css';
 
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry';
 import { Noto_Sans_JP } from 'next/font/google';
-import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
 
+import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
 import { Footer } from '@/components/layouts/Footer';
 import { Header } from '@/components/layouts/Header';
+import { NextAuthProvider } from '@/providers/NextAuthProvider';
 
 const notoSansJp = Noto_Sans_JP({ weight: '400', subsets: ['latin'] });
 
@@ -25,9 +26,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <GoogleAnalytics />
       <body className={notoSansJp.className}>
         <KumaRegistry>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <NextAuthProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </NextAuthProvider>
         </KumaRegistry>
       </body>
     </html>
