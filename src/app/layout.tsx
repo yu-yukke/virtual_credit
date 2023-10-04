@@ -7,7 +7,7 @@ import { Noto_Sans_JP } from 'next/font/google';
 import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
 import { Footer } from '@/components/layouts/Footer';
 import { Header } from '@/components/layouts/Header';
-import { NextAuthProvider } from '@/providers/nextAuth';
+import { NextAuthProvider } from '@/providers/next-auth';
 
 const notoSansJp = Noto_Sans_JP({ weight: '400', subsets: ['latin'] });
 

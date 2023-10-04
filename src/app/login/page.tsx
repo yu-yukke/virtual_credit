@@ -3,7 +3,7 @@
 import { Grid } from '@kuma-ui/core';
 import { useSession, signOut } from 'next-auth/react';
 
-import { GoogleButton } from '@/components/elements/buttons';
+import { GoogleButton } from '@/components/elements/Buttons';
 
 export default function Login() {
   const { data: session } = useSession();
