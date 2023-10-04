@@ -41,6 +41,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.1.0",
     "@kuma-ui/next-plugin": "^1.1.9",
     "@types/gtag.js": "^0.0.12",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
