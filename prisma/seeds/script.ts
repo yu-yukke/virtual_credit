@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { releaseNote } from './release-note';
+import { user } from './user';
 
 const prisma = new PrismaClient();
 
@@ -14,6 +15,7 @@ const main = async () => {
   await prisma.tag.deleteMany();
   await prisma.releaseNote.deleteMany();
 
+  await user();
   await releaseNote();
 
   console.log(`Seeding finished.`);
