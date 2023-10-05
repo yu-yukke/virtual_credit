@@ -6,7 +6,7 @@ export const randFromArray = <T>(array: T[]): T => {
   return array[index];
 };
 
-export const randBoolean = (): boolean => {
-  // 80%の確率でtrueを返す
-  return Math.random() < 0.8;
+export const randBoolean = (probability: number): boolean => {
+  // (与えた数字 * 100)% でtrueを返す
+  return Math.random() < probability;
 };
