@@ -3,6 +3,7 @@ import { releaseNote } from './release-note';
 import { skill } from './skill';
 import { social } from './social';
 import { user } from './user';
+import { userSkill } from './user-skill';
 
 const prisma = new PrismaClient();
 
@@ -20,6 +21,7 @@ const main = async () => {
   await user();
   await social();
   await skill();
+  await userSkill();
   await releaseNote();
 
   console.log(`Seeding finished.`);
