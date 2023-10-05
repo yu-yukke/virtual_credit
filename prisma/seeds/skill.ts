@@ -9,11 +9,11 @@ export const skill = async () => {
   const users = await prisma.user.findMany();
 
   await prisma.skill.createMany({
-    data: Array(20)
+    data: Array(30)
       .fill(0)
       .map((_v, _i) => ({
         name: fakerJA.person.jobTitle(),
-        createdById: randBoolean() ? randFromArray(users).id : null,
+        createdById: randBoolean(0.8) ? randFromArray(users).id : null,
       })),
   });
 };

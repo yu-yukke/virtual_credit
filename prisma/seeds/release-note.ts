@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export const releaseNote = async () => {
   await prisma.releaseNote.createMany({
-    data: Array(10)
+    data: Array(25)
       .fill(0)
       .map((_v, i) => ({
         version: `1.0.${i}`,

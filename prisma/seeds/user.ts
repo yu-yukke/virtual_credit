@@ -10,7 +10,7 @@ export const user = async () => {
   );
 
   await prisma.user.createMany({
-    data: Array(20)
+    data: Array(50)
       .fill(0)
       .map((_v, i) => ({
         name: fakerJA.person.fullName(),
