@@ -2,9 +2,13 @@ import { fakerJA } from '@faker-js/faker';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-const uniqueSlugs = fakerJA.helpers.uniqueArray(fakerJA.internet.userName, 20);
 
 export const user = async () => {
+  const uniqueSlugs = fakerJA.helpers.uniqueArray(
+    fakerJA.internet.userName,
+    20,
+  );
+
   await prisma.user.createMany({
     data: Array(20)
       .fill(0)
