@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { anonymousUser } from './anonymous-user';
 import { category } from './category';
 import { releaseNote } from './release-note';
 import { skill } from './skill';
@@ -24,6 +25,7 @@ const main = async () => {
   await skill();
   await userSkill();
   await category();
+  await anonymousUser();
   await releaseNote();
 
   console.log(`Seeding finished.`);
