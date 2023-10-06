@@ -4,6 +4,7 @@ import { category } from './category';
 import { releaseNote } from './release-note';
 import { skill } from './skill';
 import { social } from './social';
+import { tag } from './tag';
 import { user } from './user';
 import { userSkill } from './user-skill';
 
@@ -26,6 +27,7 @@ const main = async () => {
   await userSkill();
   await category();
   await anonymousUser();
+  await tag();
   await releaseNote();
 
   console.log(`Seeding finished.`);
