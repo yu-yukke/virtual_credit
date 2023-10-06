@@ -7,6 +7,7 @@ import { social } from './social';
 import { tag } from './tag';
 import { user } from './user';
 import { userSkill } from './user-skill';
+import { work } from './work';
 
 const prisma = new PrismaClient();
 
@@ -28,6 +29,7 @@ const main = async () => {
   await category();
   await anonymousUser();
   await tag();
+  await work();
   await releaseNote();
 
   console.log(`Seeding finished.`);
