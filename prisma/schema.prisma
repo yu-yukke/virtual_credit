@@ -109,35 +109,18 @@ model VerificationToken {
 // ソーシャル
 // ***************************************
 model Social {
-  id        String   @id @default(uuid())
-  userId    String   @unique @map("user_id")
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
-
-  // belongs to
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  // has many
-  histories SocialHistory[]
-
-  @@index([userId])
-  @@map("socials")
-}
-
-// ソーシャル履歴
-// ***************************************
-model SocialHistory {
   id          String   @id @default(uuid())
-  socialId    String   @map("social_id")
+  userId      String   @unique @map("user_id")
   websiteUrl  String?  @map("website_url")
   xId         String?  @unique @map("x_id")
   instagramId String?  @unique @map("instagram_id")
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // belongs to
-  social Social @relation(fields: [socialId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([socialId])
-  @@map("social_histories")
+  @@index([userId])
+  @@map("socials")
 }
 
 // スキル
@@ -273,6 +256,7 @@ model Like {
 model WorkImage {
   id        String   @id @default(uuid())
   workId    String   @map("work_id")
+  url       String
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // belongs to
