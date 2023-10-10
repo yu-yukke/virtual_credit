@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { anonymousUser } from './anonymous-user';
 import { category } from './category';
+import { like } from './like';
 import { releaseNote } from './release-note';
 import { skill } from './skill';
 import { social } from './social';
@@ -32,6 +33,7 @@ const main = async () => {
   await tag();
   await work();
   await workImage();
+  await like();
   await releaseNote();
 
   console.log(`Seeding finished.`);
