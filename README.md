@@ -52,6 +52,12 @@ bun run prisma:migrate
 
 `prisma generate`は`predev`と`prebuild`に指定しているので勝手にやってくれる
 
+### seed投入
+
+```bash
+bun run prisma:seed
+```
+
 ## データベース
 
 データベース構造 is [here](https://lucid.app/lucidchart/5f989d94-1574-4d90-b2ba-2478c63ab288/edit?view_items=BtRpwuz9_HyT&invitationId=inv_d592b776-77b6-476a-8f62-69e03b73be40)
@@ -64,15 +70,7 @@ bun run prisma:migrate
 
 ### 1. develop ブランチからチェックアウト
 
-### 2-a. スキーマに変更がある場合
-
-#### スキーマを反映
-
-```bash
-bun run prisma:migrate
-```
-
-### 2-b. develop ブランチへ PR
+### 2. develop ブランチへ PR
 
 ### 3. ある程度開発まとまるまで develop ブランチからはマージしない
 
@@ -130,6 +128,21 @@ localhost で確認できる
 **\_（アンダースコア）で始めないとルーティングされるので注意**
 
 あとはよしなに src 配下に作成
+
+### 命名規則
+
+#### components配下
+
+- カテゴリー分類している第一階層のディレクトリ名は小文字
+- 具体的なパーツの種類を振り分けている第二階層以下のディレクトリ名はパスカル
+- 実際のコンポーネントファイル名はパスカル
+- indexだけは小文字
+
+[公式リポトリ](https://github.com/vercel/commerce)参考
+
+#### それ以外
+
+- ケバブケース
 
 ## コンポーネント作成備忘録
 
