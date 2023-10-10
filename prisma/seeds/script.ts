@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { anonymousUser } from './anonymous-user';
 import { category } from './category';
+import { copyright } from './copyright';
 import { like } from './like';
 import { releaseNote } from './release-note';
 import { skill } from './skill';
@@ -37,6 +38,7 @@ const main = async () => {
   await workImage();
   await workCategory();
   await workTag();
+  await copyright();
   await like();
   await releaseNote();
 
