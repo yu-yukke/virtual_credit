@@ -39,8 +39,5 @@ const SocialLink = ({ href, title }: { href: string; title: string }) => {
 };
 
 export default async function Page({ params }: PageProps) {
-
-  return (
-    <></>
-  );
+  return <></>;
 }

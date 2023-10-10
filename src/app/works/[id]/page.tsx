@@ -15,9 +15,5 @@ type PageProps = {
 };
 
 export default async function Page({ params }: PageProps) {
-  return (
-    <>
-
-    </>
-  );
+  return <></>;
 }
