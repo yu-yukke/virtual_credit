@@ -9,6 +9,7 @@ import { tag } from './tag';
 import { user } from './user';
 import { userSkill } from './user-skill';
 import { work } from './work';
+import { workCategory } from './work-category';
 import { workImage } from './work-images';
 
 const prisma = new PrismaClient();
@@ -33,6 +34,7 @@ const main = async () => {
   await tag();
   await work();
   await workImage();
+  await workCategory();
   await like();
   await releaseNote();
 
