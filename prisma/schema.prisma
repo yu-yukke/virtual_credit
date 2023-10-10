@@ -371,6 +371,7 @@ model WorkRelation {
   id                     String   @id @default(uuid())
   workRelationCategoryId String   @map("work_relation_category_id")
   name                   String
+  url                    String
   createdById            String?  @map("created_by_id")
   createdAt              DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
