@@ -11,6 +11,7 @@ import { userSkill } from './user-skill';
 import { work } from './work';
 import { workCategory } from './work-category';
 import { workImage } from './work-images';
+import { workTag } from './work-tag';
 
 const prisma = new PrismaClient();
 
@@ -35,6 +36,7 @@ const main = async () => {
   await work();
   await workImage();
   await workCategory();
+  await workTag();
   await like();
   await releaseNote();
 
