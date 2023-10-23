@@ -4,6 +4,7 @@ const theme = createTheme({
   colors: {
     primary: '#2D2D2E',
     secondary: '#6C6C75',
+    tertiary: '#C1C1C2',
     borderPrimary: '#E8E8E8',
     bgPrimary: '#FAFAFA',
   },

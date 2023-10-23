@@ -1,25 +1,17 @@
 import { HStack } from '@kuma-ui/core';
 
-import { CheckBoxButton } from '@/components/elements/CheckBoxButton';
-import { Tag } from '@/db/schema';
+import { FilterButton } from '@/components/elements/buttons';
 
-type TagsProps = {
-  tags: Tag[];
-};
+import prisma from '@/lib/prisma';
 
-export const Tags = async ({ tags }: TagsProps) => {
+export const Tags = async () => {
+  const tags = await prisma.tag.findMany();
+
   return (
-    <HStack as='ul' alignItems={'center'} gap={8}>
-      <li>
-        <CheckBoxButton id='tag_all' value={-1} label='すべて' />
-      </li>
+    <HStack as='ul' gap={4} py={12} overflow={'scroll hidden'}>
       {tags.map((tag) => (
         <li key={tag.id}>
-          <CheckBoxButton
-            id={`tag_${tag.id}`}
-            value={tag.id}
-            label={tag.name}
-          />
+          <FilterButton text={`# ${tag.name}`} />
         </li>
       ))}
     </HStack>
