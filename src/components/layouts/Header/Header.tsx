@@ -4,8 +4,8 @@ import { HStack, Box, css, Button } from '@kuma-ui/core';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 
-import { NavButton } from './NavButton';
 import { SearchIcon } from '@/components/elements/Icons';
+import { HeaderNavButton } from '@/components/elements/buttons';
 
 export const Header = () => {
   const [position, setPosition] = useState<number>(0);
@@ -56,20 +56,20 @@ export const Header = () => {
         <HStack as='ul' alignItems={'center'} gap={4}>
           <li>
             <Link href='/'>
-              <NavButton text='Home' />
+              <HeaderNavButton text='Home' />
             </Link>
           </li>
           <li>
-            <NavButton text='Explore' />
+            <HeaderNavButton text='Explore' />
           </li>
           <li>
             <Link href='/contact'>
-              <NavButton text='Contact' />
+              <HeaderNavButton text='Contact' />
             </Link>
           </li>
           <li>
             <Link href='/'>
-              <NavButton text='Sign in' />
+              <HeaderNavButton text='Sign in' />
             </Link>
           </li>
           <li>

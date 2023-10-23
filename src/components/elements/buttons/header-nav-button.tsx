@@ -4,7 +4,7 @@ type Props = {
   text: string;
 };
 
-export const NavButton = ({ text }: Props) => {
+export const HeaderNavButton = ({ text }: Props) => {
   return (
     <Button
       px={16}
@@ -12,9 +12,6 @@ export const NavButton = ({ text }: Props) => {
       fontSize={'0.8125rem'}
       color={'colors.secondary'}
       borderRadius={'1.5rem'}
-      borderWidth={1}
-      borderStyle={'solid'}
-      borderColor={'transparent'}
       transition={'all 0.4s'}
       _hover={{
         bg: '#FAFAFA',

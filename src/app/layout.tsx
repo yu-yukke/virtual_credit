@@ -4,9 +4,9 @@ import './reset.css';
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry';
 import { Inter } from 'next/font/google';
 
-import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
+import { GoogleAnalytics } from '@/components/common/google-analytics';
 import { Footer } from '@/components/layouts/Footer';
-import { Header } from '@/components/layouts/Header/Header';
+import { Header } from '@/components/layouts/header/header';
 import { NextAuthProvider } from '@/providers/next-auth';
 
 const inter = Inter({ weight: '400', subsets: ['latin'] });
