@@ -68,6 +68,34 @@ export const Header = () => {
             </Link>
           </li>
           <li>
+            <Link href='/'>
+              <NavButton text='Sign in' />
+            </Link>
+          </li>
+          <li>
+            <Link href='/'>
+              <Button
+                fontSize={'0.8125rem'}
+                color={'white'}
+                px={16}
+                py={8}
+                bg={'colors.primary'}
+                borderRadius={'1.5rem'}
+                _hover={{
+                  opacity: 0.85,
+                }}
+              >
+                Get Started
+              </Button>
+            </Link>
+          </li>
+          <li
+            className={css`
+              border-left: 1px solid #eaeaea;
+              padding-left: 12px;
+              margin-left: 12px;
+            `}
+          >
             <Button
               width={'fit-content'}
               height={'fit-content'}
@@ -93,29 +121,6 @@ export const Header = () => {
                 `}
               />
             </Button>
-          </li>
-          <li
-            className={css`
-              border-left: 1px solid #eaeaea;
-              padding-left: 16px;
-              margin-left: 12px;
-            `}
-          >
-            <Link href='/'>
-              <Button
-                fontSize={'0.8125rem'}
-                color={'white'}
-                px={16}
-                py={8}
-                bg={'colors.primary'}
-                borderRadius={'1.5rem'}
-                _hover={{
-                  opacity: 0.85,
-                }}
-              >
-                Get Started
-              </Button>
-            </Link>
           </li>
         </HStack>
       </Box>
