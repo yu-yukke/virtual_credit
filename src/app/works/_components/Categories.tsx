@@ -8,7 +8,7 @@ export const Categories = async () => {
   const categories = await prisma.category.findMany();
 
   return (
-    <HStack as='ul' gap={4} py={12} overflow={'scroll hidden'}>
+    <HStack as='ul' gap={4} py={12} px={1} overflow={'scroll hidden'}>
       {categories.map((category) => (
         <li key={category.id}>
           <FilterButton text={category.name} />
