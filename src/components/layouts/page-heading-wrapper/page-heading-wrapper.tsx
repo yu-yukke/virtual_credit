@@ -10,6 +10,7 @@ type Props = {
 export const PageHeadingWrapper = ({ title, description }: Props) => {
   return (
     <Box
+      as='section'
       pt={88}
       pb={112}
       display={'flex'}

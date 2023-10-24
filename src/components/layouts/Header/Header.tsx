@@ -31,6 +31,7 @@ export const Header = () => {
   return (
     <Box as='header' position={'fixed'} top={24} width={'100%'} px={30}>
       <Box
+        as='nav'
         p={8}
         mx={'auto'}
         maxWidth={'fit-content'}
