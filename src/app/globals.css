@@ -14,7 +14,8 @@ body {
 main {
   display: grid;
   grid-template-columns: 1fr min(1232px, calc(100% - 60px)) 1fr;
-  margin-top: 98px;
+  padding-top: 98px;
+  padding-bottom: 240px;
 }
 
 main * {
