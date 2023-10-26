@@ -4,8 +4,8 @@ import { HStack, Box, css, Button } from '@kuma-ui/core';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 
-import { SearchIcon } from '@/components/elements/Icons';
 import { HeaderNavButton } from '@/components/elements/buttons';
+import { SearchIcon } from '@/components/elements/icons';
 
 export const Header = () => {
   const [position, setPosition] = useState<number>(0);
@@ -29,7 +29,14 @@ export const Header = () => {
   }, [scrollEvent]);
 
   return (
-    <Box as='header' position={'fixed'} top={24} width={'100%'} px={30}>
+    <Box
+      as='header'
+      position={'fixed'}
+      top={24}
+      width={'100%'}
+      px={30}
+      zIndex={10}
+    >
       <Box
         as='nav'
         p={8}
