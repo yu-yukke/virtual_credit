@@ -5,7 +5,6 @@ import { KumaRegistry } from '@kuma-ui/next-plugin/registry';
 import { Inter } from 'next/font/google';
 
 import { GoogleAnalytics } from '@/components/common/google-analytics';
-import { Footer } from '@/components/layouts/footer';
 import { Header } from '@/components/layouts/header';
 import { NextAuthProvider } from '@/providers/next-auth';
 
@@ -29,7 +28,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <NextAuthProvider>
             <Header />
             <main>{children}</main>
-            <Footer />
           </NextAuthProvider>
         </KumaRegistry>
       </body>
