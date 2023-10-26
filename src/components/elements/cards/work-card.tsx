@@ -1,8 +1,12 @@
-import { Grid, HStack, Heading, Text, css } from '@kuma-ui/core';
+'use client';
+
+import { Box, Grid, HStack, Heading, Text, css } from '@kuma-ui/core';
+import clsx from 'clsx';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { useCallback, useEffect, useState } from 'react';
 import { AnonymousUserIcon } from '../icons';
 import { AnonymousUser } from '@/types/anonymous-users';
 import { User } from '@/types/users';
@@ -48,7 +52,24 @@ const RenderAnonymousUserIcon = () => {
 
 export const WorkCard = ({ work }: Props) => {
   const creators = getCreators(work);
-  const randomCreator = creators[Math.floor(Math.random() * creators.length)];
+  const [randomCreator, setRandomCreator] = useState(creators[0]);
+  // @ts-expect-error anonymousUserの場合はimageがないがエラーになるため
+  const randomCreatorImage = randomCreator.image;
+
+  const [loading, setLoading] = useState(true);
+  const [isHover, setIsHover] = useState<boolean>(false);
+  const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    setIsHover(e.type == 'mouseenter');
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      return;
+    }
+
+    setRandomCreator(creators[Math.floor(Math.random() * creators.length)]);
+    setLoading(false);
+  }, [loading, creators]);
 
   return (
     <Grid
@@ -59,13 +80,28 @@ export const WorkCard = ({ work }: Props) => {
       p={24}
       borderRadius={'1rem'}
       position={'relative'}
-      className={css`
-        row-gap: 24px;
-        box-shadow:
-          0px 2px 4px 0px rgba(23, 13, 13, 0.04),
-          0px 1px 2px -1px rgba(23, 13, 13, 0.08),
-          0px 0px 0px 1px rgba(23, 13, 13, 0.08);
-      `}
+      transition={'all 0.4s'}
+      overflow={'hidden'}
+      className={clsx(
+        css`
+          row-gap: 24px;
+        `,
+        isHover
+          ? css`
+              box-shadow:
+                0px 2px 4px 0px rgba(23, 13, 13, 0.08),
+                0px 1px 2px -1px rgba(23, 13, 13, 0.16),
+                0px 0px 0px 1px rgba(23, 13, 13, 0.16);
+            `
+          : css`
+              box-shadow:
+                0px 2px 4px 0px rgba(23, 13, 13, 0.04),
+                0px 1px 2px -1px rgba(23, 13, 13, 0.08),
+                0px 0px 0px 1px rgba(23, 13, 13, 0.08);
+            `,
+      )}
+      onMouseEnter={handleHover}
+      onMouseLeave={handleHover}
     >
       <Link
         href='/'
@@ -73,32 +109,53 @@ export const WorkCard = ({ work }: Props) => {
           position: absolute;
           inset: 0;
           grid-column-start: auto;
+          z-index: 10;
         `}
       />
-      <Image
-        src={work.workImages[0].url}
-        alt=''
-        width={1600}
-        height={900}
-        sizes='100vw'
+      <Box
         className={css`
+          position: relative;
           width: 100%;
           height: auto;
+          aspect-ratio: 16 / 9;
           border-radius: 0.875rem;
+          overflow: hidden;
         `}
-      />
-      <Heading as='h2' fontSize={'1.125rem'} letterSpacing={'0.03375rem'}>
+      >
+        <Image
+          src={work.workImages[0].url}
+          alt=''
+          fill
+          sizes='100%'
+          className={clsx(
+            css`
+              width: 100%;
+              height: auto;
+              border-radius: 0.875rem;
+              transition: all 0.4s;
+            `,
+            isHover &&
+              css`
+                transform: scale(1.04);
+              `,
+          )}
+        />
+      </Box>
+      <Heading
+        as='h2'
+        fontSize={'1.125rem'}
+        letterSpacing={'0.03375rem'}
+        lineHeight={1.4}
+      >
         {work.histories[0].title}
       </Heading>
       <HStack alignItems={'center'}>
         <HStack alignItems={'center'}>
           {creators.length ? (
             <HStack gap={8} alignItems={'center'}>
-              {/* @ts-expect-error anonymousUserの場合はimageがないがエラーになるため */}
-              {randomCreator.image ? (
+              {randomCreatorImage ? (
                 <Image
-                  // @ts-expect-error anonymousUserの場合はimageがないがエラーになるため
-                  src={randomCreator.image}
+                  src={randomCreatorImage}
                   alt=''
                   width={20}
                   height={20}

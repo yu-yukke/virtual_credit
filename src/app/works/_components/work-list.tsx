@@ -1,39 +1,25 @@
 import { Grid, css } from '@kuma-ui/core';
-import Link from 'next/link';
 
-import { CardViewCount } from '@/components/elements/CardViewCount';
-import { WorkCard } from '@/components/elements/WorkCard';
-import { Category, Work, WorkImage } from '@/db/schema';
+import { WorkCard } from '@/components/elements/cards';
+import { Work } from '@/types/works';
 
-type WorksProps = {
-  works: (Work & { category: Category } & { workImages: WorkImage[] })[];
+type Props = {
+  works: Work[];
 };
 
-export const Works = async ({ works }: WorksProps) => {
+export const WorkList = async ({ works }: Props) => {
   return (
     <Grid
-      as='ul'
-      gridTemplateColumns={'repeat(auto-fit, minmax(300px, 1fr))'}
-      gap={32}
+      as='section'
+      py={32}
+      gridTemplateColumns={'repeat(auto-fit, minmax(380px, 1fr))'}
+      className={css`
+        grid-column-gap: 16px;
+        grid-row-gap: 24px;
+      `}
     >
-      {works.map((work) => (
-        <li
-          className={css`
-            grid-column: auto;
-          `}
-          key={work.id}
-        >
-          <Link href={`/works/${work.id}`}>
-            <WorkCard
-              work={work}
-              category={work.category}
-              workImages={work.workImages}
-            >
-              <CardViewCount work={work} />
-            </WorkCard>
-          </Link>
-        </li>
-      ))}
+      {works.length &&
+        works.map((work) => <WorkCard key={work.id} work={work} />)}
     </Grid>
   );
 };

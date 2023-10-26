@@ -1,7 +1,6 @@
-import { Grid, Spacer, VStack, css } from '@kuma-ui/core';
+import { Spacer, VStack } from '@kuma-ui/core';
 
-import { Categories, Tags } from './_components';
-import { WorkCard } from '@/components/elements/cards';
+import { Categories, Tags, WorkList } from './_components';
 import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
 import { Work } from '@/types/works';
 
@@ -22,18 +21,7 @@ export default async function Page() {
         <Categories />
         <Tags />
       </VStack>
-      <Grid
-        as='section'
-        py={32}
-        gridTemplateColumns={'repeat(auto-fit, minmax(380px, 1fr))'}
-        className={css`
-          grid-column-gap: 16px;
-          grid-row-gap: 24px;
-        `}
-      >
-        {works.length &&
-          works.map((work) => <WorkCard key={work.id} work={work} />)}
-      </Grid>
+      <WorkList works={works} />
     </>
   );
 }
