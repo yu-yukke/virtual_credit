@@ -2,13 +2,50 @@ import { Spacer, VStack } from '@kuma-ui/core';
 
 import { Categories, Tags, WorkList } from './_components';
 import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
+import prisma from '@/lib/prisma';
 import { Work } from '@/types/works';
 
 export default async function Page() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/works`, {
-    method: 'GET',
+  const worksWithHistories = await prisma.work.findMany({
+    include: {
+      histories: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+      workImages: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+      copyrights: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+        include: {
+          userCopyrights: {
+            include: {
+              user: true,
+            },
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
+          anonymousUserCopyrights: {
+            include: {
+              anonymousUser: true,
+            },
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
+        },
+      },
+    },
   });
-  const works: Work[] = await response.json();
+  const works = await worksWithHistories.filter(
+    (work: Work) => work.histories.length > 0 && work.histories[0].published,
+  );
 
   return (
     <>
