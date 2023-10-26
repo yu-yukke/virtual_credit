@@ -438,7 +438,7 @@ model AnonymousUserCopyright {
   createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // belongs to
-  anonymoususer AnonymousUser @relation(fields: [anonymousUserId], references: [id], onDelete: Cascade)
+  anonymousUser AnonymousUser @relation(fields: [anonymousUserId], references: [id], onDelete: Cascade)
   copyright     Copyright     @relation(fields: [copyrightId], references: [id], onDelete: Cascade)
 
   // created log

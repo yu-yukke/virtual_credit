@@ -1,2 +1,2 @@
-export { GoogleAnalytics } from './GoogleAnalytics';
+export { GoogleAnalytics } from './google-analytics';
 export { ReportView } from './ReportView';
