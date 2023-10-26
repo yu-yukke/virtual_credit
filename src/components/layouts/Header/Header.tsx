@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 
 import { HeaderNavButton } from '@/components/elements/buttons';
-import { SearchIcon } from '@/components/elements/icons';
+import { SearchIcon } from '@/components/elements/hoge';
 
 export const Header = () => {
   const [position, setPosition] = useState<number>(0);
