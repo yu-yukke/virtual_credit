@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 
 import { useEffect, useState } from 'react';
-import { AnonymousUserIcon } from '../hoge';
+import { AnonymousUserIcon } from '../icons';
 import { AnonymousUser } from '@/types/anonymous-users';
 import { User } from '@/types/users';
 import { Work } from '@/types/works';
