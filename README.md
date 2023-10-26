@@ -9,6 +9,7 @@
 - Vercel
 
 ### UIコンポーネント
+
 - Kuma-ui
 
 ### DB関係
@@ -17,30 +18,21 @@
 - Supabase
 
 ### Redis
+
 - Upstash
 
 ### node
 
 - 18.16.0（Volta）
-- パッケージ管理は pnpm
+- パッケージ管理は bun
 
 ## 開発環境
 
 ### 起動
 
 ```bash
-pnpm run dev
+bun run dev
 ```
-
-### Webhook
-
-```bash
-ngrok http 3000
-```
-
-Clerk の Webhook 用に ngrok で URL を払い出している
-
-無料プランだと毎度 URL が変更されるので dev 環境で Clerk の認証周りいじる時は URL 払い出して Clerk の WebhookURL を変更すること
 
 ## DB
 
@@ -55,15 +47,20 @@ Clerk の Webhook 用に ngrok で URL を払い出している
 ### スキーマ反映
 
 ```bash
-pnpm run prisma:migrate
+bun run prisma:migrate
 ```
 
 `prisma generate`は`predev`と`prebuild`に指定しているので勝手にやってくれる
 
+### seed投入
+
+```bash
+bun run prisma:seed
+```
+
 ## データベース
 
 データベース構造 is [here](https://lucid.app/lucidchart/5f989d94-1574-4d90-b2ba-2478c63ab288/edit?view_items=BtRpwuz9_HyT&invitationId=inv_d592b776-77b6-476a-8f62-69e03b73be40)
-
 
 ## デザイン
 
@@ -73,15 +70,7 @@ pnpm run prisma:migrate
 
 ### 1. develop ブランチからチェックアウト
 
-### 2-a. スキーマに変更がある場合
-
-#### スキーマを反映
-
-```bash
-pnpm run prisma:migrate
-```
-
-### 2-b. develop ブランチへ PR
+### 2. develop ブランチへ PR
 
 ### 3. ある程度開発まとまるまで develop ブランチからはマージしない
 
@@ -110,8 +99,8 @@ git cz
 ### Next.js のビルド
 
 ```bash
-pnpm run build
-pnpm run start
+bun run build
+bun run start
 ```
 
 localhost で確認できる
@@ -139,6 +128,12 @@ localhost で確認できる
 **\_（アンダースコア）で始めないとルーティングされるので注意**
 
 あとはよしなに src 配下に作成
+
+### 命名規則
+
+- 基本全部ケバブケース
+
+[公式リポジトリ](https://github.com/vercel/commerce)参考
 
 ## コンポーネント作成備忘録
 

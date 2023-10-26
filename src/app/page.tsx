@@ -1,9 +1,9 @@
-import { PageWrapper } from '@/components/layouts/PageWrapper';
+import { Box } from '@kuma-ui/core';
 
 export default function Home() {
   return (
-    <PageWrapper>
+    <Box>
       <h1>Home</h1>
-    </PageWrapper>
+    </Box>
   );
 }

@@ -2,15 +2,11 @@ import { createTheme } from '@kuma-ui/core';
 
 const theme = createTheme({
   colors: {
-    text: {
-      primary: '#2B2B2B',
-      secondary: '#777272',
-      tertiary: '#323232',
-      quaternary: '#AEAEAE',
-    },
-    border: {
-      primary: '#E8E8E8',
-    },
+    primary: '#2D2D2E',
+    secondary: '#6C6C75',
+    tertiary: '#C1C1C2',
+    borderPrimary: '#E8E8E8',
+    bgPrimary: '#FAFAFA',
   },
 });
 
