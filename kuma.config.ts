@@ -8,6 +8,9 @@ const theme = createTheme({
     borderPrimary: '#E8E8E8',
     bgPrimary: '#FAFAFA',
   },
+  fonts: {
+    number: 'Plus Jakarta Sans',
+  },
 });
 
 type UserTheme = typeof theme;
