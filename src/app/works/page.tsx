@@ -15,34 +15,6 @@ export default async function Page() {
           createdAt: 'desc',
         },
       },
-      workImages: {
-        orderBy: {
-          createdAt: 'desc',
-        },
-      },
-      copyrights: {
-        orderBy: {
-          createdAt: 'desc',
-        },
-        include: {
-          userCopyrights: {
-            include: {
-              user: true,
-            },
-            orderBy: {
-              createdAt: 'desc',
-            },
-          },
-          anonymousUserCopyrights: {
-            include: {
-              anonymousUser: true,
-            },
-            orderBy: {
-              createdAt: 'desc',
-            },
-          },
-        },
-      },
     },
   });
   const works = await worksWithHistories.filter(
@@ -60,7 +32,7 @@ export default async function Page() {
         <Categories />
         <Tags />
       </VStack>
-      <WorkList works={works} />
+      <WorkList />
     </>
   );
 }

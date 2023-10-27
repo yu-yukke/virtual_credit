@@ -20,33 +20,21 @@ import { WorkCardSummary } from './work-card-summary';
 import { Merge } from '@/types/merge';
 
 type Props = {
-  work: Merge<
-    Work,
+  work: Merge<Work, { histories: WorkHistory[] }>;
+  workImages: WorkImage[];
+  copyrights: Merge<
+    Copyright,
     {
-      histories: WorkHistory[];
-      workImages: WorkImage[];
-      copyrights: Merge<
-        Copyright,
-        {
-          userCopyrights: Merge<
-            UserCopyright,
-            {
-              user: User;
-            }
-          >[];
-          anonymousUserCopyrights: Merge<
-            AnonymousUserCopyright,
-            {
-              anonymousUser: AnonymousUser;
-            }
-          >[];
-        }
+      userCopyrights: Merge<UserCopyright, { user: User }>[];
+      anonymousUserCopyrights: Merge<
+        AnonymousUserCopyright,
+        { anonymousUser: AnonymousUser }
       >[];
     }
-  >;
+  >[];
 };
 
-export const WorkCard = ({ work }: Props) => {
+export const WorkCard = ({ work, workImages, copyrights }: Props) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsHover(e.type == 'mouseenter');
@@ -104,7 +92,7 @@ export const WorkCard = ({ work }: Props) => {
         `}
       >
         <Image
-          src={work.workImages[0].url}
+          src={workImages[0].url}
           alt=''
           fill
           sizes='100%'
@@ -122,7 +110,7 @@ export const WorkCard = ({ work }: Props) => {
           )}
         />
       </Box>
-      <WorkCardSummary work={work} />
+      <WorkCardSummary work={work} copyrights={copyrights} />
     </Grid>
   );
 };

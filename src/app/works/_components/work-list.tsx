@@ -1,47 +1,53 @@
 import { Grid, css } from '@kuma-ui/core';
 
-import {
-  AnonymousUser,
-  AnonymousUserCopyright,
-  Copyright,
-  User,
-  UserCopyright,
-  Work,
-  WorkHistory,
-  WorkImage,
-} from '@prisma/client';
-
 import { WorkCard } from '@/components/elements/cards';
-import { Merge } from '@/types/merge';
+import prisma from '@/lib/prisma';
 
-type Props = {
-  works: Merge<
-    Work,
-    {
-      histories: WorkHistory[];
-      workImages: WorkImage[];
-      copyrights: Merge<
-        Copyright,
-        {
-          userCopyrights: Merge<
-            UserCopyright,
-            {
-              user: User;
-            }
-          >[];
-          anonymousUserCopyrights: Merge<
-            AnonymousUserCopyright,
-            {
-              anonymousUser: AnonymousUser;
-            }
-          >[];
-        }
-      >[];
-    }
-  >[];
-};
+export const WorkList = async () => {
+  const works = await prisma.work.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      histories: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+      workImages: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+      copyrights: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+        include: {
+          userCopyrights: {
+            include: {
+              user: true,
+            },
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
+          anonymousUserCopyrights: {
+            include: {
+              anonymousUser: true,
+            },
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
+        },
+      },
+    },
+  });
+  const publishedWorks = await works.filter(
+    (work) => work.histories.length > 0 && work.histories[0].published,
+  );
 
-export const WorkList = async ({ works }: Props) => {
   return (
     <Grid
       as='section'
@@ -52,8 +58,15 @@ export const WorkList = async ({ works }: Props) => {
         grid-row-gap: 24px;
       `}
     >
-      {works.length &&
-        works.map((work) => <WorkCard key={work.id} work={work} />)}
+      {publishedWorks.length &&
+        publishedWorks.map((work) => (
+          <WorkCard
+            key={work.id}
+            work={work}
+            workImages={work.workImages}
+            copyrights={work.copyrights}
+          />
+        ))}
     </Grid>
   );
 };
