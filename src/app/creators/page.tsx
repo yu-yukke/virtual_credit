@@ -1,4 +1,4 @@
-import { Spacer } from '@kuma-ui/core';
+import { Box, Spacer } from '@kuma-ui/core';
 
 import { CreatorList, Skills } from './_components';
 import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
@@ -19,7 +19,9 @@ export default async function Page() {
         description={`A collection of ${creators.length} creators`}
       />
       <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
-      <Skills />
+      <Box as='section' py={20}>
+        <Skills />
+      </Box>
       <CreatorList />
     </>
   );
