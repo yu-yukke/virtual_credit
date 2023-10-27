@@ -1,16 +1,49 @@
 'use client';
 
 import { Box, Grid, css } from '@kuma-ui/core';
+import {
+  AnonymousUser,
+  AnonymousUserCopyright,
+  Copyright,
+  User,
+  UserCopyright,
+  Work,
+  WorkHistory,
+  WorkImage,
+} from '@prisma/client';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { useCallback, useState } from 'react';
+
 import { WorkCardSummary } from './work-card-summary';
-import { Work } from '@/types/works';
+import { Merge } from '@/types/merge';
 
 type Props = {
-  work: Work;
+  work: Merge<
+    Work,
+    {
+      histories: WorkHistory[];
+      workImages: WorkImage[];
+      copyrights: Merge<
+        Copyright,
+        {
+          userCopyrights: Merge<
+            UserCopyright,
+            {
+              user: User;
+            }
+          >[];
+          anonymousUserCopyrights: Merge<
+            AnonymousUserCopyright,
+            {
+              anonymousUser: AnonymousUser;
+            }
+          >[];
+        }
+      >[];
+    }
+  >;
 };
 
 export const WorkCard = ({ work }: Props) => {

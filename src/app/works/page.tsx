@@ -3,10 +3,12 @@ import { Spacer, VStack } from '@kuma-ui/core';
 import { Categories, Tags, WorkList } from './_components';
 import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
 import prisma from '@/lib/prisma';
-import { Work } from '@/types/works';
 
 export default async function Page() {
   const worksWithHistories = await prisma.work.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
     include: {
       histories: {
         orderBy: {
@@ -44,7 +46,7 @@ export default async function Page() {
     },
   });
   const works = await worksWithHistories.filter(
-    (work: Work) => work.histories.length > 0 && work.histories[0].published,
+    (work) => work.histories.length > 0 && work.histories[0].published,
   );
 
   return (

@@ -1,10 +1,44 @@
 import { Grid, css } from '@kuma-ui/core';
 
+import {
+  AnonymousUser,
+  AnonymousUserCopyright,
+  Copyright,
+  User,
+  UserCopyright,
+  Work,
+  WorkHistory,
+  WorkImage,
+} from '@prisma/client';
+
 import { WorkCard } from '@/components/elements/cards';
-import { Work } from '@/types/works';
+import { Merge } from '@/types/merge';
 
 type Props = {
-  works: Work[];
+  works: Merge<
+    Work,
+    {
+      histories: WorkHistory[];
+      workImages: WorkImage[];
+      copyrights: Merge<
+        Copyright,
+        {
+          userCopyrights: Merge<
+            UserCopyright,
+            {
+              user: User;
+            }
+          >[];
+          anonymousUserCopyrights: Merge<
+            AnonymousUserCopyright,
+            {
+              anonymousUser: AnonymousUser;
+            }
+          >[];
+        }
+      >[];
+    }
+  >[];
 };
 
 export const WorkList = async ({ works }: Props) => {
