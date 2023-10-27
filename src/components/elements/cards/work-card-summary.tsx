@@ -96,7 +96,7 @@ export const WorkCardSummary = ({ work, copyrights }: Props) => {
     <>
       <Heading
         as='h2'
-        letterSpacing={'0.03375rem'}
+        letterSpacing={'0.0375rem'}
         lineHeight={1.65}
         overflow={'hidden'}
         textOverflow={'ellipsis'}
