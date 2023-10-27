@@ -1,44 +1,49 @@
 'use client';
 
-import { Box, Grid, css } from '@kuma-ui/core';
+import { Grid, css } from '@kuma-ui/core';
 import {
-  AnonymousUser,
-  AnonymousUserCopyright,
   Copyright,
+  Skill,
   User,
   UserCopyright,
+  UserSkill,
   Work,
-  WorkHistory,
   WorkImage,
 } from '@prisma/client';
 import clsx from 'clsx';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
 
-import { WorkCardSummary } from './work-card-summary';
+import { CreatorCardImages } from './creator-card-images';
+import { CreatorCardSummary } from './creator-card-summary';
 import { Merge } from '@/types/merge';
 
 type Props = {
-  work: Merge<Work, { histories: WorkHistory[] }>;
-  workImages: WorkImage[];
-  copyrights: Merge<
-    Copyright,
+  creator: User;
+  userSkills: Merge<UserSkill, { skill: Skill }>[];
+  userCopyrights: Merge<
+    UserCopyright,
     {
-      userCopyrights: Merge<UserCopyright, { user: User }>[];
-      anonymousUserCopyrights: Merge<
-        AnonymousUserCopyright,
-        { anonymousUser: AnonymousUser }
-      >[];
+      copyright: Merge<
+        Copyright,
+        { work: Merge<Work, { workImages: WorkImage[] }> }
+      >;
     }
   >[];
 };
 
-export const WorkCard = ({ work, workImages, copyrights }: Props) => {
+export const CreatorCard = ({ creator, userSkills, userCopyrights }: Props) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsHover(e.type == 'mouseenter');
   }, []);
+  const workImages = Array.from(
+    new Set(
+      userCopyrights.flatMap(
+        (userCopyright) => userCopyright.copyright.work.workImages,
+      ),
+    ),
+  );
 
   return (
     <Grid
@@ -81,36 +86,12 @@ export const WorkCard = ({ work, workImages, copyrights }: Props) => {
           z-index: 10;
         `}
       />
-      <Box
-        position={'relative'}
-        width={'100%'}
-        height={'auto'}
-        borderRadius={'0.875rem'}
-        overflow={'hidden'}
-        className={css`
-          aspect-ratio: 16 / 9;
-        `}
-      >
-        <Image
-          src={workImages[0].url}
-          alt=''
-          fill
-          sizes='100%'
-          className={clsx(
-            css`
-              width: 100%;
-              height: auto;
-              transition: all 0.4s;
-              object-fit: cover;
-            `,
-            isHover &&
-              css`
-                transform: scale(1.04);
-              `,
-          )}
-        />
-      </Box>
-      <WorkCardSummary work={work} copyrights={copyrights} />
+      <CreatorCardImages
+        creator={creator}
+        workImages={workImages}
+        isHover={isHover}
+      />
+      <CreatorCardSummary creator={creator} userSkills={userSkills} />
     </Grid>
   );
 };

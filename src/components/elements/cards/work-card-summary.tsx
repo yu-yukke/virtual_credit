@@ -1,21 +1,51 @@
+'use client';
+
 import { HStack, Heading, Text, css } from '@kuma-ui/core';
+import {
+  AnonymousUser,
+  AnonymousUserCopyright,
+  Copyright,
+  User,
+  UserCopyright,
+  Work,
+  WorkHistory,
+} from '@prisma/client';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 
 import { useEffect, useState } from 'react';
 import { AnonymousUserIcon } from '../icons';
-import { AnonymousUser } from '@/types/anonymous-users';
-import { User } from '@/types/users';
-import { Work } from '@/types/works';
+import { Merge } from '@/types/merge';
 
 type Props = {
-  work: Work;
+  work: Merge<Work, { histories: WorkHistory[] }>;
+  copyrights: Merge<
+    Copyright,
+    {
+      userCopyrights: Merge<UserCopyright, { user: User }>[];
+      anonymousUserCopyrights: Merge<
+        AnonymousUserCopyright,
+        { anonymousUser: AnonymousUser }
+      >[];
+    }
+  >[];
 };
 
-const getCreators = (work: Work): (User | AnonymousUser)[] => {
+const getCreators = (
+  copyrights: Merge<
+    Copyright,
+    {
+      userCopyrights: Merge<UserCopyright, { user: User }>[];
+      anonymousUserCopyrights: Merge<
+        AnonymousUserCopyright,
+        { anonymousUser: AnonymousUser }
+      >[];
+    }
+  >[],
+): (User | AnonymousUser)[] => {
   const creators: (User | AnonymousUser)[] = [];
 
-  work.copyrights.forEach((copyright) => {
+  copyrights.forEach((copyright) => {
     copyright.userCopyrights.forEach((userCopyright) => {
       if (!creators.includes(userCopyright.user)) {
         creators.push(userCopyright.user);
@@ -46,8 +76,8 @@ const RenderAnonymousUserIcon = () => {
   );
 };
 
-export const WorkCardSummary = ({ work }: Props) => {
-  const creators = getCreators(work);
+export const WorkCardSummary = ({ work, copyrights }: Props) => {
+  const creators = getCreators(copyrights);
   const [loading, setLoading] = useState(true);
   const [randomCreator, setRandomCreator] = useState(creators[0]);
   // @ts-expect-error anonymousUserの場合はimageがないがエラーになるため
@@ -66,7 +96,7 @@ export const WorkCardSummary = ({ work }: Props) => {
     <>
       <Heading
         as='h2'
-        letterSpacing={'0.03375rem'}
+        letterSpacing={'0.0375rem'}
         lineHeight={1.65}
         overflow={'hidden'}
         textOverflow={'ellipsis'}

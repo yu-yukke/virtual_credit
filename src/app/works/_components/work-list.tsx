@@ -1,13 +1,53 @@
 import { Grid, css } from '@kuma-ui/core';
 
 import { WorkCard } from '@/components/elements/cards';
-import { Work } from '@/types/works';
+import prisma from '@/lib/prisma';
 
-type Props = {
-  works: Work[];
-};
+export const WorkList = async () => {
+  const works = await prisma.work.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      histories: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+      workImages: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+      copyrights: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+        include: {
+          userCopyrights: {
+            include: {
+              user: true,
+            },
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
+          anonymousUserCopyrights: {
+            include: {
+              anonymousUser: true,
+            },
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
+        },
+      },
+    },
+  });
+  const publishedWorks = await works.filter(
+    (work) => work.histories.length > 0 && work.histories[0].published,
+  );
 
-export const WorkList = async ({ works }: Props) => {
   return (
     <Grid
       as='section'
@@ -18,8 +58,15 @@ export const WorkList = async ({ works }: Props) => {
         grid-row-gap: 24px;
       `}
     >
-      {works.length &&
-        works.map((work) => <WorkCard key={work.id} work={work} />)}
+      {publishedWorks.length &&
+        publishedWorks.map((work) => (
+          <WorkCard
+            key={work.id}
+            work={work}
+            workImages={work.workImages}
+            copyrights={work.copyrights}
+          />
+        ))}
     </Grid>
   );
 };
