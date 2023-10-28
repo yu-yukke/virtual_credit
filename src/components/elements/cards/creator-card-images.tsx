@@ -59,7 +59,7 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
         >
           <Image
             src={workImages[0].url}
-            alt=''
+            alt={`${creator.name}の作品画像`}
             fill
             sizes='100%'
             className={clsx(
@@ -100,7 +100,7 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
             >
               <Image
                 src={workImage.url}
-                alt=''
+                alt={`${creator.name}の作品画像`}
                 fill
                 sizes='100%'
                 className={clsx(
@@ -140,7 +140,7 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
           {creator.image ? (
             <Image
               src={creator.image}
-              alt=''
+              alt={`${creator.name}のサムネイル画像`}
               fill
               className={clsx(
                 css`

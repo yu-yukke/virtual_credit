@@ -73,7 +73,7 @@ export const WorkCard = ({ work, workImages, copyrights }: Props) => {
       onMouseLeave={handleHover}
     >
       <Link
-        href='/'
+        href={`/works/${work.id}`}
         className={css`
           position: absolute;
           inset: 0;
@@ -93,7 +93,7 @@ export const WorkCard = ({ work, workImages, copyrights }: Props) => {
       >
         <Image
           src={workImages[0].url}
-          alt=''
+          alt={`${work.histories[0].title}のメイン画像`}
           fill
           sizes='100%'
           className={clsx(
