@@ -39,6 +39,7 @@ export const WorkCard = ({ work, workImages, copyrights }: Props) => {
   const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsHover(e.type == 'mouseenter');
   }, []);
+  const mainImage = workImages[0];
 
   return (
     <Grid
@@ -92,16 +93,14 @@ export const WorkCard = ({ work, workImages, copyrights }: Props) => {
         `}
       >
         <Image
-          src={workImages[0].url}
+          src={mainImage.url}
           alt={`${work.histories[0].title}のメイン画像`}
           fill
           sizes='100%'
+          objectFit='cover'
           className={clsx(
             css`
-              width: 100%;
-              height: auto;
               transition: all 0.4s;
-              object-fit: cover;
             `,
             isHover &&
               css`

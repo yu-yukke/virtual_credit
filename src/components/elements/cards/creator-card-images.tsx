@@ -62,12 +62,10 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
             alt={`${creator.name}の作品画像`}
             fill
             sizes='100%'
+            objectFit='cover'
             className={clsx(
               css`
-                width: 100%;
-                height: auto;
                 transition: all 0.4s;
-                object-fit: cover;
               `,
               isHover
                 ? css`
@@ -103,12 +101,10 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
                 alt={`${creator.name}の作品画像`}
                 fill
                 sizes='100%'
+                objectFit='cover'
                 className={clsx(
                   css`
-                    width: 100%;
-                    height: auto;
                     transition: all 0.4s;
-                    object-fit: cover;
                   `,
                   isHover
                     ? css`
