@@ -7,6 +7,10 @@ import prisma from '@/lib/prisma';
 export const Tags = async () => {
   const tags = await prisma.tag.findMany();
 
+  if (!tags.length) {
+    return null;
+  }
+
   return (
     <HStack as='ul' gap={4} py={12} px={1} overflow={'scroll hidden'}>
       {tags.map((tag) => (

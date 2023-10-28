@@ -18,7 +18,7 @@ export default async function Page() {
     },
   });
   const works = await worksWithHistories.filter(
-    (work) => work.histories.length > 0 && work.histories[0].published,
+    (work) => !!work.histories.length && work.histories[0].published,
   );
 
   return (

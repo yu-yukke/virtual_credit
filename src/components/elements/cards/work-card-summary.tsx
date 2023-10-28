@@ -110,7 +110,7 @@ export const WorkCardSummary = ({ work, copyrights }: Props) => {
       </Heading>
       <HStack alignItems={'center'}>
         <HStack alignItems={'center'}>
-          {creators.length ? (
+          {!!creators.length ? (
             <HStack gap={8} alignItems={'center'}>
               {randomCreatorImage ? (
                 <Image
