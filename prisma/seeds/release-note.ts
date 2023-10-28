@@ -11,6 +11,7 @@ export const releaseNote = async () => {
         version: `1.0.${i}`,
         title: fakerJA.lorem.paragraph(),
         description: fakerJA.lorem.paragraphs({ min: 1, max: 5 }),
+        createdAt: new Date(Date.now() + i * 1000),
       })),
   });
 };

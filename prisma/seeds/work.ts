@@ -16,10 +16,11 @@ export const work = async () => {
           createMany: {
             data: Array(5)
               .fill(0)
-              .map((_v, _i) => ({
+              .map((_v, i) => ({
                 title: fakerJA.commerce.productName(),
                 description: fakerJA.commerce.productDescription(),
                 published: randBoolean(0.8),
+                createdAt: new Date(Date.now() + i * 1000),
               })),
           },
         },

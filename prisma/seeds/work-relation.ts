@@ -19,10 +19,11 @@ export const workRelation = async () => {
           createMany: {
             data: Array(5)
               .fill(0)
-              .map((_v, _i) => ({
+              .map((_v, i) => ({
                 name: fakerJA.commerce.product(),
                 url: fakerJA.internet.url(),
                 createdById: randBoolean(0.8) ? randFromArray(users).id : null,
+                createdAt: new Date(Date.now() + i * 1000),
               })),
           },
         },
