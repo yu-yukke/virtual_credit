@@ -1,13 +1,13 @@
 import { Box, Grid, Text, css } from '@kuma-ui/core';
-import { Category } from '@prisma/client';
+import { Tag } from '@prisma/client';
 import Link from 'next/link';
 
 type Props = {
-  categories: Category[];
+  tags: Tag[];
 };
 
-export const Categories = ({ categories }: Props) => {
-  if (!categories.length) {
+export const Tags = ({ tags }: Props) => {
+  if (!tags.length) {
     return null;
   }
 
@@ -21,7 +21,7 @@ export const Categories = ({ categories }: Props) => {
           wordBreak={'break-all'}
           lineHeight={1.625}
         >
-          カテゴリー
+          タグ
         </Text>
       </Box>
 
@@ -31,10 +31,10 @@ export const Categories = ({ categories }: Props) => {
           row-gap: 8px;
         `}
       >
-        {categories.map((category) => (
+        {tags.map((tag) => (
           <Link
             href='/'
-            key={category.id}
+            key={tag.id}
             className={css`
               grid-column-start: 1;
               width: fit-content;
@@ -42,7 +42,7 @@ export const Categories = ({ categories }: Props) => {
             `}
           >
             <Text as='span' fontSize={'0.875rem'}>
-              {category.name}
+              # {tag.name}
             </Text>
           </Link>
         ))}

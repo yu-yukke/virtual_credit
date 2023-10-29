@@ -31,6 +31,10 @@ type Props = {
 };
 
 export const Copyrights = ({ copyrights }: Props) => {
+  if (!copyrights.length) {
+    return null;
+  }
+
   return (
     <VStack gap={24}>
       {copyrights.map((copyright) => (
