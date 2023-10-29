@@ -44,7 +44,7 @@ export const Tags = async ({ work }: Props) => {
       >
         {tags.map((tag) => (
           <Link
-            href='/'
+            href={`/searches/tags/${tag.name}`}
             key={tag.id}
             className={css`
               grid-column-start: 1;
