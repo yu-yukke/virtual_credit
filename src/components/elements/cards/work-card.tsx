@@ -21,7 +21,7 @@ import { Merge } from '@/types/merge';
 
 type Props = {
   work: Merge<Work, { histories: WorkHistory[] }>;
-  workImages: WorkImage[];
+  mainImage?: WorkImage;
   copyrights: Merge<
     Copyright,
     {
@@ -34,12 +34,11 @@ type Props = {
   >[];
 };
 
-export const WorkCard = ({ work, workImages, copyrights }: Props) => {
+export const WorkCard = ({ work, mainImage, copyrights }: Props) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsHover(e.type == 'mouseenter');
   }, []);
-  const mainImage = workImages[0];
 
   return (
     <Grid
@@ -92,22 +91,32 @@ export const WorkCard = ({ work, workImages, copyrights }: Props) => {
           aspect-ratio: 16 / 9;
         `}
       >
-        <Image
-          src={mainImage.url}
-          alt={`${work.histories[0].title}のメイン画像`}
-          fill
-          sizes='100%'
-          objectFit='cover'
-          className={clsx(
-            css`
-              transition: all 0.4s;
-            `,
-            isHover &&
+        {mainImage ? (
+          <Image
+            src={mainImage.url}
+            alt={`${work.histories[0].title}のメイン画像`}
+            fill
+            sizes='100%'
+            objectFit='cover'
+            className={clsx(
               css`
-                transform: scale(1.04);
+                transition: all 0.4s;
               `,
-          )}
-        />
+              isHover &&
+                css`
+                  transform: scale(1.04);
+                `,
+            )}
+          />
+        ) : (
+          <Box
+            width={'100%'}
+            height={'auto'}
+            position={'absolute'}
+            inset={0}
+            bg={'whitesmoke'}
+          />
+        )}
       </Box>
       <WorkCardSummary work={work} copyrights={copyrights} />
     </Grid>
