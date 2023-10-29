@@ -105,7 +105,7 @@ export const WorkList = async ({ creator }: Props) => {
       <Grid
         as='section'
         py={32}
-        gridTemplateColumns={'repeat(auto-fit, minmax(380px, 1fr))'}
+        gridTemplateColumns={'repeat(auto-fill, minmax(380px, 1fr))'}
         className={css`
           grid-column-gap: 16px;
           grid-row-gap: 24px;
