@@ -1,12 +1,25 @@
 import { Box, Grid, Text, css } from '@kuma-ui/core';
-import { Category } from '@prisma/client';
+import { Work } from '@prisma/client';
 import Link from 'next/link';
+import prisma from '@/lib/prisma';
 
 type Props = {
-  categories: Category[];
+  work: Work;
 };
 
-export const Categories = ({ categories }: Props) => {
+export const Categories = async ({ work }: Props) => {
+  const workCategories = await prisma.workCategory.findMany({
+    where: {
+      workId: work.id,
+    },
+    include: {
+      category: true,
+    },
+  });
+  const categories = [
+    ...new Set(workCategories.map((workCategory) => workCategory.category)),
+  ];
+
   if (!categories.length) {
     return null;
   }

@@ -1,12 +1,23 @@
 import { Box, Grid, Text, css } from '@kuma-ui/core';
-import { Tag } from '@prisma/client';
+import { Work } from '@prisma/client';
 import Link from 'next/link';
+import prisma from '@/lib/prisma';
 
 type Props = {
-  tags: Tag[];
+  work: Work;
 };
 
-export const Tags = ({ tags }: Props) => {
+export const Tags = async ({ work }: Props) => {
+  const workTags = await prisma.workTag.findMany({
+    where: {
+      workId: work.id,
+    },
+    include: {
+      tag: true,
+    },
+  });
+  const tags = [...new Set(workTags.map((workTag) => workTag.tag))];
+
   if (!tags.length) {
     return null;
   }
