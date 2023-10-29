@@ -47,7 +47,10 @@ const getCreators = (
 
   copyrights.forEach((copyright) => {
     copyright.userCopyrights.forEach((userCopyright) => {
-      if (!creators.includes(userCopyright.user)) {
+      if (
+        userCopyright.user.published &&
+        !creators.includes(userCopyright.user)
+      ) {
         creators.push(userCopyright.user);
       }
     });
@@ -79,9 +82,9 @@ const RenderAnonymousUserIcon = () => {
 export const WorkCardSummary = ({ work, copyrights }: Props) => {
   const creators = getCreators(copyrights);
   const [loading, setLoading] = useState(true);
-  const [randomCreator, setRandomCreator] = useState(creators[0]);
+  const [randomCreator, setRandomCreator] = useState(creators[0] || []);
   // @ts-expect-error anonymousUserの場合はimageがないがエラーになるため
-  const randomCreatorImage = randomCreator.image;
+  const randomCreatorImage = randomCreator?.image;
 
   useEffect(() => {
     if (!loading) {

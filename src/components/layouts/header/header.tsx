@@ -43,7 +43,6 @@ export const Header = () => {
         mx={'auto'}
         maxWidth={'fit-content'}
         borderRadius={'1.5rem'}
-        bg={'colors.bgPrimary'}
         transition={'all 0.4s'}
         _hover={{
           bg: 'white',
@@ -51,14 +50,17 @@ export const Header = () => {
             '0px 1px 2px -1px rgba(41, 44, 49, 0.06), 0px 0px 0px 1px rgba(15, 16, 18, 0.06), 0px 2px 4px 0px rgba(73, 79, 90, 0.04)',
         }}
         className={
-          (position > breakPosition || undefined) &&
-          css`
-            background: white;
-            box-shadow:
-              0px 1px 2px -1px rgba(41, 44, 49, 0.06),
-              0px 0px 0px 1px rgba(15, 16, 18, 0.06),
-              0px 2px 4px 0px rgba(73, 79, 90, 0.04);
-          `
+          position > breakPosition || undefined
+            ? css`
+                background: white;
+                box-shadow:
+                  0px 1px 2px -1px rgba(41, 44, 49, 0.06),
+                  0px 0px 0px 1px rgba(15, 16, 18, 0.06),
+                  0px 2px 4px 0px rgba(73, 79, 90, 0.04);
+              `
+            : css`
+                background: t('colors.bgPrimary');
+              `
         }
       >
         <HStack as='ul' alignItems={'center'} gap={4}>
