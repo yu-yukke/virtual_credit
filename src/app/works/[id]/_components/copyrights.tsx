@@ -1,36 +1,32 @@
 import { Box, Grid, Text, VStack, css } from '@kuma-ui/core';
-import {
-  AnonymousUser,
-  AnonymousUserCopyright,
-  Copyright,
-  User,
-  UserCopyright,
-} from '@prisma/client';
+import { Work } from '@prisma/client';
 import Link from 'next/link';
 
-import { Merge } from '@/types/merge';
+import prisma from '@/lib/prisma';
 
 type Props = {
-  copyrights: Merge<
-    Copyright,
-    {
-      userCopyrights: Merge<
-        UserCopyright,
-        {
-          user: User;
-        }
-      >[];
-      anonymousUserCopyrights: Merge<
-        AnonymousUserCopyright,
-        {
-          anonymousUser: AnonymousUser;
-        }
-      >[];
-    }
-  >[];
+  work: Work;
 };
 
-export const Copyrights = ({ copyrights }: Props) => {
+export const Copyrights = async ({ work }: Props) => {
+  const copyrights = await prisma.copyright.findMany({
+    where: {
+      workId: work.id,
+    },
+    include: {
+      userCopyrights: {
+        include: {
+          user: true,
+        },
+      },
+      anonymousUserCopyrights: {
+        include: {
+          anonymousUser: true,
+        },
+      },
+    },
+  });
+
   if (!copyrights.length) {
     return null;
   }

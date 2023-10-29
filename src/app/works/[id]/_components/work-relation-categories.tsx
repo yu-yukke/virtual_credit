@@ -1,18 +1,26 @@
 import { Box, Grid, Text, VStack, css } from '@kuma-ui/core';
-import { WorkRelation, WorkRelationCategory } from '@prisma/client';
+import { Work } from '@prisma/client';
 import Link from 'next/link';
-import { Merge } from '@/types/merge';
+import prisma from '@/lib/prisma';
 
 type Props = {
-  workRelationCategories: Merge<
-    WorkRelationCategory,
-    {
-      workRelations: WorkRelation[];
-    }
-  >[];
+  work: Work;
 };
 
-export const WorkRelationCategories = ({ workRelationCategories }: Props) => {
+export const WorkRelationCategories = async ({ work }: Props) => {
+  const workRelationCategories = await prisma.workRelationCategory.findMany({
+    where: {
+      workId: work.id,
+    },
+    include: {
+      workRelations: true,
+    },
+  });
+
+  if (!workRelationCategories.length) {
+    return null;
+  }
+
   return (
     <VStack gap={24}>
       {workRelationCategories.map((workRelationCategory) => (

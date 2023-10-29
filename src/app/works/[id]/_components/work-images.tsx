@@ -1,12 +1,25 @@
 import { Grid, VStack, css } from '@kuma-ui/core';
-import { WorkImage } from '@prisma/client';
+import { Work } from '@prisma/client';
 import Image from 'next/image';
+import prisma from '@/lib/prisma';
 
 type Props = {
-  workImages: WorkImage[];
+  work: Work;
 };
 
-export const WorkImages = ({ workImages }: Props) => {
+export const WorkImages = async ({ work }: Props) => {
+  const allWorkImages = await prisma.workImage.findMany({
+    where: {
+      workId: work.id,
+    },
+  });
+
+  if (!allWorkImages.length) {
+    return null;
+  }
+
+  const workImages = allWorkImages.slice(1);
+
   return (
     <Grid
       as='section'

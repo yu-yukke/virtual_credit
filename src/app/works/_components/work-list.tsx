@@ -18,6 +18,7 @@ export const WorkList = async () => {
         orderBy: {
           createdAt: 'desc',
         },
+        take: 1,
       },
       copyrights: {
         orderBy: {
@@ -63,7 +64,7 @@ export const WorkList = async () => {
           <WorkCard
             key={work.id}
             work={work}
-            workImages={work.workImages}
+            mainImage={work.workImages[0]}
             copyrights={work.copyrights}
           />
         ))}

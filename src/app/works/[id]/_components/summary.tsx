@@ -1,65 +1,29 @@
 import { Grid, Heading, Text, VStack, css } from '@kuma-ui/core';
-import {
-  AnonymousUser,
-  AnonymousUserCopyright,
-  Category,
-  Copyright,
-  Tag,
-  User,
-  UserCopyright,
-  WorkHistory,
-  WorkRelation,
-  WorkRelationCategory,
-} from '@prisma/client';
+import { Work, WorkHistory } from '@prisma/client';
 
 import { Categories } from './categories';
 import { Copyrights } from './copyrights';
+import { PageViewCount } from './page-view-count';
 import { Tags } from './tags';
 import { WorkRelationCategories } from './work-relation-categories';
 import { Merge } from '@/types/merge';
 
 type Props = {
-  viewCount: number;
-  latestWorkHistory: WorkHistory;
-  copyrights: Merge<
-    Copyright,
+  work: Merge<
+    Work,
     {
-      userCopyrights: Merge<
-        UserCopyright,
-        {
-          user: User;
-        }
-      >[];
-      anonymousUserCopyrights: Merge<
-        AnonymousUserCopyright,
-        {
-          anonymousUser: AnonymousUser;
-        }
-      >[];
+      histories: WorkHistory[];
     }
-  >[];
-  categories: Category[];
-  tags: Tag[];
-  workRelationCategories: Merge<
-    WorkRelationCategory,
-    {
-      workRelations: WorkRelation[];
-    }
-  >[];
+  >;
 };
 
-export const Summary = ({
-  viewCount,
-  latestWorkHistory,
-  copyrights,
-  categories,
-  tags,
-  workRelationCategories,
-}: Props) => {
+export const Summary = ({ work }: Props) => {
+  const latestWorkHistory = work.histories[0];
+
   return (
     <Grid
       as='section'
-      mt={32}
+      mt={48}
       className={css`
         grid-template-columns: 1fr min(400px, 100%) 1fr;
       `}
@@ -82,9 +46,7 @@ export const Summary = ({
       >
         {latestWorkHistory.title}
       </Heading>
-      <Text as='span' mt={4} fontSize={'0.875rem'} color={'colors.tertiary'}>
-        {viewCount} views
-      </Text>
+      <PageViewCount work={work} />
       <Text
         as='p'
         letterSpacing={'0.03rem'}
@@ -95,14 +57,10 @@ export const Summary = ({
         {latestWorkHistory.description}
       </Text>
       <VStack mt={64} gap={24}>
-        {!!copyrights.length && <Copyrights copyrights={copyrights} />}
-        {!!categories.length && <Categories categories={categories} />}
-        {!!tags.length && <Tags tags={tags} />}
-        {!!workRelationCategories.length && (
-          <WorkRelationCategories
-            workRelationCategories={workRelationCategories}
-          />
-        )}
+        <Copyrights work={work} />
+        <Categories work={work} />
+        <Tags work={work} />
+        <WorkRelationCategories work={work} />
       </VStack>
     </Grid>
   );
