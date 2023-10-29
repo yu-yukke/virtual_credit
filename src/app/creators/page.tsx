@@ -19,7 +19,7 @@ export default async function Page() {
         description={`A collection of ${creators.length} creators`}
       />
       <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
-      <Box as='section' py={20}>
+      <Box as='section' mt={20}>
         <Skills />
       </Box>
       <CreatorList />
