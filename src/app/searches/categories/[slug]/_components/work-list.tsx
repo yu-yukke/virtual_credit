@@ -8,12 +8,13 @@ type Props = {
 };
 
 export const WorkList = async ({ categoryName }: Props) => {
+  const decodeCategoryName = categoryName ? decodeURI(categoryName) : '';
   const works = await prisma.work.findMany({
     where: {
       workCategories: {
         some: {
           category: {
-            name: categoryName,
+            name: decodeURI(decodeCategoryName),
           },
         },
       },

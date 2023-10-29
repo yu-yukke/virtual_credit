@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: Props }) {
       workCategories: {
         some: {
           category: {
-            name: params.slug,
+            name: decodeURI(params.slug),
           },
         },
       },
