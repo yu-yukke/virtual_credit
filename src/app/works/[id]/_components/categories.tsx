@@ -46,7 +46,7 @@ export const Categories = async ({ work }: Props) => {
       >
         {categories.map((category) => (
           <Link
-            href='/'
+            href={`/searches/categories/${category.name}`}
             key={category.id}
             className={css`
               grid-column-start: 1;
