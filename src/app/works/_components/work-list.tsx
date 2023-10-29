@@ -45,7 +45,7 @@ export const WorkList = async () => {
     },
   });
   const publishedWorks = await works.filter(
-    (work) => work.histories.length > 0 && work.histories[0].published,
+    (work) => !!work.histories.length && work.histories[0].published,
   );
 
   return (
@@ -58,7 +58,7 @@ export const WorkList = async () => {
         grid-row-gap: 24px;
       `}
     >
-      {publishedWorks.length &&
+      {!!publishedWorks.length &&
         publishedWorks.map((work) => (
           <WorkCard
             key={work.id}

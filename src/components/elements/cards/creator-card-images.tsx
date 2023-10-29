@@ -59,15 +59,13 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
         >
           <Image
             src={workImages[0].url}
-            alt=''
+            alt={`${creator.name}の作品画像`}
             fill
             sizes='100%'
+            objectFit='cover'
             className={clsx(
               css`
-                width: 100%;
-                height: auto;
                 transition: all 0.4s;
-                object-fit: cover;
               `,
               isHover
                 ? css`
@@ -100,15 +98,13 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
             >
               <Image
                 src={workImage.url}
-                alt=''
+                alt={`${creator.name}の作品画像`}
                 fill
                 sizes='100%'
+                objectFit='cover'
                 className={clsx(
                   css`
-                    width: 100%;
-                    height: auto;
                     transition: all 0.4s;
-                    object-fit: cover;
                   `,
                   isHover
                     ? css`
@@ -140,7 +136,7 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
           {creator.image ? (
             <Image
               src={creator.image}
-              alt=''
+              alt={`${creator.name}のサムネイル画像`}
               fill
               className={clsx(
                 css`

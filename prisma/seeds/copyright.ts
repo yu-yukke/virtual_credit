@@ -15,6 +15,7 @@ export const copyright = async () => {
       data: {
         workId: works[i].id,
         name: fakerJA.person.jobType() + `${i}`,
+        createdAt: new Date(Date.now() + i * 1000),
       },
     });
     const userIds: string[] = [];

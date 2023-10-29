@@ -10,9 +10,10 @@ export const workImage = async () => {
     await prisma.workImage.createMany({
       data: Array(Math.floor(Math.random() * 4) + 1)
         .fill(0)
-        .map((_v, _i) => ({
+        .map((_v, i) => ({
           workId: work.id,
           url: fakerJA.image.url({ width: 1024, height: 640 }),
+          createdAt: new Date(Date.now() + i * 1000),
         })),
     });
   }

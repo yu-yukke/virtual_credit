@@ -15,6 +15,7 @@ export const category = async () => {
       .map((_v, i) => ({
         name: uniqueNames[i],
         createdById: randBoolean(0.8) ? randFromArray(users).id : null,
+        createdAt: new Date(Date.now() + i * 1000),
       })),
   });
 };
