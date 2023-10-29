@@ -88,7 +88,7 @@ export const CreatorCard = ({ creator, userSkills, userCopyrights }: Props) => {
       onMouseLeave={handleHover}
     >
       <Link
-        href='/'
+        href={`/creators/${creator.id}`}
         className={css`
           position: absolute;
           inset: 0;

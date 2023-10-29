@@ -28,7 +28,7 @@ export default async function Page() {
         description={`A collection of ${works.length} works`}
       />
       <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
-      <VStack as='section' py={20}>
+      <VStack as='section' mt={20}>
         <Categories />
         <Tags />
       </VStack>

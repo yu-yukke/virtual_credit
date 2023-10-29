@@ -9,9 +9,16 @@ type Props = {
 };
 
 export const Copyrights = async ({ work }: Props) => {
-  const copyrights = await prisma.copyright.findMany({
+  const allCopyrights = await prisma.copyright.findMany({
     where: {
       workId: work.id,
+      userCopyrights: {
+        some: {
+          user: {
+            published: true,
+          },
+        },
+      },
     },
     include: {
       userCopyrights: {
@@ -27,6 +34,14 @@ export const Copyrights = async ({ work }: Props) => {
     },
   });
 
+  const copyrights = allCopyrights.map((copyright) => {
+    return {
+      ...copyright,
+      userCopyrights: copyright.userCopyrights.filter(
+        (userCopyright) => userCopyright.user.published,
+      ),
+    };
+  });
   if (!copyrights.length) {
     return null;
   }
@@ -56,7 +71,7 @@ export const Copyrights = async ({ work }: Props) => {
             >
               {copyright.userCopyrights.map((userCopyright) => (
                 <Link
-                  href='/'
+                  href={`/creators/${userCopyright.userId}`}
                   key={`${userCopyright.copyrightId}${userCopyright.userId}`}
                   className={css`
                     grid-column-start: 1;

@@ -35,9 +35,9 @@ export const Summary = ({ work }: Props) => {
         letterSpacing={'0.0675rem'}
         className={css`
           background: linear-gradient(
-            270deg,
-            #2d2d2e -26.63%,
-            rgba(45, 45, 46, 0.6) 126%
+            90deg,
+            rgba(45, 45, 46, 0.45) -106.51%,
+            #2d2d2e 210.59%
           );
           background-clip: text;
           -webkit-background-clip: text;
