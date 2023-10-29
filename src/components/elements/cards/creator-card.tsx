@@ -8,6 +8,7 @@ import {
   UserCopyright,
   UserSkill,
   Work,
+  WorkHistory,
   WorkImage,
 } from '@prisma/client';
 import clsx from 'clsx';
@@ -26,7 +27,12 @@ type Props = {
     {
       copyright: Merge<
         Copyright,
-        { work: Merge<Work, { workImages: WorkImage[] }> }
+        {
+          work: Merge<
+            Work,
+            { workImages: WorkImage[]; histories: WorkHistory[] }
+          >;
+        }
       >;
     }
   >[];
@@ -37,13 +43,17 @@ export const CreatorCard = ({ creator, userSkills, userCopyrights }: Props) => {
   const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsHover(e.type == 'mouseenter');
   }, []);
-  const workImages = Array.from(
+  const uniqueWorks = Array.from(
     new Set(
-      userCopyrights.flatMap(
-        (userCopyright) => userCopyright.copyright.work.workImages,
-      ),
+      userCopyrights
+        .filter(
+          (userCopyright) =>
+            userCopyright.copyright.work.histories[0].published,
+        )
+        .map((userCopyright) => userCopyright.copyright.work),
     ),
   );
+  const workImages = uniqueWorks.map((work) => work.workImages[0]);
 
   return (
     <Grid

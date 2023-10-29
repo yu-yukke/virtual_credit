@@ -28,6 +28,11 @@ export const CreatorList = async () => {
                       createdAt: 'desc',
                     },
                   },
+                  histories: {
+                    orderBy: {
+                      createdAt: 'desc',
+                    },
+                  },
                 },
               },
             },
