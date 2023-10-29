@@ -16,6 +16,7 @@ export const anonymousUser = async () => {
         name: uniqueNames[i],
         userId: randBoolean(0.5) ? users[i].id : null,
         createdById: randBoolean(0.8) ? randFromArray(users).id : null,
+        createdAt: new Date(Date.now() + i * 1000),
       })),
   });
 };

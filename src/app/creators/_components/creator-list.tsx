@@ -47,7 +47,7 @@ export const CreatorList = async () => {
         grid-row-gap: 24px;
       `}
     >
-      {creators.length &&
+      {!!creators.length &&
         creators.map((creator) => (
           <CreatorCard
             key={creator.id}
