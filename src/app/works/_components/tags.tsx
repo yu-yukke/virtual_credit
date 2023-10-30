@@ -10,19 +10,58 @@ type Props = {
 };
 
 export const Tags = async ({ tagName }: Props) => {
-  const tags = await prisma.tag.findMany();
+  const allTags = await prisma.tag.findMany({
+    include: {
+      workTags: {
+        include: {
+          work: {
+            include: {
+              histories: {
+                orderBy: {
+                  createdAt: 'desc',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+  const tags = allTags.filter((tag) =>
+    tag.workTags.some(
+      (workTag) =>
+        workTag.work.histories.length > 0 &&
+        workTag.work.histories[0].published,
+    ),
+  );
 
   if (!tags.length) {
     return null;
   }
 
   return (
-    <HStack as='ul' gap={4} py={12} px={1} overflow={'scroll hidden'}>
+    <HStack
+      as='ul'
+      gap={4}
+      py={12}
+      px={1}
+      overflow={'scroll hidden'}
+      maskImage={'linear-gradient(to left, rgba(0, 0, 0, 0.4), white)'}
+    >
+      <li>
+        <Link href={'/works'}>
+          <FilterButton text='All' />
+        </Link>
+      </li>
       {tags.map((tag) => (
         <li key={tag.id}>
           <Link href={`/searches/tags/${tag.name}`}>
             <FilterButton
-              text={`# ${tag.name}`}
+              text={`# ${tag.name} (${
+                tag.workTags.filter(
+                  (workTag) => workTag.work.histories[0].published,
+                ).length
+              })`}
               isActive={encodeURI(tag.name) === tagName}
             />
           </Link>
