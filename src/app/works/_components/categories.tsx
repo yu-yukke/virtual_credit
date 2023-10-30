@@ -10,19 +10,58 @@ type Props = {
 };
 
 export const Categories = async ({ categoryName }: Props) => {
-  const categories = await prisma.category.findMany();
+  const allCategories = await prisma.category.findMany({
+    include: {
+      workCategories: {
+        include: {
+          work: {
+            include: {
+              histories: {
+                orderBy: {
+                  createdAt: 'desc',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+  const categories = allCategories.filter((category) =>
+    category.workCategories.some(
+      (workCategory) =>
+        workCategory.work.histories.length > 0 &&
+        workCategory.work.histories[0].published,
+    ),
+  );
 
   if (!categories.length) {
     return null;
   }
 
   return (
-    <HStack as='ul' gap={4} py={12} px={1} overflow={'scroll hidden'}>
+    <HStack
+      as='ul'
+      gap={4}
+      py={12}
+      px={1}
+      overflow={'scroll hidden'}
+      maskImage={'linear-gradient(to left, rgba(0, 0, 0, 0.4), white)'}
+    >
+      <li>
+        <Link href={'/works'}>
+          <FilterButton text='All' />
+        </Link>
+      </li>
       {categories.map((category) => (
         <li key={category.id}>
           <Link href={`/searches/categories/${category.name}`}>
             <FilterButton
-              text={category.name}
+              text={`${category.name} (${
+                category.workCategories.filter(
+                  (workCategory) => workCategory.work.histories[0].published,
+                ).length
+              })`}
               isActive={encodeURI(category.name) === categoryName}
             />
           </Link>
