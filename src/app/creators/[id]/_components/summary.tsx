@@ -46,6 +46,7 @@ export const Summary = async ({ creator }: Props) => {
               src={creator.image}
               alt={`${creator.name}のサムネイル画像`}
               fill
+              sizes='100%'
             />
           ) : (
             RenderAnonymousUserIcon()

@@ -1,4 +1,4 @@
-import { Grid, VStack, css } from '@kuma-ui/core';
+import { Box, Grid, VStack, css } from '@kuma-ui/core';
 import { Work } from '@prisma/client';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
@@ -30,17 +30,19 @@ export const WorkImages = async ({ work }: Props) => {
     >
       <VStack gap={48}>
         {workImages.map((workImage) => (
-          <Image
-            key={workImage.id}
-            src={workImage.url}
-            alt=''
-            fill
-            objectFit='contain'
-            className={css`
-              position: relative !important;
-              width: auto !important;
-            `}
-          />
+          <Box position={'relative'} key={workImage.id}>
+            <Image
+              src={workImage.url}
+              alt='作品イメージ'
+              fill
+              sizes='100%'
+              className={css`
+                position: relative !important;
+                width: auto !important;
+                object-fit: contain;
+              `}
+            />
+          </Box>
         ))}
       </VStack>
     </Grid>
