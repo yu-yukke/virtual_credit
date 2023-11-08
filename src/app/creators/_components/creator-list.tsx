@@ -52,15 +52,18 @@ export const CreatorList = async () => {
         grid-row-gap: 24px;
       `}
     >
-      {!!creators.length &&
-        creators.map((creator) => (
-          <CreatorCard
-            key={creator.id}
-            creator={creator}
-            userSkills={creator.userSkills}
-            userCopyrights={creator.userCopyrights}
-          />
-        ))}
+      {!!creators.length
+        ? creators.map((creator) => (
+            <CreatorCard
+              key={creator.id}
+              creator={creator}
+              userSkills={creator.userSkills}
+              userCopyrights={creator.userCopyrights}
+            />
+          ))
+        : Array.from({ length: 24 }).map((_, i) => (
+            <CreatorCard key={i} isLoading />
+          ))}
     </Grid>
   );
 };

@@ -22,10 +22,6 @@ export const Skills = async ({ skillName }: Props) => {
     },
   });
 
-  if (!skills.length) {
-    return null;
-  }
-
   return (
     <HStack
       as='ul'
@@ -35,23 +31,31 @@ export const Skills = async ({ skillName }: Props) => {
       overflow={'scroll hidden'}
       maskImage={'linear-gradient(to left, rgba(0, 0, 0, 0.4), white)'}
     >
-      <li>
-        <Link href={'/creators'}>
-          <FilterButton text='All' />
-        </Link>
-      </li>
-      {skills.map(
-        (skill) =>
-          skill.userSkills.length > 0 && (
-            <li key={skill.id}>
-              <Link href={`/searches/creators/${skill.name}`}>
-                <FilterButton
-                  text={`${skill.name} (${skill.userSkills.length})`}
-                  isActive={encodeURI(skill.name) === skillName}
-                />
-              </Link>
-            </li>
-          ),
+      {!!skills.length ? (
+        <>
+          <li>
+            <Link href={'/creators'}>
+              <FilterButton text='All' />
+            </Link>
+          </li>
+          {skills.map(
+            (skill) =>
+              skill.userSkills.length > 0 && (
+                <li key={skill.id}>
+                  <Link href={`/searches/creators/${skill.name}`}>
+                    <FilterButton
+                      text={`${skill.name} (${skill.userSkills.length})`}
+                      isActive={encodeURI(skill.name) === skillName}
+                    />
+                  </Link>
+                </li>
+              ),
+          )}
+        </>
+      ) : (
+        Array.from({ length: 12 }).map((_, i) => (
+          <FilterButton key={i} isLoading />
+        ))
       )}
     </HStack>
   );
