@@ -35,10 +35,6 @@ export const Categories = async ({ categoryName }: Props) => {
     ),
   );
 
-  if (!categories.length) {
-    return null;
-  }
-
   return (
     <HStack
       as='ul'
@@ -48,25 +44,34 @@ export const Categories = async ({ categoryName }: Props) => {
       overflow={'scroll hidden'}
       maskImage={'linear-gradient(to left, rgba(0, 0, 0, 0.4), white)'}
     >
-      <li>
-        <Link href={'/works'}>
-          <FilterButton text='All' />
-        </Link>
-      </li>
-      {categories.map((category) => (
-        <li key={category.id}>
-          <Link href={`/searches/categories/${category.name}`}>
-            <FilterButton
-              text={`${category.name} (${
-                category.workCategories.filter(
-                  (workCategory) => workCategory.work.histories[0].published,
-                ).length
-              })`}
-              isActive={encodeURI(category.name) === categoryName}
-            />
-          </Link>
-        </li>
-      ))}
+      {!!categories.length ? (
+        <>
+          <li>
+            <Link href={'/works'}>
+              <FilterButton text='All' />
+            </Link>
+          </li>
+          {categories.map((category) => (
+            <li key={category.id}>
+              <Link href={`/searches/categories/${category.name}`}>
+                <FilterButton
+                  text={`${category.name} (${
+                    category.workCategories.filter(
+                      (workCategory) =>
+                        workCategory.work.histories[0].published,
+                    ).length
+                  })`}
+                  isActive={encodeURI(category.name) === categoryName}
+                />
+              </Link>
+            </li>
+          ))}
+        </>
+      ) : (
+        Array.from({ length: 12 }).map((_, i) => (
+          <FilterButton key={i} isLoading />
+        ))
+      )}
     </HStack>
   );
 };

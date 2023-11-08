@@ -1,12 +1,22 @@
 import { Button, css } from '@kuma-ui/core';
+import { Skeleton } from '@mui/material';
 
-type Props = {
-  text: string;
-  isActive?: boolean;
-};
+type Props =
+  | {
+      isLoading: true;
+      text?: never;
+      isActive?: never;
+    }
+  | {
+      isLoading?: false;
+      text: string;
+      isActive?: boolean;
+    };
 
-export const FilterButton = ({ text, isActive }: Props) => {
-  return (
+export const FilterButton = ({ isLoading, text, isActive }: Props) => {
+  return isLoading ? (
+    <Skeleton variant='rounded' width={80} height={32} />
+  ) : (
     <Button
       px={16}
       py={8}

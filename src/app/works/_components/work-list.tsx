@@ -59,15 +59,18 @@ export const WorkList = async () => {
         grid-row-gap: 24px;
       `}
     >
-      {!!publishedWorks.length &&
-        publishedWorks.map((work) => (
-          <WorkCard
-            key={work.id}
-            work={work}
-            mainImage={work.workImages[0]}
-            copyrights={work.copyrights}
-          />
-        ))}
+      {!!publishedWorks.length
+        ? publishedWorks.map((work) => (
+            <WorkCard
+              key={work.id}
+              work={work}
+              mainImage={work.workImages[0]}
+              copyrights={work.copyrights}
+            />
+          ))
+        : Array.from({ length: 24 }).map((_, i) => (
+            <WorkCard key={i} isLoading />
+          ))}
     </Grid>
   );
 };
