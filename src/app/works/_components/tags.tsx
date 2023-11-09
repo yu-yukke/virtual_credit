@@ -44,7 +44,7 @@ export const Tags = async ({ tagName }: Props) => {
       overflow={'scroll hidden'}
       maskImage={'linear-gradient(to left, rgba(0, 0, 0, 0.4), white)'}
     >
-      {!!tags.length ? (
+      {!!tags.length && (
         <>
           <li>
             <Link href={'/works'}>
@@ -66,10 +66,6 @@ export const Tags = async ({ tagName }: Props) => {
             </li>
           ))}
         </>
-      ) : (
-        Array.from({ length: 12 }).map((_, i) => (
-          <FilterButton key={i} isLoading />
-        ))
       )}
     </HStack>
   );

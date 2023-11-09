@@ -44,7 +44,7 @@ export const Categories = async ({ categoryName }: Props) => {
       overflow={'scroll hidden'}
       maskImage={'linear-gradient(to left, rgba(0, 0, 0, 0.4), white)'}
     >
-      {!!categories.length ? (
+      {!!categories.length && (
         <>
           <li>
             <Link href={'/works'}>
@@ -67,10 +67,6 @@ export const Categories = async ({ categoryName }: Props) => {
             </li>
           ))}
         </>
-      ) : (
-        Array.from({ length: 12 }).map((_, i) => (
-          <FilterButton key={i} isLoading />
-        ))
       )}
     </HStack>
   );
