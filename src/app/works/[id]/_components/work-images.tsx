@@ -28,7 +28,7 @@ export const WorkImages = async ({ work }: Props) => {
         grid-template-columns: 1fr min(816px, 100%) 1fr;
       `}
     >
-      <VStack gap={48}>
+      <VStack gap={48} alignItems={'center'}>
         {workImages.map((workImage) => (
           <Box position={'relative'} key={workImage.id}>
             <Image

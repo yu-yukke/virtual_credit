@@ -5,7 +5,7 @@ export const FilterButton = () => {
   return (
     <Skeleton
       variant='rounded'
-      width={120}
+      width={80}
       height={32}
       className={css`
         white-space: nowrap;
