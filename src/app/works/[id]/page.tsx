@@ -55,7 +55,10 @@ export default async function Page({ params }: { params: Props }) {
             src={work.workImages[0].url}
             alt='作品メインイメージ'
             fill
-            objectFit='cover'
+            priority
+            className={css`
+              object-fit: cover;
+            `}
           />
         </Box>
       </Grid>

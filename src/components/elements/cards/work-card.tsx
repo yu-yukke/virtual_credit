@@ -97,10 +97,10 @@ export const WorkCard = ({ work, mainImage, copyrights }: Props) => {
             alt={`${work.histories[0].title}のメイン画像`}
             fill
             sizes='100%'
-            objectFit='cover'
             className={clsx(
               css`
                 transition: all 0.4s;
+                object-fit: cover;
               `,
               isHover &&
                 css`

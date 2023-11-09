@@ -43,6 +43,7 @@ export const CreatorCard = ({ creator, userSkills, userCopyrights }: Props) => {
   const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     setIsHover(e.type == 'mouseenter');
   }, []);
+
   const uniqueWorks = Array.from(
     new Set(
       userCopyrights

@@ -2,6 +2,7 @@ import { Spacer, VStack } from '@kuma-ui/core';
 
 import { Categories, Tags, WorkList } from './_components';
 import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
+
 import prisma from '@/lib/prisma';
 
 export default async function Page() {

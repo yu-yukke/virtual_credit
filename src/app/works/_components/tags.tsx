@@ -35,10 +35,6 @@ export const Tags = async ({ tagName }: Props) => {
     ),
   );
 
-  if (!tags.length) {
-    return null;
-  }
-
   return (
     <HStack
       as='ul'
@@ -48,25 +44,29 @@ export const Tags = async ({ tagName }: Props) => {
       overflow={'scroll hidden'}
       maskImage={'linear-gradient(to left, rgba(0, 0, 0, 0.4), white)'}
     >
-      <li>
-        <Link href={'/works'}>
-          <FilterButton text='All' />
-        </Link>
-      </li>
-      {tags.map((tag) => (
-        <li key={tag.id}>
-          <Link href={`/searches/tags/${tag.name}`}>
-            <FilterButton
-              text={`# ${tag.name} (${
-                tag.workTags.filter(
-                  (workTag) => workTag.work.histories[0].published,
-                ).length
-              })`}
-              isActive={encodeURI(tag.name) === tagName}
-            />
-          </Link>
-        </li>
-      ))}
+      {!!tags.length && (
+        <>
+          <li>
+            <Link href={'/works'}>
+              <FilterButton text='All' />
+            </Link>
+          </li>
+          {tags.map((tag) => (
+            <li key={tag.id}>
+              <Link href={`/searches/tags/${tag.name}`}>
+                <FilterButton
+                  text={`# ${tag.name} (${
+                    tag.workTags.filter(
+                      (workTag) => workTag.work.histories[0].published,
+                    ).length
+                  })`}
+                  isActive={encodeURI(tag.name) === tagName}
+                />
+              </Link>
+            </li>
+          ))}
+        </>
+      )}
     </HStack>
   );
 };
