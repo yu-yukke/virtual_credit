@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: Props }) {
   return (
     <>
       <PageHeadingWrapper
-        title={`${decodeURI(params.slug)}`}
+        title={decodeURI(params.slug)}
         description={`A collection of ${works.length} works`}
       />
       <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
