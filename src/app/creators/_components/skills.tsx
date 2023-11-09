@@ -42,7 +42,7 @@ export const Skills = async ({ skillName }: Props) => {
             (skill) =>
               skill.userSkills.length > 0 && (
                 <li key={skill.id}>
-                  <Link href={`/searches/creators/${skill.name}`}>
+                  <Link href={`/searches/skills/${skill.name}`}>
                     <FilterButton
                       text={`${skill.name} (${skill.userSkills.length})`}
                       isActive={encodeURI(skill.name) === skillName}
