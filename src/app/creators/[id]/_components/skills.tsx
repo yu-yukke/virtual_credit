@@ -27,7 +27,7 @@ export const Skills = async ({ creator }: Props) => {
       <HStack as='ul' flexWrap={'wrap'} justifyContent={'center'} gap={24}>
         {skills.map((skill) => (
           <li key={skill.id}>
-            <Link href={`/searches/creators/${skill.name}`}>
+            <Link href={`/searches/skills/${skill.name}`}>
               <Button
                 px={16}
                 py={8}
