@@ -31,7 +31,7 @@ export const Skills = async ({ skillName }: Props) => {
       overflow={'scroll hidden'}
       maskImage={'linear-gradient(to left, rgba(0, 0, 0, 0.4), white)'}
     >
-      {!!skills.length ? (
+      {!!skills.length && (
         <>
           <li>
             <Link href={'/creators'}>
@@ -52,10 +52,6 @@ export const Skills = async ({ skillName }: Props) => {
               ),
           )}
         </>
-      ) : (
-        Array.from({ length: 12 }).map((_, i) => (
-          <FilterButton key={i} isLoading />
-        ))
       )}
     </HStack>
   );

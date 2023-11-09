@@ -64,18 +64,15 @@ export const CreatorList = async ({ skillName }: Props) => {
         grid-row-gap: 24px;
       `}
     >
-      {!!creators.length
-        ? creators.map((creator) => (
-            <CreatorCard
-              key={creator.id}
-              creator={creator}
-              userSkills={creator.userSkills}
-              userCopyrights={creator.userCopyrights}
-            />
-          ))
-        : Array.from({ length: 24 }).map((_, i) => (
-            <CreatorCard key={i} isLoading />
-          ))}
+      {!!creators.length &&
+        creators.map((creator) => (
+          <CreatorCard
+            key={creator.id}
+            creator={creator}
+            userSkills={creator.userSkills}
+            userCopyrights={creator.userCopyrights}
+          />
+        ))}
     </Grid>
   );
 };
