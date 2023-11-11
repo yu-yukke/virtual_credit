@@ -35,7 +35,7 @@ export const Header = () => {
       top={24}
       width={'100%'}
       px={30}
-      zIndex={10}
+      zIndex={100}
     >
       <Box
         as='nav'
