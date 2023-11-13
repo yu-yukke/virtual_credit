@@ -1,10 +1,13 @@
-import { Button } from '@kuma-ui/core';
+import '@/styles/radix/navigation-menu.css';
+import { Button, HStack } from '@kuma-ui/core';
+import { CaretDownIcon } from '@radix-ui/react-icons';
 
 type Props = {
   text: string;
+  withContent?: boolean;
 };
 
-export const HeaderNavButton = ({ text }: Props) => {
+export const HeaderNavButton = ({ text, withContent }: Props) => {
   return (
     <Button
       px={16}
@@ -19,7 +22,10 @@ export const HeaderNavButton = ({ text }: Props) => {
           '0px 1px 2px -1px rgba(41, 44, 49, 0.06), 0px 0px 0px 1px rgba(15, 16, 18, 0.06), 0px 2px 4px 0px rgba(73, 79, 90, 0.04)',
       }}
     >
-      {text}
+      <HStack alignItems={'flex-start'} gap={4}>
+        {text}
+        {withContent && <CaretDownIcon className='caretDown' />}
+      </HStack>
     </Button>
   );
 };
