@@ -1,5 +1,5 @@
-import './globals.css';
-import './reset.css';
+import '@/styles/globals.css';
+import '@/styles/reset.css';
 
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry';
 import { Inter } from 'next/font/google';
