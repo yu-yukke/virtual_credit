@@ -28,7 +28,7 @@ export default async function Page({
         <Categories />
         <Tags />
       </VStack>
-      <WorkList page={page} />
+      <WorkList page={page} worksCount={worksCount} />
     </>
   );
 }
