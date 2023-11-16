@@ -47,10 +47,7 @@ export const CreatorCard = ({ creator, userSkills, userCopyrights }: Props) => {
   const uniqueWorks = Array.from(
     new Set(
       userCopyrights
-        .filter(
-          (userCopyright) =>
-            userCopyright.copyright.work.histories[0].published,
-        )
+        .filter((userCopyright) => userCopyright.copyright.work.published)
         .map((userCopyright) => userCopyright.copyright.work),
     ),
   );
