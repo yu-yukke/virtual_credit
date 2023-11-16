@@ -21,6 +21,7 @@ model User {
   slug          String?   @unique
   description   String?
   published     Boolean   @default(false)
+  publishedAt   DateTime? @map("published_at") @db.Timestamptz(3)
   createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // has one
@@ -197,9 +198,11 @@ model ReleaseNote {
 // 作品
 // ***************************************
 model Work {
-  id          String   @id @default(uuid())
-  createdById String?  @map("created_by_id")
-  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  id          String    @id @default(uuid())
+  published   Boolean   @default(false)
+  publishedAt DateTime? @map("published_at") @db.Timestamptz(3)
+  createdById String?   @map("created_by_id")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // has many
   histories              WorkHistory[]
@@ -213,6 +216,7 @@ model Work {
   // created log
   createdBy User? @relation("createdWorks", fields: [createdById], references: [id], onDelete: SetNull)
 
+  @@index([published])
   @@map("works")
 }
 
@@ -223,14 +227,12 @@ model WorkHistory {
   workId      String   @map("work_id")
   title       String
   description String
-  published   Boolean  @default(false)
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   // belongs to
   work Work @relation(fields: [workId], references: [id], onDelete: Cascade)
 
   @@index([title])
-  @@index([published])
   @@index([workId])
   @@map("work_histories")
 }

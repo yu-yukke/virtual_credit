@@ -1,73 +1,103 @@
-import { Grid, css } from '@kuma-ui/core';
+import { Grid, HStack, css } from '@kuma-ui/core';
 
+import { WorkImage } from '@prisma/client';
+import { Pagination } from '@/components/common';
 import { WorkCard } from '@/components/elements/cards';
 import prisma from '@/lib/prisma';
 
-export const WorkList = async () => {
-  const works = await prisma.work.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-    include: {
-      histories: {
-        orderBy: {
-          createdAt: 'desc',
-        },
+type Props = {
+  page: number;
+};
+
+const getWorks = async ({
+  perPage,
+  skip,
+}: {
+  perPage: number;
+  skip: number;
+}) => {
+  const works = await Promise.all([
+    prisma.work.findMany({
+      skip,
+      take: perPage,
+      where: {
+        published: true,
       },
-      workImages: {
-        orderBy: {
-          createdAt: 'desc',
-        },
-        take: 1,
+      orderBy: {
+        createdAt: 'desc',
       },
-      copyrights: {
-        orderBy: {
-          createdAt: 'desc',
-        },
-        include: {
-          userCopyrights: {
-            include: {
-              user: true,
-            },
-            orderBy: {
-              createdAt: 'desc',
-            },
-          },
-          anonymousUserCopyrights: {
-            include: {
-              anonymousUser: true,
-            },
-            orderBy: {
-              createdAt: 'desc',
-            },
+      include: {
+        histories: {
+          orderBy: {
+            createdAt: 'desc',
           },
         },
+        workImages: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+          take: 1,
+        },
+        copyrights: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+          include: {
+            userCopyrights: {
+              include: {
+                user: true,
+              },
+              orderBy: {
+                createdAt: 'desc',
+              },
+            },
+            anonymousUserCopyrights: {
+              include: {
+                anonymousUser: true,
+              },
+              orderBy: {
+                createdAt: 'desc',
+              },
+            },
+          },
+        },
       },
-    },
-  });
-  const publishedWorks = await works.filter(
-    (work) => !!work.histories.length && work.histories[0].published,
-  );
+    }),
+    prisma.work.count({ where: { published: true } }),
+  ]);
+
+  return works;
+};
+
+export const WorkList = async ({ page }: Props) => {
+  const perPage = 24;
+  const skip = perPage * (page - 1);
+  const [works, worksCount] = await getWorks({ perPage, skip });
+  const pageCount = Math.ceil(worksCount / perPage);
 
   return (
-    <Grid
-      as='section'
-      py={32}
-      gridTemplateColumns={'repeat(auto-fill, minmax(380px, 1fr))'}
-      className={css`
-        grid-column-gap: 16px;
-        grid-row-gap: 24px;
-      `}
-    >
-      {!!publishedWorks.length &&
-        publishedWorks.map((work) => (
+    <>
+      <Grid
+        as='section'
+        py={32}
+        gridTemplateColumns={'repeat(auto-fill, minmax(380px, 1fr))'}
+        className={css`
+          grid-column-gap: 16px;
+          grid-row-gap: 24px;
+        `}
+      >
+        {works.map((work) => (
           <WorkCard
             key={work.id}
             work={work}
-            mainImage={work.workImages[0]}
+            mainImage={(work.workImages as WorkImage[])[0]}
             copyrights={work.copyrights}
           />
         ))}
-    </Grid>
+      </Grid>
+      <HStack as='section' justifyContent={'center'} mt={48}>
+        <Pagination page={page} pageCount={pageCount} />
+      </HStack>
+    </>
   );
 };
