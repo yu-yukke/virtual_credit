@@ -7,6 +7,7 @@ import prisma from '@/lib/prisma';
 
 type Props = {
   page: number;
+  worksCount: number;
 };
 
 const getWorks = async ({
@@ -16,63 +17,58 @@ const getWorks = async ({
   perPage: number;
   skip: number;
 }) => {
-  const works = await Promise.all([
-    prisma.work.findMany({
-      skip,
-      take: perPage,
-      where: {
-        published: true,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-      include: {
-        histories: {
-          orderBy: {
-            createdAt: 'desc',
-          },
+  return await prisma.work.findMany({
+    skip,
+    take: perPage,
+    where: {
+      published: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      histories: {
+        orderBy: {
+          createdAt: 'desc',
         },
-        workImages: {
-          orderBy: {
-            createdAt: 'desc',
-          },
-          take: 1,
+      },
+      workImages: {
+        orderBy: {
+          createdAt: 'desc',
         },
-        copyrights: {
-          orderBy: {
-            createdAt: 'desc',
-          },
-          include: {
-            userCopyrights: {
-              include: {
-                user: true,
-              },
-              orderBy: {
-                createdAt: 'desc',
-              },
+        take: 1,
+      },
+      copyrights: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+        include: {
+          userCopyrights: {
+            include: {
+              user: true,
             },
-            anonymousUserCopyrights: {
-              include: {
-                anonymousUser: true,
-              },
-              orderBy: {
-                createdAt: 'desc',
-              },
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
+          anonymousUserCopyrights: {
+            include: {
+              anonymousUser: true,
+            },
+            orderBy: {
+              createdAt: 'desc',
             },
           },
         },
       },
-    }),
-    prisma.work.count({ where: { published: true } }),
-  ]);
-
-  return works;
+    },
+  });
 };
 
-export const WorkList = async ({ page }: Props) => {
+export const WorkList = async ({ page, worksCount }: Props) => {
   const perPage = 24;
   const skip = perPage * (page - 1);
-  const [works, worksCount] = await getWorks({ perPage, skip });
+  const works = await getWorks({ perPage, skip });
   const pageCount = Math.ceil(worksCount / perPage);
 
   return (
