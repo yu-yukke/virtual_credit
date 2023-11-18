@@ -8,12 +8,17 @@ type Props = {
   slug: string;
 };
 
-export default async function Page({ params }: { params: Props }) {
-  const filteredWorks = await prisma.work.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: Props;
+  searchParams: { [key: string]: string | undefined };
+}) {
+  const page = Number(searchParams['page'] || 1);
+  const worksCount = await prisma.work.count({
     where: {
+      published: true,
       workTags: {
         some: {
           tag: {
@@ -22,35 +27,20 @@ export default async function Page({ params }: { params: Props }) {
         },
       },
     },
-    include: {
-      histories: {
-        orderBy: {
-          createdAt: 'desc',
-        },
-      },
-      workCategories: {
-        include: {
-          category: true,
-        },
-      },
-    },
   });
-  const works = await filteredWorks.filter(
-    (work) => !!work.histories.length && work.histories[0].published,
-  );
 
   return (
     <>
       <PageHeadingWrapper
         title={`# ${decodeURI(params.slug)}`}
-        description={`A collection of ${works.length} works`}
+        description={`A collection of ${worksCount} works`}
       />
       <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
       <VStack as='section' mt={20}>
         <Categories />
         <Tags tagName={params.slug} />
       </VStack>
-      <WorkList tagName={params.slug} />
+      <WorkList tagName={params.slug} page={page} worksCount={worksCount} />
     </>
   );
 }

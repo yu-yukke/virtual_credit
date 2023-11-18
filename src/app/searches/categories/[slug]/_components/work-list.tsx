@@ -1,20 +1,33 @@
-import { Grid, css } from '@kuma-ui/core';
+import { Grid, HStack, css } from '@kuma-ui/core';
 
+import { Pagination } from '@/components/common';
 import { WorkCard } from '@/components/elements/cards';
 import prisma from '@/lib/prisma';
 
 type Props = {
   categoryName?: string;
+  page: number;
+  worksCount: number;
 };
 
-export const WorkList = async ({ categoryName }: Props) => {
-  const decodeCategoryName = categoryName ? decodeURI(categoryName) : '';
-  const works = await prisma.work.findMany({
+const getWorks = async ({
+  perPage,
+  skip,
+  categoryName,
+}: {
+  perPage: number;
+  skip: number;
+  categoryName: string;
+}) => {
+  return await prisma.work.findMany({
+    skip,
+    take: perPage,
     where: {
+      published: true,
       workCategories: {
         some: {
           category: {
-            name: decodeURI(decodeCategoryName),
+            name: decodeURI(categoryName),
           },
         },
       },
@@ -64,22 +77,31 @@ export const WorkList = async ({ categoryName }: Props) => {
       },
     },
   });
-  const publishedWorks = await works.filter(
-    (work) => !!work.histories.length && work.histories[0].published,
-  );
+};
+
+export const WorkList = async ({ categoryName, page, worksCount }: Props) => {
+  const perPage = 24;
+  const skip = perPage * (page - 1);
+  const decodedCategoryName = categoryName ? decodeURI(categoryName) : '';
+  const works = await getWorks({
+    perPage,
+    skip,
+    categoryName: decodedCategoryName,
+  });
+  const pageCount = Math.ceil(worksCount / perPage);
 
   return (
-    <Grid
-      as='section'
-      py={32}
-      gridTemplateColumns={'repeat(auto-fill, minmax(380px, 1fr))'}
-      className={css`
-        grid-column-gap: 16px;
-        grid-row-gap: 24px;
-      `}
-    >
-      {!!publishedWorks.length &&
-        publishedWorks.map((work) => (
+    <>
+      <Grid
+        as='section'
+        py={32}
+        gridTemplateColumns={'repeat(auto-fill, minmax(380px, 1fr))'}
+        className={css`
+          grid-column-gap: 16px;
+          grid-row-gap: 24px;
+        `}
+      >
+        {works.map((work) => (
           <WorkCard
             key={work.id}
             work={work}
@@ -87,6 +109,10 @@ export const WorkList = async ({ categoryName }: Props) => {
             copyrights={work.copyrights}
           />
         ))}
-    </Grid>
+      </Grid>
+      <HStack as='section' justifyContent={'center'} mt={48}>
+        <Pagination page={page} pageCount={pageCount} />
+      </HStack>
+    </>
   );
 };
