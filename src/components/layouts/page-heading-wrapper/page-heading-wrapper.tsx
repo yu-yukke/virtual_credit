@@ -4,10 +4,11 @@ import { PageHeadingButton } from '@/components/elements/buttons';
 
 type Props = {
   title: string;
+  subtitle?: string;
   description: string;
 };
 
-export const PageHeadingWrapper = ({ title, description }: Props) => {
+export const PageHeadingWrapper = ({ title, subtitle, description }: Props) => {
   return (
     <Box
       as='section'
@@ -19,7 +20,16 @@ export const PageHeadingWrapper = ({ title, description }: Props) => {
       justifyContent={'center'}
     >
       <PageHeadingButton title={title} />
-      <Text mt={24} fontSize={'1rem'}>
+      {subtitle && (
+        <Text mt={24} fontSize={'1.375rem'} letterSpacing={'0.04rem'}>
+          {subtitle}
+        </Text>
+      )}
+      <Text
+        mt={subtitle ? 12 : 24}
+        fontSize={'1rem'}
+        color={subtitle ? 'colors.tertiary' : 'colors.primary'}
+      >
         {description}
       </Text>
     </Box>
