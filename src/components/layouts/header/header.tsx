@@ -146,12 +146,12 @@ export const Header = () => {
                       description='作品を探す'
                     />
                     <ExploreContent
-                      href='/categories'
+                      href='/directory/categories'
                       text='Categories'
                       description='カテゴリーから作品を探す'
                     />
                     <ExploreContent
-                      href='/tags'
+                      href='/directory/tags'
                       text='Tags'
                       description='タグから作品を探す'
                     />
@@ -163,7 +163,7 @@ export const Header = () => {
                       description='クリエイターを探す'
                     />
                     <ExploreContent
-                      href='/skills'
+                      href='/directory/skills'
                       text='Skills'
                       description='スキルからクリエイターを探す'
                     />
