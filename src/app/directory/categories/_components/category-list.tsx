@@ -36,6 +36,7 @@ export const CategoryList = async () => {
     return bCount - aCount;
   });
 
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return (
     <VStack as='ul' gap={12} alignItems={'center'} className='full-bleed'>
       {categories.map((category) => (
