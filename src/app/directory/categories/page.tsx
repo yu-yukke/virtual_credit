@@ -26,6 +26,15 @@ export default async function Page() {
         workCategory.work.published && workCategory.work.histories.length > 0,
     ),
   );
+  categories.sort((a, b) => {
+    const aCount = a.workCategories.filter(
+      (workCategory) => workCategory.work.published,
+    ).length;
+    const bCount = b.workCategories.filter(
+      (workCategory) => workCategory.work.published,
+    ).length;
+    return bCount - aCount;
+  });
 
   return (
     <>
