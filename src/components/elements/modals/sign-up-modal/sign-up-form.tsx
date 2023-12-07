@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-import { AuthButtons } from './auth-buttons';
+import { AuthButtons } from '../../buttons/auth';
 
 export const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);

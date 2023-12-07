@@ -9,7 +9,8 @@ import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { HeaderNavButton } from '@/components/elements/buttons';
 import { SearchIcon } from '@/components/elements/icons';
-import { LogInModal, SignUpModal } from '@/components/elements/modals';
+import { LogInModal } from '@/components/elements/modals/log-in-modal';
+import { SignUpModal } from '@/components/elements/modals/sign-up-modal';
 
 const ExploreContent = ({
   href,

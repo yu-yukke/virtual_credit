@@ -1,5 +1,5 @@
 import { HStack } from '@kuma-ui/core';
-import { AuthButton } from '../buttons/auth';
+import { AuthButton } from './auth-button';
 
 export const AuthButtons = () => {
   return (
