@@ -1,1 +1,1 @@
-export { GoogleButton } from './google-button';
+export { AuthButton } from './auth-button';

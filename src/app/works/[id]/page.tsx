@@ -14,6 +14,7 @@ export default async function Page({ params }: { params: Props }) {
   const work = await prisma.work.findUnique({
     where: {
       id: params.id,
+      published: true,
     },
     include: {
       histories: {
@@ -30,7 +31,7 @@ export default async function Page({ params }: { params: Props }) {
     },
   });
 
-  if (!work || (!!work.histories.length && !work.histories[0].published)) {
+  if (!work || !work.histories.length) {
     return redirect('/works');
   }
 
