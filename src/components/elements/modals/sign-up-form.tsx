@@ -14,7 +14,7 @@ import { useState } from 'react';
 
 import { AuthButtons } from './auth-buttons';
 
-export const LogInForm = () => {
+export const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -52,7 +52,31 @@ export const LogInForm = () => {
               </InputAdornment>
             }
             label='Password'
-            autoComplete='current-password'
+          />
+        </FormControl>
+        <FormControl fullWidth variant='outlined'>
+          <InputLabel
+            required
+            htmlFor='outlined-adornment-password-confirmation'
+          >
+            パスワード確認
+          </InputLabel>
+          <OutlinedInput
+            id='outlined-adornment-password-confirmation'
+            type={showPassword ? 'text' : 'password'}
+            endAdornment={
+              <InputAdornment position='end'>
+                <IconButton
+                  aria-label='toggle password visibility'
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge='end'
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label='Password'
           />
         </FormControl>
         <Button
@@ -63,12 +87,12 @@ export const LogInForm = () => {
           borderRadius={'0.25rem'}
           _hover={{ opacity: 0.85 }}
         >
-          ログイン
+          アカウント登録
         </Button>
       </VStack>
       <Spacer size={1} bg={'colors.borderPrimary'} />
       <Text color={'colors.tertiary'} mt={24} fontSize={'0.875rem'}>
-        or Log in with
+        or Sign up with
       </Text>
       <AuthButtons />
     </>

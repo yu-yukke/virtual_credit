@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { SignUpForm } from './sign-up-form';
+import { LogInForm } from './log-in-form';
 import { Merge } from '@/types/merge';
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
   handleToggle: () => void;
 };
 
-export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
+export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
   const [workImage, setWorkImage] =
     useState<
       Merge<
@@ -34,6 +34,7 @@ export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
           return response.json();
         } else {
           setWorkImage(undefined);
+
           return;
         }
       })
@@ -137,11 +138,11 @@ export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
         </Box>
         <Box width={'50%'} py={24}>
           <Heading as='h1' fontWeight={700} fontSize={'1.5rem'}>
-            Sign up
+            Log in
           </Heading>
-          <SignUpForm />
+          <LogInForm />
           <Text mt={36} color={'colors.tertiary'} fontSize={'0.875rem'}>
-            既に会員の方は
+            会員登録がまだの方は
             <Text
               as='span'
               cursor={'pointer'}
@@ -150,7 +151,7 @@ export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
             >
               こちら
             </Text>
-            からログインしてください
+            から登録してください
           </Text>
         </Box>
       </HStack>

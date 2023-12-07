@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { HeaderNavButton } from '@/components/elements/buttons';
 import { SearchIcon } from '@/components/elements/icons';
-import { SignUpModal } from '@/components/elements/modals';
+import { LogInModal, SignUpModal } from '@/components/elements/modals';
 
 const ExploreContent = ({
   href,
@@ -47,10 +47,25 @@ const ExploreContent = ({
 
 export const Header = () => {
   const [position, setPosition] = useState<number>(0);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenLogIn, setIsOpenLogIn] = useState<boolean>(false);
+  const [isOpenSignUp, setIsOpenSignUp] = useState<boolean>(false);
   const breakPosition = 50;
-  const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+  const handleOpenLogin = () => {
+    setIsOpenLogIn(true);
+    setIsOpenSignUp(false);
+  };
+  const handleOpenSignup = () => {
+    setIsOpenLogIn(false);
+    setIsOpenSignUp(true);
+  };
+  const handleClose = () => {
+    setIsOpenLogIn(false);
+    setIsOpenSignUp(false);
+  };
+  const handleToggle = () => {
+    setIsOpenLogIn((prevIsOpenLogin) => !prevIsOpenLogin);
+    setIsOpenSignUp((prevIsOpenLogin) => !prevIsOpenLogin);
+  };
   const scrollEvent = useCallback(() => {
     const offset = window.scrollY;
 
@@ -187,7 +202,7 @@ export const Header = () => {
                   margin-left: 12px;
                 `}
               >
-                <HeaderNavButton text='Log in' onClick={handleOpen} />
+                <HeaderNavButton text='Log in' onClick={handleOpenLogin} />
               </NavigationMenu.Item>
               <NavigationMenu.Item>
                 <Button
@@ -197,7 +212,7 @@ export const Header = () => {
                   py={8}
                   bg={'colors.primary'}
                   borderRadius={'1.5rem'}
-                  onClick={handleOpen}
+                  onClick={handleOpenSignup}
                   _hover={{
                     opacity: 0.85,
                   }}
@@ -308,7 +323,16 @@ export const Header = () => {
         </Box>
       </Box>
 
-      <SignUpModal isOpen={isOpen} handleClose={handleClose} />
+      <LogInModal
+        isOpen={isOpenLogIn}
+        handleClose={handleClose}
+        handleToggle={handleToggle}
+      />
+      <SignUpModal
+        isOpen={isOpenSignUp}
+        handleClose={handleClose}
+        handleToggle={handleToggle}
+      />
     </>
   );
 };
