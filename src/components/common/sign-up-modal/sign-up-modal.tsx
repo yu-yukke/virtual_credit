@@ -1,13 +1,14 @@
 'use client';
 
 import { Box, HStack, Heading, Text, VStack, css } from '@kuma-ui/core';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import { User, Work, WorkHistory, WorkImage } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { LogInForm } from './log-in-form';
+import { AuthButtons } from '@/components/elements/buttons/auth';
 import { Merge } from '@/types/merge';
 
 type Props = {
@@ -16,7 +17,9 @@ type Props = {
   handleToggle: () => void;
 };
 
-export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
+export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
+  const [isCheckPolicy, setIsCheckPolicy] = useState<boolean>(false);
+  const [isCheckedEmail, setIsCheckedEmail] = useState<boolean>(true);
   const [workImage, setWorkImage] =
     useState<
       Merge<
@@ -34,12 +37,18 @@ export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
           return response.json();
         } else {
           setWorkImage(undefined);
-
           return;
         }
       })
       .then((data) => setWorkImage(data));
   }, []);
+
+  const handleChangePolicy = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsCheckPolicy(event.target.checked);
+  };
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsCheckedEmail(event.target.checked);
+  };
 
   return (
     <Modal
@@ -138,11 +147,80 @@ export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
         </Box>
         <Box width={'50%'} py={24}>
           <Heading as='h1' fontWeight={700} fontSize={'1.5rem'}>
-            Log in
+            Sign up
           </Heading>
-          <LogInForm />
+          <Box mt={24}>
+            <Text
+              fontSize={'0.75rem'}
+              color={'colors.tertiary'}
+              lineHeight={1.625}
+              letterSpacing={'0.025rem'}
+              className={css`
+                word-break: auto-phrase;
+              `}
+            >
+              利用規約へ同意の上、希望のソーシャルアカウントから会員登録してください。
+            </Text>
+            <Text
+              mt={4}
+              fontSize={'0.75rem'}
+              color={'colors.tertiary'}
+              lineHeight={1.625}
+              letterSpacing={'0.025rem'}
+              className={css`
+                word-break: auto-phrase;
+              `}
+            >
+              また、取得されたメールアドレスへパーソナライズされた情報を送信する可能性がございます。
+            </Text>
+            <VStack mt={24}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={isCheckPolicy}
+                    onChange={handleChangePolicy}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                    size='small'
+                    color='default'
+                  />
+                }
+                label={
+                  <Text
+                    as='span'
+                    fontSize={'0.75rem'}
+                    color={'colors.tertiary'}
+                  >
+                    利用規約へ同意する
+                  </Text>
+                }
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={isCheckedEmail}
+                    onChange={handleChangeEmail}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                    size='small'
+                    color='default'
+                  />
+                }
+                label={
+                  <Text
+                    as='span'
+                    fontSize={'0.75rem'}
+                    color={'colors.tertiary'}
+                  >
+                    メール送信を希望する（後からでも変更可能です）
+                  </Text>
+                }
+              />
+            </VStack>
+          </Box>
+
+          <AuthButtons isAgreement={isCheckPolicy} />
+
           <Text mt={36} color={'colors.tertiary'} fontSize={'0.875rem'}>
-            会員登録がまだの方は
+            既に会員の方は
             <Text
               as='span'
               cursor={'pointer'}
@@ -151,7 +229,7 @@ export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
             >
               こちら
             </Text>
-            から登録してください
+            からログインしてください
           </Text>
         </Box>
       </HStack>

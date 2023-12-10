@@ -7,10 +7,10 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
+import { LogInModal } from '@/components/common/log-in-modal';
+import { SignUpModal } from '@/components/common/sign-up-modal';
 import { HeaderNavButton } from '@/components/elements/buttons';
 import { SearchIcon } from '@/components/elements/icons';
-import { LogInModal } from '@/components/elements/modals/log-in-modal';
-import { SignUpModal } from '@/components/elements/modals/sign-up-modal';
 
 const ExploreContent = ({
   href,
