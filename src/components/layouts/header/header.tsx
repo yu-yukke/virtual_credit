@@ -7,8 +7,8 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
-import { LogInModal } from '@/components/common/log-in-modal';
-import { SignUpModal } from '@/components/common/sign-up-modal';
+
+import { UserMenu } from './user-menu';
 import { HeaderNavButton } from '@/components/elements/buttons';
 import { SearchIcon } from '@/components/elements/icons';
 
@@ -48,25 +48,7 @@ const ExploreContent = ({
 
 export const Header = () => {
   const [position, setPosition] = useState<number>(0);
-  const [isOpenLogIn, setIsOpenLogIn] = useState<boolean>(false);
-  const [isOpenSignUp, setIsOpenSignUp] = useState<boolean>(false);
   const breakPosition = 50;
-  const handleOpenLogin = () => {
-    setIsOpenLogIn(true);
-    setIsOpenSignUp(false);
-  };
-  const handleOpenSignup = () => {
-    setIsOpenLogIn(false);
-    setIsOpenSignUp(true);
-  };
-  const handleClose = () => {
-    setIsOpenLogIn(false);
-    setIsOpenSignUp(false);
-  };
-  const handleToggle = () => {
-    setIsOpenLogIn((prevIsOpenLogin) => !prevIsOpenLogin);
-    setIsOpenSignUp((prevIsOpenLogin) => !prevIsOpenLogin);
-  };
   const scrollEvent = useCallback(() => {
     const offset = window.scrollY;
 
@@ -196,31 +178,9 @@ export const Header = () => {
                   <HeaderNavButton text='Contact' />
                 </Link>
               </NavigationMenu.Item>
-              <NavigationMenu.Item
-                className={css`
-                  border-left: 1px solid #eaeaea;
-                  padding-left: 12px;
-                  margin-left: 12px;
-                `}
-              >
-                <HeaderNavButton text='Log in' onClick={handleOpenLogin} />
-              </NavigationMenu.Item>
-              <NavigationMenu.Item>
-                <Button
-                  fontSize={'0.8125rem'}
-                  color={'white'}
-                  px={16}
-                  py={8}
-                  bg={'colors.primary'}
-                  borderRadius={'1.5rem'}
-                  onClick={handleOpenSignup}
-                  _hover={{
-                    opacity: 0.85,
-                  }}
-                >
-                  Sign up
-                </Button>
-              </NavigationMenu.Item>
+
+              <UserMenu />
+
               <NavigationMenu.Item
                 className={css`
                   border-left: 1px solid #eaeaea;
@@ -323,17 +283,6 @@ export const Header = () => {
           </NavigationMenu.Root>
         </Box>
       </Box>
-
-      <LogInModal
-        isOpen={isOpenLogIn}
-        handleClose={handleClose}
-        handleToggle={handleToggle}
-      />
-      <SignUpModal
-        isOpen={isOpenSignUp}
-        handleClose={handleClose}
-        handleToggle={handleToggle}
-      />
     </>
   );
 };
