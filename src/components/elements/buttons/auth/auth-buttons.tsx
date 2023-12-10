@@ -1,4 +1,5 @@
 import { VStack } from '@kuma-ui/core';
+
 import { AuthButton } from './auth-button';
 
 type Props = {

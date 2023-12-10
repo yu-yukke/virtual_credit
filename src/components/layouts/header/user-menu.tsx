@@ -3,6 +3,7 @@
 import '@/styles/radix/navigation-menu.css';
 
 import { Box, Button, css } from '@kuma-ui/core';
+import { CircularProgress } from '@mui/material';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
@@ -14,7 +15,7 @@ import { HeaderNavButton } from '@/components/elements/buttons';
 import { AnonymousUserIcon } from '@/components/elements/icons';
 
 export const UserMenu = () => {
-  const { data: session } = useSession();
+  const { status, data: session } = useSession();
   const [isOpenLogIn, setIsOpenLogIn] = useState<boolean>(false);
   const [isOpenSignUp, setIsOpenSignUp] = useState<boolean>(false);
   const handleOpenLogin = () => {
@@ -33,6 +34,23 @@ export const UserMenu = () => {
     setIsOpenLogIn((prevIsOpenLogin) => !prevIsOpenLogin);
     setIsOpenSignUp((prevIsOpenLogin) => !prevIsOpenLogin);
   };
+
+  if (status == 'loading') {
+    return (
+      <NavigationMenu.Item
+        className={css`
+          border-left: 1px solid #eaeaea;
+          padding-left: 12px;
+          margin-left: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        `}
+      >
+        <CircularProgress size={20} />
+      </NavigationMenu.Item>
+    );
+  }
 
   return (
     <>
