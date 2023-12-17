@@ -1,14 +1,17 @@
 'use client';
 
 import '@/styles/radix/navigation-menu.css';
+import '@/styles/radix/dropdown-menu.css';
 
 import { Box, Button, css } from '@kuma-ui/core';
 import { CircularProgress } from '@mui/material';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
+import { DropdownMenuContents } from './user-menu-contents';
 import { LogInModal } from '@/components/common/log-in-modal';
 import { SignUpModal } from '@/components/common/sign-up-modal';
 import { HeaderNavButton } from '@/components/elements/buttons';
@@ -55,49 +58,55 @@ export const UserMenu = () => {
   return (
     <>
       {session ? (
-        <NavigationMenu.Item
-          className={css`
-            border-left: 1px solid #eaeaea;
-            padding-left: 12px;
-            margin-left: 12px;
-          `}
-        >
-          <Box
-            position={'relative'}
-            width={40}
-            height={40}
-            borderRadius={9999}
-            border={'1px solid #eaeaea'}
-            overflow={'hidden'}
-            bg={'colors.bgPrimary'}
-            p={8}
-            cursor={'pointer'}
-            _hover={{
-              opacity: 0.85,
-            }}
-          >
-            {session.user?.image ? (
-              <Image
-                src={session.user?.image}
-                alt={'ユーザーメニューアイコン'}
-                fill
-                sizes='100%'
-                className={css`
-                  object-fit: cover;
-                `}
-              />
-            ) : (
-              <AnonymousUserIcon
-                className={css`
-                  width: 100%;
-                  height: 100%;
-                  background: white;
-                  fill: t('colors.secondary');
-                `}
-              />
-            )}
-          </Box>
-        </NavigationMenu.Item>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger>
+            <NavigationMenu.Item
+              className={css`
+                border-left: 1px solid #eaeaea;
+                padding-left: 12px;
+                margin-left: 12px;
+              `}
+            >
+              <Box
+                position={'relative'}
+                width={40}
+                height={40}
+                borderRadius={9999}
+                border={'1px solid #eaeaea'}
+                overflow={'hidden'}
+                bg={'colors.bgPrimary'}
+                p={8}
+                cursor={'pointer'}
+                _hover={{
+                  opacity: 0.85,
+                }}
+              >
+                {session.user?.image ? (
+                  <Image
+                    src={session.user?.image}
+                    alt={'ユーザーメニューアイコン'}
+                    fill
+                    sizes='100%'
+                    className={css`
+                      object-fit: cover;
+                    `}
+                  />
+                ) : (
+                  <AnonymousUserIcon
+                    className={css`
+                      width: 100%;
+                      height: 100%;
+                      background: white;
+                      fill: t('colors.secondary');
+                    `}
+                  />
+                )}
+              </Box>
+            </NavigationMenu.Item>
+          </DropdownMenu.Trigger>
+
+          <DropdownMenuContents />
+        </DropdownMenu.Root>
       ) : (
         <>
           <NavigationMenu.Item
@@ -125,19 +134,19 @@ export const UserMenu = () => {
               Sign up
             </Button>
           </NavigationMenu.Item>
+
+          <LogInModal
+            isOpen={isOpenLogIn}
+            handleClose={handleClose}
+            handleToggle={handleToggle}
+          />
+          <SignUpModal
+            isOpen={isOpenSignUp}
+            handleClose={handleClose}
+            handleToggle={handleToggle}
+          />
         </>
       )}
-
-      <LogInModal
-        isOpen={isOpenLogIn}
-        handleClose={handleClose}
-        handleToggle={handleToggle}
-      />
-      <SignUpModal
-        isOpen={isOpenSignUp}
-        handleClose={handleClose}
-        handleToggle={handleToggle}
-      />
     </>
   );
 };
