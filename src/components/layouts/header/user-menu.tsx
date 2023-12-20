@@ -5,12 +5,14 @@ import '@/styles/radix/dropdown-menu.css';
 
 import { Box, Button, css } from '@kuma-ui/core';
 import { CircularProgress } from '@mui/material';
+import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
+import { SignOutModal } from './sign-out-modal';
 import { DropdownMenuContents } from './user-menu-contents';
 import { LogInModal } from '@/components/common/log-in-modal';
 import { SignUpModal } from '@/components/common/sign-up-modal';
@@ -25,7 +27,7 @@ export const UserMenu = () => {
     setIsOpenLogIn(true);
     setIsOpenSignUp(false);
   };
-  const handleOpenSignup = () => {
+  const handleOpenSignUp = () => {
     setIsOpenLogIn(false);
     setIsOpenSignUp(true);
   };
@@ -69,8 +71,8 @@ export const UserMenu = () => {
             >
               <Box
                 position={'relative'}
-                width={40}
-                height={40}
+                width={32}
+                height={32}
                 borderRadius={9999}
                 border={'1px solid #eaeaea'}
                 overflow={'hidden'}
@@ -105,7 +107,11 @@ export const UserMenu = () => {
             </NavigationMenu.Item>
           </DropdownMenu.Trigger>
 
-          <DropdownMenuContents />
+          <AlertDialog.Root>
+            <DropdownMenuContents />
+
+            <SignOutModal />
+          </AlertDialog.Root>
         </DropdownMenu.Root>
       ) : (
         <>
@@ -126,7 +132,7 @@ export const UserMenu = () => {
               py={8}
               bg={'colors.primary'}
               borderRadius={'1.5rem'}
-              onClick={handleOpenSignup}
+              onClick={handleOpenSignUp}
               _hover={{
                 opacity: 0.85,
               }}

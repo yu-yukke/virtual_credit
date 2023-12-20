@@ -1,4 +1,7 @@
+'use client';
+
 import { VStack, css } from '@kuma-ui/core';
+import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
@@ -43,16 +46,9 @@ export const DropdownMenuContents = () => {
       </VStack>
       <UserMenuContentsSeparator />
       <VStack gap={2}>
-        <UserMenuContentsItem
-          text='ログアウト'
-          href='/'
-          className={css`
-            color: #f36b6b;
-            &:hover {
-              background: #fff3f3;
-            }
-          `}
-        />
+        <AlertDialog.Trigger>
+          <UserMenuContentsItem text='ログアウト' />
+        </AlertDialog.Trigger>
       </VStack>
     </DropdownMenu.Content>
   );
