@@ -250,9 +250,9 @@ export const Header = () => {
               position: absolute;
               display: flex;
               justify-content: center;
-              width: 100%;
+              width: 120%;
+              max-width: 460px;
               top: 120%;
-              left: 0;
               perspective: 2000px;
             `}
           >
