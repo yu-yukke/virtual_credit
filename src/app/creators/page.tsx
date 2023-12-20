@@ -5,8 +5,13 @@ import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
 
 import prisma from '@/lib/prisma';
 
-export default async function Page() {
-  const creators = await prisma.user.findMany({
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  const page = Number(searchParams['page'] || 1);
+  const creatorsCount = await prisma.user.count({
     where: {
       published: true,
     },
@@ -16,13 +21,13 @@ export default async function Page() {
     <>
       <PageHeadingWrapper
         title='Creators'
-        description={`A collection of ${creators.length} creators`}
+        description={`A collection of ${creatorsCount} creators`}
       />
       <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
       <Box as='section' mt={20}>
         <Skills />
       </Box>
-      <CreatorList />
+      <CreatorList page={page} creatorsCount={creatorsCount} />
     </>
   );
 }

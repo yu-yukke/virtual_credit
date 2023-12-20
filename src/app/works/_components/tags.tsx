@@ -29,9 +29,7 @@ export const Tags = async ({ tagName }: Props) => {
   });
   const tags = allTags.filter((tag) =>
     tag.workTags.some(
-      (workTag) =>
-        workTag.work.histories.length > 0 &&
-        workTag.work.histories[0].published,
+      (workTag) => workTag.work.published && workTag.work.histories.length > 0,
     ),
   );
 
@@ -56,9 +54,8 @@ export const Tags = async ({ tagName }: Props) => {
               <Link href={`/searches/tags/${tag.name}`}>
                 <FilterButton
                   text={`# ${tag.name} (${
-                    tag.workTags.filter(
-                      (workTag) => workTag.work.histories[0].published,
-                    ).length
+                    tag.workTags.filter((workTag) => workTag.work.published)
+                      .length
                   })`}
                   isActive={encodeURI(tag.name) === tagName}
                 />

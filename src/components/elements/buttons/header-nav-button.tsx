@@ -5,9 +5,10 @@ import { CaretDownIcon } from '@radix-ui/react-icons';
 type Props = {
   text: string;
   withContent?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export const HeaderNavButton = ({ text, withContent }: Props) => {
+export const HeaderNavButton = ({ text, withContent, onClick }: Props) => {
   return (
     <Button
       px={16}
@@ -16,6 +17,7 @@ export const HeaderNavButton = ({ text, withContent }: Props) => {
       color={'colors.secondary'}
       borderRadius={'1.5rem'}
       transition={'all 0.4s'}
+      onClick={onClick}
       _hover={{
         bg: '#FAFAFA',
         boxShadow:

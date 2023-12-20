@@ -30,8 +30,7 @@ export const Categories = async ({ categoryName }: Props) => {
   const categories = allCategories.filter((category) =>
     category.workCategories.some(
       (workCategory) =>
-        workCategory.work.histories.length > 0 &&
-        workCategory.work.histories[0].published,
+        workCategory.work.published && workCategory.work.histories.length > 0,
     ),
   );
 
@@ -57,8 +56,7 @@ export const Categories = async ({ categoryName }: Props) => {
                 <FilterButton
                   text={`${category.name} (${
                     category.workCategories.filter(
-                      (workCategory) =>
-                        workCategory.work.histories[0].published,
+                      (workCategory) => workCategory.work.published,
                     ).length
                   })`}
                   isActive={encodeURI(category.name) === categoryName}

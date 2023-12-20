@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 
+import { UserMenu } from './user-menu';
 import { HeaderNavButton } from '@/components/elements/buttons';
 import { SearchIcon } from '@/components/elements/icons';
 
@@ -146,12 +147,12 @@ export const Header = () => {
                       description='作品を探す'
                     />
                     <ExploreContent
-                      href='/categories'
+                      href='/directory/categories'
                       text='Categories'
                       description='カテゴリーから作品を探す'
                     />
                     <ExploreContent
-                      href='/tags'
+                      href='/directory/tags'
                       text='Tags'
                       description='タグから作品を探す'
                     />
@@ -163,7 +164,7 @@ export const Header = () => {
                       description='クリエイターを探す'
                     />
                     <ExploreContent
-                      href='/skills'
+                      href='/directory/skills'
                       text='Skills'
                       description='スキルからクリエイターを探す'
                     />
@@ -176,28 +177,9 @@ export const Header = () => {
                 <HeaderNavButton text='Contact' />
               </Link>
             </NavigationMenu.Item>
-            <NavigationMenu.Item>
-              <Link href='/'>
-                <HeaderNavButton text='Sign in' />
-              </Link>
-            </NavigationMenu.Item>
-            <NavigationMenu.Item>
-              <Link href='/'>
-                <Button
-                  fontSize={'0.8125rem'}
-                  color={'white'}
-                  px={16}
-                  py={8}
-                  bg={'colors.primary'}
-                  borderRadius={'1.5rem'}
-                  _hover={{
-                    opacity: 0.85,
-                  }}
-                >
-                  Get Started
-                </Button>
-              </Link>
-            </NavigationMenu.Item>
+
+            <UserMenu />
+
             <NavigationMenu.Item
               className={css`
                 border-left: 1px solid #eaeaea;
@@ -268,9 +250,9 @@ export const Header = () => {
               position: absolute;
               display: flex;
               justify-content: center;
-              width: 100%;
+              width: 120%;
+              max-width: 460px;
               top: 120%;
-              left: 0;
               perspective: 2000px;
             `}
           >
