@@ -11,6 +11,7 @@ type Props = {
 export const WorkList = async ({ creator }: Props) => {
   const works = await prisma.work.findMany({
     where: {
+      published: true,
       copyrights: {
         some: {
           userCopyrights: {
@@ -68,10 +69,7 @@ export const WorkList = async ({ creator }: Props) => {
       },
     },
   });
-  const publishedWorks = await works.filter(
-    (work) => !!work.histories.length && work.histories[0].published,
-  );
-  const categories = publishedWorks.flatMap((work) =>
+  const categories = works.flatMap((work) =>
     work.workCategories.map((workCategory) => workCategory.category),
   );
   const uniqueCategories = Array.from(
@@ -111,8 +109,8 @@ export const WorkList = async ({ creator }: Props) => {
           grid-row-gap: 24px;
         `}
       >
-        {!!publishedWorks.length ? (
-          publishedWorks.map((work) => (
+        {!!works.length ? (
+          works.map((work) => (
             <WorkCard
               key={work.id}
               work={work}
