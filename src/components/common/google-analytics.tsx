@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import Script from 'next/script';
+import Script from 'next/script'
 
 export const GoogleAnalytics = () => {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || '';
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ''
 
   if (process.env.NODE_ENV !== 'production') {
-    return <></>;
+    return <></>
   }
 
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
       />
       <Script id='google-analytics'>
         {`
@@ -20,9 +20,9 @@ export const GoogleAnalytics = () => {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${GA_MEASUREMENT_ID}');
+          gtag('config', '${gaMeasurementId}');
         `}
       </Script>
     </>
-  );
-};
+  )
+}

@@ -1,9 +1,9 @@
-import { Box, Grid, HStack, Spacer, css } from '@kuma-ui/core';
-import { Skeleton } from '@mui/material';
 import {
   SkeletonCreatorCard,
   SkeletonFilterButton,
-} from '@/components/elements/skeletons';
+} from '@/components/elements/skeletons'
+import { Box, Grid, HStack, Spacer, css } from '@kuma-ui/core'
+import { Skeleton } from '@mui/material'
 
 export default function Loading() {
   return (
@@ -31,7 +31,7 @@ export default function Loading() {
       <Box as='section' mt={20}>
         <HStack as='ul' gap={16} py={12} px={1} overflow={'scroll hidden'}>
           {Array.from({ length: 4 }).map((_, i) => (
-            <SkeletonFilterButton key={i} />
+            <SkeletonFilterButton key={`SkeletonFilterButton-${i}`} />
           ))}
         </HStack>
       </Box>
@@ -45,9 +45,9 @@ export default function Loading() {
         `}
       >
         {Array.from({ length: 21 }).map((_, i) => (
-          <SkeletonCreatorCard key={i} />
+          <SkeletonCreatorCard key={`SkeletonCreatorCard-${i}`} />
         ))}
       </Grid>
     </>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import { SkillList } from './_components';
-import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
-import prisma from '@/lib/prisma';
+import { SkillList } from './_components'
+import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper'
+import prisma from '@/lib/prisma'
 
 export default async function Page() {
   const skills = await prisma.skill.findMany({
@@ -16,16 +16,16 @@ export default async function Page() {
         },
       },
     },
-  });
+  })
   skills.sort((a, b) => {
     const aCount = a.userSkills.filter(
       (userSkill) => userSkill.user.published,
-    ).length;
+    ).length
     const bCount = b.userSkills.filter(
       (userSkill) => userSkill.user.published,
-    ).length;
-    return bCount - aCount;
-  });
+    ).length
+    return bCount - aCount
+  })
 
   return (
     <>
@@ -39,5 +39,5 @@ export default async function Page() {
       />
       <SkillList />
     </>
-  );
+  )
 }

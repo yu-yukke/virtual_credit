@@ -1,13 +1,13 @@
-import { HStack } from '@kuma-ui/core';
+import { HStack } from '@kuma-ui/core'
 
-import Link from 'next/link';
-import { FilterButton } from '@/components/elements/buttons';
+import Link from 'next/link'
+import { FilterButton } from '@/components/elements/buttons'
 
-import prisma from '@/lib/prisma';
+import prisma from '@/lib/prisma'
 
 type Props = {
-  skillName?: string;
-};
+  skillName?: string
+}
 
 export const Skills = async ({ skillName }: Props) => {
   const skills = await prisma.skill.findMany({
@@ -20,7 +20,7 @@ export const Skills = async ({ skillName }: Props) => {
         },
       },
     },
-  });
+  })
 
   return (
     <HStack
@@ -54,5 +54,5 @@ export const Skills = async ({ skillName }: Props) => {
         </>
       )}
     </HStack>
-  );
-};
+  )
+}

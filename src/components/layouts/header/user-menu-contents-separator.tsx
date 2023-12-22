@@ -1,5 +1,5 @@
-import { css } from '@kuma-ui/core';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { css } from '@kuma-ui/core'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 export const UserMenuContentsSeparator = () => {
   return (
@@ -10,5 +10,5 @@ export const UserMenuContentsSeparator = () => {
         margin: 6px;
       `}
     />
-  );
-};
+  )
+}

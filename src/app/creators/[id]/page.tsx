@@ -1,11 +1,11 @@
-import { Spacer } from '@kuma-ui/core';
-import { redirect } from 'next/navigation';
-import { Summary, WorkList } from './_components';
-import prisma from '@/lib/prisma';
+import { Spacer } from '@kuma-ui/core'
+import { redirect } from 'next/navigation'
+import { Summary, WorkList } from './_components'
+import prisma from '@/lib/prisma'
 
 type Props = {
-  id: string;
-};
+  id: string
+}
 
 export default async function Page({ params }: { params: Props }) {
   const creator = await prisma.user.findUnique({
@@ -13,10 +13,10 @@ export default async function Page({ params }: { params: Props }) {
       id: params.id,
       published: true,
     },
-  });
+  })
 
   if (!creator) {
-    redirect('/creators');
+    redirect('/creators')
   }
 
   return (
@@ -25,5 +25,5 @@ export default async function Page({ params }: { params: Props }) {
       <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
       <WorkList creator={creator} />
     </>
-  );
+  )
 }

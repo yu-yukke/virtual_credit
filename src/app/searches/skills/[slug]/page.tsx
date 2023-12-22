@@ -1,23 +1,23 @@
-import { Box, Spacer } from '@kuma-ui/core';
+import { Box, Spacer } from '@kuma-ui/core'
 
-import { CreatorList } from './_components';
-import { Skills } from '@/app/creators/_components';
-import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
+import { Skills } from '@/app/creators/_components'
+import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper'
+import { CreatorList } from './_components'
 
-import prisma from '@/lib/prisma';
+import prisma from '@/lib/prisma'
 
 type Props = {
-  slug: string;
-};
+  slug: string
+}
 
 export default async function Page({
   params,
   searchParams,
 }: {
-  params: Props;
-  searchParams: { [key: string]: string | undefined };
+  params: Props
+  searchParams: { [key: string]: string | undefined }
 }) {
-  const page = Number(searchParams['page'] || 1);
+  const page = Number(searchParams.page || 1)
   const creatorsCount = await prisma.user.count({
     where: {
       published: true,
@@ -29,7 +29,7 @@ export default async function Page({
         },
       },
     },
-  });
+  })
 
   return (
     <>
@@ -47,5 +47,5 @@ export default async function Page({
         creatorsCount={creatorsCount}
       />
     </>
-  );
+  )
 }

@@ -1,23 +1,23 @@
-import { Grid, HStack, css } from '@kuma-ui/core';
+import { Grid, HStack, css } from '@kuma-ui/core'
 
-import { Pagination } from '@/components/common';
-import { WorkCard } from '@/components/elements/cards';
-import prisma from '@/lib/prisma';
+import { Pagination } from '@/components/common'
+import { WorkCard } from '@/components/elements/cards'
+import prisma from '@/lib/prisma'
 
 type Props = {
-  tagName?: string;
-  page: number;
-  worksCount: number;
-};
+  tagName?: string
+  page: number
+  worksCount: number
+}
 
 const getWorks = async ({
   perPage,
   skip,
   tagName,
 }: {
-  perPage: number;
-  skip: number;
-  tagName: string;
+  perPage: number
+  skip: number
+  tagName: string
 }) => {
   return await prisma.work.findMany({
     skip,
@@ -76,19 +76,19 @@ const getWorks = async ({
         },
       },
     },
-  });
-};
+  })
+}
 
 export const WorkList = async ({ tagName, page, worksCount }: Props) => {
-  const perPage = 24;
-  const skip = perPage * (page - 1);
-  const decodedTagName = tagName ? decodeURI(tagName) : '';
+  const perPage = 24
+  const skip = perPage * (page - 1)
+  const decodedTagName = tagName ? decodeURI(tagName) : ''
   const works = await getWorks({
     perPage,
     skip,
     tagName: decodedTagName,
-  });
-  const pageCount = Math.ceil(worksCount / perPage);
+  })
+  const pageCount = Math.ceil(worksCount / perPage)
 
   return (
     <>
@@ -114,5 +114,5 @@ export const WorkList = async ({ tagName, page, worksCount }: Props) => {
         <Pagination page={page} pageCount={pageCount} />
       </HStack>
     </>
-  );
-};
+  )
+}

@@ -1,21 +1,21 @@
-import { Grid, HStack, css } from '@kuma-ui/core';
+import { Grid, HStack, css } from '@kuma-ui/core'
 
-import { WorkImage } from '@prisma/client';
-import { Pagination } from '@/components/common';
-import { WorkCard } from '@/components/elements/cards';
-import prisma from '@/lib/prisma';
+import { WorkImage } from '@prisma/client'
+import { Pagination } from '@/components/common'
+import { WorkCard } from '@/components/elements/cards'
+import prisma from '@/lib/prisma'
 
 type Props = {
-  page: number;
-  worksCount: number;
-};
+  page: number
+  worksCount: number
+}
 
 const getWorks = async ({
   perPage,
   skip,
 }: {
-  perPage: number;
-  skip: number;
+  perPage: number
+  skip: number
 }) => {
   return await prisma.work.findMany({
     skip,
@@ -62,14 +62,14 @@ const getWorks = async ({
         },
       },
     },
-  });
-};
+  })
+}
 
 export const WorkList = async ({ page, worksCount }: Props) => {
-  const perPage = 24;
-  const skip = perPage * (page - 1);
-  const works = await getWorks({ perPage, skip });
-  const pageCount = Math.ceil(worksCount / perPage);
+  const perPage = 24
+  const skip = perPage * (page - 1)
+  const works = await getWorks({ perPage, skip })
+  const pageCount = Math.ceil(worksCount / perPage)
 
   return (
     <>
@@ -95,5 +95,5 @@ export const WorkList = async ({ page, worksCount }: Props) => {
         <Pagination page={page} pageCount={pageCount} />
       </HStack>
     </>
-  );
-};
+  )
+}

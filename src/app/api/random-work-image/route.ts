@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import prisma from '@/lib/prisma'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
   const workImageCount = await prisma.workImage.count({
@@ -11,7 +11,7 @@ export async function GET() {
         },
       },
     },
-  });
+  })
   const workImage = await prisma.workImage.findFirst({
     include: {
       work: {
@@ -38,11 +38,11 @@ export async function GET() {
     },
     take: 1,
     skip: Math.floor(Math.random() * (await workImageCount)),
-  });
+  })
 
   if (!workImage) {
-    return new NextResponse('作品画像が取得出来ませんでした', { status: 404 });
+    return new NextResponse('作品画像が取得出来ませんでした', { status: 404 })
   }
 
-  return NextResponse.json(workImage);
+  return NextResponse.json(workImage)
 }

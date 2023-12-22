@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import '@/styles/radix/navigation-menu.css';
+import '@/styles/radix/navigation-menu.css'
 
-import { Box, css, Button, VStack, Heading, Text, Grid } from '@kuma-ui/core';
-import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import clsx from 'clsx';
-import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { Box, css, Button, VStack, Heading, Text, Grid } from '@kuma-ui/core'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import clsx from 'clsx'
+import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
 
-import { UserMenu } from './user-menu';
-import { HeaderNavButton } from '@/components/elements/buttons';
-import { SearchIcon } from '@/components/elements/icons';
+import { UserMenu } from './user-menu'
+import { HeaderNavButton } from '@/components/elements/buttons'
+import { SearchIcon } from '@/components/elements/icons'
 
 const ExploreContent = ({
   href,
   text,
   description,
 }: {
-  href: string;
-  text: string;
-  description: string;
+  href: string
+  text: string
+  description: string
 }) => {
   return (
     <Link href={href}>
@@ -43,29 +43,29 @@ const ExploreContent = ({
         </Text>
       </Box>
     </Link>
-  );
-};
+  )
+}
 
 export const Header = () => {
-  const [position, setPosition] = useState<number>(0);
-  const breakPosition = 50;
+  const [position, setPosition] = useState<number>(0)
+  const breakPosition = 50
   const scrollEvent = useCallback(() => {
-    const offset = window.scrollY;
+    const offset = window.scrollY
 
-    setPosition(offset);
-  }, []);
-
-  useEffect(() => {
-    setPosition(window.scrollY);
-  }, []);
+    setPosition(offset)
+  }, [])
 
   useEffect(() => {
-    window.addEventListener('scroll', scrollEvent);
+    setPosition(window.scrollY)
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollEvent)
 
     return () => {
-      window.removeEventListener('scroll', scrollEvent);
-    };
-  }, [scrollEvent]);
+      window.removeEventListener('scroll', scrollEvent)
+    }
+  }, [scrollEvent])
 
   return (
     <Box
@@ -120,9 +120,9 @@ export const Header = () => {
               </Link>
             </NavigationMenu.Item>
             <NavigationMenu.Item>
-              <NavigationMenu.Trigger asChild>
+              <NavigationMenu.Trigger asChild={true}>
                 <div>
-                  <HeaderNavButton text='Explore' withContent />
+                  <HeaderNavButton text='Explore' withContent={true} />
                 </div>
               </NavigationMenu.Trigger>
               <NavigationMenu.Content
@@ -282,5 +282,5 @@ export const Header = () => {
         </NavigationMenu.Root>
       </Box>
     </Box>
-  );
-};
+  )
+}

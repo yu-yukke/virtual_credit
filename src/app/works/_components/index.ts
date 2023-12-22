@@ -1,3 +1,3 @@
-export { Categories } from './categories';
-export { Tags } from './tags';
-export { WorkList } from './work-list';
+export { Categories } from './categories'
+export { Tags } from './tags'
+export { WorkList } from './work-list'

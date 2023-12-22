@@ -1,12 +1,12 @@
-import { Box, Grid, Text, VStack, css } from '@kuma-ui/core';
-import { Work } from '@prisma/client';
-import Link from 'next/link';
+import { Box, Grid, Text, VStack, css } from '@kuma-ui/core'
+import { Work } from '@prisma/client'
+import Link from 'next/link'
 
-import prisma from '@/lib/prisma';
+import prisma from '@/lib/prisma'
 
 type Props = {
-  work: Work;
-};
+  work: Work
+}
 
 export const Copyrights = async ({ work }: Props) => {
   const allCopyrights = await prisma.copyright.findMany({
@@ -32,7 +32,7 @@ export const Copyrights = async ({ work }: Props) => {
         },
       },
     },
-  });
+  })
 
   const copyrights = allCopyrights.map((copyright) => {
     return {
@@ -40,10 +40,10 @@ export const Copyrights = async ({ work }: Props) => {
       userCopyrights: copyright.userCopyrights.filter(
         (userCopyright) => userCopyright.user.published,
       ),
-    };
-  });
+    }
+  })
   if (!copyrights.length) {
-    return null;
+    return null
   }
 
   return (
@@ -101,5 +101,5 @@ export const Copyrights = async ({ work }: Props) => {
         </Box>
       ))}
     </VStack>
-  );
-};
+  )
+}

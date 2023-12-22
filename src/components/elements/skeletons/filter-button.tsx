@@ -1,5 +1,5 @@
-import { css } from '@kuma-ui/core';
-import { Skeleton } from '@mui/material';
+import { css } from '@kuma-ui/core'
+import { Skeleton } from '@mui/material'
 
 export const FilterButton = () => {
   return (
@@ -11,5 +11,5 @@ export const FilterButton = () => {
         white-space: nowrap;
       `}
     />
-  );
-};
+  )
+}

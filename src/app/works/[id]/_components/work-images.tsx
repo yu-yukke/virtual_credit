@@ -1,24 +1,24 @@
-import { Box, Grid, VStack, css } from '@kuma-ui/core';
-import { Work } from '@prisma/client';
-import Image from 'next/image';
-import prisma from '@/lib/prisma';
+import { Box, Grid, VStack, css } from '@kuma-ui/core'
+import { Work } from '@prisma/client'
+import Image from 'next/image'
+import prisma from '@/lib/prisma'
 
 type Props = {
-  work: Work;
-};
+  work: Work
+}
 
 export const WorkImages = async ({ work }: Props) => {
   const allWorkImages = await prisma.workImage.findMany({
     where: {
       workId: work.id,
     },
-  });
+  })
 
   if (!allWorkImages.length) {
-    return null;
+    return null
   }
 
-  const workImages = allWorkImages.slice(1);
+  const workImages = allWorkImages.slice(1)
 
   return (
     <Grid
@@ -34,7 +34,7 @@ export const WorkImages = async ({ work }: Props) => {
             <Image
               src={workImage.url}
               alt='作品イメージ'
-              fill
+              fill={true}
               sizes='100%'
               className={css`
                 position: relative !important;
@@ -46,5 +46,5 @@ export const WorkImages = async ({ work }: Props) => {
         ))}
       </VStack>
     </Grid>
-  );
-};
+  )
+}

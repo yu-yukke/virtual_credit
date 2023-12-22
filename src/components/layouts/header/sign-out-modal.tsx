@@ -1,9 +1,9 @@
-import '@/styles/radix/alert-dialog.css';
+import '@/styles/radix/alert-dialog.css'
 
-import { Button, HStack, Heading, Text, css } from '@kuma-ui/core';
-import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import clsx from 'clsx';
-import { signOut } from 'next-auth/react';
+import { Button, HStack, Heading, Text, css } from '@kuma-ui/core'
+import * as AlertDialog from '@radix-ui/react-alert-dialog'
+import clsx from 'clsx'
+import { signOut } from 'next-auth/react'
 
 export const SignOutModal = () => {
   return (
@@ -38,12 +38,12 @@ export const SignOutModal = () => {
           `,
         )}
       >
-        <AlertDialog.Title asChild>
+        <AlertDialog.Title asChild={true}>
           <Heading as='h1' fontWeight={500} fontSize={'1.25rem'}>
             ログアウトしますか？
           </Heading>
         </AlertDialog.Title>
-        <AlertDialog.Description asChild>
+        <AlertDialog.Description asChild={true}>
           <Text
             mt={12}
             fontSize={'0.8125rem'}
@@ -58,7 +58,7 @@ export const SignOutModal = () => {
           </Text>
         </AlertDialog.Description>
         <HStack mt={24} justifyContent={'flex-end'} gap={16}>
-          <AlertDialog.Cancel asChild>
+          <AlertDialog.Cancel asChild={true}>
             <Button
               color={'colors.secondary'}
               fontSize={'0.875rem'}
@@ -74,7 +74,7 @@ export const SignOutModal = () => {
               キャンセル
             </Button>
           </AlertDialog.Cancel>
-          <AlertDialog.Action asChild>
+          <AlertDialog.Action asChild={true}>
             <Button
               color={'colors.alert'}
               fontSize={'0.875rem'}
@@ -94,5 +94,5 @@ export const SignOutModal = () => {
         </HStack>
       </AlertDialog.Content>
     </AlertDialog.Portal>
-  );
-};
+  )
+}

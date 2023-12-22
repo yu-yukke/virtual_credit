@@ -1,46 +1,46 @@
-'use client';
+'use client'
 
-import '@/styles/radix/navigation-menu.css';
-import '@/styles/radix/dropdown-menu.css';
+import '@/styles/radix/dropdown-menu.css'
+import '@/styles/radix/navigation-menu.css'
 
-import { Box, Button, css } from '@kuma-ui/core';
-import { CircularProgress } from '@mui/material';
-import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import Image from 'next/image';
-import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { Box, Button, css } from '@kuma-ui/core'
+import { CircularProgress } from '@mui/material'
+import * as AlertDialog from '@radix-ui/react-alert-dialog'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
+import { useState } from 'react'
 
-import { SignOutModal } from './sign-out-modal';
-import { DropdownMenuContents } from './user-menu-contents';
-import { LogInModal } from '@/components/common/log-in-modal';
-import { SignUpModal } from '@/components/common/sign-up-modal';
-import { HeaderNavButton } from '@/components/elements/buttons';
-import { AnonymousUserIcon } from '@/components/elements/icons';
+import { LogInModal } from '@/components/common/log-in-modal'
+import { SignUpModal } from '@/components/common/sign-up-modal'
+import { HeaderNavButton } from '@/components/elements/buttons'
+import { AnonymousUserIcon } from '@/components/elements/icons'
+import { SignOutModal } from './sign-out-modal'
+import { DropdownMenuContents } from './user-menu-contents'
 
 export const UserMenu = () => {
-  const { status, data: session } = useSession();
-  const [isOpenLogIn, setIsOpenLogIn] = useState<boolean>(false);
-  const [isOpenSignUp, setIsOpenSignUp] = useState<boolean>(false);
+  const { status, data: session } = useSession()
+  const [isOpenLogIn, setIsOpenLogIn] = useState<boolean>(false)
+  const [isOpenSignUp, setIsOpenSignUp] = useState<boolean>(false)
   const handleOpenLogin = () => {
-    setIsOpenLogIn(true);
-    setIsOpenSignUp(false);
-  };
+    setIsOpenLogIn(true)
+    setIsOpenSignUp(false)
+  }
   const handleOpenSignUp = () => {
-    setIsOpenLogIn(false);
-    setIsOpenSignUp(true);
-  };
+    setIsOpenLogIn(false)
+    setIsOpenSignUp(true)
+  }
   const handleClose = () => {
-    setIsOpenLogIn(false);
-    setIsOpenSignUp(false);
-  };
+    setIsOpenLogIn(false)
+    setIsOpenSignUp(false)
+  }
   const handleToggle = () => {
-    setIsOpenLogIn((prevIsOpenLogin) => !prevIsOpenLogin);
-    setIsOpenSignUp((prevIsOpenLogin) => !prevIsOpenLogin);
-  };
+    setIsOpenLogIn((prevIsOpenLogin) => !prevIsOpenLogin)
+    setIsOpenSignUp((prevIsOpenLogin) => !prevIsOpenLogin)
+  }
 
-  if (status == 'loading') {
+  if (status === 'loading') {
     return (
       <NavigationMenu.Item
         className={css`
@@ -54,7 +54,7 @@ export const UserMenu = () => {
       >
         <CircularProgress size={20} />
       </NavigationMenu.Item>
-    );
+    )
   }
 
   return (
@@ -87,7 +87,7 @@ export const UserMenu = () => {
                   <Image
                     src={session.user?.image}
                     alt={'ユーザーメニューアイコン'}
-                    fill
+                    fill={true}
                     sizes='100%'
                     className={css`
                       object-fit: cover;
@@ -154,5 +154,5 @@ export const UserMenu = () => {
         </>
       )}
     </>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
 // ページビューカウントしたいコンポーネントにこいつを読み込ませる
-'use client';
+'use client'
 
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 // slug: env/model-${id}の形にする // ex: ${process.env.NODE_ENV}/works-${work.id}
 export const ReportView = ({ slug }: { slug: string }) => {
@@ -12,8 +12,8 @@ export const ReportView = ({ slug }: { slug: string }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ slug }),
-    });
-  }, [slug]);
+    })
+  }, [slug])
 
-  return null;
-};
+  return null
+}

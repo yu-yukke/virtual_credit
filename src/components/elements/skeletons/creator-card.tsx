@@ -1,5 +1,5 @@
-import { Box, Grid, VStack, css } from '@kuma-ui/core';
-import { Skeleton } from '@mui/material';
+import { Box, Grid, VStack, css } from '@kuma-ui/core'
+import { Skeleton } from '@mui/material'
 
 export const CreatorCard = () => {
   return (
@@ -57,5 +57,5 @@ export const CreatorCard = () => {
         `}
       />
     </Grid>
-  );
-};
+  )
+}

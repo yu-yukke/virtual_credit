@@ -1,1 +1,1 @@
-export { NextAuthProvider } from './next-auth';
+export { NextAuthProvider } from './next-auth'

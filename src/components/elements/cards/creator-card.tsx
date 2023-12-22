@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { Grid, css } from '@kuma-ui/core';
+import { Grid, css } from '@kuma-ui/core'
 import {
   Copyright,
   Skill,
@@ -10,18 +10,18 @@ import {
   Work,
   WorkHistory,
   WorkImage,
-} from '@prisma/client';
-import clsx from 'clsx';
-import Link from 'next/link';
-import { useCallback, useState } from 'react';
+} from '@prisma/client'
+import clsx from 'clsx'
+import Link from 'next/link'
+import React, { useCallback, useState } from 'react'
 
-import { CreatorCardImages } from './creator-card-images';
-import { CreatorCardSummary } from './creator-card-summary';
-import { Merge } from '@/types/merge';
+import { Merge } from '@/types/merge'
+import { CreatorCardImages } from './creator-card-images'
+import { CreatorCardSummary } from './creator-card-summary'
 
 type Props = {
-  creator: User;
-  userSkills: Merge<UserSkill, { skill: Skill }>[];
+  creator: User
+  userSkills: Merge<UserSkill, { skill: Skill }>[]
   userCopyrights: Merge<
     UserCopyright,
     {
@@ -31,18 +31,18 @@ type Props = {
           work: Merge<
             Work,
             { workImages: WorkImage[]; histories: WorkHistory[] }
-          >;
+          >
         }
-      >;
+      >
     }
-  >[];
-};
+  >[]
+}
 
 export const CreatorCard = ({ creator, userSkills, userCopyrights }: Props) => {
-  const [isHover, setIsHover] = useState<boolean>(false);
+  const [isHover, setIsHover] = useState<boolean>(false)
   const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    setIsHover(e.type == 'mouseenter');
-  }, []);
+    setIsHover(e.type === 'mouseenter')
+  }, [])
 
   const uniqueWorks = Array.from(
     new Set(
@@ -50,8 +50,8 @@ export const CreatorCard = ({ creator, userSkills, userCopyrights }: Props) => {
         .filter((userCopyright) => userCopyright.copyright.work.published)
         .map((userCopyright) => userCopyright.copyright.work),
     ),
-  );
-  const workImages = uniqueWorks.map((work) => work.workImages[0]);
+  )
+  const workImages = uniqueWorks.map((work) => work.workImages[0])
 
   return (
     <Grid
@@ -101,5 +101,5 @@ export const CreatorCard = ({ creator, userSkills, userCopyrights }: Props) => {
       />
       <CreatorCardSummary creator={creator} userSkills={userSkills} />
     </Grid>
-  );
-};
+  )
+}

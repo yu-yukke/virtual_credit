@@ -8,13 +8,15 @@
 
 - Vercel
 
-### UIコンポーネント
+### UI コンポーネント
 
 - Kuma-ui
 - Radix
 - MaterialUI
 
-### DB関係
+時間できたら自分で作り直す
+
+### DB 関係
 
 - Prisma
 - Supabase
@@ -54,10 +56,19 @@ bun run prisma:migrate
 
 `prisma generate`は`predev`と`prebuild`に指定しているので勝手にやってくれる
 
-### seed投入
+### seed 投入
 
 ```bash
 bun run prisma:seed
+```
+
+### linter / formatter
+
+- biome.js に一任
+
+```
+  bun run lint
+  bun run formt
 ```
 
 ## データベース
@@ -94,7 +105,7 @@ Vercel が production デプロイしてくれる
 git cz
 ```
 
-で適切なprefixを選択してコミットメッセージ入力
+で適切な prefix を選択してコミットメッセージ入力
 
 ## 本番環境チェックしたい場合
 

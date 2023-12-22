@@ -1,9 +1,9 @@
-import { Box, Grid, HStack, Spacer, css } from '@kuma-ui/core';
-import { Skeleton } from '@mui/material';
 import {
   SkeletonFilterButton,
   SkeletonWorkCard,
-} from '@/components/elements/skeletons';
+} from '@/components/elements/skeletons'
+import { Box, Grid, HStack, Spacer, css } from '@kuma-ui/core'
+import { Skeleton } from '@mui/material'
 
 export default function Loading() {
   return (
@@ -16,7 +16,7 @@ export default function Loading() {
         >
           <HStack as='ul' flexWrap={'wrap'} justifyContent={'center'} gap={24}>
             {Array.from({ length: 3 }).map((_, i) => (
-              <SkeletonFilterButton key={i} />
+              <SkeletonFilterButton key={`SkeletonFilterButton-${i}`} />
             ))}
           </HStack>
         </Grid>
@@ -52,7 +52,7 @@ export default function Loading() {
           />
           <HStack as='ul' mt={56} gap={24} justifyContent={'center'}>
             {Array.from({ length: 3 }).map((_, i) => (
-              <SkeletonFilterButton key={i} />
+              <SkeletonFilterButton key={`SkeletonFilterButton-${i}`} />
             ))}
           </HStack>
         </Grid>
@@ -67,7 +67,7 @@ export default function Loading() {
         overflow={'scroll hidden'}
       >
         {Array.from({ length: 4 }).map((_, i) => (
-          <SkeletonFilterButton key={i} />
+          <SkeletonFilterButton key={`SkeletonFilterButton-${i}`} />
         ))}
       </HStack>
       <Grid
@@ -80,9 +80,9 @@ export default function Loading() {
         `}
       >
         {Array.from({ length: 6 }).map((_, i) => (
-          <SkeletonWorkCard key={i} />
+          <SkeletonWorkCard key={`SkeletonWorkCard-${i}`} />
         ))}
       </Grid>
     </>
-  );
+  )
 }
