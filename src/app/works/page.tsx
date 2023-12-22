@@ -21,7 +21,7 @@ export default async function Page({
     <>
       <PageHeadingWrapper
         title='Works'
-        description={`A collection of ${worksCount} works`}
+        description={`A collection of ${worksCount + 1} works`}
       />
       <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
       <VStack as='section' mt={20}>
