@@ -1,7 +1,9 @@
+import prisma from '@/lib/prisma'
 import { Box, Grid, VStack, css } from '@kuma-ui/core'
 import { Work } from '@prisma/client'
 import Image from 'next/image'
-import prisma from '@/lib/prisma'
+
+import { LightBox } from '@/components/elements/images'
 
 type Props = {
   work: Work
@@ -30,19 +32,21 @@ export const WorkImages = async ({ work }: Props) => {
     >
       <VStack gap={48} alignItems={'center'}>
         {workImages.map((workImage) => (
-          <Box position={'relative'} key={workImage.id}>
-            <Image
-              src={workImage.url}
-              alt='作品イメージ'
-              fill={true}
-              sizes='100%'
-              className={css`
-                position: relative !important;
-                width: auto !important;
-                object-fit: contain;
-              `}
-            />
-          </Box>
+          <LightBox key={workImage.id}>
+            <Box position={'relative'}>
+              <Image
+                src={workImage.url}
+                alt='作品イメージ'
+                fill={true}
+                sizes='100%'
+                className={css`
+              position: relative !important;
+              width: auto !important;
+              object-fit: contain;
+            `}
+              />
+            </Box>
+          </LightBox>
         ))}
       </VStack>
     </Grid>
