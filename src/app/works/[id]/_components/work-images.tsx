@@ -10,17 +10,18 @@ type Props = {
 }
 
 export const WorkImages = async ({ work }: Props) => {
-  const allWorkImages = await prisma.workImage.findMany({
+  const workImages = await prisma.workImage.findMany({
     where: {
       workId: work.id,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   })
 
-  if (!allWorkImages.length) {
+  if (!workImages.length) {
     return null
   }
-
-  const workImages = allWorkImages.slice(1)
 
   return (
     <Grid
