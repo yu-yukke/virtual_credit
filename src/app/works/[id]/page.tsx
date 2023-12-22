@@ -1,14 +1,14 @@
-import { Box, Grid, css } from '@kuma-ui/core';
-import Image from 'next/image';
-import { redirect } from 'next/navigation';
+import { Box, Grid, css } from '@kuma-ui/core'
+import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
-import { Summary, WorkImages } from './_components';
-import { ReportView } from '@/components/common';
-import prisma from '@/lib/prisma';
+import { ReportView } from '@/components/common'
+import prisma from '@/lib/prisma'
+import { Summary, WorkImages } from './_components'
 
 type Props = {
-  id: string;
-};
+  id: string
+}
 
 export default async function Page({ params }: { params: Props }) {
   const work = await prisma.work.findUnique({
@@ -29,10 +29,10 @@ export default async function Page({ params }: { params: Props }) {
         take: 1,
       },
     },
-  });
+  })
 
-  if (!work || !work.histories.length) {
-    return redirect('/works');
+  if (!work?.histories.length) {
+    return redirect('/works')
   }
 
   return (
@@ -55,8 +55,8 @@ export default async function Page({ params }: { params: Props }) {
           <Image
             src={work.workImages[0].url}
             alt='作品メインイメージ'
-            fill
-            priority
+            fill={true}
+            priority={true}
             className={css`
               object-fit: cover;
             `}
@@ -66,5 +66,5 @@ export default async function Page({ params }: { params: Props }) {
       <Summary work={work} />
       <WorkImages work={work} />
     </>
-  );
+  )
 }

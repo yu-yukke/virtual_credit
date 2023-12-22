@@ -1,1 +1,1 @@
-export { CreatorList } from './creator-list';
+export { CreatorList } from './creator-list'

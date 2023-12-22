@@ -1,6 +1,6 @@
-import { Box, HStack, Text, VStack } from '@kuma-ui/core';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
+import { Box, HStack, Text, VStack } from '@kuma-ui/core'
+import Link from 'next/link'
+import prisma from '@/lib/prisma'
 
 export const CategoryList = async () => {
   const allCategories = await prisma.category.findMany({
@@ -24,22 +24,22 @@ export const CategoryList = async () => {
         },
       },
     },
-  });
+  })
   const categories = allCategories.filter((category) =>
     category.workCategories.some(
       (workCategory) =>
         workCategory.work.published && workCategory.work.histories.length > 0,
     ),
-  );
+  )
   categories.sort((a, b) => {
     const aCount = a.workCategories.filter(
       (workCategory) => workCategory.work.published,
-    ).length;
+    ).length
     const bCount = b.workCategories.filter(
       (workCategory) => workCategory.work.published,
-    ).length;
-    return bCount - aCount;
-  });
+    ).length
+    return bCount - aCount
+  })
 
   return (
     <VStack as='ul' gap={12} alignItems={'center'} className='full-bleed'>
@@ -70,5 +70,5 @@ export const CategoryList = async () => {
         </Box>
       ))}
     </VStack>
-  );
-};
+  )
+}

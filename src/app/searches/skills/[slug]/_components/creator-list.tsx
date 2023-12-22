@@ -1,23 +1,23 @@
-import { Grid, HStack, css } from '@kuma-ui/core';
+import { Grid, HStack, css } from '@kuma-ui/core'
 
-import { Pagination } from '@/components/common';
-import { CreatorCard } from '@/components/elements/cards';
-import prisma from '@/lib/prisma';
+import { Pagination } from '@/components/common'
+import { CreatorCard } from '@/components/elements/cards'
+import prisma from '@/lib/prisma'
 
 type Props = {
-  skillName?: string;
-  page: number;
-  creatorsCount: number;
-};
+  skillName?: string
+  page: number
+  creatorsCount: number
+}
 
 const getCreators = async ({
   perPage,
   skip,
   skillName,
 }: {
-  perPage: number;
-  skip: number;
-  skillName: string;
+  perPage: number
+  skip: number
+  skillName: string
 }) => {
   return await prisma.user.findMany({
     skip,
@@ -64,23 +64,23 @@ const getCreators = async ({
         },
       },
     },
-  });
-};
+  })
+}
 
 export const CreatorList = async ({
   skillName,
   page,
   creatorsCount,
 }: Props) => {
-  const perPage = 24;
-  const skip = perPage * (page - 1);
-  const decodedSkillName = skillName ? decodeURI(skillName) : '';
+  const perPage = 24
+  const skip = perPage * (page - 1)
+  const decodedSkillName = skillName ? decodeURI(skillName) : ''
   const creators = await getCreators({
     perPage,
     skip,
     skillName: decodedSkillName,
-  });
-  const pageCount = Math.ceil(creatorsCount / perPage);
+  })
+  const pageCount = Math.ceil(creatorsCount / perPage)
 
   return (
     <>
@@ -107,5 +107,5 @@ export const CreatorList = async ({
         <Pagination page={page} pageCount={pageCount} />
       </HStack>
     </>
-  );
-};
+  )
+}

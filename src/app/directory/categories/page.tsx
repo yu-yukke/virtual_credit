@@ -1,6 +1,6 @@
-import { CategoryList } from './_components';
-import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
-import prisma from '@/lib/prisma';
+import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper'
+import prisma from '@/lib/prisma'
+import { CategoryList } from './_components'
 
 export default async function Page() {
   const allCategories = await prisma.category.findMany({
@@ -19,22 +19,22 @@ export default async function Page() {
         },
       },
     },
-  });
+  })
   const categories = allCategories.filter((category) =>
     category.workCategories.some(
       (workCategory) =>
         workCategory.work.published && workCategory.work.histories.length > 0,
     ),
-  );
+  )
   categories.sort((a, b) => {
     const aCount = a.workCategories.filter(
       (workCategory) => workCategory.work.published,
-    ).length;
+    ).length
     const bCount = b.workCategories.filter(
       (workCategory) => workCategory.work.published,
-    ).length;
-    return bCount - aCount;
-  });
+    ).length
+    return bCount - aCount
+  })
 
   return (
     <>
@@ -48,5 +48,5 @@ export default async function Page() {
       />
       <CategoryList />
     </>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import { Box, HStack, Text, VStack } from '@kuma-ui/core';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
+import { Box, HStack, Text, VStack } from '@kuma-ui/core'
+import Link from 'next/link'
+import prisma from '@/lib/prisma'
 
 export const TagList = async () => {
   const allTags = await prisma.tag.findMany({
@@ -24,21 +24,17 @@ export const TagList = async () => {
         },
       },
     },
-  });
+  })
   const tags = allTags.filter((tag) =>
     tag.workTags.some(
       (workTag) => workTag.work.published && workTag.work.histories.length > 0,
     ),
-  );
+  )
   tags.sort((a, b) => {
-    const aCount = a.workTags.filter(
-      (workTag) => workTag.work.published,
-    ).length;
-    const bCount = b.workTags.filter(
-      (workTag) => workTag.work.published,
-    ).length;
-    return bCount - aCount;
-  });
+    const aCount = a.workTags.filter((workTag) => workTag.work.published).length
+    const bCount = b.workTags.filter((workTag) => workTag.work.published).length
+    return bCount - aCount
+  })
 
   return (
     <VStack as='ul' gap={12} alignItems={'center'} className='full-bleed'>
@@ -68,5 +64,5 @@ export const TagList = async () => {
         </Box>
       ))}
     </VStack>
-  );
-};
+  )
+}

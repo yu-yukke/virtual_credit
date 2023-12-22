@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import { Text, css } from '@kuma-ui/core';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import Link from 'next/link';
+import { Text, css } from '@kuma-ui/core'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import Link from 'next/link'
 
 type Props = {
-  text: string;
-  href?: string | null;
-};
+  text: string
+  href?: string | null
+}
 
 export const UserMenuContentsItem = ({ text, href }: Props) => {
   return href ? (
@@ -54,5 +54,5 @@ export const UserMenuContentsItem = ({ text, href }: Props) => {
         {text}
       </Text>
     </DropdownMenu.Item>
-  );
-};
+  )
+}

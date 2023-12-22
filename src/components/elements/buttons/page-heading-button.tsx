@@ -1,8 +1,8 @@
-import { Button, Heading } from '@kuma-ui/core';
+import { Button, Heading } from '@kuma-ui/core'
 
 type Props = {
-  title: string;
-};
+  title: string
+}
 
 export const PageHeadingButton = ({ title }: Props) => {
   return (
@@ -21,5 +21,5 @@ export const PageHeadingButton = ({ title }: Props) => {
         {title}
       </Heading>
     </Button>
-  );
-};
+  )
+}

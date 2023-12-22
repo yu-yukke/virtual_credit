@@ -1,20 +1,20 @@
-'use client';
+'use client'
 
-import { Box, HStack, Heading, Text, VStack, css } from '@kuma-ui/core';
-import Modal from '@mui/material/Modal';
-import { User, Work, WorkHistory, WorkImage } from '@prisma/client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Box, HStack, Heading, Text, VStack, css } from '@kuma-ui/core'
+import Modal from '@mui/material/Modal'
+import { User, Work, WorkHistory, WorkImage } from '@prisma/client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
-import { AuthButtons } from '@/components/elements/buttons/auth';
-import { Merge } from '@/types/merge';
+import { AuthButtons } from '@/components/elements/buttons/auth'
+import { Merge } from '@/types/merge'
 
 type Props = {
-  isOpen: boolean;
-  handleClose: () => void;
-  handleToggle: () => void;
-};
+  isOpen: boolean
+  handleClose: () => void
+  handleToggle: () => void
+}
 
 export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
   const [workImage, setWorkImage] =
@@ -23,7 +23,7 @@ export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
         WorkImage,
         { work: Merge<Work, { createdBy: User; histories: WorkHistory[] }> }
       >
-    >();
+    >()
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/random-work-image`, {
@@ -31,15 +31,13 @@ export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
     })
       .then((response) => {
         if (response.status === 200) {
-          return response.json();
-        } else {
-          setWorkImage(undefined);
-
-          return;
+          return response.json()
         }
+
+        setWorkImage(undefined)
       })
-      .then((data) => setWorkImage(data));
-  }, []);
+      .then((data) => setWorkImage(data))
+  }, [])
 
   return (
     <Modal
@@ -75,7 +73,7 @@ export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
               <Image
                 src={workImage.url}
                 alt={''}
-                fill
+                fill={true}
                 sizes='100%'
                 className={css`
                   object-fit: cover;
@@ -141,7 +139,7 @@ export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
             Log in
           </Heading>
 
-          <AuthButtons isAgreement />
+          <AuthButtons isAgreement={true} />
 
           <Text mt={36} color={'colors.tertiary'} fontSize={'0.875rem'}>
             会員登録がまだの方は
@@ -158,5 +156,5 @@ export const LogInModal = ({ isOpen, handleClose, handleToggle }: Props) => {
         </Box>
       </HStack>
     </Modal>
-  );
-};
+  )
+}

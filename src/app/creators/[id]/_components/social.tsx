@@ -1,11 +1,11 @@
-import { HStack, css } from '@kuma-ui/core';
-import { User } from '@prisma/client';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
+import { HStack, css } from '@kuma-ui/core'
+import { User } from '@prisma/client'
+import Link from 'next/link'
+import prisma from '@/lib/prisma'
 
 type Props = {
-  creator: User;
-};
+  creator: User
+}
 
 const SocialLink = ({ href, text }: { href: string; text: string }) => {
   return (
@@ -23,18 +23,18 @@ const SocialLink = ({ href, text }: { href: string; text: string }) => {
     >
       {text}
     </Link>
-  );
-};
+  )
+}
 
 export const Social = async ({ creator }: Props) => {
   const social = await prisma.social.findUnique({
     where: {
       userId: creator.id,
     },
-  });
+  })
 
   if (!social) {
-    return null;
+    return null
   }
 
   return (
@@ -61,5 +61,5 @@ export const Social = async ({ creator }: Props) => {
         </li>
       )}
     </HStack>
-  );
-};
+  )
+}

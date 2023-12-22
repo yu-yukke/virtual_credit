@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { HStack, Heading, Text, css } from '@kuma-ui/core';
+import { HStack, Heading, Text, css } from '@kuma-ui/core'
 import {
   AnonymousUser,
   AnonymousUserCopyright,
@@ -9,61 +9,61 @@ import {
   UserCopyright,
   Work,
   WorkHistory,
-} from '@prisma/client';
-import dayjs from 'dayjs';
-import Image from 'next/image';
+} from '@prisma/client'
+import dayjs from 'dayjs'
+import Image from 'next/image'
 
-import { useEffect, useState } from 'react';
-import { AnonymousUserIcon } from '../icons';
-import { Merge } from '@/types/merge';
+import { Merge } from '@/types/merge'
+import { useEffect, useState } from 'react'
+import { AnonymousUserIcon } from '../icons'
 
 type Props = {
-  work: Merge<Work, { histories: WorkHistory[] }>;
+  work: Merge<Work, { histories: WorkHistory[] }>
   copyrights: Merge<
     Copyright,
     {
-      userCopyrights: Merge<UserCopyright, { user: User }>[];
+      userCopyrights: Merge<UserCopyright, { user: User }>[]
       anonymousUserCopyrights: Merge<
         AnonymousUserCopyright,
         { anonymousUser: AnonymousUser }
-      >[];
+      >[]
     }
-  >[];
-};
+  >[]
+}
 
 const getCreators = (
   copyrights: Merge<
     Copyright,
     {
-      userCopyrights: Merge<UserCopyright, { user: User }>[];
+      userCopyrights: Merge<UserCopyright, { user: User }>[]
       anonymousUserCopyrights: Merge<
         AnonymousUserCopyright,
         { anonymousUser: AnonymousUser }
-      >[];
+      >[]
     }
   >[],
 ): (User | AnonymousUser)[] => {
-  const creators: (User | AnonymousUser)[] = [];
+  const creators: (User | AnonymousUser)[] = []
 
-  copyrights.forEach((copyright) => {
-    copyright.userCopyrights.forEach((userCopyright) => {
+  for (const copyright of copyrights) {
+    for (const userCopyright of copyright.userCopyrights) {
       if (
         userCopyright.user.published &&
         !creators.includes(userCopyright.user)
       ) {
-        creators.push(userCopyright.user);
+        creators.push(userCopyright.user)
       }
-    });
+    }
 
-    copyright.anonymousUserCopyrights.forEach((anonymousUserCopyright) => {
+    for (const anonymousUserCopyright of copyright.anonymousUserCopyrights) {
       if (!creators.includes(anonymousUserCopyright.anonymousUser)) {
-        creators.push(anonymousUserCopyright.anonymousUser);
+        creators.push(anonymousUserCopyright.anonymousUser)
       }
-    });
-  });
+    }
+  }
 
-  return creators;
-};
+  return creators
+}
 
 const RenderAnonymousUserIcon = () => {
   return (
@@ -76,24 +76,24 @@ const RenderAnonymousUserIcon = () => {
         fill: t('colors.tertiary');
       `}
     />
-  );
-};
+  )
+}
 
 export const WorkCardSummary = ({ work, copyrights }: Props) => {
-  const creators = getCreators(copyrights);
-  const [loading, setLoading] = useState(true);
-  const [randomCreator, setRandomCreator] = useState(creators[0] || []);
+  const creators = getCreators(copyrights)
+  const [loading, setLoading] = useState(true)
+  const [randomCreator, setRandomCreator] = useState(creators[0] || [])
   // @ts-expect-error anonymousUserの場合はimageがないがエラーになるため
-  const randomCreatorImage = randomCreator?.image;
+  const randomCreatorImage = randomCreator?.image
 
   useEffect(() => {
     if (!loading) {
-      return;
+      return
     }
 
-    setRandomCreator(creators[Math.floor(Math.random() * creators.length)]);
-    setLoading(false);
-  }, [loading, creators]);
+    setRandomCreator(creators[Math.floor(Math.random() * creators.length)])
+    setLoading(false)
+  }, [loading, creators])
 
   return (
     <>
@@ -113,7 +113,7 @@ export const WorkCardSummary = ({ work, copyrights }: Props) => {
       </Heading>
       <HStack alignItems={'center'}>
         <HStack alignItems={'center'}>
-          {!!creators.length ? (
+          {creators.length ? (
             <HStack gap={8} alignItems={'center'}>
               {randomCreatorImage ? (
                 <Image
@@ -172,5 +172,5 @@ export const WorkCardSummary = ({ work, copyrights }: Props) => {
         </Text>
       </HStack>
     </>
-  );
-};
+  )
+}

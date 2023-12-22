@@ -1,6 +1,6 @@
-import { Box, HStack, Text, VStack } from '@kuma-ui/core';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
+import { Box, HStack, Text, VStack } from '@kuma-ui/core'
+import Link from 'next/link'
+import prisma from '@/lib/prisma'
 
 export const SkillList = async () => {
   const skills = await prisma.skill.findMany({
@@ -16,16 +16,16 @@ export const SkillList = async () => {
         },
       },
     },
-  });
+  })
   skills.sort((a, b) => {
     const aCount = a.userSkills.filter(
       (userSkill) => userSkill.user.published,
-    ).length;
+    ).length
     const bCount = b.userSkills.filter(
       (userSkill) => userSkill.user.published,
-    ).length;
-    return bCount - aCount;
-  });
+    ).length
+    return bCount - aCount
+  })
 
   return (
     <VStack as='ul' gap={12} alignItems={'center'} className='full-bleed'>
@@ -56,5 +56,5 @@ export const SkillList = async () => {
         </Box>
       ))}
     </VStack>
-  );
-};
+  )
+}

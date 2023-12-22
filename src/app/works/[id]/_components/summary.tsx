@@ -1,24 +1,24 @@
-import { Grid, Heading, Text, VStack, css } from '@kuma-ui/core';
-import { Work, WorkHistory } from '@prisma/client';
+import { Grid, Heading, Text, VStack, css } from '@kuma-ui/core'
+import { Work, WorkHistory } from '@prisma/client'
 
-import { Categories } from './categories';
-import { Copyrights } from './copyrights';
-import { PageViewCount } from './page-view-count';
-import { Tags } from './tags';
-import { WorkRelationCategories } from './work-relation-categories';
-import { Merge } from '@/types/merge';
+import { Merge } from '@/types/merge'
+import { Categories } from './categories'
+import { Copyrights } from './copyrights'
+import { PageViewCount } from './page-view-count'
+import { Tags } from './tags'
+import { WorkRelationCategories } from './work-relation-categories'
 
 type Props = {
   work: Merge<
     Work,
     {
-      histories: WorkHistory[];
+      histories: WorkHistory[]
     }
-  >;
-};
+  >
+}
 
 export const Summary = ({ work }: Props) => {
-  const latestWorkHistory = work.histories[0];
+  const latestWorkHistory = work.histories[0]
 
   return (
     <Grid
@@ -63,5 +63,5 @@ export const Summary = ({ work }: Props) => {
         <WorkRelationCategories work={work} />
       </VStack>
     </Grid>
-  );
-};
+  )
+}
