@@ -6,6 +6,11 @@ import clsx from 'clsx'
 import { signOut } from 'next-auth/react'
 
 export const SignOutModal = () => {
+  const handleSignOut = () => {
+    signOut()
+    alert('ログアウトしました')
+  }
+
   return (
     <AlertDialog.Portal>
       <AlertDialog.Overlay
@@ -86,7 +91,7 @@ export const SignOutModal = () => {
               _hover={{
                 opacity: 0.85,
               }}
-              onClick={() => signOut()}
+              onClick={handleSignOut}
             >
               ログアウト
             </Button>
