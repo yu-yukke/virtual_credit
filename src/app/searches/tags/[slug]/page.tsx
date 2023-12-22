@@ -1,21 +1,21 @@
-import { Spacer, VStack } from '@kuma-ui/core';
-import { WorkList } from './_components';
-import { Categories, Tags } from '@/app/works/_components';
-import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
-import prisma from '@/lib/prisma';
+import { Categories, Tags } from '@/app/works/_components'
+import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper'
+import prisma from '@/lib/prisma'
+import { Spacer, VStack } from '@kuma-ui/core'
+import { WorkList } from './_components'
 
 type Props = {
-  slug: string;
-};
+  slug: string
+}
 
 export default async function Page({
   params,
   searchParams,
 }: {
-  params: Props;
-  searchParams: { [key: string]: string | undefined };
+  params: Props
+  searchParams: { [key: string]: string | undefined }
 }) {
-  const page = Number(searchParams['page'] || 1);
+  const page = Number(searchParams.page || 1)
   const worksCount = await prisma.work.count({
     where: {
       published: true,
@@ -27,7 +27,7 @@ export default async function Page({
         },
       },
     },
-  });
+  })
 
   return (
     <>
@@ -42,5 +42,5 @@ export default async function Page({
       </VStack>
       <WorkList tagName={params.slug} page={page} worksCount={worksCount} />
     </>
-  );
+  )
 }

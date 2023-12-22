@@ -1,32 +1,32 @@
-'use client';
+'use client'
 
-import { Box, HStack, Heading, Text, VStack, css } from '@kuma-ui/core';
-import { Checkbox, FormControlLabel } from '@mui/material';
-import Modal from '@mui/material/Modal';
-import { User, Work, WorkHistory, WorkImage } from '@prisma/client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Box, HStack, Heading, Text, VStack, css } from '@kuma-ui/core'
+import { Checkbox, FormControlLabel } from '@mui/material'
+import Modal from '@mui/material/Modal'
+import { User, Work, WorkHistory, WorkImage } from '@prisma/client'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
 
-import { AuthButtons } from '@/components/elements/buttons/auth';
-import { Merge } from '@/types/merge';
+import { AuthButtons } from '@/components/elements/buttons/auth'
+import { Merge } from '@/types/merge'
 
 type Props = {
-  isOpen: boolean;
-  handleClose: () => void;
-  handleToggle: () => void;
-};
+  isOpen: boolean
+  handleClose: () => void
+  handleToggle: () => void
+}
 
 export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
-  const [isCheckPolicy, setIsCheckPolicy] = useState<boolean>(false);
-  const [isCheckedEmail, setIsCheckedEmail] = useState<boolean>(true);
+  const [isCheckPolicy, setIsCheckPolicy] = useState<boolean>(false)
+  const [isCheckedEmail, setIsCheckedEmail] = useState<boolean>(true)
   const [workImage, setWorkImage] =
     useState<
       Merge<
         WorkImage,
         { work: Merge<Work, { createdBy: User; histories: WorkHistory[] }> }
       >
-    >();
+    >()
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/random-work-image`, {
@@ -34,21 +34,19 @@ export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
     })
       .then((response) => {
         if (response.status === 200) {
-          return response.json();
-        } else {
-          setWorkImage(undefined);
-          return;
+          return response.json()
         }
+        setWorkImage(undefined)
       })
-      .then((data) => setWorkImage(data));
-  }, []);
+      .then((data) => setWorkImage(data))
+  }, [])
 
   const handleChangePolicy = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsCheckPolicy(event.target.checked);
-  };
+    setIsCheckPolicy(event.target.checked)
+  }
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsCheckedEmail(event.target.checked);
-  };
+    setIsCheckedEmail(event.target.checked)
+  }
 
   return (
     <Modal
@@ -84,7 +82,7 @@ export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
               <Image
                 src={workImage.url}
                 alt={''}
-                fill
+                fill={true}
                 sizes='100%'
                 className={css`
                   object-fit: cover;
@@ -234,5 +232,5 @@ export const SignUpModal = ({ isOpen, handleClose, handleToggle }: Props) => {
         </Box>
       </HStack>
     </Modal>
-  );
-};
+  )
+}

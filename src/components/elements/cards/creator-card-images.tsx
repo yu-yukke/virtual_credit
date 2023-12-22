@@ -1,14 +1,14 @@
-import { Box, HStack, css } from '@kuma-ui/core';
-import { User, WorkImage } from '@prisma/client';
-import clsx from 'clsx';
-import Image from 'next/image';
-import { AnonymousUserIcon } from '../icons';
+import { Box, HStack, css } from '@kuma-ui/core'
+import { User, WorkImage } from '@prisma/client'
+import clsx from 'clsx'
+import Image from 'next/image'
+import { AnonymousUserIcon } from '../icons'
 
 type Props = {
-  creator: User;
-  workImages: WorkImage[];
-  isHover: boolean;
-};
+  creator: User
+  workImages: WorkImage[]
+  isHover: boolean
+}
 
 const RenderAnonymousUserIcon = () => {
   return (
@@ -20,8 +20,8 @@ const RenderAnonymousUserIcon = () => {
         fill: t('colors.tertiary');
       `}
     />
-  );
-};
+  )
+}
 
 export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
   return (
@@ -60,7 +60,7 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
           <Image
             src={workImages[0].url}
             alt={`${creator.name}の作品画像`}
-            fill
+            fill={true}
             sizes='100%'
             className={clsx(
               css`
@@ -99,7 +99,7 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
               <Image
                 src={workImage.url}
                 alt={`${creator.name}の作品画像`}
-                fill
+                fill={true}
                 sizes='100%'
                 className={clsx(
                   css`
@@ -137,7 +137,7 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
             <Image
               src={creator.image}
               alt={`${creator.name}のサムネイル画像`}
-              fill
+              fill={true}
               sizes='100%'
               className={clsx(
                 css`
@@ -155,5 +155,5 @@ export const CreatorCardImages = ({ creator, workImages, isHover }: Props) => {
         </Box>
       </Box>
     </Box>
-  );
-};
+  )
+}

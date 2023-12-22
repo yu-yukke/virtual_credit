@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { Box, Grid, css } from '@kuma-ui/core';
+import { Box, Grid, css } from '@kuma-ui/core'
 import {
   AnonymousUser,
   AnonymousUserCopyright,
@@ -10,35 +10,35 @@ import {
   Work,
   WorkHistory,
   WorkImage,
-} from '@prisma/client';
-import clsx from 'clsx';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useCallback, useState } from 'react';
+} from '@prisma/client'
+import clsx from 'clsx'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useCallback, useState } from 'react'
 
-import { WorkCardSummary } from './work-card-summary';
-import { Merge } from '@/types/merge';
+import { Merge } from '@/types/merge'
+import { WorkCardSummary } from './work-card-summary'
 
 type Props = {
-  work: Merge<Work, { histories: WorkHistory[] }>;
-  mainImage?: WorkImage;
+  work: Merge<Work, { histories: WorkHistory[] }>
+  mainImage?: WorkImage
   copyrights: Merge<
     Copyright,
     {
-      userCopyrights: Merge<UserCopyright, { user: User }>[];
+      userCopyrights: Merge<UserCopyright, { user: User }>[]
       anonymousUserCopyrights: Merge<
         AnonymousUserCopyright,
         { anonymousUser: AnonymousUser }
-      >[];
+      >[]
     }
-  >[];
-};
+  >[]
+}
 
 export const WorkCard = ({ work, mainImage, copyrights }: Props) => {
-  const [isHover, setIsHover] = useState<boolean>(false);
+  const [isHover, setIsHover] = useState<boolean>(false)
   const handleHover = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    setIsHover(e.type == 'mouseenter');
-  }, []);
+    setIsHover(e.type === 'mouseenter')
+  }, [])
 
   return (
     <Grid
@@ -95,7 +95,7 @@ export const WorkCard = ({ work, mainImage, copyrights }: Props) => {
           <Image
             src={mainImage.url}
             alt={`${work.histories[0].title}のメイン画像`}
-            fill
+            fill={true}
             sizes='100%'
             className={clsx(
               css`
@@ -120,5 +120,5 @@ export const WorkCard = ({ work, mainImage, copyrights }: Props) => {
       </Box>
       <WorkCardSummary work={work} copyrights={copyrights} />
     </Grid>
-  );
-};
+  )
+}

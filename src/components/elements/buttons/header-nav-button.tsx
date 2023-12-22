@@ -1,12 +1,14 @@
-import '@/styles/radix/navigation-menu.css';
-import { Button, HStack } from '@kuma-ui/core';
-import { CaretDownIcon } from '@radix-ui/react-icons';
+import '@/styles/radix/navigation-menu.css'
+
+import { Button, HStack } from '@kuma-ui/core'
+import { CaretDownIcon } from '@radix-ui/react-icons'
+import React from 'react'
 
 type Props = {
-  text: string;
-  withContent?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-};
+  text: string
+  withContent?: boolean
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+}
 
 export const HeaderNavButton = ({ text, withContent, onClick }: Props) => {
   return (
@@ -29,5 +31,5 @@ export const HeaderNavButton = ({ text, withContent, onClick }: Props) => {
         {withContent && <CaretDownIcon className='caretDown' />}
       </HStack>
     </Button>
-  );
-};
+  )
+}

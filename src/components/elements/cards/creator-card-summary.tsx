@@ -1,12 +1,12 @@
-import { Box, Heading, Text, css } from '@kuma-ui/core';
-import { Skill, User, UserSkill } from '@prisma/client';
+import { Box, Heading, Text, css } from '@kuma-ui/core'
+import { Skill, User, UserSkill } from '@prisma/client'
 
-import { Merge } from '@/types/merge';
+import { Merge } from '@/types/merge'
 
 type Props = {
-  creator: User;
-  userSkills: Merge<UserSkill, { skill: Skill }>[];
-};
+  creator: User
+  userSkills: Merge<UserSkill, { skill: Skill }>[]
+}
 
 export const CreatorCardSummary = ({ creator, userSkills }: Props) => {
   return (
@@ -68,5 +68,5 @@ export const CreatorCardSummary = ({ creator, userSkills }: Props) => {
         {creator.description}
       </Text>
     </>
-  );
-};
+  )
+}

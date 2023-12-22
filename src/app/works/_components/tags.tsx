@@ -1,13 +1,13 @@
-import { HStack } from '@kuma-ui/core';
+import { HStack } from '@kuma-ui/core'
 
-import Link from 'next/link';
-import { FilterButton } from '@/components/elements/buttons';
+import Link from 'next/link'
+import { FilterButton } from '@/components/elements/buttons'
 
-import prisma from '@/lib/prisma';
+import prisma from '@/lib/prisma'
 
 type Props = {
-  tagName?: string;
-};
+  tagName?: string
+}
 
 export const Tags = async ({ tagName }: Props) => {
   const allTags = await prisma.tag.findMany({
@@ -26,12 +26,12 @@ export const Tags = async ({ tagName }: Props) => {
         },
       },
     },
-  });
+  })
   const tags = allTags.filter((tag) =>
     tag.workTags.some(
       (workTag) => workTag.work.published && workTag.work.histories.length > 0,
     ),
-  );
+  )
 
   return (
     <HStack
@@ -65,5 +65,5 @@ export const Tags = async ({ tagName }: Props) => {
         </>
       )}
     </HStack>
-  );
-};
+  )
+}

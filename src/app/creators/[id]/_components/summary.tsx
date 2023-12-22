@@ -1,14 +1,14 @@
-import { Box, Grid, Heading, Text, css } from '@kuma-ui/core';
-import { User } from '@prisma/client';
-import Image from 'next/image';
+import { Box, Grid, Heading, Text, css } from '@kuma-ui/core'
+import { User } from '@prisma/client'
+import Image from 'next/image'
 
-import { Skills } from './skills';
-import { Social } from './social';
-import { AnonymousUserIcon } from '@/components/elements/icons';
+import { Skills } from './skills'
+import { Social } from './social'
+import { AnonymousUserIcon } from '@/components/elements/icons'
 
 type Props = {
-  creator: User;
-};
+  creator: User
+}
 
 const RenderAnonymousUserIcon = () => {
   return (
@@ -20,8 +20,8 @@ const RenderAnonymousUserIcon = () => {
         fill: t('colors.tertiary');
       `}
     />
-  );
-};
+  )
+}
 
 export const Summary = async ({ creator }: Props) => {
   return (
@@ -45,7 +45,7 @@ export const Summary = async ({ creator }: Props) => {
             <Image
               src={creator.image}
               alt={`${creator.name}のサムネイル画像`}
-              fill
+              fill={true}
               sizes='100%'
             />
           ) : (
@@ -84,5 +84,5 @@ export const Summary = async ({ creator }: Props) => {
         <Social creator={creator} />
       </Grid>
     </Box>
-  );
-};
+  )
+}

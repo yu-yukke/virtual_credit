@@ -1,11 +1,11 @@
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
-import type { NextAuthOptions } from 'next-auth';
-import DiscordProvider from 'next-auth/providers/discord';
-import GoogleProvider from 'next-auth/providers/google';
-import TwitterProvider from 'next-auth/providers/twitter';
+import type { NextAuthOptions } from 'next-auth'
+import DiscordProvider from 'next-auth/providers/discord'
+import GoogleProvider from 'next-auth/providers/google'
+import TwitterProvider from 'next-auth/providers/twitter'
 
-import prisma from '../prisma';
+import prisma from '../prisma'
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -34,4 +34,4 @@ export const authOptions: NextAuthOptions = {
     error: '/auth/error',
     newUser: '/auth/new-user',
   },
-};
+}

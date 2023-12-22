@@ -1,1 +1,1 @@
-export { SkillList } from './skill-list';
+export { SkillList } from './skill-list'

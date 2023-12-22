@@ -1,10 +1,10 @@
-import { VStack } from '@kuma-ui/core';
+import { VStack } from '@kuma-ui/core'
 
-import { AuthButton } from './auth-button';
+import { AuthButton } from './auth-button'
 
 type Props = {
-  isAgreement?: boolean;
-};
+  isAgreement?: boolean
+}
 
 export const AuthButtons = ({ isAgreement }: Props) => {
   return (
@@ -13,5 +13,5 @@ export const AuthButtons = ({ isAgreement }: Props) => {
       <AuthButton provider='twitter' isAgreement={isAgreement} />
       <AuthButton provider='discord' isAgreement={isAgreement} />
     </VStack>
-  );
-};
+  )
+}

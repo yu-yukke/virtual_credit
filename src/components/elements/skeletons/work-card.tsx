@@ -1,5 +1,5 @@
-import { Grid, HStack, css } from '@kuma-ui/core';
-import { Skeleton } from '@mui/material';
+import { Grid, HStack, css } from '@kuma-ui/core'
+import { Skeleton } from '@mui/material'
 
 export const WorkCard = () => {
   return (
@@ -36,5 +36,5 @@ export const WorkCard = () => {
         <Skeleton variant='rounded' width={80} height={16} />
       </HStack>
     </Grid>
-  );
-};
+  )
+}

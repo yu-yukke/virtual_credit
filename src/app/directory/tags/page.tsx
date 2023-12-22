@@ -1,6 +1,6 @@
-import { TagList } from './_components';
-import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper';
-import prisma from '@/lib/prisma';
+import { TagList } from './_components'
+import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper'
+import prisma from '@/lib/prisma'
 
 export default async function Page() {
   const allTags = await prisma.tag.findMany({
@@ -24,21 +24,17 @@ export default async function Page() {
         },
       },
     },
-  });
+  })
   const tags = allTags.filter((tag) =>
     tag.workTags.some(
       (workTag) => workTag.work.published && workTag.work.histories.length > 0,
     ),
-  );
+  )
   tags.sort((a, b) => {
-    const aCount = a.workTags.filter(
-      (workTag) => workTag.work.published,
-    ).length;
-    const bCount = b.workTags.filter(
-      (workTag) => workTag.work.published,
-    ).length;
-    return bCount - aCount;
-  });
+    const aCount = a.workTags.filter((workTag) => workTag.work.published).length
+    const bCount = b.workTags.filter((workTag) => workTag.work.published).length
+    return bCount - aCount
+  })
 
   return (
     <>
@@ -52,5 +48,5 @@ export default async function Page() {
       />
       <TagList />
     </>
-  );
+  )
 }

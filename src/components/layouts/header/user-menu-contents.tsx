@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import { VStack, css } from '@kuma-ui/core';
-import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import clsx from 'clsx';
-import { useSession } from 'next-auth/react';
+import { VStack, css } from '@kuma-ui/core'
+import * as AlertDialog from '@radix-ui/react-alert-dialog'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import clsx from 'clsx'
+import { useSession } from 'next-auth/react'
 
-import { UserMenuContentsItem } from './user-menu-contents-item';
-import { UserMenuContentsSeparator } from './user-menu-contents-separator';
+import { UserMenuContentsItem } from './user-menu-contents-item'
+import { UserMenuContentsSeparator } from './user-menu-contents-separator'
 
 export const DropdownMenuContents = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession()
 
   if (!session) {
-    return null;
+    return null
   }
 
   return (
@@ -51,5 +51,5 @@ export const DropdownMenuContents = () => {
         </AlertDialog.Trigger>
       </VStack>
     </DropdownMenu.Content>
-  );
-};
+  )
+}

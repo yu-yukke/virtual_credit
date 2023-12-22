@@ -1,9 +1,9 @@
-import { Button, css } from '@kuma-ui/core';
+import { Button, css } from '@kuma-ui/core'
 
 type Props = {
-  text: string;
-  isActive?: boolean;
-};
+  text: string
+  isActive?: boolean
+}
 
 export const FilterButton = ({ text, isActive }: Props) => {
   return (
@@ -37,5 +37,5 @@ export const FilterButton = ({ text, isActive }: Props) => {
     >
       {text}
     </Button>
-  );
-};
+  )
+}

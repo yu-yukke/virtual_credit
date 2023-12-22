@@ -1,1 +1,1 @@
-export { PageHeadingWrapper } from './page-heading-wrapper';
+export { PageHeadingWrapper } from './page-heading-wrapper'

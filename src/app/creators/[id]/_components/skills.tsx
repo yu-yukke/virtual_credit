@@ -1,11 +1,11 @@
-import { Button, Grid, HStack, css } from '@kuma-ui/core';
-import { User } from '@prisma/client';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
+import { Button, Grid, HStack, css } from '@kuma-ui/core'
+import { User } from '@prisma/client'
+import Link from 'next/link'
+import prisma from '@/lib/prisma'
 
 type Props = {
-  creator: User;
-};
+  creator: User
+}
 
 export const Skills = async ({ creator }: Props) => {
   const userSkills = await prisma.userSkill.findMany({
@@ -15,8 +15,8 @@ export const Skills = async ({ creator }: Props) => {
     include: {
       skill: true,
     },
-  });
-  const skills = [...new Set(userSkills.map((userSkill) => userSkill.skill))];
+  })
+  const skills = [...new Set(userSkills.map((userSkill) => userSkill.skill))]
 
   return (
     <Grid
@@ -54,5 +54,5 @@ export const Skills = async ({ creator }: Props) => {
         ))}
       </HStack>
     </Grid>
-  );
-};
+  )
+}

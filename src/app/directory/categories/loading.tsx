@@ -1,5 +1,5 @@
-import { Box, HStack, VStack, css } from '@kuma-ui/core';
-import { Skeleton } from '@mui/material';
+import { Box, HStack, VStack, css } from '@kuma-ui/core'
+import { Skeleton } from '@mui/material'
 
 export default function Loading() {
   return (
@@ -34,7 +34,7 @@ export default function Loading() {
       <VStack as='ul' gap={12} alignItems={'center'} className='full-bleed'>
         {Array.from({ length: 12 }).map((_, i) => (
           <HStack
-            key={i}
+            key={`HStack-${i}`}
             alignItems={'center'}
             justifyContent={'space-between'}
             width={400}
@@ -45,5 +45,5 @@ export default function Loading() {
         ))}
       </VStack>
     </>
-  );
+  )
 }

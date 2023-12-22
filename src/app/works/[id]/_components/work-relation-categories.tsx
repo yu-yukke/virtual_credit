@@ -1,11 +1,11 @@
-import { Box, Grid, Text, VStack, css } from '@kuma-ui/core';
-import { Work } from '@prisma/client';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
+import { Box, Grid, Text, VStack, css } from '@kuma-ui/core'
+import { Work } from '@prisma/client'
+import Link from 'next/link'
+import prisma from '@/lib/prisma'
 
 type Props = {
-  work: Work;
-};
+  work: Work
+}
 
 export const WorkRelationCategories = async ({ work }: Props) => {
   const workRelationCategories = await prisma.workRelationCategory.findMany({
@@ -15,10 +15,10 @@ export const WorkRelationCategories = async ({ work }: Props) => {
     include: {
       workRelations: true,
     },
-  });
+  })
 
   if (!workRelationCategories.length) {
-    return null;
+    return null
   }
 
   return (
@@ -66,5 +66,5 @@ export const WorkRelationCategories = async ({ work }: Props) => {
         </Box>
       ))}
     </VStack>
-  );
-};
+  )
+}

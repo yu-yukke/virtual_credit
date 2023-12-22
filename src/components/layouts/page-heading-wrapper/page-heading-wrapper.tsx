@@ -1,12 +1,12 @@
-import { Box, Text } from '@kuma-ui/core';
+import { Box, Text } from '@kuma-ui/core'
 
-import { PageHeadingButton } from '@/components/elements/buttons';
+import { PageHeadingButton } from '@/components/elements/buttons'
 
 type Props = {
-  title: string;
-  subtitle?: string;
-  description: string;
-};
+  title: string
+  subtitle?: string
+  description: string
+}
 
 export const PageHeadingWrapper = ({ title, subtitle, description }: Props) => {
   return (
@@ -33,5 +33,5 @@ export const PageHeadingWrapper = ({ title, subtitle, description }: Props) => {
         {description}
       </Text>
     </Box>
-  );
-};
+  )
+}
