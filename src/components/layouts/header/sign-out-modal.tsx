@@ -86,7 +86,7 @@ export const SignOutModal = () => {
               _hover={{
                 opacity: 0.85,
               }}
-              onClick={() => signOut()}
+              onClick={() => signOut({ callbackUrl: '/' })}
             >
               ログアウト
             </Button>
