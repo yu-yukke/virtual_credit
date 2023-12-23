@@ -1,26 +1,14 @@
 {
-  "editor.fontSize": 18,
-  "editor.fontFamily": "Source Han Code JP, Menlo, Monaco, 'Courier New', monospace",
   "editor.tabSize": 2,
   "terminal.explorerKind": "external",
-  "terminal.external.linuxExec": "Warp",
-  "terminal.integrated.fontSize": 16,
   "redhat.telemetry.enabled": true,
-  "workbench.colorTheme": "Dracula",
-  "workbench.iconTheme": "Monokai Pro Icons",
-  "explorer.confirmDelete": false,
   "trailing-spaces.trimOnSave": true,
   "files.insertFinalNewline": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "bracketPairColorizer.depreciation-notice": false,
-  "npm.keybindingsChangedWarningShown": true,
-  "workbench.startupEditor": "none",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
   },
-  "terminal.external.osxExec": "Warp.app",
-  "diffEditor.maxComputationTime": 0,
   "editor.codeActionsOnSave": {
     "quickfix.biome": true,
     "source.organizeImports.biome": true
@@ -41,8 +29,5 @@
     "editor.formatOnSave": true
   },
   "html.format.contentUnformatted": "",
-  "vscode-pets.throwBallWithMouse": true,
-  "hediet.vscode-drawio.resizeImages": null,
-  "prettier.singleQuote": true,
-  "editor.minimap.enabled": true
+  "prettier.singleQuote": true
 }
