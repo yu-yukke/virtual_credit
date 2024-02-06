@@ -1,7 +1,7 @@
 .ToastViewport {
   --viewport-padding: 25px;
   position: fixed;
-  bottom: top;
+  top: 0;
   right: 0;
   display: flex;
   flex-direction: column;
