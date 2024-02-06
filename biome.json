@@ -8,9 +8,9 @@
     "ignore": ["/src/app/api/**/*", "*.config.js", "*.config.ts"],
     "rules": {
       "all": true,
-			"nursery": {
-				"noDefaultExport": "off"
-			},
+      "nursery": {
+        "noDefaultExport": "off"
+      },
       "style": {
         "useNamingConvention": "off"
       }

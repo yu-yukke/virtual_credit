@@ -29,6 +29,18 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.DISCORD_CLIENT_SECRET || '',
     }),
   ],
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith('/')) {
+        return `${baseUrl}${url}`
+      }
+      if (new URL(url).origin === baseUrl) {
+        return url
+      }
+
+      return baseUrl
+    },
+  },
   // TODO: 個別にページ設定
   pages: {
     error: '/auth/error',

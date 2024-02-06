@@ -1,8 +1,8 @@
-import { FilterButton } from '@/components/elements/buttons'
-import { WorkCard } from '@/components/elements/cards'
 import prisma from '@/lib/prisma'
-import { Grid, HStack, css } from '@kuma-ui/core'
+import { Grid, css } from '@kuma-ui/core'
 import { User } from '@prisma/client'
+
+import { WorkCard } from '@/components/elements/cards'
 
 type Props = {
   creator: User
@@ -69,16 +69,16 @@ export const WorkList = async ({ creator }: Props) => {
       },
     },
   })
-  const categories = works.flatMap((work) =>
-    work.workCategories.map((workCategory) => workCategory.category),
-  )
-  const uniqueCategories = Array.from(
-    new Set(categories.map((category) => category.id)),
-  ).map((id) => categories.find((category) => category.id === id))
+  // const categories = works.flatMap((work) =>
+  //   work.workCategories.map((workCategory) => workCategory.category),
+  // )
+  // const uniqueCategories = Array.from(
+  //   new Set(categories.map((category) => category.id)),
+  // ).map((id) => categories.find((category) => category.id === id))
 
   return (
     <>
-      {!!uniqueCategories.length && (
+      {/* {!!uniqueCategories.length && (
         <HStack
           as='ul'
           gap={4}
@@ -99,7 +99,7 @@ export const WorkList = async ({ creator }: Props) => {
             return null
           })}
         </HStack>
-      )}
+      )} */}
       <Grid
         as='section'
         py={32}
