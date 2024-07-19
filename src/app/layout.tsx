@@ -1,14 +1,11 @@
 import '@/styles/globals.css'
 import '@/styles/reset.css'
 
-import { KumaRegistry } from '@kuma-ui/next-plugin/registry'
 import { Inter } from 'next/font/google'
 import React from 'react'
 
 import { GoogleAnalytics } from '@/components/common/google-analytics'
-import { Snackbar } from '@/components/common/snackbar'
 import { Header } from '@/components/layouts/header'
-import { SnackbarProvider } from '@/providers'
 import { NextAuthProvider } from '@/providers/next-auth'
 
 const inter = Inter({ weight: '400', subsets: ['latin'] })
@@ -27,15 +24,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang='ja'>
       <GoogleAnalytics />
       <body className={inter.className}>
-        <KumaRegistry>
-          <NextAuthProvider>
-            <SnackbarProvider>
-              <Snackbar />
-              <Header />
-              <main>{children}</main>
-            </SnackbarProvider>
-          </NextAuthProvider>
-        </KumaRegistry>
+        <NextAuthProvider>
+          <Header />
+          <main>{children}</main>
+        </NextAuthProvider>
       </body>
     </html>
   )
