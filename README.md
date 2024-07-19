@@ -8,13 +8,9 @@
 
 - Vercel
 
-### UI コンポーネント
+### UI
 
-- Kuma-ui
-- Radix
-- MaterialUI
-
-時間できたら自分で作り直す
+- tailwind
 
 ### DB 関係
 
@@ -68,7 +64,7 @@ bun run prisma:seed
 
 ```
   bun run lint
-  bun run formt
+  bun run format
 ```
 
 ## データベース
