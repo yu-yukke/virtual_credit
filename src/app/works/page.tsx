@@ -1,34 +1,28 @@
-import { Spacer, VStack } from '@kuma-ui/core'
+// import { Work } from '@/types/work'
 
-import { PageHeadingWrapper } from '@/components/layouts/page-heading-wrapper'
-import { Categories, Tags, WorkList } from './_components'
+// async function getWorks() {
+//   const response = await fetch(
+//     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/works`,
+//   )
 
-import prisma from '@/lib/prisma'
+//   if (!response.ok) {
+//     throw new Error('Failed to fetch data')
+//   }
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined }
-}) {
-  const page = Number(searchParams.page || 1)
-  const worksCount = await prisma.work.count({
-    where: {
-      published: true,
-    },
-  })
+//   const responseJson = await response.json()
+
+//   return responseJson.data
+// }
+
+export default async function Page() {
+  // const works: Work[] = await getWorks()
 
   return (
-    <>
-      <PageHeadingWrapper
-        title='Works'
-        description={`A collection of ${worksCount} works`}
-      />
-      <Spacer size={1} bg={'colors.borderPrimary'} className='full-bleed' />
-      <VStack as='section' mt={20}>
-        <Categories />
-        <Tags />
-      </VStack>
-      <WorkList page={page} worksCount={worksCount} />
-    </>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+      {/* {works.map((work) => (
+        <div key={work.id}>{work.title}</div>
+      ))} */}
+      works
+    </div>
   )
 }

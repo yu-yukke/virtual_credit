@@ -8,18 +8,9 @@
 
 - Vercel
 
-### UI コンポーネント
+### UI
 
-- Kuma-ui
-- Radix
-- MaterialUI
-
-時間できたら自分で作り直す
-
-### DB 関係
-
-- Prisma
-- Supabase
+- tailwind
 
 ### Redis
 
@@ -38,37 +29,13 @@
 bun run dev
 ```
 
-## DB
-
-### スキーマ定義
-
-```bash
-/prisma/schema.prisma
-```
-
-型定義もしているのでここからインポートして型チェックしながら開発
-
-### スキーマ反映
-
-```bash
-bun run prisma:migrate
-```
-
-`prisma generate`は`predev`と`prebuild`に指定しているので勝手にやってくれる
-
-### seed 投入
-
-```bash
-bun run prisma:seed
-```
-
 ### linter / formatter
 
 - biome.js に一任
 
 ```
   bun run lint
-  bun run formt
+  bun run format
 ```
 
 ## データベース
