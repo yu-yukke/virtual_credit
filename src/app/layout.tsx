@@ -6,7 +6,6 @@ import React from 'react'
 
 import { GoogleAnalytics } from '@/components/common/google-analytics'
 import { Header } from '@/components/layouts/header'
-import { NextAuthProvider } from '@/providers/next-auth'
 
 const inter = Inter({ weight: '400', subsets: ['latin'] })
 
@@ -24,10 +23,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang='ja'>
       <GoogleAnalytics />
       <body className={inter.className}>
-        <NextAuthProvider>
-          <Header />
-          <main>{children}</main>
-        </NextAuthProvider>
+        <Header />
+        <main>{children}</main>
       </body>
     </html>
   )

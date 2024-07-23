@@ -12,11 +12,6 @@
 
 - tailwind
 
-### DB 関係
-
-- Prisma
-- Supabase
-
 ### Redis
 
 - Upstash
@@ -32,30 +27,6 @@
 
 ```bash
 bun run dev
-```
-
-## DB
-
-### スキーマ定義
-
-```bash
-/prisma/schema.prisma
-```
-
-型定義もしているのでここからインポートして型チェックしながら開発
-
-### スキーマ反映
-
-```bash
-bun run prisma:migrate
-```
-
-`prisma generate`は`predev`と`prebuild`に指定しているので勝手にやってくれる
-
-### seed 投入
-
-```bash
-bun run prisma:seed
 ```
 
 ### linter / formatter
