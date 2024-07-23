@@ -4,6 +4,7 @@ module.exports = {
   list: [
     'test',
     'feat',
+    'mod',
     'fix',
     'chore',
     'docs',
@@ -36,6 +37,11 @@ module.exports = {
       description: '新機能',
       emoji: '✨',
       value: 'feat',
+    },
+    mod: {
+      description: '不具合を伴わない機能・仕様の修正',
+      emoji: '🔧',
+      value: 'mod',
     },
     fix: {
       description: '不具合の修正',
@@ -72,4 +78,4 @@ module.exports = {
       subject: 'Write a short, imperative mood description of the change:\n',
     },
   },
-};
+}
