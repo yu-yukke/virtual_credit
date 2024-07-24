@@ -4,6 +4,7 @@ import '@/styles/reset.css'
 import { Inter } from 'next/font/google'
 import React from 'react'
 
+import { Providers } from '@/components/common'
 import { GoogleAnalytics } from '@/components/common/google-analytics'
 import { Header } from '@/components/layouts/header'
 
@@ -20,11 +21,13 @@ export const metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang='ja'>
+    <html lang='ja' className='light'>
       <GoogleAnalytics />
       <body className={inter.className}>
-        <Header />
-        <main>{children}</main>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   )
