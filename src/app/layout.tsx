@@ -1,13 +1,14 @@
 import '@/styles/globals.css'
 import '@/styles/reset.css'
 
-import { Inter } from 'next/font/google'
+import { Noto_Sans_JP } from 'next/font/google'
 import React from 'react'
 
+import { Providers } from '@/components/common'
 import { GoogleAnalytics } from '@/components/common/google-analytics'
 import { Header } from '@/components/layouts/header'
 
-const inter = Inter({ weight: '400', subsets: ['latin'] })
+const notoSansJp = Noto_Sans_JP({ weight: '400', subsets: ['latin'] })
 
 type RootLayoutProps = {
   children: React.ReactNode
@@ -20,11 +21,13 @@ export const metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang='ja'>
+    <html lang='ja' className='light'>
       <GoogleAnalytics />
-      <body className={inter.className}>
-        <Header />
-        <main>{children}</main>
+      <body className={notoSansJp.className}>
+        <Providers>
+          <Header />
+          <main className='h-[2000px]'>{children}</main>
+        </Providers>
       </body>
     </html>
   )
