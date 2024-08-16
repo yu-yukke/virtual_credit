@@ -1,9 +1,7 @@
 'use client'
 
-import { SearchIcon } from '@/components/elements/icons/search-icon'
 import {
   Button,
-  Input,
   Link,
   Navbar,
   NavbarContent,
@@ -13,30 +11,23 @@ import { Logo } from './_components/logo'
 
 export const Header = () => {
   return (
-    <Navbar maxWidth='full'>
-      <NavbarContent as='div' className='!flex-grow-0 !basis-auto'>
+    <Navbar maxWidth='full' height='4.5rem'>
+      <NavbarContent as='div'>
+        <NavbarItem className='hidden lg:flex'>
+          <Link href='#' className='text-secondary'>
+            Creators
+          </Link>
+        </NavbarItem>
+        <NavbarItem className='hidden lg:flex'>
+          <Link href='/works' className='text-secondary'>
+            Works
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent as='div' className='items-center' justify='center'>
         <Logo />
       </NavbarContent>
-      <NavbarContent
-        as='div'
-        className='items-center !flex-grow'
-        justify='center'
-      >
-        <Input
-          classNames={{
-            base: 'max-w-full h-10',
-            mainWrapper: 'h-full',
-            input: ['text-small', 'placeholder:text-tertiary/50'],
-            inputWrapper:
-              'h-full font-normal text-tertiary bg-tertiary/5 hover:!bg-tertiary/10',
-          }}
-          placeholder='作品・クリエイターを探す'
-          size='sm'
-          startContent={<SearchIcon />}
-          type='search'
-        />
-      </NavbarContent>
-      <NavbarContent className='!flex-grow-0' justify='end'>
+      <NavbarContent justify='end'>
         <NavbarItem className='hidden lg:flex'>
           <Link href='#' size='sm' className='text-secondary'>
             Sign In
