@@ -26,7 +26,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={notoSansJp.className}>
         <Providers>
           <Header />
-          <main className='h-[2000px]'>{children}</main>
+          <main className='pt-8 grid grid-cols-[1fr_min(1232px,_calc(100%_-_60px))_1fr] *:col-start-2'>
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
