@@ -6,6 +6,7 @@ import React from 'react'
 
 import { Providers } from '@/components/common'
 import { GoogleAnalytics } from '@/components/common/google-analytics'
+import { Footer } from '@/components/layouts/footer'
 import { Header } from '@/components/layouts/header'
 
 const notoSansJp = Noto_Sans_JP({ weight: '400', subsets: ['latin'] })
@@ -26,9 +27,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={notoSansJp.className}>
         <Providers>
           <Header />
-          <main className='pt-8 grid grid-cols-[1fr_min(1232px,_calc(100%_-_60px))_1fr] *:col-start-2'>
+          <main className='pt-8 pb-24 grid grid-cols-[1fr_min(1232px,_calc(100%_-_60px))_1fr] *:col-start-2'>
             {children}
           </main>
+          <Footer />
         </Providers>
       </body>
     </html>
