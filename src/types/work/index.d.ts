@@ -4,6 +4,7 @@ export type Work = {
   description: string
   isPublished: boolean
   coverImageUrl: string
+  userCount: number
   images: [
     {
       url: string
