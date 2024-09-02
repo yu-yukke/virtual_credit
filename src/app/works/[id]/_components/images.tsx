@@ -8,7 +8,7 @@ type Props = {
 
 export const Images = ({ images }: Props) => {
   return (
-    <div className='col-span-8 col-start-2'>
+    <div className='flex flex-col col-span-8 col-start-2 gap-y-12'>
       {images.map((image, index) => (
         <Image
           key={image.url}
