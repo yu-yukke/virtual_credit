@@ -8,14 +8,14 @@ type Props = {
 
 export const Images = ({ images }: Props) => {
   return (
-    <div className='flex flex-col items-center col-span-8 col-start-2 mt-20 gap-y-12'>
+    <div className='col-span-8 col-start-2'>
       {images.map((image, index) => (
         <Image
           key={image.url}
           alt={`作品画像_${index}`}
           src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${image.url}`}
           fill
-          className='object-contain !relative !w-auto'
+          className='object-contain !relative !w-auto mx-auto'
         />
       ))}
     </div>

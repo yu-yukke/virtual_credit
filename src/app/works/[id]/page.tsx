@@ -31,8 +31,8 @@ export default async function Page({ params }: { params: Props }) {
   const work: Work = await getWork(params.id)
 
   return (
-    <div className=''>
-      <div className='relative h-2/5 min-h-80 max-h-[600px]'>
+    <>
+      <div className='relative h-2/5 min-h-[40rem] max-h-[600px]'>
         <Image
           alt={work.title}
           src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${work.coverImageUrl}`}
@@ -40,7 +40,7 @@ export default async function Page({ params }: { params: Props }) {
           className='object-cover'
         />
       </div>
-      <div className='grid grid-cols-10 py-12 gap-x-6'>
+      <div className='grid grid-cols-10 mt-12 gap-x-6 gap-y-24'>
         <div className='col-span-4 col-start-4'>
           <h1 className='text-4xl font-bold tracking-wider'>{work.title}</h1>
           <p className='mt-12 leading-relaxed tracking-wide whitespace-pre-wrap'>
@@ -59,6 +59,6 @@ export default async function Page({ params }: { params: Props }) {
         </div>
         {work.images.length > 0 && <Images images={work.images} />}
       </div>
-    </div>
+    </>
   )
 }
