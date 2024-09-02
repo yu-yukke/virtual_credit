@@ -1,4 +1,4 @@
-import { Work } from '@/types/work'
+import { SimpleWork } from '@/types/work'
 
 import { WorkList } from './_components'
 
@@ -17,7 +17,7 @@ async function getWorks() {
 }
 
 export default async function Page() {
-  const works: Work[] = await getWorks()
+  const works: SimpleWork[] = await getWorks()
 
   return <WorkList works={works} />
 }

@@ -2,9 +2,9 @@
 
 import { Card, CardBody, CardHeader, Image } from '@nextui-org/react'
 
-import { Work } from '@/types/work'
+import { SimpleWork } from '@/types/work'
 
-export const WorkCard = ({ work }: { work: Work }) => {
+export const WorkCard = ({ work }: { work: SimpleWork }) => {
   return (
     <Card className='flex-col-reverse pt-2 pb-4 group'>
       <CardHeader className='flex-col items-start px-4 pt-2 pb-0'>

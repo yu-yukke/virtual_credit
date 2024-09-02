@@ -26,11 +26,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <GoogleAnalytics />
       <body className={notoSansJp.className}>
         <Providers>
-          <Header />
-          <main className='pt-8 pb-24 grid grid-cols-[1fr_min(1232px,_calc(100%_-_60px))_1fr] *:col-start-2'>
-            {children}
-          </main>
-          <Footer />
+          <div className='flex flex-col min-h-screen'>
+            <Header />
+            <main className='flex-grow pb-24 grid grid-cols-[1fr_min(1232px,_calc(100%_-_60px))_1fr] *:col-start-2'>
+              {children}
+            </main>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>
