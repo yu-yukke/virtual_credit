@@ -1,51 +1,50 @@
 'use client'
 
-import {
-  Button,
-  Link,
-  Navbar,
-  NavbarContent,
-  NavbarItem,
-} from '@nextui-org/react'
-import { Logo } from './_components/logo'
+import clsx from 'clsx'
+import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
+
+import { NavButton } from './_components/nav-button'
 
 export const Header = () => {
+  const [position, setPosition] = useState<number>(0)
+  const breakPosition = 50
+  const scrollEvent = useCallback(() => {
+    const offset = window.scrollY
+
+    setPosition(offset)
+  }, [])
+
+  useEffect(() => {
+    setPosition(window.scrollY)
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollEvent)
+
+    return () => {
+      window.removeEventListener('scroll', scrollEvent)
+    }
+  }, [scrollEvent])
+
   return (
-    <Navbar maxWidth='full' height='4.5rem'>
-      <NavbarContent as='div'>
-        <NavbarItem className='hidden lg:flex'>
-          <Link href='#' className='text-secondary'>
-            Creators
-          </Link>
-        </NavbarItem>
-        <NavbarItem className='hidden lg:flex'>
-          <Link href='/works' className='text-secondary'>
-            Works
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-      <NavbarContent as='div' className='items-center' justify='center'>
-        <Logo />
-      </NavbarContent>
-      <NavbarContent justify='end'>
-        <NavbarItem className='hidden lg:flex'>
-          <Link href='#' size='sm' className='text-secondary'>
-            Sign In
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            as={Link}
-            className='text-white'
-            radius='sm'
-            color='primary'
-            href='#'
-            variant='solid'
-          >
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
-    </Navbar>
+    <header className='fixed z-50 w-full px-7 top-6'>
+      <nav
+        className={clsx(
+          'p-2 mx-auto max-w-fit rounded-3xl transition-all duration-400 hover:bg-white hover:shadow-header',
+          position > breakPosition || undefined
+            ? 'bg-white shadow-headerActive'
+            : 'bg-background',
+        )}
+      >
+        <div className='relative'>
+          <div className='flex items-center gap-2'>
+            <NavButton href='/' text='Home' />
+            <NavButton href='/creators' text='Creators' />
+            <NavButton href='/works' text='Works' />
+          </div>
+        </div>
+      </nav>
+    </header>
   )
 }

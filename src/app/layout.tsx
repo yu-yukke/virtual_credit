@@ -28,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Providers>
           <div className='flex flex-col min-h-screen'>
             <Header />
-            <main className='flex-grow pb-24 grid grid-cols-[1fr_min(1232px,_calc(100%_-_60px))_1fr] *:col-start-2'>
+            <main className='flex-grow pt-24 pb-24 grid grid-cols-[1fr_min(1232px,_calc(100%_-_60px))_1fr] *:col-start-2'>
               {children}
             </main>
             <Footer />
