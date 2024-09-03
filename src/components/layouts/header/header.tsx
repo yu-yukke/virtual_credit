@@ -1,7 +1,6 @@
 'use client'
 
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
 
 import { NavButton } from './_components/nav-button'
