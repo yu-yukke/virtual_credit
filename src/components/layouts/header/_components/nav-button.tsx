@@ -1,4 +1,7 @@
-import Link from 'next/link'
+'use client'
+
+import { Button } from '@nextui-org/react'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   text: string
@@ -6,12 +9,17 @@ type Props = {
 }
 
 export const NavButton = ({ text, href }: Props) => {
+  const router = useRouter()
+
   return (
-    <Link
-      href={href}
-      className='px-4 py-2 text-sm tracking-wide transition-all text-tertiary rounded-3xl duration-400 hover:text-secondary hover:bg-background hover:shadow-headerNavButtonActive'
+    <Button
+      radius='full'
+      className='px-4 text-sm tracking-wide !transition-all bg-transparent cursor-pointer !duration-400 text-tertiary hover:bg-background hover:text-secondary hover:shadow-headerNavButtonActive'
+      onClick={() => {
+        router.push(href)
+      }}
     >
-      <div className='flex items-start gap-1'>{text}</div>
-    </Link>
+      {text}
+    </Button>
   )
 }
