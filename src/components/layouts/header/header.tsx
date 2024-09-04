@@ -1,9 +1,12 @@
 'use client'
 
+import { Divider } from '@nextui-org/react'
 import clsx from 'clsx'
 import { useCallback, useEffect, useState } from 'react'
 
 import { NavButton } from './_components/nav-button'
+import { SignInButton } from './_components/sign-in-button'
+import { SignUpButton } from './_components/sign-up-button'
 
 export const Header = () => {
   const [position, setPosition] = useState<number>(0)
@@ -41,6 +44,9 @@ export const Header = () => {
             <NavButton href='/' text='Home' />
             <NavButton href='/creators' text='Creators' />
             <NavButton href='/works' text='Works' />
+            <Divider orientation='vertical' className='h-6' />
+            <SignInButton />
+            <SignUpButton />
           </div>
         </div>
       </nav>
