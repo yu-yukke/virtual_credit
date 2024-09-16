@@ -8,7 +8,7 @@ type Props = {
 
 export const Images = ({ images }: Props) => {
   return (
-    <div className='flex flex-col col-span-8 col-start-2 gap-y-12'>
+    <div className='relative flex flex-col col-span-8 col-start-2 gap-y-12'>
       {images.map((image, index) => (
         <Image
           key={image.url}
@@ -16,6 +16,8 @@ export const Images = ({ images }: Props) => {
           src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${image.url}`}
           fill
           className='object-contain !relative !w-auto mx-auto'
+          sizes='100%'
+          loading='lazy'
         />
       ))}
     </div>
