@@ -37,6 +37,8 @@ export default async function Page({ params }: { params: Props }) {
           src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${work.coverImageUrl}`}
           fill
           className='object-cover'
+          priority
+          sizes='100%'
         />
       </div>
       <div className='grid grid-cols-10 mt-12 gap-x-6 gap-y-24'>
