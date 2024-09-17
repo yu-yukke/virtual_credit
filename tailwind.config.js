@@ -40,7 +40,7 @@ module.exports = {
             foreground: '#2d2d2e',
             default: '#2d2d2e',
             divider: '#e8e8e8',
-            primary: '#4F33BD',
+            primary: '#b1b9bb',
             secondary: '#4a4a4a',
             tertiary: '#6c6c75',
             danger: '#f36b6b',
