@@ -20,7 +20,16 @@ module.exports = {
   },
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        header:
+          '0px 1px 2px -1px rgba(41, 44, 49, 0.06), 0px 0px 0px 1px rgba(15, 16, 18, 0.06), 0px 2px 4px 0px rgba(73, 79, 90, 0.04)',
+        headerActive:
+          '0px 1px 2px -1px rgba(41, 44, 49, 0.06), 0px 0px 0px 1px rgba(15, 16, 18, 0.06), 0px 2px 4px 0px rgba(73, 79, 90, 0.04)',
+        headerNavButtonActive:
+          '0px 1px 2px -1px rgba(41, 44, 49, 0.06), 0px 0px 0px 1px rgba(15, 16, 18, 0.06), 0px 2px 4px 0px rgba(73, 79, 90, 0.04)',
+      },
+    },
   },
   plugins: [
     nextui({
@@ -31,7 +40,7 @@ module.exports = {
             foreground: '#2d2d2e',
             default: '#2d2d2e',
             divider: '#e8e8e8',
-            primary: '#4F33BD',
+            primary: '#b1b9bb',
             secondary: '#4a4a4a',
             tertiary: '#6c6c75',
             danger: '#f36b6b',
