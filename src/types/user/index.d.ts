@@ -12,6 +12,7 @@ export type UserWithWorks = {
   name: string
   slug: string
   description: string
+  coverImageUrl: string
   thumbnailImageUrl: string
   skills: Skill[]
   relatedWorks: SimpleWork[]
