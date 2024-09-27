@@ -1,8 +1,8 @@
-import { UserWithWorks } from '@/types/user'
+import { User } from '@/types/user'
 import Image from 'next/image'
 
 type Props = {
-  creator: UserWithWorks
+  creator: User
 }
 
 export const CreatorCard = ({ creator }: Props) => {
@@ -30,16 +30,18 @@ export const CreatorCard = ({ creator }: Props) => {
           />
         </div>
         <div className='flex flex-col gap-0.5 px-1'>
-          <p className='text-lg font-bold tracking-wide truncate'>
+          <h2 className='text-lg font-bold tracking-wide truncate'>
             {creator.name}
-          </p>
-          <p className='text-xs text-tertiary'>{`${creator.relatedWorks.length} works`}</p>
+          </h2>
+          <p className='text-xs text-tertiary'>{`${
+            creator.myWorks.length + creator.copyrightedWorks.length
+          } works`}</p>
         </div>
       </div>
       <div className='px-2 py-5'>
-        <p className='text-xs leading-relaxed text-tertiary line-clamp-4'>
+        <h3 className='text-xs leading-relaxed text-tertiary line-clamp-4'>
           {creator.description}
-        </p>
+        </h3>
       </div>
     </div>
   )
