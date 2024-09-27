@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const Footer = () => {
   return (
-    <footer className=''>
+    <footer className='mt-auto'>
       <div className='py-12 grid grid-cols-[1fr_min(1232px,_calc(100%_-_60px))_1fr] *:col-start-2'>
         <Link href='/'>
           <h1 className='text-2xl font-bold'>Google</h1>
