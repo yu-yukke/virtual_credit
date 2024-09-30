@@ -12,14 +12,23 @@ export const Copyrights = ({ copyrights }: Props) => {
       {copyrights.map((copyright) => (
         <div className='grid grid-cols-4 gap-x-8 gap-y-6'>
           <Link href='#' className='col-span-2 col-start-1 w-fit'>
-            <span key={copyright.id} className='text-sm text-tertiary'>
+            <span
+              key={copyright.id}
+              className='text-sm text-tertiary hover:underline hover:opacity-70'
+            >
               {copyright.name}
             </span>
           </Link>
           <div className='flex flex-col col-span-2 col-start-3 text-sm gap-y-4'>
             {copyright.users.map((user) => (
-              <Link key={user.id} href='#' className='w-fit'>
-                <span className=''>{user.name}</span>
+              <Link
+                key={user.id}
+                href={`/creators/${user.slug}`}
+                className='w-fit'
+              >
+                <span className='hover:underline hover:opacity-70'>
+                  {user.name}
+                </span>
               </Link>
             ))}
           </div>
