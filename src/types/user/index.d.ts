@@ -1,4 +1,5 @@
 import { Skill } from '../skill'
+import { Social } from '../social'
 import { SimpleWork } from '../work'
 
 export type SimpleUser = {
@@ -7,13 +8,15 @@ export type SimpleUser = {
   slug: string
 }
 
-export type UserWithWorks = {
+export type User = {
   id: string
   name: string
   slug: string
   description: string
   coverImageUrl: string
   thumbnailImageUrl: string
+  social: Social
   skills: Skill[]
-  relatedWorks: SimpleWork[]
+  myWorks: SimpleWork[]
+  copyrightedWorks: SimpleWork[]
 }
