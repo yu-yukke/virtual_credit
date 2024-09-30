@@ -14,7 +14,7 @@ export const Copyrights = ({ copyrights }: Props) => {
           <Link href='#' className='col-span-2 col-start-1 w-fit'>
             <span
               key={copyright.id}
-              className='text-sm text-tertiary hover:underline hover:opacity-70'
+              className='text-sm text-secondary hover:underline hover:opacity-70'
             >
               {copyright.name}
             </span>
@@ -26,7 +26,7 @@ export const Copyrights = ({ copyrights }: Props) => {
                 href={`/creators/${user.slug}`}
                 className='w-fit'
               >
-                <span className='hover:underline hover:opacity-70'>
+                <span className='hover:underline hover:opacity-70 text-secondary'>
                   {user.name}
                 </span>
               </Link>

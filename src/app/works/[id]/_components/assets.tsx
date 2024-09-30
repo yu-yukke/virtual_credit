@@ -16,7 +16,7 @@ export const Assets = ({ assets }: Props) => {
         <div className='flex flex-col col-span-2 col-start-3 text-sm gap-y-4'>
           {assets.map((asset) => (
             <Link key={asset.id} href='#' className='w-fit'>
-              <span className=''>{asset.name}</span>
+              <span className='text-secondary'>{asset.name}</span>
             </Link>
           ))}
         </div>

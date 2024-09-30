@@ -14,7 +14,7 @@ export const NavButton = ({ text, href }: Props) => {
   return (
     <Button
       radius='full'
-      className='px-4 text-sm tracking-wide !transition-all bg-transparent cursor-pointer !duration-400 text-tertiary hover:bg-background hover:text-secondary hover:shadow-headerNavButtonActive'
+      className='px-4 text-sm tracking-wide !transition-all bg-transparent cursor-pointer !duration-400 text-secondary/60 hover:bg-background hover:text-secondary hover:shadow-headerNavButtonActive'
       onClick={() => {
         router.push(href)
       }}

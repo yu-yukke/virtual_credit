@@ -16,7 +16,7 @@ export const Tags = ({ tags }: Props) => {
         <div className='flex flex-col col-span-2 col-start-3 text-sm gap-y-4'>
           {tags.map((tag) => (
             <Link key={tag.id} href='#' className='w-fit'>
-              <span className='hover:underline hover:opacity-70'>
+              <span className='hover:underline hover:opacity-70 text-secondary'>
                 #{tag.name}
               </span>
             </Link>
