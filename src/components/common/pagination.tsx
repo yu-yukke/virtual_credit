@@ -18,11 +18,15 @@ export const PaginationComponent = ({ currentPage, total, baseUrl }: Props) => {
   return (
     <div className='flex justify-center w-full mt-24'>
       <Pagination
+        color='secondary'
         total={total}
         initialPage={1}
         page={currentPage}
         showControls
         onChange={(page) => handlePageChange(page)}
+        classNames={{
+          cursor: 'bg-tertiary',
+        }}
       />
     </div>
   )

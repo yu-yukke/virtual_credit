@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: Props }) {
       <div className='grid grid-cols-10 mt-12 gap-x-6 gap-y-24'>
         <div className='col-span-4 col-start-4'>
           <h1 className='text-4xl font-bold tracking-wider'>{work.title}</h1>
-          <p className='mt-12 leading-relaxed tracking-wide whitespace-pre-wrap'>
+          <p className='mt-12 leading-relaxed tracking-wide whitespace-pre-wrap text-secondary'>
             {work.description}
           </p>
 

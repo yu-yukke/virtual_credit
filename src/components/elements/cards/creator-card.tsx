@@ -39,7 +39,7 @@ export const CreatorCard = ({ creator }: Props) => {
         </div>
       </div>
       <div className='px-2 py-5'>
-        <h3 className='text-xs leading-relaxed text-tertiary line-clamp-4'>
+        <h3 className='text-xs leading-relaxed text-secondary line-clamp-4'>
           {creator.description}
         </h3>
       </div>
