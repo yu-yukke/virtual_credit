@@ -1,5 +1,5 @@
 import { User } from '@/types/user'
-import { KeyVisual } from './_components'
+import { CreatorProfile, KeyVisual } from './_components'
 
 type Props = {
   slug: string
@@ -25,6 +25,7 @@ export default async function Page({ params }: { params: Props }) {
   return (
     <>
       <KeyVisual creator={creator} />
+      <CreatorProfile creator={creator} />
     </>
   )
 }
